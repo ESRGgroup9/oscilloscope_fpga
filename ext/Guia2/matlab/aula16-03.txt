@@ -1,0 +1,26 @@
+A = 60
+delta_ohm = 0.2pi
+
+beta = .1102*(A-8.7)
+M=ceil((A - 8)/(2.285 * delta_ohm))
+w=kaiser(M, beta)
+plot(w)
+
+{
+function [hd]=ideal_lp(Wc,M)
+
+alpha=M/2;
+n=[0:1:M-1];
+m=n-alpha+eps;
+hd=sin(Wc*m)./(pi*m);
+}
+
+hd=ideal_lp(.4*pi, M)
+plot(hd)
+
+h=hd'.*w -> usa-se o ponto para fazer multiplicação ponto
+a ponto, e não multiplicação matricial
+plot(h)
+
+---
+freqz(h, 1)
