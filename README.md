@@ -4,7 +4,7 @@
 It is intended to build an oscilloscope with hardware resource in FPGA. \
 The todo tasks will involve the development of the following functionalities:
 - Signal acquisition;
-- Signal processing functions
+- Signal processing functions:
   -  Fast-Fourier Transform (FFT);
   -  Low-Pass Filter (LP);
   -  Band-Pass Filter (BP);
