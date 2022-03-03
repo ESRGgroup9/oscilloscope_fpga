@@ -46,10 +46,10 @@ static void bcksp_key_cb(void);
 static void esc_key_cb(void);
 static void dollar_key_cb(void);
 
-static void left_key_cb(void);
-static void up_key_cb(void);
-static void right_key_cb(void);
-static void down_key_cb(void);
+//static void left_key_cb(void);
+//static void up_key_cb(void);
+//static void right_key_cb(void);
+//static void down_key_cb(void);
 
 /* USER CODE END 0 */
 
@@ -175,10 +175,10 @@ const Special_Key_t s_key_list[] =
 	{BCKSP_KEY	, bcksp_key_cb	},
 	{ESC_KEY		, esc_key_cb		},
 	{DOLLAR_KEY	, dollar_key_cb	},
-	{LEFT_ARROW_KEY	, left_key_cb},
-	{UP_ARROW_KEY		, dollar_key_cb},
-	{RIGHT_ARROW_KEY, right_key_cb},
-	{DOWN_ARROW_KEY	, down_key_cb},
+//	{LEFT_ARROW_KEY	, left_key_cb},
+//	{UP_ARROW_KEY		, dollar_key_cb},
+//	{RIGHT_ARROW_KEY, right_key_cb},
+//	{DOWN_ARROW_KEY	, down_key_cb},
 	
 	{0,0}
 };
@@ -233,25 +233,25 @@ static void dollar_key_cb(void)
 	insert_cmd(last_valid_cmd); // fill Rx_Buffer with last valid command
 }
 
-static void left_key_cb(void)
-{
-	
-}
-
-static void up_key_cb(void)
-{
-	
-}
-
-static void right_key_cb(void)
-{
-	
-}
-
-static void down_key_cb(void)
-{
-	
-}
+//static void left_key_cb(void)
+//{
+//
+//}
+//
+//static void up_key_cb(void)
+//{
+//
+//}
+//
+//static void right_key_cb(void)
+//{
+//
+//}
+//
+//static void down_key_cb(void)
+//{
+//
+//}
 
 /******************************************************************************
 @param  	 char received 'c' via UART

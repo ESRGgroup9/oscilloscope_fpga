@@ -35,7 +35,7 @@ Filter types implemented are:
 #include <string.h> // Using memset
 
 /** Defines filter in use *****************************************************/
-#define __FILTER_TYP_DIG__
+#define __FILTER_IIR__
 /******************************************************************************/
 
 // IIR Filter definitions
