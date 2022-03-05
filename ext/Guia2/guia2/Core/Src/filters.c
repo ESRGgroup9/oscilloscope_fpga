@@ -43,8 +43,22 @@ Filter types implemented are:
 #define _M_ 1
 #define _N_ 1
 const float filter_weight = 0.4;
+
+// LPF lpi guide
 const float y_coefs[_N_ + 1] = {0, filter_weight};
 const float x_coefs[_M_ + 1] = {0, (1 - filter_weight)};
+
+// LPF net
+//const float y_coefs[_N_ + 1] = {filter_weight, 0};
+//const float x_coefs[_M_ + 1] = {(1 - filter_weight), 0};
+
+// HPF net
+//#define _M_ 2
+//#define _N_ 1
+//const float y_coefs[_N_ + 1] = {filter_weight, 0};
+//const float x_coefs[_M_ + 1] = {filter_weight, -filter_weight, 0};
+
+
 #endif //!__FILTER_IIR__
 
 // FIR Filter definitions
