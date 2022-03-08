@@ -49,7 +49,8 @@ volatile uint8_t ADC_Val_index = 0;
 volatile uint16_t ADC_smp_num = 1; 					 // Sample number
 														
 volatile uint8_t smps_left;					 // Number of samples left
-				
+extern filter_t f;
+extern filter_t f_anti_aliasing;
 /******************************************************************************
 Function Prototypes
 ******************************************************************************/
@@ -199,7 +200,7 @@ uint32_t ADC_Polling_Conv(ADC_HandleTypeDef* hadc)
 {
 	uint32_t dig_val = 0;
 	
-//	HAL_ADC_Start_IT(hadc);		// iniciar uma conversão
+//	HAL_ADC_Start_IT(hadc);		// iniciar uma conversï¿½o
 //	while(adcFlag == 0)
 //		;
 //	adcFlag = 0;
@@ -216,6 +217,7 @@ uint32_t ADC_Polling_Conv(ADC_HandleTypeDef* hadc)
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
+	static uint32_t y_anti_aliasing;
 	static uint32_t y;
 	
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, (GPIO_PinState) 1);
@@ -226,8 +228,11 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		adcValue = HAL_ADC_GetValue(&hadc1);
 		smps_left--;
 		
-		// Applies filter to adcValue if Filter is enabled
-		y = (uint32_t)filter_calc(adcValue);
+		// apply anti aliasing filter
+		y_anti_aliasing = (uint32_t)filter_calc(&f_anti_aliasing, adcValue);
+		// apply selected filter
+		y = (uint32_t)filter_calc(&f, y_anti_aliasing);
+
 		if(y == (uint32_t)-1) // is filter disabled?
 			// Add new value to buffer
 			output(adcValue);
@@ -236,14 +241,6 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 			if(y > 4095)  // larger than max digital DAC value?
 				// send max value
 				y = 4095;
-			
-			// Filter enabled - Send to DAC
-			// DAC ready to send?
-			if(HAL_DAC_GetState(&hdac) != HAL_DAC_STATE_READY)
-				HAL_DAC_Stop(&hdac,DAC1_CHANNEL_1);
-			// Start DAC and send value
-			if(HAL_DAC_Start(&hdac,DAC1_CHANNEL_1) == HAL_OK)
-				HAL_DAC_SetValue(&hdac, DAC1_CHANNEL_1, DAC_ALIGN_12B_R, y);
 			
 			// Add filtered value to buffer
 			output(y);
@@ -257,13 +254,21 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 static void output(uint32_t value)
 {
 //	char str[16];
-	
 	ADC_Values[ADC_Val_index & (ADC_VALUES_LEN - 1)] = value;
 	ADC_Val_index++;
 	
 //	sprintf(str, "n%d v%d\n\r", ADC_smp_num, value);
 //	UART_puts(str);
 	ADC_smp_num++;
+
+	// Send to DAC
+	// DAC ready to send?
+	if(HAL_DAC_GetState(&hdac) != HAL_DAC_STATE_READY)
+		HAL_DAC_Stop(&hdac,DAC1_CHANNEL_1);
+	// Start DAC and send value
+	if(HAL_DAC_Start(&hdac,DAC1_CHANNEL_1) == HAL_OK)
+		HAL_DAC_SetValue(&hdac, DAC1_CHANNEL_1, DAC_ALIGN_12B_R, value);
+
 }
 
 void print_adcValues(void)
@@ -273,7 +278,7 @@ void print_adcValues(void)
 	
 	for(i = 1; i < ADC_smp_num; i++)
 	{
-		sprintf(str, "n%d v%d\n\r", i, ADC_Values[arr_index & (ADC_VALUES_LEN - 1)]);
+		snprintf(str, sizeof(str), "n%d v%ld\n\r", i, ADC_Values[arr_index & (ADC_VALUES_LEN - 1)]);
 		UART_puts(str);
 		arr_index++;
 	}	

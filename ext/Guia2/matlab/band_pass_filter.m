@@ -1,15 +1,21 @@
-fsamp = 8000;
-fcuts = [1000 1300 2210 2410];
+fsamp = 1000;
+% fcuts = [10 30 80 100];
+fcuts = [50 100 150 200];
+
 mags = [0 1 0];
-devs = [0.01 0.05 0.01];
+devs = [0.01 0.01 0.01];
 
 [n,Wn,beta,ftype] = kaiserord(fcuts,mags,devs,fsamp);
 n = n + rem(n,2);
 hh = fir1(n,Wn,ftype,kaiser(n+1,beta),'noscale');
 
-[H,f] = freqz(hh,1,1024,fsamp);
-plot(f,abs(H))
-grid
+figure('Name','Band Pass Filter');
+freqz(hh,1,1024,fsamp)
 
-disp(n);
-regexprep(num2str(hh),'\s+',',')
+fprintf("M [%d]", n);
+coefs = regexprep(num2str(hh),'\s+',',')
+
+
+% [H,f] = freqz(hh,1,1024,fsamp)
+% plot(f,abs(H))
+% grid

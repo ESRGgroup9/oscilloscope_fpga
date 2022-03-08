@@ -30,89 +30,10 @@ Filter types implemented are:
 	FIR Filter - Finite Impulse Response Filter
 
 *******************************************************************************/
-//#include "filters.h"
+#include "filters.h"
 #include <stdint.h>
 #include <string.h> // Using memset
-
-/** Defines filter in use *****************************************************/
-#define __FILTER_FIR__
-/******************************************************************************/
-
-// IIR Filter definitions
-#ifdef __FILTER_IIR__
-#define _M_ 1
-#define _N_ 1
-const float filter_weight = 0.4;
-
-// LPF lpi guide
-const float y_coefs[_N_ + 1] = {0, filter_weight};
-const float x_coefs[_M_ + 1] = {0, (1 - filter_weight)};
-
-// LPF net
-//const float y_coefs[_N_ + 1] = {filter_weight, 0};
-//const float x_coefs[_M_ + 1] = {(1 - filter_weight), 0};
-
-// HPF net
-//#define _M_ 2
-//#define _N_ 1
-//const float y_coefs[_N_ + 1] = {filter_weight, 0};
-//const float x_coefs[_M_ + 1] = {filter_weight, -filter_weight, 0};
-
-
-#endif //!__FILTER_IIR__
-
-// FIR Filter definitions
-#ifdef __FILTER_FIR__
-//#define _M_ 45
-#define _N_ 0
-const float y_coefs[_N_ + 1] = {0};
-//const float x_coefs[_M_ + 1] = {
-//	0.0014802, 0.0012597, 0.00055812,-0.00070152,
-//	-0.0025145,-0.0047705,-0.0072415, -0.0095853,
-//	-0.011366, -0.012095, -0.011282,  -0.0084963,
-//	-0.003433,  0.0040326, 0.013804,   0.025545,
-//	 0.038686,  0.052465,  0.065982,   0.078287,
-//	 0.088465,  0.095734,  0.09952,    0.09952,
-//	 0.095734,  0.088465,  0.078287, 	 0.065982,
-//	 0.052465,  0.038686,  0.025545,   0.013804,
-//	 0.0040326,-0.003433, -0.0084963, -0.011282,
-//	-0.012095, -0.011366, -0.0095853, -0.0072415,
-//	-0.0047705,-0.0025145,-0.00070152, 0.00055812,
-//	 0.0012597, 0.0014802
-//};
-
-#define _M_ 46
-const float x_coefs[_M_ + 1] =
-{-0.0019339,-0.001802,-0.00083287,0.0010469,0.0035971,0.006233,0.0081023,0.0082747,0.006013,0.0010651,-0.0061058,-0.014231,-0.021339,-0.025066,-0.023121,-0.013825,0.0034066,0.027754,0.05696,0.087592,0.11559,0.13695,0.14851,0.14851,0.13695,0.11559,0.087592,0.05696,0.027754,0.0034066,-0.013825,-0.023121,-0.025066,-0.021339,-0.014231,-0.0061058,0.0010651,0.006013,0.0082747,0.0081023,0.006233,0.0035971,0.0010469,-0.00083287,-0.001802,-0.0019339};
-
-/* Low-Pass filter
- *
- * Sampling freq: 1000 Hz
- * Passband freq: 50 Hz
- * Stopband freq: 100 Hz
-*/
-//#define _M_ 45
-//const float x_coefs[_M_ + 1] ={-0.0019339,-0.001802,-0.00083287,0.0010469,0.0035971,0.006233,0.0081023,0.0082747,0.006013,0.0010651,-0.0061058,-0.014231,-0.021339,-0.025066,-0.023121,-0.013825,0.0034066,0.027754,0.05696,0.087592,0.11559,0.13695,0.14851,0.14851,0.13695,0.11559,0.087592,0.05696,0.027754,0.0034066,-0.013825,-0.023121,-0.025066,-0.021339,-0.014231,-0.0061058,0.0010651,0.006013,0.0082747,0.0081023,0.006233,0.0035971,0.0010469,-0.00083287,-0.001802,-0.0019339};
-
-#endif //!__FILTER_FIR__
-
-// Typical Digital Filter definition
-#ifdef __FILTER_TYP_DIG__
-#define _M_ 10
-#define _N_ 10
-const float y_coefs[_N_ + 1] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6/*, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5*/};
-const float x_coefs[_M_ + 1] = {0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6/*, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5, 0.1, 0.2, 0.3, 0.4, 0.5*/};
-#endif //!__FILTER_TYP_DIG__
-
-/******************************************************************************
-Global Variables
-******************************************************************************/
-
-float x_ant[_M_ + 1];
-float y_ant[_N_ + 1];
-
-// Filter status: ENABLED = 1; DISABLED = 0;
-uint8_t filter_flag = 0;
+#include <stdlib.h> // using free
 
 /******************************************************************************
 @function  Filter Init
@@ -120,16 +41,23 @@ uint8_t filter_flag = 0;
 @brief	 	 Enables filter
 @retval 	 Filter state
 ******************************************************************************/
-
-char filter_init(void)
+char filter_init(filter_t *ft)
 {
-	if(filter_flag)	// filter enabled?
+	if(!ft || ft->status)	// filter enabled?
 		// Filter already initialized
 		return (char)(-1);
 	
-	memset(x_ant, 0, _M_); 	// clear the x_ant buff
-	memset(y_ant, 0, _N_);	// clear the y_ant buff
-	filter_flag = 1;
+	ft->x_ant = (float*)malloc(ft->M + 1);
+	if(!ft->x_ant)
+		return (char)(-1);
+
+	ft->y_ant = (float*)malloc(ft->N + 1);
+	if(!ft->y_ant)
+		return (char)(-1);
+
+	memset(ft->x_ant, 0, (ft->M + 1)*sizeof(ft->x_ant[0])); 	// clear the x_ant buff
+	memset(ft->y_ant, 0, (ft->N + 1)*sizeof(ft->y_ant[0]));	// clear the y_ant buff
+	ft->status = 1; // enabled
 	// Exit success
 	return 0; 
 }
@@ -141,13 +69,25 @@ char filter_init(void)
 @retval 	 Filter state
 ******************************************************************************/
 
-char filter_kill(void)
+char filter_kill(filter_t *ft)
 {
-	if(filter_flag == 0) // filter disabled?
+	if(!ft || ft->status == 0) // filter disabled?
 		// Filter already disabled
 		return (char)(-1);
 
-	filter_flag = 0;
+	ft->status = 0; // disabled
+
+	free(ft->x_ant);
+	ft->x_ant = NULL;
+
+	free(ft->y_ant);
+	ft->y_ant = NULL;
+
+	ft->M = 0;
+	ft->N = 0;
+	ft->x_coefs = NULL;
+	ft->y_coefs = NULL;
+
 	// Exit success
 	return 0;
 }
@@ -162,41 +102,41 @@ char filter_kill(void)
 
 #ifdef __CASE_A__
 
-float filter_calc(uint32_t x)
+float filter_calc(filter_t *ft, uint32_t x)
 {
-	float y = 0;
-	uint8_t i = _M_;
-	
-	if(filter_flag == 0)
+	if(!ft || ft->status == 0)
 		// Filter is disabled. Return error
 		return (unsigned)(-1);
 	
+	float y = 0;
+	int i = ft->M;
+
 	while(i != 0)
 	{
 		// Update x_ant values
-		x_ant[i] = x_ant[i-1];
+		ft->x_ant[i] = ft->x_ant[i-1];
 		// Add to y only the x_ant values
-		y += x_coefs[i] * x_ant[i];
+		y += ft->x_coefs[i] * ft->x_ant[i];
 		i--;
 	}
 	// Update last received X value
-	x_ant[0] = x;								
+	ft->x_ant[0] = x;
 	// Add it to y	
-	y += x_coefs[i] * x_ant[i];
+	y += ft->x_coefs[i] * ft->x_ant[i];
 	
-	i = _N_;
+	i = ft->N;
 	while (i != 0)
 	{
 		// Update y_ant values
-		y_ant[i] = y_ant[i-1];
+		ft->y_ant[i] = ft->y_ant[i-1];
 		// Add to y only the y_ant values
-		y += y_coefs[i] * y_ant[i];
+		y += ft->y_coefs[i] * ft->y_ant[i];
 		i--;
 	}
 	// Update last Y value = x
-	y_ant[0] = y;
+	ft->y_ant[0] = y;
 	// Add it to y
-	y += y_coefs[i] * y_ant[i];
+	y += ft->y_coefs[i] * ft->y_ant[i];
 	
 	// Return filtered (x) value
 	return y;

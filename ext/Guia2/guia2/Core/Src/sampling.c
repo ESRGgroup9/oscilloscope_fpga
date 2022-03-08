@@ -1,9 +1,11 @@
-//#include "sampling.h"
+#include "sampling.h"
 
 #include "utils.h"
 #include "parser.h"
 #include "signals.h"
+
 #include "filters.h"
+#include "filter_coefs.h"
 
 #include "adc.h"
 #include "usart.h" // Using Uart_puts
@@ -13,8 +15,27 @@
 Global Variables
 ******************************************************************************/
 
-uint8_t Sampling_flag = 0;	// Sampling in process
-uint8_t SP_cb_done = 0;			// Sampling period callback done
+static uint8_t Sampling_flag = 0;	// Sampling in process
+static uint8_t SP_cb_done = 0;			// Sampling period callback done
+filter_t f = {
+	.M = 0,
+	.N = 0,
+	.x_ant = NULL,
+	.y_ant = NULL,
+	.y_coefs = NULL,
+	.x_coefs = NULL,
+	.status = 0
+};
+
+filter_t f_anti_aliasing = {
+	.M = FIR_ANTI_ALIAS_M_,
+	.N = 0,
+	.x_ant = NULL,
+	.y_ant = NULL,
+	.y_coefs = FIR_y_coefs,
+	.x_coefs = FIR_ANTI_ALIAS_x_coefs,
+	.status = 0
+};
 
 /******************************************************************************
 @function  Sampling Period
@@ -80,7 +101,7 @@ char sp_cb(uint8_t argc, char** argv)
 			SP_cb_done = 1; // Mark that Sampling Period has been defined
 			// Update Timer reload values
 			TIMER_6_Update(timer_reloads[i][0], (timer_reloads[i][1] * (uint16_t)(units)));
-			snprintf(str, sizeof(str), "Sampling period defined as %d %s\n\r", units, timeunits_arr[i]);
+			snprintf(str, sizeof(str), "Sampling period defined as %ld %s\n\r", units, timeunits_arr[i]);
 			UART_puts(str);
 			// Exit success
 			retval = 0;
@@ -102,7 +123,7 @@ char sp_cb(uint8_t argc, char** argv)
 char ac_cb(uint8_t argc, char** argv)
 {
 	uint8_t addr;
-	char str[30];
+	char str[62];
 	
 	if(argc != 2) // number of arguments invalid?
 		return (char)(-EINVARG);
@@ -118,7 +139,7 @@ char ac_cb(uint8_t argc, char** argv)
 		return (char)(-EPERM);
 	}
 	
-	sprintf(str, "ADC Channel %d selected for sampling.\n\r", addr);
+	snprintf(str, sizeof(str), "ADC Channel %d selected for sampling.\n\r", addr);
 	UART_puts(str);
 	
 	return 0;
@@ -133,12 +154,53 @@ char ac_cb(uint8_t argc, char** argv)
 
 char fn_cb(uint8_t argc, char** argv)
 {
-	if(argc != 1) // number of arguments invalid?
+	if(argc != 2) // number of arguments invalid?
 		return (char)(-EINVARG);
 	
-	if(filter_init() == (char)(-1)) // Filter has already been initialized?
+	if(f.status == 1)
 	{
 		UART_puts("Filter already enabled.\n\r");
+		return 0;
+	}
+
+	// select filter
+	if(strcmp(argv[1], "LP") == 0)
+	{
+		// set Low Pass filter
+		f.M = FIR_LP_M_;
+		f.N = 0;
+		f.x_coefs = FIR_LP_x_coefs;
+		f.y_coefs = FIR_y_coefs;
+		UART_puts("Selected Low-Pass Filter.\n\r");
+	}
+	else if(strcmp(argv[1], "HP") == 0)
+	{
+		// set High Pass filter
+		f.M = FIR_HP_M_;
+		f.N = 0;
+		f.x_coefs = FIR_HP_x_coefs;
+		f.y_coefs = FIR_y_coefs;
+		UART_puts("Selected High-Pass Filter.\n\r");
+	}
+	else if(strcmp(argv[1], "BP") == 0)
+	{
+		// set Band Pass filter
+		f.M = FIR_BP_M_;
+		f.N = 0;
+		f.x_coefs = FIR_BP_x_coefs;
+		f.y_coefs = FIR_y_coefs;
+		UART_puts("Selected Band-Pass Filter.\n\r");
+	}
+	else
+	{
+		UART_puts("Filter not recognized.\n\r");
+		return 0;
+	}
+
+	// init filter
+	if(filter_init(&f) == (char)(-1)) // Filter has already been initialized?
+	{
+		UART_puts("Error initializing filter.\n\r");
 		return 0;
 	}
 	
@@ -159,7 +221,7 @@ char ff_cb(uint8_t argc, char** argv)
 	if(argc != 1) // number of arguments invalid?
 		return (char)(-EINVARG);
 		
-	if(filter_kill() == (char)(-1)) // Filter has already been disabled?
+	if(filter_kill(&f) == (char)(-1)) // Filter has already been disabled?
 	{
 		UART_puts("Filter already disabled.\n\r");
 		return 0;
@@ -220,6 +282,9 @@ char s_cb(uint8_t argc, char** argv)
 		// Begin infinite sampling
 		UART_puts("Starting sampling...\n\r");
 		
+		// initialize anti aliasing filter
+		filter_init(&f_anti_aliasing);
+
 		// Start taking samples
 		start_sampling();
 		// Mark that sampling is in progress
@@ -327,7 +392,7 @@ char wg_cb(uint8_t argc, char** argv)
 			signal_ptr->fn();// Generate signal
 			wavegen_freq_update(freq); // Update signal frequency
 			wavegen_start(); // Start signal output
-			sprintf(str, "Generating %s wave at %d Hz.\n\r", argv[1], freq);
+			snprintf(str, sizeof(str), "Generating %s wave at %ld Hz.\n\r", argv[1], freq);
 			UART_puts(str);
 			retval = 0;	// Exit success
 			break;
