@@ -10,11 +10,13 @@ typedef struct
 {
 	int M;
 	int N;
+
 	float *x_ant;
 	float *y_ant;
 	float const *y_coefs;
 	float const *x_coefs;
 
+	uint32_t dc;	// dc component
 	uint8_t status;
 } filter_t;
 

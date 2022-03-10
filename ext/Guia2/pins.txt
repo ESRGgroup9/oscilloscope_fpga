@@ -1,0 +1,3 @@
+PA5 DAC WAVEGEN
+PA0 ADC
+PA4 DAC Filtered signal

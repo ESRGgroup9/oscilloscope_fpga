@@ -50,7 +50,7 @@ volatile uint16_t ADC_smp_num = 1; 					 // Sample number
 														
 volatile uint8_t smps_left;					 // Number of samples left
 extern filter_t f;
-extern filter_t f_anti_aliasing;
+
 /******************************************************************************
 Function Prototypes
 ******************************************************************************/
@@ -217,8 +217,7 @@ uint32_t ADC_Polling_Conv(ADC_HandleTypeDef* hadc)
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
-	static uint32_t y_anti_aliasing;
-	static uint32_t y;
+	static float y;
 	
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, (GPIO_PinState) 1);
 	
@@ -228,19 +227,17 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 		adcValue = HAL_ADC_GetValue(&hadc1);
 		smps_left--;
 		
-		// apply anti aliasing filter
-		y_anti_aliasing = (uint32_t)filter_calc(&f_anti_aliasing, adcValue);
 		// apply selected filter
-		y = (uint32_t)filter_calc(&f, y_anti_aliasing);
+		y = filter_calc(&f, adcValue);
 
-		if(y == (uint32_t)-1) // is filter disabled?
+		if(y == -1) // is filter disabled?
 			// Add new value to buffer
 			output(adcValue);
 		else
 		{
-			if(y > 4095)  // larger than max digital DAC value?
-				// send max value
-				y = 4095;
+				if(y > 4095)  // larger than max digital DAC value?
+					// send max value
+					y = 4095;
 			
 			// Add filtered value to buffer
 			output(y);
@@ -259,6 +256,7 @@ static void output(uint32_t value)
 	
 //	sprintf(str, "n%d v%d\n\r", ADC_smp_num, value);
 //	UART_puts(str);
+
 	ADC_smp_num++;
 
 	// Send to DAC

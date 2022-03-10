@@ -27,16 +27,6 @@ filter_t f = {
 	.status = 0
 };
 
-filter_t f_anti_aliasing = {
-	.M = FIR_ANTI_ALIAS_M_,
-	.N = 0,
-	.x_ant = NULL,
-	.y_ant = NULL,
-	.y_coefs = FIR_y_coefs,
-	.x_coefs = FIR_ANTI_ALIAS_x_coefs,
-	.status = 0
-};
-
 /******************************************************************************
 @function  Sampling Period
 @usage		 SP <timeunit> <units>
@@ -169,6 +159,7 @@ char fn_cb(uint8_t argc, char** argv)
 		// set Low Pass filter
 		f.M = FIR_LP_M_;
 		f.N = 0;
+		f.dc = 0;
 		f.x_coefs = FIR_LP_x_coefs;
 		f.y_coefs = FIR_y_coefs;
 		UART_puts("Selected Low-Pass Filter.\n\r");
@@ -178,6 +169,7 @@ char fn_cb(uint8_t argc, char** argv)
 		// set High Pass filter
 		f.M = FIR_HP_M_;
 		f.N = 0;
+		f.dc = 4095/2;
 		f.x_coefs = FIR_HP_x_coefs;
 		f.y_coefs = FIR_y_coefs;
 		UART_puts("Selected High-Pass Filter.\n\r");
@@ -187,6 +179,7 @@ char fn_cb(uint8_t argc, char** argv)
 		// set Band Pass filter
 		f.M = FIR_BP_M_;
 		f.N = 0;
+		f.dc = 4095/2;
 		f.x_coefs = FIR_BP_x_coefs;
 		f.y_coefs = FIR_y_coefs;
 		UART_puts("Selected Band-Pass Filter.\n\r");
@@ -281,9 +274,6 @@ char s_cb(uint8_t argc, char** argv)
 	{
 		// Begin infinite sampling
 		UART_puts("Starting sampling...\n\r");
-		
-		// initialize anti aliasing filter
-		filter_init(&f_anti_aliasing);
 
 		// Start taking samples
 		start_sampling();

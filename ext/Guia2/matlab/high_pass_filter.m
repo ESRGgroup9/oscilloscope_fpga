@@ -1,4 +1,4 @@
-%------------------------------- high pass
+%------------- High Pass Filter (HPF)
 % sampling frequency [Hz]
 fsamp = 1000; 
 % stopband and passband frequencies [Hz]

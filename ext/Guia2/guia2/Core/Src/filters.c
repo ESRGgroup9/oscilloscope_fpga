@@ -106,7 +106,7 @@ float filter_calc(filter_t *ft, uint32_t x)
 {
 	if(!ft || ft->status == 0)
 		// Filter is disabled. Return error
-		return (unsigned)(-1);
+		return -1;
 	
 	float y = 0;
 	int i = ft->M;
@@ -138,6 +138,9 @@ float filter_calc(filter_t *ft, uint32_t x)
 	// Add it to y
 	y += ft->y_coefs[i] * ft->y_ant[i];
 	
+	// add dc component
+	y += ft->dc;
+
 	// Return filtered (x) value
 	return y;
 }
