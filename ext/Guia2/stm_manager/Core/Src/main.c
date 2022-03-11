@@ -30,6 +30,7 @@
 /* USER CODE BEGIN Includes */
 #include <string.h>
 #include "commands.h"
+#include "interface.h" // print startup message
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -100,7 +101,12 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
-	
+
+  // print startup message
+  ver_cb(1, NULL);
+  UART_puts("\n\rType '?' for list of available commands\n\r");
+  UART_puts("Type '? <cmd>' for more info on a given command\n\r");
+
   /* USER CODE END 2 */
 
   /* Infinite loop */

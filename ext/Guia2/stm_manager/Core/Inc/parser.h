@@ -19,7 +19,8 @@ typedef char (*Command_cb)(uint8_t, char *[]); // callback - function pointer
 typedef struct Command
 {
 	const char *cmd;            // the command string to match against
-	const char *help;         // the help text associated with cmd
+	const char *help;         	// the help text associated with cmd
+	const char *usage;			// command usage
 	Command_cb fn;              // the function to call when cmd is matched
 } Command_t;
 

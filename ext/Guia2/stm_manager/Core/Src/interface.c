@@ -33,8 +33,11 @@ char ver_cb(uint8_t argc, char** argv)
 	if(argc != 1) // number of arguments invalid?
 		return (char)(-EINVARG);
 	
-	UART_puts("Current version: 1.0\n\rUsing STM32F767ZI-NUCLEO.\n\n\r");
-	UART_puts("Developers:\n\r- Diogo Fernandes\n\r- Tomas Abreu\n\r@LPI-II, T3G9\n\r");
+	// 1.0 Interfacing with STM
+	// 1.1 Sampling using ADC
+	// 1.2 Digital filters (IIR/FIR)
+	UART_puts("Current version: 1.2\n\rUsing STM32F767ZI-NUCLEO.\n\n\r");
+	UART_puts("Developers:\n\r- Diogo Fernandes\n\r- Tomas Abreu\n\r@LPI-II Universidade do Minho, April 2021\n\r");
 	return 0;
 }
 
@@ -303,7 +306,7 @@ char ra_cb(uint8_t argc, char** argv)
 	
 	adcValue = ADC_Polling_Conv(&hadc1);
 	volt = ((double)adcValue * 3300 / 4095);
-	sprintf(str, "ADC Channel %2d value: %d mV.\n\r", addr, volt);
+	sprintf(str, "ADC Channel %2d value: %ld mV.\n\r", addr, volt);
 	UART_puts(str);
 	
 	ADC_DeConfig_Channel(&hadc1, addr); // Restores initial pin mode

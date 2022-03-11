@@ -37,7 +37,8 @@ extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
 #define RX_BUFF_LEN 16
-#define TX_BUFF_LEN 128
+//#define TX_BUFF_LEN 128
+#define TX_BUFF_LEN 256
 
 #define ENTER_KEY 	0x0D
 #define BCKSP_KEY 	0x7F
