@@ -1,0 +1,3 @@
+[submodule "ext/stm_manager"]
+	path = ext/stm_manager
+	url = https://github.com/ESRGgroup9/stm_manager.git

@@ -1,7 +1,10 @@
+why kaiser window?
+add filter calc implementation to pptx
+
+---------------------------
 myhdl
 hls
 cypress
 
 estudo n de coefs
-
-fixed point arithmetic
+fixed point arithmetic??
