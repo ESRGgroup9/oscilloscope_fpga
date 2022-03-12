@@ -16,6 +16,12 @@ The todo tasks will involve the development of the following functionalities:
 - Xilinx Vivado HLS
 - Xilinx Vitis 2019.02
 
+### Setup
+Note that this repository has submodules. When in doubt, follow the next steps:
+```shell
+$ git clone git@github.com:ESRGgroup9/oscilloscope_fpga.git
+$ git submodule update --init
+```
 --------
 Directed by:
 - Jorge Cabral
