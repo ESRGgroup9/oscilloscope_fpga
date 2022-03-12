@@ -16,6 +16,12 @@ The todo tasks will involve the development of the following functionalities:
 - Xilinx Vivado HLS
 - Xilinx Vitis 2019.02
 
+## Project tree
+- `doc/`: documentation
+- `ext/`: third-party software
+  - `stm_manager/`: STM manager Submodule
+  - `prints/`: oscilloscope result prints
+
 ### Setup
 Note that this repository has submodules. When in doubt, follow the next steps:
 ```shell
