@@ -16,16 +16,21 @@ The todo tasks will involve the development of the following functionalities:
 - Xilinx Vivado HLS
 - Xilinx Vitis 2019.02
 
+### Hardware
+- Zybo Z7: Zynq-7000 ARM/FPGA SoC Development Board
+- Pmod MTDS: Multi-Touch Display System
+
 ## Project tree
 - `doc/`: documentation
 - `ext/`: third-party software
   - `stm_manager/`: STM manager Submodule
-  - `prints/`: oscilloscope result prints
+  - `results/`: oscilloscope result prints
 
 ### Setup
 Note that this repository has submodules. When in doubt, follow the next steps:
 ```shell
 $ git clone git@github.com:ESRGgroup9/oscilloscope_fpga.git
+$ cd oscilloscope_fpga/
 $ git submodule update --init
 ```
 --------
