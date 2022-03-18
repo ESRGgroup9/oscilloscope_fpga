@@ -1,0 +1,6 @@
+microSD connector:
+- allows to draw and save images to an attached microSD card
+- card formatted as FAT32
+- image files saved as .bmp
+
+https://digilent.com/shop/pmod-mtds-multi-touch-display-system/
