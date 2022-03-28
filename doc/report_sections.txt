@@ -1,0 +1,31 @@
+Introdução
+- Definição do problema
+- Estudo de mercado
+
+Estado da Arte
+- Amostragem
+- Filtros Digitais
+- Aritmética de fixed point
+
+Análise
+- Requisitos e restrições
+- Diagrama de blocos do sistema
+
+Especificação do Sistema
+- Placa de desenvolvimento Zybo Z7-10
+	- ADC
+	- ...
+- Display PMOD MTDS
+
+Desenho do Sistema
+- Algoritmos de Amostragem
+- Algoritmos de Filtragem Digital
+- Controlador do Display
+- Definição do plano de testes
+
+Implementação do Sistema
+- 
+
+Resultados Experimentais
+-
+
