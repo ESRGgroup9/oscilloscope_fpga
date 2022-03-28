@@ -3,7 +3,7 @@ fsamp = 1000;
 
 % number of filter simulations
 N=4;
-opt = "BPF";
+opt = "LPF";
 
 % filter parameters - cutting freq, ripples
 if(opt == "LPF")
