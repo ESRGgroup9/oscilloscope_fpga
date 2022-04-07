@@ -1,0 +1,14 @@
+------------------------ relatorio -------
+- indice relatorio?
+- restrições/requirements
+- desenho vs implementação
+- estudo dos coeficientes -> Resultados práticos?
+- referencias a imagens de livros
+
+------------------------ vitis -------
+- interface da PS com ADC/PMOD/PL? É com AXI lite para tudo?
+
+- com o MTDS o que diferia? Interface direta com a PS ou com PMOD?
+
+- como utilizar o ADC? interrupts?
+
