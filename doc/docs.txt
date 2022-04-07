@@ -1,0 +1,7 @@
+Zybo:
+https://digilent.com/reference/_media/reference/programmable-logic/zybo-z7/zybo-z7_rm.pdf
+
+XADC:
+https://docs.xilinx.com/v/u/en-US/ug480_7Series_XADC
+
+Testing input voltage on Xilinx zynq-7020 Z-turn by XADC:https://www.youtube.com/watch?v=QfjBP9KT5lo
