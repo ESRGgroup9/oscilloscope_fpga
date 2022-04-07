@@ -1,5 +1,7 @@
 ------------------------ relatorio -------
 - indice relatorio?
+- cenários de aplicação/casos de estudo -> osciloscopio?
+- objetivos e resultados esperados?
 - restrições/requirements
 - desenho vs implementação
 - estudo dos coeficientes -> Resultados práticos?
