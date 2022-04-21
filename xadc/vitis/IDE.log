@@ -1,0 +1,7 @@
+10:10:54 INFO  : Launching XSCT server: xsct -n  -interactive /home/tomas/oscilloscope_fpga/xadc/vitis/temp_xsdb_launch_script.tcl
+10:11:00 INFO  : XSCT server has started successfully.
+10:11:01 INFO  : plnx-install-location is set to ''
+10:11:01 INFO  : Successfully done setting XSCT server connection channel  
+10:11:01 INFO  : Successfully done query RDI_DATADIR 
+10:11:01 INFO  : Successfully done setting workspace for the tool. 
+10:11:01 INFO  : Registering command handlers for Vitis TCF services
