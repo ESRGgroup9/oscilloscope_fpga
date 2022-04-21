@@ -2129,3 +2129,277 @@ TRACE::2022-04-21.10:41:58::SCWMssOS::tartfiles -g -Wall -Wextra"
 
 TRACE::2022-04-21.10:41:58::SCWMssOS::Compiling scugic
 
+TRACE::2022-04-21.10:41:59::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_6/src
+
+TRACE::2022-04-21.10:41:59::SCWMssOS::make -C ps7_cortexa9_0/libsrc/qspips_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:41:59::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:41:59::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:41:59::SCWMssOS::Compiling qspips
+
+TRACE::2022-04-21.10:42:00::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_3/src
+
+TRACE::2022-04-21.10:42:00::SCWMssOS::make -C ps7_cortexa9_0/libsrc/xadcps_v2_3/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:42:00::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:42:00::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:00::SCWMssOS::Compiling xadcps
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_6/src
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::make -C ps7_cortexa9_0/libsrc/gpiops_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:42:01::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:42:01::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::Compiling gpiops
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_5/src
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::make -C ps7_cortexa9_0/libsrc/devcfg_v3_5/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:42:01::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:42:01::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:01::SCWMssOS::Compiling devcfg
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_1/src
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::make -C ps7_cortexa9_0/libsrc/scuwdt_v2_1/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:42:02::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:42:02::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::Compiling scuwdt
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_8/src
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::make -C ps7_cortexa9_0/libsrc/uartps_v3_8/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
+TRACE::2022-04-21.10:42:02::SCWMssOS::" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
+TRACE::2022-04-21.10:42:02::SCWMssOS::tartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:02::SCWMssOS::Compiling uartps
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/gpio_v4_5/src
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::make -C ps7_cortexa9_0/libsrc/gpio_v4_5/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as" 
+TRACE::2022-04-21.10:42:03::SCWMssOS::"ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nosta
+TRACE::2022-04-21.10:42:03::SCWMssOS::rtfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::Compiling gpio
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/usbps_v2_4/src
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::make -C ps7_cortexa9_0/libsrc/usbps_v2_4/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as"
+TRACE::2022-04-21.10:42:03::SCWMssOS:: "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nost
+TRACE::2022-04-21.10:42:03::SCWMssOS::artfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:03::SCWMssOS::Compiling usbps
+
+TRACE::2022-04-21.10:42:04::SCWMssOS::Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_1/src
+
+TRACE::2022-04-21.10:42:04::SCWMssOS::make -C ps7_cortexa9_0/libsrc/scutimer_v2_1/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
+TRACE::2022-04-21.10:42:04::SCWMssOS::as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
+TRACE::2022-04-21.10:42:04::SCWMssOS::ostartfiles -g -Wall -Wextra"
+
+TRACE::2022-04-21.10:42:04::SCWMssOS::Compiling scutimer
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Finished building libraries
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Copying to export directory.
+TRACE::2022-04-21.10:42:05::SCWMssOS:: Checking if to create the Supporting Applications
+TRACE::2022-04-21.10:42:05::SCWMssOS:: No Linux domain exists, trying to generate FSBL 
+LOG::2022-04-21.10:42:05::SCWSystem::Completed Processing the domain standalone_domain
+LOG::2022-04-21.10:42:05::SCWSystem::Completed Processing the sysconfig design_1_wrapper
+LOG::2022-04-21.10:42:05::SCWPlatform::Completed generating the artifacts for system configuration design_1_wrapper
+TRACE::2022-04-21.10:42:05::SCWPlatform::Started preparing the platform 
+TRACE::2022-04-21.10:42:05::SCWSystem::Writing the bif file for system config design_1_wrapper
+TRACE::2022-04-21.10:42:05::SCWSystem::dir created 
+TRACE::2022-04-21.10:42:05::SCWSystem::Writing the bif 
+TRACE::2022-04-21.10:42:05::SCWPlatform::Started writing the spfm file 
+TRACE::2022-04-21.10:42:05::SCWPlatform::Started writing the xpfm file 
+TRACE::2022-04-21.10:42:05::SCWPlatform::Completed generating the platform
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWWriter::formatted JSON is {
+	"platformName":	"design_1_wrapper",
+	"sprVersion":	"2.0",
+	"mode":	"gui",
+	"dsaType":	"Fixed",
+	"platformDesc":	"design_1_wrapper",
+	"platHandOff":	"/tools/oscilloscope_fpga/ext/helloWorld/design_1_wrapper.xsa",
+	"platIntHandOff":	"<platformDir>/hw/design_1_wrapper.xsa",
+	"deviceType":	"zynq",
+	"platIsPrebuiltAutogen":	"false",
+	"platIsNoBootBsp":	"false",
+	"platFsblTarget":	"ps7_cortexa9_0",
+	"hasFsblMakeHasChanges":	"false",
+	"hasPmufwMakeHasChanges":	"false",
+	"platPreBuiltFlag":	false,
+	"platformSamplesDir":	"",
+	"platActiveSys":	"design_1_wrapper",
+	"systems":	[{
+			"systemName":	"design_1_wrapper",
+			"systemDesc":	"design_1_wrapper",
+			"sysIsBootAutoGen":	"true",
+			"systemDispName":	"design_1_wrapper",
+			"sysActiveDom":	"standalone_domain",
+			"sysDefaultDom":	"standalone_domain",
+			"domains":	[{
+					"domainName":	"zynq_fsbl",
+					"domainDispName":	"zynq_fsbl",
+					"domainDesc":	"FSBL Application BSP - Auto Generated.",
+					"processors":	"ps7_cortexa9_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"debugEnable":	"",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.1",
+					"mssFile":	"",
+					"md5Digest":	"58a5ff92e998da13ce2f009d83dff55b",
+					"compatibleApp":	"zynq_fsbl",
+					"domType":	"bootDomain",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	["xilffs:4.2", "xilrsa:1.5"],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}, {
+					"domainName":	"standalone_domain",
+					"domainDispName":	"standalone on ps7_cortexa9_0",
+					"domainDesc":	"standalone_domain",
+					"processors":	"ps7_cortexa9_0",
+					"os":	"standalone",
+					"sdxOs":	"standalone",
+					"qemuArgs":	"/tools/Xilinx/Vitis/2019.2/data/emulation/platforms/zynq/qemu/qemu_args.txt",
+					"qemuData":	"/tools/Xilinx/Vitis/2019.2/data/emulation/platforms/zynq/qemu/",
+					"debugEnable":	"False",
+					"domRuntimes":	["cpp"],
+					"swRepo":	"",
+					"mssOsVer":	"7.1",
+					"mssFile":	"",
+					"md5Digest":	"2ef01b760ff0c0073c239ef79ac41668",
+					"compatibleApp":	"hello_world",
+					"domType":	"mssDomain",
+					"arch":	"32-bit",
+					"appSettings":	{
+						"appCompilerFlags":	"",
+						"appLinkerFlags":	""
+					},
+					"addedLibs":	[],
+					"libOptions":	{
+						"libsContainingOptions":	[]
+					},
+					"prebuiltLibs":	{
+						"prebuiltIncPath":	[],
+						"prebuiltLibPath":	[]
+					},
+					"isolation":	{
+					}
+				}]
+		}]
+}
+KEYINFO::2022-04-21.10:42:05::SCWPlatform::updated the xpfm file.
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to open the hw design at /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA given /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA absoulate path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform::DSA directory /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Platform Path /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/hw/design_1_wrapper.xsa
+TRACE::2022-04-21.10:42:05::SCWPlatform:: Unique name xilinx:zybo-z7-10::0.0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Trying to set the existing hwdb with name design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Opened existing hwdb design_1_wrapper_0
+TRACE::2022-04-21.10:42:05::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2022-04-21.10:42:05::SCWMssOS::Checking the sw design at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss
+TRACE::2022-04-21.10:42:05::SCWMssOS::DEBUG:  swdes dump  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss|system_0||
+/tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
+
+TRACE::2022-04-21.10:42:05::SCWMssOS::Sw design exists and opened at  /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss

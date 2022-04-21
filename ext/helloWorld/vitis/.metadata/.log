@@ -1687,3 +1687,39 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 
 !ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:41:26.356
 !MESSAGE Indexed 'helloWorld' (2 sources, 50 headers) in 0.366 sec: 1,446 declarations; 2,183 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:08.157
+!MESSAGE XSCT Command: [::hsi::utils::closehw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:08.200
+!MESSAGE XSCT command with result: [::hsi::utils::closehw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:08.201
+!MESSAGE XSCT Command: [::hsi::utils::openhw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.221
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.222
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ], Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.228
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.229
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.233
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "7.1",
+}]. Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:42:11.234
+!MESSAGE Generating MD5 hash for file: /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.238
+!MESSAGE XSCT Command: [::hsi::utils::closesw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Thread: Worker-6: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:42:11.240
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /tools/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-6: Build Project
