@@ -1,0 +1,9 @@
+Nothing to build in platform 'design_1_wrapper'
+
+00:18:07 **** Incremental Build of configuration Debug for project helloWorld ****
+make all 
+make --no-print-directory pre-build
+a9-linaro-pre-build-step
+ 
+make --no-print-directory main-build
+make[1]: Nothing to be done for 'main-build'.

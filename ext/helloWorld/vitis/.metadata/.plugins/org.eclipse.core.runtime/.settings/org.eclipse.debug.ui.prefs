@@ -1,0 +1,7 @@
+Console.highWaterMark=88000
+StringVariablePreferencePage=169,140,140,112,
+eclipse.preferences.version=1
+org.eclipse.debug.ui.PREF_FILTER_TYPE_LIST=org.eclipse.ant.AntLaunchConfigurationType,org.eclipse.cdt.launch.applicationLaunchType,org.eclipse.cdt.launch.attachLaunchType,org.eclipse.cdt.launch.postmortemLaunchType,org.eclipse.cdt.launch.remoteApplicationLaunchType,org.eclipse.pde.ui.RuntimeWorkbench,org.eclipse.jdt.launching.javaApplet,org.eclipse.jdt.launching.localJavaApplication,org.eclipse.jdt.junit.launchconfig,org.eclipse.pde.ui.JunitLaunchConfig,org.eclipse.cdt.launch.launchGroup,org.eclipse.pde.ui.EquinoxLauncher,org.eclipse.linuxtools.profiling.provider.CoverageLaunchConfigurationType,org.eclipse.linuxtools.profiling.provider.MemoryLaunchConfigurationType,org.eclipse.linuxtools.profiling.provider.TimingLaunchConfigurationType,org.eclipse.ui.externaltools.ProgramLaunchConfigurationType,org.eclipse.jdt.launching.remoteJavaApplication,com.xilinx.sdx.sdsoc.debug.launch.SdsTcfLaunchDelegate,
+org.eclipse.debug.ui.PREF_LAUNCH_PERSPECTIVES=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\n<launchPerspectives/>\n
+org.eclipse.debug.ui.build_before_launch=false
+preferredTargets=org.eclipse.cdt.debug.ui.toggleCBreakpointTarget,org.eclipse.cdt.debug.ui.toggleCDynamicPrintfTarget\:org.eclipse.cdt.debug.ui.toggleCBreakpointTarget|
