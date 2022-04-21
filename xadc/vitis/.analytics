@@ -1,3 +1,4 @@
-timestamp=[2022-04-21 10:10:52], mode=WORKBENCH_START, duration=0:00:04.205, duration_ms=4205, data={}
-timestamp=[2022-04-21 10:11:00], mode=WORKBENCH_UI_INIT, duration=0:00:07.804, duration_ms=7804, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
-timestamp=[2022-04-21 10:13:54], mode=APP_CREATION, duration=0:00:22.919, duration_ms=22919, data={name=xadc, project_type=sdk, os=standalone, processor=ps7_cortexa9, runtime=cpp, platform=design_1_wrapper, application_type=application}
+timestamp=[2022-04-21 10:45:20], mode=WORKBENCH_START, duration=0:00:04.363, duration_ms=4363, data={}
+timestamp=[2022-04-21 10:45:28], mode=WORKBENCH_UI_INIT, duration=0:00:07.722, duration_ms=7722, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2022-04-21 10:47:13], mode=APP_CREATION, duration=0:00:23.160, duration_ms=23160, data={name=xadc, project_type=sdk, os=standalone, processor=ps7_cortexa9, runtime=cpp, platform=design_1_wrapper, application_type=application}
+timestamp=[2022-04-21 10:49:26], mode=PLATFORM_GENERATION, duration=0:00:39.009, duration_ms=39009, data={name=design_1_wrapper}

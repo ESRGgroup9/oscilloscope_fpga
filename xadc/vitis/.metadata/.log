@@ -1,69 +1,66 @@
-!SESSION 2022-04-21 10:10:19.644 -----------------------------------------------
+!SESSION 2022-04-21 10:44:50.980 -----------------------------------------------
 eclipse.buildId=2019.2
 java.version=9.0.4
 java.vendor=Oracle Corporation
 BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
 Command-line arguments:  -os linux -ws gtk -arch x86_64
 
-!ENTRY org.eclipse.emf.ecore 2 0 2022-04-21 10:10:48.157
+!ENTRY org.eclipse.emf.ecore 2 0 2022-04-21 10:45:16.207
 !MESSAGE Both 'com.autoesl.autopilot.ui.models' and 'com.autoesl.autopilot.ui.models' register a package for 'com.autoesl.autopilot.solution'
 
-!ENTRY org.eclipse.ui 4 4 2022-04-21 10:10:53.729
+!ENTRY org.eclipse.ui 4 4 2022-04-21 10:45:21.021
 !MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
 
-!ENTRY org.eclipse.ui 4 4 2022-04-21 10:10:57.568
+!ENTRY org.eclipse.ui 4 4 2022-04-21 10:45:25.353
 !MESSAGE Conflicting handlers for com.xilinx.sdx.system.core.importSourcesCommand: {com.xilinx.sdx.system.core.handler.ImportSourcesHandler} vs {com.xilinx.sdx.system.core.handler.ImportSourcesHandler}
 
-!ENTRY org.eclipse.ui 4 4 2022-04-21 10:10:57.578
+!ENTRY org.eclipse.ui 4 4 2022-04-21 10:45:25.357
 !MESSAGE Conflicting handlers for com.xilinx.sdx.system.core.importSourcesCommand: {com.xilinx.sdx.system.core.handler.ImportSourcesHandler} vs {com.xilinx.sdx.system.core.handler.ImportSourcesHandler}
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:00.844
-!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-8
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.084
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-3: Initializing s/w repositories
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:00.845
-!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-4: Initializing s/w repositories
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:00.845
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.085
 !MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-17
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.038
-!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-4: Initializing s/w repositories
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.087
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-6
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.039
-!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-8
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.272
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-3: Initializing s/w repositories
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.040
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.272
 !MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-17
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.040
-!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-4: Initializing s/w repositories
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.273
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-6
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.042
-!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /tools/Xilinx/Vitis/2019.2/data]. Thread: Worker-4: Initializing s/w repositories
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.273
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-3: Initializing s/w repositories
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.043
-!MESSAGE XSCT Command: [setws /home/tomas/oscilloscope_fpga/xadc/vitis], Thread: Thread-17
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.274
+!MESSAGE XSCT Command: [setws /tools/oscilloscope_fpga/xadc/vitis], Thread: Thread-17
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:11:01.047
-!MESSAGE XSCT command with result: [setws /home/tomas/oscilloscope_fpga/xadc/vitis], Result: [null, ]. Thread: Thread-17
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.279
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /tools/Xilinx/Vitis/2019.2/data]. Thread: Worker-3: Initializing s/w repositories
 
-!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:11:27.984
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:45:29.280
+!MESSAGE XSCT command with result: [setws /tools/oscilloscope_fpga/xadc/vitis], Result: [null, ]. Thread: Thread-17
+
+!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:46:36.820
 !MESSAGE Opening file dialog using preferences. Current path: /tools/Xilinx/Vitis/2019.2/data/embeddedsw/lib/fixed_hwplatforms, Local preference: scw_hwspec, Group preference: null
 
-!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:12:42.965
-!MESSAGE Opening file dialog using preferences. Current path: /tools/Xilinx/Vitis/2019.2/data/embeddedsw/lib/fixed_hwplatforms, Local preference: scw_hwspec, Group preference: null
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:43.948
+!MESSAGE XSCT Command: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:52.347
-!MESSAGE XSCT Command: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.739
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.194
-!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.769
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.226
-!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.246
-!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"hier_name": "processing_system7_0",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.786
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"hier_name": "processing_system7_0",
 "type": "processing_system7",
 "version": "5.5",
 "ip_type": "",
@@ -275,11 +272,11 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 },
 }]. Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.253
-!MESSAGE XSCT Command: [hsi::utils::get_supported_os -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.795
+!MESSAGE XSCT Command: [hsi::utils::get_supported_os -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.267
-!MESSAGE XSCT command with result: [hsi::utils::get_supported_os -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"ps7_cortexa9_0": {"freertos10_xilinx_v1_4": {"name": "freertos10_xilinx",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.809
+!MESSAGE XSCT command with result: [hsi::utils::get_supported_os -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"ps7_cortexa9_0": {"freertos10_xilinx_v1_4": {"name": "freertos10_xilinx",
 "version": "1.4",
 "desc": "This Xilinx FreeRTOS port is based on FreeRTOS kernel version 10.1.1",
 "compilerflags": "",
@@ -311,21 +308,21 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64
 },
 }]. Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.276
-!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.819
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:12:54.278
-!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"device": "7z010",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:45.821
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, {"device": "7z010",
 "family": "zynq",
 "timestamp": "Thu Apr 21 10:03:49 2022",
 "vivado_version": "2019.2",
 "part": "xc7z010clg400-1",
 }]. Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.198
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.653
 !MESSAGE XSCT Command: [::hsi::utils::get_all_app_details -json], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.263
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.712
 !MESSAGE XSCT command with result: [::hsi::utils::get_all_app_details -json], Result: [null, {"xilkernel_thread_demo": {"userdefname": "Xilkernel POSIX Threads Demo",
 "description": "This Xilkernel based application provides a simple example of how to create multiple POSIX threads and synchronize with them when they are complete. This example creates an initial master thread. The master thread creates 4 worker threads that go off to compute parts of a sum and return the partial sum as the result. The master thread accumulates the partial sums and prints the result. This example can serve as your starting point for your end application thread structure.",
 "supp_proc": "microblaze",
@@ -750,89 +747,71 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 },
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.326
-!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.784
+!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.366
-!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.822
+!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.368
-!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.825
+!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:03.408
-!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:47.861
+!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:20.842
-!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app zynq_fsbl -sw {} -arch {}], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:46:50.077
+!MESSAGE XSCT Command: [platform create -name {design_1_wrapper} -hw {/tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa} -out {/tools/oscilloscope_fpga/xadc/vitis};platform write], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:20.874
-!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app zynq_fsbl -sw {} -arch {}], Result: [null, 1]. Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.139
+!MESSAGE XSCT command with result: [platform create -name {design_1_wrapper} -hw {/tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa} -out {/tools/oscilloscope_fpga/xadc/vitis};platform write], Result: [null, Successfully saved  the platform at "/tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/platform.spr"]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:21.874
-!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:21.908
-!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:28.951
-!MESSAGE XSCT Command: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Thread: main
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:29.001
-!MESSAGE XSCT command with result: [::hsi::utils::is_app_supported_on_hw_sw  -hw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa -os standalone -processor ps7_cortexa9_0 -app hello_world -sw {} -arch {}], Result: [null, 1]. Thread: main
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:31.319
-!MESSAGE XSCT Command: [platform create -name {design_1_wrapper} -hw {/home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa} -out {/home/tomas/oscilloscope_fpga/xadc/vitis};platform write], Thread: ModalContext
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.257
-!MESSAGE XSCT command with result: [platform create -name {design_1_wrapper} -hw {/home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa} -out {/home/tomas/oscilloscope_fpga/xadc/vitis};platform write], Result: [null, Successfully saved  the platform at "/home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/platform.spr"]. Thread: ModalContext
-
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.341
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.237
 !MESSAGE XSCT Command: [domain create -name {standalone_domain} -display-name {standalone on ps7_cortexa9_0} -os {standalone} -proc {ps7_cortexa9_0} -runtime {cpp} -arch {32-bit} -support-app {hello_world}], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.655
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.586
 !MESSAGE XSCT command with result: [domain create -name {standalone_domain} -display-name {standalone on ps7_cortexa9_0} -os {standalone} -proc {ps7_cortexa9_0} -runtime {cpp} -arch {32-bit} -support-app {hello_world}], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.655
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.587
 !MESSAGE XSCT Command: [platform write], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.663
-!MESSAGE XSCT command with result: [platform write], Result: [null, Successfully saved  the platform at "/home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/platform.spr"]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.594
+!MESSAGE XSCT command with result: [platform write], Result: [null, Successfully saved  the platform at "/tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/platform.spr"]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.696
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.622
 !MESSAGE XSCT Command: [platform active {design_1_wrapper}], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.698
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.623
 !MESSAGE XSCT command with result: [platform active {design_1_wrapper}], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.699
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.623
 !MESSAGE XSCT Command: [domain active {zynq_fsbl}], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.700
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.624
 !MESSAGE XSCT command with result: [domain active {zynq_fsbl}], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.704
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.627
 !MESSAGE XSCT Command: [domain active {standalone_domain}], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.705
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.629
 !MESSAGE XSCT command with result: [domain active {standalone_domain}], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.707
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.629
 !MESSAGE XSCT Command: [platform generate -quick], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:43.726
-!MESSAGE XSCT command with result: [platform generate -quick], Result: [null, Successfully generated platform at "/home/tomas/oscilloscope_fpga/xadc/vitis"]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:01.647
+!MESSAGE XSCT command with result: [platform generate -quick], Result: [null, Successfully generated platform at "/tools/oscilloscope_fpga/xadc/vitis"]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:44.344
-!MESSAGE XSCT Command: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:02.171
+!MESSAGE XSCT Command: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.498
-!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.943
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.498
-!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.943
+!MESSAGE XSCT Command: [::hsi::utils::get_all_periphs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.510
-!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"hier_name": "processing_system7_0",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.957
+!MESSAGE XSCT command with result: [::hsi::utils::get_all_periphs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"hier_name": "processing_system7_0",
 "type": "processing_system7",
 "version": "5.5",
 "ip_type": "",
@@ -1044,26 +1023,26 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 },
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.530
-!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss ], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.976
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss ], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.533
-!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss ], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.979
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss ], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.534
-!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.980
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:46.536
-!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:04.984
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
 "osname": "standalone",
 "osver": "7.1",
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.905
-!MESSAGE XSCT Command: [hsi::utils::get_supported_os -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.258
+!MESSAGE XSCT Command: [hsi::utils::get_supported_os -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.917
-!MESSAGE XSCT command with result: [hsi::utils::get_supported_os -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"ps7_cortexa9_0": {"freertos10_xilinx_v1_4": {"name": "freertos10_xilinx",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.271
+!MESSAGE XSCT command with result: [hsi::utils::get_supported_os -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"ps7_cortexa9_0": {"freertos10_xilinx_v1_4": {"name": "freertos10_xilinx",
 "version": "1.4",
 "desc": "This Xilinx FreeRTOS port is based on FreeRTOS kernel version 10.1.1",
 "compilerflags": "",
@@ -1095,29 +1074,29 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 },
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.918
-!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.272
+!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.920
-!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.274
+!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.920
-!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.274
+!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.922
-!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {}]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.276
+!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {}]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.922
-!MESSAGE XSCT Command: [::hsi::utils::get_connected_periphs /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa ps7_cortexa9_0], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.276
+!MESSAGE XSCT Command: [::hsi::utils::get_connected_periphs /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa ps7_cortexa9_0], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.924
-!MESSAGE XSCT command with result: [::hsi::utils::get_connected_periphs /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa ps7_cortexa9_0], Result: [null, ps7_afi_0 ps7_afi_1 ps7_afi_2 ps7_afi_3 ps7_coresight_comp_0 ps7_ddr_0 ps7_ddrc_0 ps7_dev_cfg_0 ps7_dma_ns ps7_dma_s ps7_ethernet_0 ps7_globaltimer_0 ps7_gpio_0 ps7_gpv_0 ps7_intc_dist_0 ps7_iop_bus_config_0 ps7_l2cachec_0 ps7_ocmc_0 ps7_pl310_0 ps7_pmu_0 ps7_qspi_0 ps7_qspi_linear_0 ps7_ram_0 ps7_ram_1 ps7_scuc_0 ps7_scugic_0 ps7_scutimer_0 ps7_scuwdt_0 ps7_sd_0 ps7_slcr_0 ps7_uart_1 ps7_usb_0 ps7_xadc_0 xadc_wiz_0]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.277
+!MESSAGE XSCT command with result: [::hsi::utils::get_connected_periphs /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa ps7_cortexa9_0], Result: [null, ps7_afi_0 ps7_afi_1 ps7_afi_2 ps7_afi_3 ps7_coresight_comp_0 ps7_ddr_0 ps7_ddrc_0 ps7_dev_cfg_0 ps7_dma_ns ps7_dma_s ps7_ethernet_0 ps7_globaltimer_0 ps7_gpio_0 ps7_gpv_0 ps7_intc_dist_0 ps7_iop_bus_config_0 ps7_l2cachec_0 ps7_ocmc_0 ps7_pl310_0 ps7_pmu_0 ps7_qspi_0 ps7_qspi_linear_0 ps7_ram_0 ps7_ram_1 ps7_scuc_0 ps7_scugic_0 ps7_scutimer_0 ps7_scuwdt_0 ps7_sd_0 ps7_slcr_0 ps7_uart_1 ps7_usb_0 ps7_xadc_0 xadc_wiz_0]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.924
-!MESSAGE XSCT Command: [::hsi::utils::get_drivers_for_sw -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.278
+!MESSAGE XSCT Command: [::hsi::utils::get_drivers_for_sw -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.931
-!MESSAGE XSCT command with result: [::hsi::utils::get_drivers_for_sw -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {"ps7_afi_0": {"name": "generic",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.284
+!MESSAGE XSCT command with result: [::hsi::utils::get_drivers_for_sw -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {"ps7_afi_0": {"name": "generic",
 "ver": "2.0",
 },
 "ps7_afi_1": {"name": "generic",
@@ -1224,11 +1203,11 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 },
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:47.932
-!MESSAGE XSCT Command: [hsi::utils::get_drivers_for_hw -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.285
+!MESSAGE XSCT Command: [hsi::utils::get_drivers_for_hw -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.070
-!MESSAGE XSCT command with result: [hsi::utils::get_drivers_for_hw -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"version": "5.5",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.411
+!MESSAGE XSCT command with result: [hsi::utils::get_drivers_for_hw -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"processing_system7_0": {"version": "5.5",
 "driver_info": {"generic": {"name": "generic",
 "version": "2.0",
 "repo": "/tools/Xilinx/Vitis/2019.2/data/embeddedsw/XilinxProcessorIPLib/drivers/generic_v2_0",
@@ -1632,185 +1611,115 @@ Don't forget to modify blconfig.h to reflect the offset where your SREC image re
 },
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.074
-!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.415
+!MESSAGE XSCT Command: [::hsi::utils::get_libs_from_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.076
-!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.417
+!MESSAGE XSCT command with result: [::hsi::utils::get_libs_from_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.077
-!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.418
+!MESSAGE XSCT Command: [::hsi::utils::get_sw_libs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.080
-!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {}]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.420
+!MESSAGE XSCT command with result: [::hsi::utils::get_sw_libs -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, {}]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.138
-!MESSAGE XSCT Command: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.480
+!MESSAGE XSCT Command: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.139
-!MESSAGE XSCT command with result: [::hsi::utils::openhw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.482
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.140
-!MESSAGE XSCT Command: [::hsi::utils::opensw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.482
+!MESSAGE XSCT Command: [::hsi::utils::opensw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.141
-!MESSAGE XSCT command with result: [::hsi::utils::opensw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.484
+!MESSAGE XSCT command with result: [::hsi::utils::opensw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.142
-!MESSAGE XSCT Command: [::hsi::utils::generate_app_template -hw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -sw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss -app hello_world -processor ps7_cortexa9_0 -os standalone -dir /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/src], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.485
+!MESSAGE XSCT Command: [::hsi::utils::generate_app_template -hw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -sw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss -app hello_world -processor ps7_cortexa9_0 -os standalone -dir /tools/oscilloscope_fpga/xadc/vitis/xadc/src], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.203
-!MESSAGE XSCT command with result: [::hsi::utils::generate_app_template -hw /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -sw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss -app hello_world -processor ps7_cortexa9_0 -os standalone -dir /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/src], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.542
+!MESSAGE XSCT command with result: [::hsi::utils::generate_app_template -hw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -sw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss -app hello_world -processor ps7_cortexa9_0 -os standalone -dir /tools/oscilloscope_fpga/xadc/vitis/xadc/src], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.253
-!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/tomas/oscilloscope_fpga/xadc/vitis/xadc/_ide/bitstream}], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.593
+!MESSAGE XSCT Command: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/tools/oscilloscope_fpga/xadc/vitis/xadc/_ide/bitstream}], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.267
-!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/home/tomas/oscilloscope_fpga/xadc/vitis/xadc/_ide/bitstream}], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.609
+!MESSAGE XSCT command with result: [hsi::internal::extract_hw_files -quiet bit mmi bmm -dir {/tools/oscilloscope_fpga/xadc/vitis/xadc/_ide/bitstream}], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.268
-!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.610
+!MESSAGE XSCT Command: [::hsi::utils::get_design_properties -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.271
-!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"device": "7z010",
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.613
+!MESSAGE XSCT command with result: [::hsi::utils::get_design_properties -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, {"device": "7z010",
 "family": "zynq",
 "timestamp": "Thu Apr 21 10:03:49 2022",
 "vivado_version": "2019.2",
 "part": "xc7z010clg400-1",
 }]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:48.273
-!MESSAGE XSCT Command: [::hsi::generate_target {psinit} [ ::hsi::get_cells -filter { CONFIGURABLE == true } -hierarchical] -dir {/home/tomas/oscilloscope_fpga/xadc/vitis/xadc/_ide/psinit} -quiet], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:06.615
+!MESSAGE XSCT Command: [::hsi::generate_target {psinit} [ ::hsi::get_cells -filter { CONFIGURABLE == true } -hierarchical] -dir {/tools/oscilloscope_fpga/xadc/vitis/xadc/_ide/psinit} -quiet], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:53.591
-!MESSAGE XSCT command with result: [::hsi::generate_target {psinit} [ ::hsi::get_cells -filter { CONFIGURABLE == true } -hierarchical] -dir {/home/tomas/oscilloscope_fpga/xadc/vitis/xadc/_ide/psinit} -quiet], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:12.495
+!MESSAGE XSCT command with result: [::hsi::generate_target {psinit} [ ::hsi::get_cells -filter { CONFIGURABLE == true } -hierarchical] -dir {/tools/oscilloscope_fpga/xadc/vitis/xadc/_ide/psinit} -quiet], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:53.855
-!MESSAGE XSCT Command: [::hsi::utils::closesw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:12.920
+!MESSAGE XSCT Command: [::hsi::utils::closesw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:53.859
-!MESSAGE XSCT command with result: [::hsi::utils::closesw /home/tomas/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:12.924
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /tools/oscilloscope_fpga/xadc/vitis/xadc/system.mss], Result: [null, ]. Thread: ModalContext
 
-!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:13:53.916
-!MESSAGE Generating MD5 hash for file: /home/tomas/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ...
+!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:47:12.983
+!MESSAGE Generating MD5 hash for file: /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ...
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:54.738
-!MESSAGE XSCT Command: [::hsi::utils::closehw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:13.977
+!MESSAGE XSCT Command: [::hsi::utils::closehw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Thread: main
 
-!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:13:54.785
-!MESSAGE XSCT command with result: [::hsi::utils::closehw /home/tomas/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, ]. Thread: main
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:47:14.019
+!MESSAGE XSCT command with result: [::hsi::utils::closehw /tools/oscilloscope_fpga/xadc/design_1_wrapper.xsa], Result: [null, ]. Thread: main
 
-!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:13:56.801
-!MESSAGE Indexed 'xadc' (2 sources, 60 headers) in 1.86 sec: 1,533 declarations; 2,359 references; 6 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:47:16.194
+!MESSAGE Indexed 'xadc' (2 sources, 60 headers) in 2.28 sec: 1,533 declarations; 2,359 references; 6 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
 
-!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:14:02.788
-!MESSAGE Indexed 'design_1_wrapper' (259 sources, 172 headers) in 5.98 sec: 11,371 declarations; 80,995 references; 108 unresolved inclusions; 6 syntax errors; 119 unresolved names (0.13%)
+!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:47:23.842
+!MESSAGE Indexed 'design_1_wrapper' (259 sources, 172 headers) in 7.62 sec: 11,371 declarations; 80,995 references; 108 unresolved inclusions; 6 syntax errors; 119 unresolved names (0.13%)
 
-!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:14:02.790
+!ENTRY org.eclipse.cdt.core 1 0 2022-04-21 10:47:23.845
 !MESSAGE Indexed 'xadc_system' (0 sources, 0 headers) in 0 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
 
-!ENTRY org.eclipse.jface 4 0 2022-04-21 10:16:29.942
-!MESSAGE The command ("com.xilinx.ide.application.ui.perspectve") is undefined
-!STACK 0
-java.lang.Exception
-	at org.eclipse.jface.action.ExternalActionManager$CommandCallback.isActive(ExternalActionManager.java:364)
-	at org.eclipse.jface.action.ActionContributionItem.isCommandActive(ActionContributionItem.java:626)
-	at org.eclipse.jface.action.ActionContributionItem.isVisible(ActionContributionItem.java:682)
-	at org.eclipse.jface.action.MenuManager.isChildVisible(MenuManager.java:982)
-	at org.eclipse.jface.action.MenuManager.update(MenuManager.java:752)
-	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:472)
-	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:465)
-	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:497)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:256)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:86)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5686)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1370)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1396)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1375)
-	at org.eclipse.swt.widgets.Menu.gtk_show(Menu.java:779)
-	at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:1935)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5898)
-	at org.eclipse.swt.internal.gtk.GTK._gtk_main_do_event(Native Method)
-	at org.eclipse.swt.internal.gtk.GTK.gtk_main_do_event(GTK.java:4084)
-	at org.eclipse.swt.widgets.Display.eventProc(Display.java:1383)
-	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
-	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:1626)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4516)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1170)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1059)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:667)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:597)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
-	at com.xilinx.ide.application.ui.Application.start(Application.java:78)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:656)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:592)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1498)
-	at org.eclipse.equinox.launcher.Main.main(Main.java:1471)
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:26.054
+!MESSAGE XSCT Command: [::hsi::utils::closehw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
 
-!ENTRY org.eclipse.jface 4 0 2022-04-21 10:16:29.944
-!MESSAGE The command ("com.xilinx.sdk.performance.ui.PerformancePerspective") is undefined
-!STACK 0
-java.lang.Exception
-	at org.eclipse.jface.action.ExternalActionManager$CommandCallback.isActive(ExternalActionManager.java:364)
-	at org.eclipse.jface.action.ActionContributionItem.isCommandActive(ActionContributionItem.java:626)
-	at org.eclipse.jface.action.ActionContributionItem.isVisible(ActionContributionItem.java:682)
-	at org.eclipse.jface.action.MenuManager.isChildVisible(MenuManager.java:982)
-	at org.eclipse.jface.action.MenuManager.update(MenuManager.java:752)
-	at org.eclipse.jface.action.MenuManager.handleAboutToShow(MenuManager.java:472)
-	at org.eclipse.jface.action.MenuManager.access$1(MenuManager.java:465)
-	at org.eclipse.jface.action.MenuManager$2.menuShown(MenuManager.java:497)
-	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:256)
-	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:86)
-	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:5686)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1370)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1396)
-	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1375)
-	at org.eclipse.swt.widgets.Menu.gtk_show(Menu.java:779)
-	at org.eclipse.swt.widgets.Widget.windowProc(Widget.java:1935)
-	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5898)
-	at org.eclipse.swt.internal.gtk.GTK._gtk_main_do_event(Native Method)
-	at org.eclipse.swt.internal.gtk.GTK.gtk_main_do_event(GTK.java:4084)
-	at org.eclipse.swt.widgets.Display.eventProc(Display.java:1383)
-	at org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(Native Method)
-	at org.eclipse.swt.internal.gtk.OS.g_main_context_iteration(OS.java:1626)
-	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4516)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1170)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
-	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1059)
-	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:153)
-	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:667)
-	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:336)
-	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:597)
-	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:148)
-	at com.xilinx.ide.application.ui.Application.start(Application.java:78)
-	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
-	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:388)
-	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:243)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
-	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:656)
-	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:592)
-	at org.eclipse.equinox.launcher.Main.run(Main.java:1498)
-	at org.eclipse.equinox.launcher.Main.main(Main.java:1471)
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:26.110
+!MESSAGE XSCT command with result: [::hsi::utils::closehw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-0: Build Project
 
-!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:25:53.370
-!MESSAGE Executing command: /tools/Xilinx/Vitis/2019.2/bin/wbtcv -mode batch -source vitis_webtalk.tcl
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:26.111
+!MESSAGE XSCT Command: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Thread: Worker-0: Build Project
 
-!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:25:53.384
-!MESSAGE Executed Webtalk command
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.196
+!MESSAGE XSCT command with result: [::hsi::utils::openhw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.197
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.201
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.202
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.205
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "7.1",
+}]. Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2022-04-21 10:49:30.206
+!MESSAGE Generating MD5 hash for file: /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.209
+!MESSAGE XSCT Command: [::hsi::utils::closesw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Thread: Worker-0: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2022-04-21 10:49:30.211
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /tools/oscilloscope_fpga/xadc/vitis/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-0: Build Project
