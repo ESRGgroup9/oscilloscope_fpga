@@ -1,0 +1,18 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sources_1/new/encoder_TMDS.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module encoder_TMDS
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_encoder
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT0, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:75]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT0B, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:76]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT1B, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:78]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT2B, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:80]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT3, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:81]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT3B, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:82]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT4, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:83]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT5, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:84]
+INFO: [VRFC 10-2458] undeclared symbol CLKOUT6, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:85]
+INFO: [VRFC 10-2458] undeclared symbol CLKFBOUTB, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:88]
+INFO: [VRFC 10-2458] undeclared symbol LOCKED, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:90]
+INFO: [VRFC 10-2458] undeclared symbol PWRDWN, assumed default net type wire [/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/sim_1/new/tb_encoder.v:94]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/fernandes/code/xilinx/hdmi_test/hdmi_test.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
