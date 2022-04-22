@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/tomas/Vivado/helloWorld/helloWorld.runs/synth_1'
+HD_PWD='/home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
