@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/home/fernandes/code/xilinx/hdmi_test/hdmi_test.srcs/constrs_1/imports/xilinx/Zybo-Master.xdc rfile:../../../hdmi_test.srcs/constrs_1/imports/xilinx/Zybo-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:/home/fernandes/code/oscilloscope_fpga/hdmi_test/hdmi_test.srcs/constrs_1/imports/xilinx/Zybo-Master.xdc rfile:../../../hdmi_test.srcs/constrs_1/imports/xilinx/Zybo-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict { PACKAGE_PIN K17   IOSTANDARD LVCMOS33 } [get_ports { clk }]; #IO_L11P_T1_SRCC_35 Sch=sysclk
 set_property src_info {type:XDC file:1 line:55 export:INPUT save:INPUT read:READ} [current_design]

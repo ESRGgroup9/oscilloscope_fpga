@@ -134,6 +134,7 @@ wire clkfb_in, clkfb_out;
 // counter and sync generation
 reg [9:0] CounterX = 0, CounterY = 0;
 reg hSync, vSync, DrawArea;
+reg [5:0] counter;
 
 always @(posedge pixclk)
     begin  
@@ -144,6 +145,8 @@ always @(posedge pixclk)
                                                                    only counts up 1 count after horizontal finishes. */                                                          
         hSync <= (CounterX>=656) && (CounterX<752);         // hsync high for 96 counts                                                 
         vSync <= (CounterY>=490) && (CounterY<492);         // vsync high for 2 counts
+        
+        counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
     end
 // end counter and sync generation  
 
@@ -153,15 +156,24 @@ wire [7:0] W = {8{CounterX[7:0]==CounterY[7:0]}};
 wire [7:0] A = {8{CounterX[7:5]==3'h2 && CounterY[7:5]==3'h2}};
 reg [7:0] red, green, blue;
 
-always @(posedge pixclk) 
-    red <= ({CounterX[5:0] & {6{CounterY[4:3]==~CounterX[4:3]}}, 2'b00} | W) & ~A;
+//always @(posedge pixclk) 
+//    red <= ({CounterX[5:0] & {6{CounterY[4:3]==~CounterX[4:3]}}, 2'b00} | W) & ~A;
     
-always @(posedge pixclk) 
-    green <= (CounterX[7:0] & {8{CounterY[6]}} | W) & ~A;
+//always @(posedge pixclk) 
+//    green <= (CounterX[7:0] & {8{CounterY[6]}} | W) & ~A;
     
-always @(posedge pixclk) 
-    blue <= CounterY[7:0] | W | A;
+//always @(posedge pixclk) 
+//    blue <= CounterY[7:0] | W | A;
 // end color generation
+
+always @(posedge pixclk) 
+    red <= image[counter+2];
+    
+always @(posedge pixclk) 
+    green <= image[counter+1];
+    
+always @(posedge pixclk) 
+    blue <= image[counter];
 
 ////////////////////////////////////////////////////////////////////////
 // 8b/10b encoding for transmission
@@ -174,6 +186,82 @@ encoder_TMDS encode_B(.clk(pixclk), .VD(blue ), .CD({vSync,hSync}), .VDE(DrawAre
 // end 8b/10b encoding
 
 ////////////////////////////////////////////////////////////////////////
+localparam [3*20*20:0] image = {1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC};
 // Serializer and output buffers
 reg [3:0] TMDS_mod10=0;  // modulus 10 counter
 reg [9:0] TMDS_shift_red=0, TMDS_shift_green=0, TMDS_shift_blue=0;

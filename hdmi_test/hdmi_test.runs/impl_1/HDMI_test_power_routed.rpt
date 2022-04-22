@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date             : Thu Apr 14 22:37:20 2022
+| Date             : Fri Apr 22 01:39:10 2022
 | Host             : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 | Command          : report_power -file HDMI_test_power_routed.rpt -pb HDMI_test_power_summary_routed.pb -rpx HDMI_test_power_routed.rpx
 | Design           : HDMI_test
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.328        |
+| Total On-Chip Power (W)  | 0.326        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.233        |
+| Dynamic (W)              | 0.231        |
 | Device Static (W)        | 0.096        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 81.2         |
@@ -53,15 +53,15 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.002 |        6 |       --- |             --- |
-| Slice Logic    |     0.001 |      377 |       --- |             --- |
-|   LUT as Logic |     0.001 |      179 |     17600 |            1.02 |
-|   Register     |    <0.001 |      123 |     35200 |            0.35 |
-|   Others       |     0.000 |        9 |       --- |             --- |
-| Signals        |    <0.001 |      267 |       --- |             --- |
+| Slice Logic    |    <0.001 |      198 |       --- |             --- |
+|   LUT as Logic |    <0.001 |       63 |     17600 |            0.36 |
+|   Register     |    <0.001 |       90 |     35200 |            0.26 |
+|   Others       |     0.000 |       10 |       --- |             --- |
+| Signals        |    <0.001 |      104 |       --- |             --- |
 | MMCM           |     0.094 |        1 |         2 |           50.00 |
-| I/O            |     0.135 |        9 |       100 |            9.00 |
+| I/O            |     0.134 |        9 |       100 |            9.00 |
 | Static Power   |     0.096 |          |           |                 |
-| Total          |     0.328 |          |           |                 |
+| Total          |     0.326 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,8 +71,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.009 |       0.005 |      0.004 |
-| Vccaux    |       1.800 |     0.058 |       0.052 |      0.006 |
+| Vccint    |       1.000 |     0.008 |       0.004 |      0.004 |
+| Vccaux    |       1.800 |     0.057 |       0.052 |      0.006 |
 | Vcco33    |       3.300 |     0.042 |       0.041 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -150,7 +150,7 @@ Table of Contents
 +-----------+-----------+
 | Name      | Power (W) |
 +-----------+-----------+
-| HDMI_test |     0.233 |
+| HDMI_test |     0.231 |
 +-----------+-----------+
 
 

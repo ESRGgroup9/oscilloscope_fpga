@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="44" Path="/home/fernandes/code/xilinx/hdmi_test/hdmi_test.xpr">
+<Project Version="7" Minor="44" Path="/home/fernandes/code/oscilloscope_fpga/hdmi_test/hdmi_test.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="434945673d9e49e2a6de45fa886eb1e6"/>
@@ -83,7 +83,7 @@
       <Filter Type="Constrs"/>
       <File Path="$PSRCDIR/constrs_1/imports/xilinx/Zybo-Master.xdc">
         <FileInfo>
-          <Attr Name="ImportPath" Val="$PPRDIR/../Zybo-Master.xdc"/>
+          <Attr Name="ImportPath" Val="$PPRDIR/../../xilinx/Zybo-Master.xdc"/>
           <Attr Name="ImportTime" Val="1646937938"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

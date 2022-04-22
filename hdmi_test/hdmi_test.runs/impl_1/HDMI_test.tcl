@@ -68,9 +68,8 @@ set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
   set_param chipscope.maxJobs 2
-  set_param synth.incrementalSynthesisCache ./.Xil/Vivado-3491-fernandes420/incrSyn
   open_checkpoint HDMI_test_routed.dcp
-  set_property webtalk.parent_dir /home/fernandes/code/xilinx/hdmi_test/hdmi_test.cache/wt [current_project]
+  set_property webtalk.parent_dir /home/fernandes/code/oscilloscope_fpga/hdmi_test/hdmi_test.cache/wt [current_project]
   catch { write_mem_info -force HDMI_test.mmi }
   write_bitstream -force HDMI_test.bit 
   catch {write_debug_probes -quiet -force HDMI_test}

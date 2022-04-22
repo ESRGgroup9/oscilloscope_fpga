@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/fernandes/code/xilinx/hdmi_test/hdmi_test.runs/synth_1'
+HD_PWD='/home/fernandes/code/oscilloscope_fpga/hdmi_test/hdmi_test.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
