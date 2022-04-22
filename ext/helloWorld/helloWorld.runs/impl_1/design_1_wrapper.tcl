@@ -70,17 +70,17 @@ set rc [catch {
   set_property board_part digilentinc.com:zybo-z7-10:part0:1.1 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir /home/tomas/Vivado/helloWorld/helloWorld.cache/wt [current_project]
-  set_property parent.project_path /home/tomas/Vivado/helloWorld/helloWorld.xpr [current_project]
-  set_property ip_output_repo /home/tomas/Vivado/helloWorld/helloWorld.cache/ip [current_project]
+  set_property webtalk.parent_dir /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.cache/wt [current_project]
+  set_property parent.project_path /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.xpr [current_project]
+  set_property ip_output_repo /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_MEMORY} [current_project]
-  add_files -quiet /home/tomas/Vivado/helloWorld/helloWorld.runs/synth_1/design_1_wrapper.dcp
+  add_files -quiet /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.runs/synth_1/design_1_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files /home/tomas/Vivado/helloWorld/helloWorld.srcs/sources_1/bd/design_1/design_1.bd
+  add_files /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.srcs/sources_1/bd/design_1/design_1.bd
   set_param project.isImplRun false
-  read_xdc /home/tomas/Vivado/helloWorld/helloWorld.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc
+  read_xdc /home/tomas/oscilloscope_fpga/ext/helloWorld/helloWorld.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc
   set_param project.isImplRun true
   link_design -top design_1_wrapper -part xc7z010clg400-1
   set_param project.isImplRun false

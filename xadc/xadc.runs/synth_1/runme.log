@@ -18,27 +18,27 @@ Attempting to get a license for feature 'Synthesis' and/or device 'xc7z010'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z010'
 INFO: [Device 21-403] Loading part xc7z010clg400-1
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 16235 
+INFO: Helper process launched with PID 54457 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1982.473 ; gain = 202.719 ; free physical = 5449 ; free virtual = 18128
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1982.473 ; gain = 202.719 ; free physical = 5512 ; free virtual = 18623
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'design_1_wrapper' [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'design_1' [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:13]
-INFO: [Synth 8-6157] synthesizing module 'design_1_processing_system7_0_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_processing_system7_0_0' (1#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_processing_system7_0_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_processing_system7_0_0' (1#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'design_1_processing_system7_0_0' has 65 connections declared, but only 63 given [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:137]
 INFO: [Synth 8-6157] synthesizing module 'design_1_ps7_0_axi_periph_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:294]
 INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_UYSKKA' [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:599]
-INFO: [Synth 8-6157] synthesizing module 'design_1_auto_pc_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_auto_pc_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_auto_pc_0' (2#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_auto_pc_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_auto_pc_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_auto_pc_0' (2#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_auto_pc_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 'auto_pc' of module 'design_1_auto_pc_0' has 59 connections declared, but only 57 given [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:834]
 INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_UYSKKA' (3#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:599]
 INFO: [Synth 8-6155] done synthesizing module 'design_1_ps7_0_axi_periph_0' (4#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:294]
-INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps7_0_50M_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps7_0_50M_0' (5#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'design_1_rst_ps7_0_50M_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_rst_ps7_0_50M_0' (5#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_rst_ps7_0_50M_0_stub.v:6]
 WARNING: [Synth 8-7023] instance 'rst_ps7_0_50M' of module 'design_1_rst_ps7_0_50M_0' has 10 connections declared, but only 6 given [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:263]
-INFO: [Synth 8-6157] synthesizing module 'design_1_xadc_wiz_0_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_xadc_wiz_0_0_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'design_1_xadc_wiz_0_0' (6#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-16201-tomas-abreu/realtime/design_1_xadc_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'design_1_xadc_wiz_0_0' [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_xadc_wiz_0_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'design_1_xadc_wiz_0_0' (6#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/.Xil/Vivado-54417-tomas-abreu/realtime/design_1_xadc_wiz_0_0_stub.v:5]
 WARNING: [Synth 8-7023] instance 'xadc_wiz_0' of module 'design_1_xadc_wiz_0_0' has 34 connections declared, but only 21 given [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:270]
 INFO: [Synth 8-6155] done synthesizing module 'design_1' (7#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/synth/design_1.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'design_1_wrapper' (8#1) [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v:12]
@@ -47,7 +47,7 @@ WARNING: [Synth 8-3331] design s00_couplers_imp_UYSKKA has unconnected port M_AR
 WARNING: [Synth 8-3331] design design_1_ps7_0_axi_periph_0 has unconnected port ACLK
 WARNING: [Synth 8-3331] design design_1_ps7_0_axi_periph_0 has unconnected port ARESETN
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5480 ; free virtual = 18157
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5546 ; free virtual = 18658
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -60,12 +60,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5480 ; free virtual = 18151
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5542 ; free virtual = 18654
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5480 ; free virtual = 18151
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 2048.191 ; gain = 268.438 ; free physical = 5542 ; free virtual = 18654
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2048.191 ; gain = 0.000 ; free physical = 5473 ; free virtual = 18144
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2048.191 ; gain = 0.000 ; free physical = 5536 ; free virtual = 18647
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -78,24 +78,26 @@ Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/desi
 Finished Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_in_context.xdc] for cell 'design_1_i/rst_ps7_0_50M'
 Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0/design_1_auto_pc_0_in_context.xdc] for cell 'design_1_i/ps7_0_axi_periph/s00_couplers/auto_pc'
 Finished Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0/design_1_auto_pc_0_in_context.xdc] for cell 'design_1_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc]
+Finished Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc]
 Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2136.004 ; gain = 0.000 ; free physical = 5386 ; free virtual = 18065
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2137.973 ; gain = 0.000 ; free physical = 5460 ; free virtual = 18573
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2136.004 ; gain = 0.000 ; free physical = 5386 ; free virtual = 18065
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2137.973 ; gain = 0.000 ; free physical = 5460 ; free virtual = 18573
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5459 ; free virtual = 18135
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5526 ; free virtual = 18640
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z010clg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5459 ; free virtual = 18135
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5526 ; free virtual = 18640
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -367,10 +369,10 @@ Applied set_property DONT_TOUCH = true for design_1_i/ps7_0_axi_periph. (constra
 Applied set_property DONT_TOUCH = true for design_1_i/rst_ps7_0_50M. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for design_1_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5458 ; free virtual = 18134
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:14 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5526 ; free virtual = 18640
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:17 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5460 ; free virtual = 18136
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5528 ; free virtual = 18642
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -410,7 +412,7 @@ WARNING: [Synth 8-3331] design design_1_ps7_0_axi_periph_0 has unconnected port 
 WARNING: [Synth 8-3331] design design_1_ps7_0_axi_periph_0 has unconnected port M00_ACLK
 WARNING: [Synth 8-3331] design design_1_ps7_0_axi_periph_0 has unconnected port M00_ARESETN
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:18 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5443 ; free virtual = 18123
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:14 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5515 ; free virtual = 18631
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -422,13 +424,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:27 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5321 ; free virtual = 18000
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5391 ; free virtual = 18510
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:27 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5321 ; free virtual = 18000
+Finished Timing Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5391 ; free virtual = 18510
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -440,7 +442,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:27 . Memory (MB): peak = 2136.004 ; gain = 356.250 ; free physical = 5321 ; free virtual = 18000
+Finished Technology Mapping : Time (s): cpu = 00:00:17 ; elapsed = 00:00:22 . Memory (MB): peak = 2137.973 ; gain = 358.219 ; free physical = 5391 ; free virtual = 18510
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -464,13 +466,13 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:25 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:25 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -489,25 +491,25 @@ Report Check Netlist:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:25 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:25 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -543,26 +545,26 @@ Report Instance Areas:
 |4     |      s00_couplers   |s00_couplers_imp_UYSKKA     |   177|
 +------+---------------------+----------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.879 ; gain = 367.125 ; free physical = 5322 ; free virtual = 18002
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:25 . Memory (MB): peak = 2146.848 ; gain = 367.094 ; free physical = 5385 ; free virtual = 18505
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 4 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:29 . Memory (MB): peak = 2146.879 ; gain = 279.312 ; free physical = 5379 ; free virtual = 18059
-Synthesis Optimization Complete : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 2146.887 ; gain = 367.125 ; free physical = 5379 ; free virtual = 18059
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:24 . Memory (MB): peak = 2146.848 ; gain = 277.312 ; free physical = 5443 ; free virtual = 18562
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:26 . Memory (MB): peak = 2146.855 ; gain = 367.094 ; free physical = 5443 ; free virtual = 18562
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2146.887 ; gain = 0.000 ; free physical = 5374 ; free virtual = 18055
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 2146.855 ; gain = 0.000 ; free physical = 5438 ; free virtual = 18558
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2155.785 ; gain = 0.000 ; free physical = 5391 ; free virtual = 18070
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2155.754 ; gain = 0.000 ; free physical = 5451 ; free virtual = 18570
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
 28 Infos, 12 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:42 . Memory (MB): peak = 2161.723 ; gain = 613.305 ; free physical = 5513 ; free virtual = 18192
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2161.723 ; gain = 0.000 ; free physical = 5513 ; free virtual = 18192
+synth_design: Time (s): cpu = 00:00:29 ; elapsed = 00:00:35 . Memory (MB): peak = 2161.691 ; gain = 613.273 ; free physical = 5574 ; free virtual = 18695
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2161.691 ; gain = 0.000 ; free physical = 5574 ; free virtual = 18695
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/tomas/oscilloscope_fpga/xadc/xadc.runs/synth_1/design_1_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file design_1_wrapper_utilization_synth.rpt -pb design_1_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Thu Apr 21 10:07:01 2022...
+INFO: [Common 17-206] Exiting Vivado at Thu Apr 21 23:48:35 2022...

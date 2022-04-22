@@ -1,8 +1,580 @@
-10:40:11 INFO  : Launching XSCT server: xsct -n  -interactive /tools/oscilloscope_fpga/ext/helloWorld/vitis/temp_xsdb_launch_script.tcl
-10:40:18 INFO  : XSCT server has started successfully.
-10:40:18 INFO  : plnx-install-location is set to ''
-10:40:18 INFO  : Successfully done setting XSCT server connection channel  
-10:40:18 INFO  : Successfully done setting workspace for the tool. 
-10:40:18 INFO  : Successfully done query RDI_DATADIR 
-10:40:20 INFO  : Registering command handlers for Vitis TCF services
-10:42:08 INFO  : Checking for BSP changes to sync application flags for project 'helloWorld'...
+21:46:40 INFO  : Launching XSCT server: xsct -n  -interactive /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/temp_xsdb_launch_script.tcl
+21:46:45 INFO  : XSCT server has started successfully.
+21:46:45 INFO  : plnx-install-location is set to ''
+21:46:45 INFO  : Successfully done setting XSCT server connection channel  
+21:46:45 INFO  : Successfully done query RDI_DATADIR 
+21:46:45 INFO  : Successfully done setting workspace for the tool. 
+21:46:46 INFO  : Registering command handlers for Vitis TCF services
+21:51:50 INFO  : Checking for BSP changes to sync application flags for project 'helloWorld'...
+21:52:10 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:52:10 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:52:10 INFO  : 'jtag frequency' command is executed.
+21:52:10 INFO  : Context for 'APU' is selected.
+21:52:11 INFO  : System reset is completed.
+21:52:14 INFO  : 'after 3000' command is executed.
+21:52:14 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+21:52:15 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+21:52:15 INFO  : Context for 'APU' is selected.
+21:52:15 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+21:52:15 INFO  : 'configparams force-mem-access 1' command is executed.
+21:52:15 INFO  : Context for 'APU' is selected.
+21:52:15 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+21:52:15 INFO  : 'ps7_init' command is executed.
+21:52:15 INFO  : 'ps7_post_config' command is executed.
+21:52:15 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:52:15 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:52:16 INFO  : 'configparams force-mem-access 0' command is executed.
+21:52:16 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:52:16 INFO  : Memory regions updated for context APU
+21:52:16 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:52:16 INFO  : 'con' command is executed.
+21:52:16 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:52:16 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/debugger_helloworld-default.tcl'
+21:53:03 INFO  : Disconnected from the channel tcfchan#2.
+21:53:04 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:53:04 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:53:04 INFO  : 'jtag frequency' command is executed.
+21:53:04 INFO  : Context for 'APU' is selected.
+21:53:04 INFO  : System reset is completed.
+21:53:07 INFO  : 'after 3000' command is executed.
+21:53:07 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+21:53:08 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+21:53:08 INFO  : Context for 'APU' is selected.
+21:53:08 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+21:53:08 INFO  : 'configparams force-mem-access 1' command is executed.
+21:53:08 INFO  : Context for 'APU' is selected.
+21:53:08 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+21:53:09 INFO  : 'ps7_init' command is executed.
+21:53:09 INFO  : 'ps7_post_config' command is executed.
+21:53:09 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:53:09 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:53:09 INFO  : 'configparams force-mem-access 0' command is executed.
+21:53:09 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:53:09 INFO  : Memory regions updated for context APU
+21:53:09 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:53:09 INFO  : 'con' command is executed.
+21:53:09 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:53:09 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/debugger_helloworld-default.tcl'
+21:55:31 INFO  : Disconnected from the channel tcfchan#3.
+21:55:32 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:55:33 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:55:33 INFO  : 'jtag frequency' command is executed.
+21:55:33 INFO  : Context for 'APU' is selected.
+21:55:33 INFO  : System reset is completed.
+21:56:04 INFO  : Launching XSCT server: xsct -n  -interactive /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/temp_xsdb_launch_script.tcl
+21:56:09 INFO  : Registering command handlers for Vitis TCF services
+21:56:09 INFO  : XSCT server has started successfully.
+21:56:09 INFO  : Successfully done setting XSCT server connection channel  
+21:56:09 INFO  : Successfully done setting workspace for the tool. 
+21:56:09 INFO  : plnx-install-location is set to ''
+21:56:09 INFO  : Successfully done query RDI_DATADIR 
+21:56:25 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:56:25 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:56:25 INFO  : 'jtag frequency' command is executed.
+21:56:25 INFO  : Context for 'APU' is selected.
+21:56:26 INFO  : System reset is completed.
+21:56:29 INFO  : 'after 3000' command is executed.
+21:56:29 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+21:56:30 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+21:56:30 INFO  : Context for 'APU' is selected.
+21:56:30 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+21:56:30 INFO  : 'configparams force-mem-access 1' command is executed.
+21:56:30 INFO  : Context for 'APU' is selected.
+21:56:30 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+21:56:30 INFO  : 'ps7_init' command is executed.
+21:56:30 INFO  : 'ps7_post_config' command is executed.
+21:56:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:56:30 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:56:30 INFO  : 'configparams force-mem-access 0' command is executed.
+21:56:30 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:56:31 INFO  : Memory regions updated for context APU
+21:56:31 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:56:31 INFO  : 'con' command is executed.
+21:56:31 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:56:31 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/debugger_helloworld-default.tcl'
+21:56:42 INFO  : Disconnected from the channel tcfchan#1.
+21:56:44 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:56:44 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:56:44 INFO  : 'jtag frequency' command is executed.
+21:56:44 INFO  : Context for 'APU' is selected.
+21:56:44 INFO  : System reset is completed.
+21:56:47 INFO  : 'after 3000' command is executed.
+21:56:47 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+21:56:48 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+21:56:48 INFO  : Context for 'APU' is selected.
+21:56:51 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+21:56:51 INFO  : 'configparams force-mem-access 1' command is executed.
+21:56:51 INFO  : Context for 'APU' is selected.
+21:56:51 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+21:56:51 INFO  : 'ps7_init' command is executed.
+21:56:51 INFO  : 'ps7_post_config' command is executed.
+21:56:51 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:56:51 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:56:51 INFO  : 'configparams force-mem-access 0' command is executed.
+21:56:51 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:56:51 INFO  : Memory regions updated for context APU
+21:56:51 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:56:51 INFO  : 'con' command is executed.
+21:56:51 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:56:51 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+21:57:07 INFO  : Disconnected from the channel tcfchan#2.
+21:57:07 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+21:57:07 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+21:57:07 INFO  : 'jtag frequency' command is executed.
+21:57:08 INFO  : Context for 'APU' is selected.
+21:57:08 INFO  : System reset is completed.
+21:57:11 INFO  : 'after 3000' command is executed.
+21:57:11 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+21:57:12 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+21:57:12 INFO  : Context for 'APU' is selected.
+21:57:14 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+21:57:14 INFO  : 'configparams force-mem-access 1' command is executed.
+21:57:14 INFO  : Context for 'APU' is selected.
+21:57:14 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+21:57:14 INFO  : 'ps7_init' command is executed.
+21:57:14 INFO  : 'ps7_post_config' command is executed.
+21:57:14 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:57:14 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+21:57:14 INFO  : 'configparams force-mem-access 0' command is executed.
+21:57:14 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+21:57:14 INFO  : Memory regions updated for context APU
+21:57:14 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+21:57:14 INFO  : 'con' command is executed.
+21:57:14 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+21:57:14 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+21:58:03 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss"
+21:58:03 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+21:58:29 INFO  : (SwPlaform) Successfully done setParamInSpec 
+21:58:46 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+21:58:46 INFO  : No changes in MSS file content so sources will not be generated.
+22:02:39 INFO  : Disconnected from the channel tcfchan#3.
+22:02:39 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:02:39 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+22:02:39 INFO  : 'jtag frequency' command is executed.
+22:02:39 INFO  : Context for 'APU' is selected.
+22:02:39 INFO  : System reset is completed.
+22:02:42 INFO  : 'after 3000' command is executed.
+22:02:43 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:02:44 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:02:44 INFO  : Context for 'APU' is selected.
+22:02:46 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+22:02:46 INFO  : 'configparams force-mem-access 1' command is executed.
+22:02:46 INFO  : Context for 'APU' is selected.
+22:02:46 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+22:02:46 INFO  : 'ps7_init' command is executed.
+22:02:46 INFO  : 'ps7_post_config' command is executed.
+22:02:46 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:02:46 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:02:46 INFO  : 'configparams force-mem-access 0' command is executed.
+22:02:46 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:02:46 INFO  : Memory regions updated for context APU
+22:02:46 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:02:46 INFO  : 'con' command is executed.
+22:02:46 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:02:46 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+22:04:36 INFO  : Checking for BSP changes to sync application flags for project 'helloWorld'...
+22:06:48 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:07:02 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:07:02 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:07:03 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:26:12 INFO  : Hardware specification for platform project 'design_1_wrapper' is updated.
+22:27:13 INFO  : Checking for BSP changes to sync application flags for project 'helloWorld'...
+22:27:18 INFO  : The hardware specfication used by project 'helloWorld' is out of sync with the platform. Resource files extracted from the hardware specfiication will be updated.
+22:27:18 INFO  : The file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit' stored in project is removed.
+22:27:18 INFO  : The updated bitstream files are copied from platform to folder '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream' in project 'helloWorld'.
+22:27:18 INFO  : The file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' stored in project is removed.
+22:27:27 INFO  : The updated ps init files are copied from platform to folder '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit' in project 'helloWorld'.
+22:35:24 INFO  : Disconnected from the channel tcfchan#4.
+22:35:26 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:35:27 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+22:35:27 INFO  : 'jtag frequency' command is executed.
+22:35:27 INFO  : Context for 'APU' is selected.
+22:35:27 INFO  : System reset is completed.
+22:35:30 INFO  : 'after 3000' command is executed.
+22:35:30 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:35:31 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:35:31 INFO  : Context for 'APU' is selected.
+22:35:31 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+22:35:31 INFO  : 'configparams force-mem-access 1' command is executed.
+22:35:31 INFO  : Context for 'APU' is selected.
+22:35:31 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+22:35:31 INFO  : 'ps7_init' command is executed.
+22:35:31 INFO  : 'ps7_post_config' command is executed.
+22:35:31 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:35:32 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:35:32 INFO  : 'configparams force-mem-access 0' command is executed.
+22:35:32 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:35:32 INFO  : Memory regions updated for context APU
+22:35:32 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:35:32 INFO  : 'con' command is executed.
+22:35:32 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:35:32 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+22:35:42 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss"
+22:35:42 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+22:35:58 INFO  : (SwPlaform) Successfully done setParamInSpec 
+22:36:08 INFO  : (SwPlaform) Successfully done setParamInSpec 
+22:36:09 INFO  : (SwPlatform) Successfully done update_mss 
+22:36:09 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+22:36:17 ERROR : Error occurred while generating bsp sources for the domain 'standalone_domain'.
+22:36:25 INFO  : (SwPlaform) Successfully done setParamInSpec 
+22:36:27 INFO  : (SwPlaform) Successfully done setParamInSpec 
+22:36:27 INFO  : (SwPlatform) Successfully done update_mss 
+22:36:28 INFO  : Successfully done sdx_reload_mss "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/ps7_cortexa9_0/standalone_domain/bsp/system.mss"
+22:36:38 ERROR : Error occurred while generating bsp sources for the domain 'standalone_domain'.
+22:40:44 INFO  : Disconnected from the channel tcfchan#12.
+22:40:44 WARN  : Failed to closehw "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa"
+Reason: Cannot close hw design '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+Design is not opened in the current session.
+
+22:40:46 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:40:47 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+22:40:47 INFO  : 'jtag frequency' command is executed.
+22:40:47 INFO  : Context for 'APU' is selected.
+22:40:47 INFO  : System reset is completed.
+22:40:50 INFO  : 'after 3000' command is executed.
+22:40:50 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:40:51 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:40:51 INFO  : Context for 'APU' is selected.
+22:40:51 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+22:40:51 INFO  : 'configparams force-mem-access 1' command is executed.
+22:40:51 INFO  : Context for 'APU' is selected.
+22:40:51 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+22:40:51 INFO  : 'ps7_init' command is executed.
+22:40:51 INFO  : 'ps7_post_config' command is executed.
+22:40:51 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:40:52 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:40:52 INFO  : 'configparams force-mem-access 0' command is executed.
+22:40:52 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:40:52 INFO  : Memory regions updated for context APU
+22:40:52 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:40:52 INFO  : 'con' command is executed.
+22:40:52 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:40:52 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+22:47:56 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:47:56 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:47:57 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:48:25 INFO  : Disconnected from the channel tcfchan#14.
+22:48:25 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+22:48:25 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+22:48:25 INFO  : 'jtag frequency' command is executed.
+22:48:25 INFO  : Context for 'APU' is selected.
+22:48:25 INFO  : System reset is completed.
+22:48:28 INFO  : 'after 3000' command is executed.
+22:48:28 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+22:48:29 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+22:48:29 INFO  : Context for 'APU' is selected.
+22:48:29 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+22:48:29 INFO  : 'configparams force-mem-access 1' command is executed.
+22:48:29 INFO  : Context for 'APU' is selected.
+22:48:29 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+22:48:30 INFO  : 'ps7_init' command is executed.
+22:48:30 INFO  : 'ps7_post_config' command is executed.
+22:48:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:48:30 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+22:48:30 INFO  : 'configparams force-mem-access 0' command is executed.
+22:48:30 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+22:48:30 INFO  : Memory regions updated for context APU
+22:48:30 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+22:48:30 INFO  : 'con' command is executed.
+22:48:30 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+22:48:30 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_helloworld_system_standalone.tcl'
+23:04:00 INFO  : Disconnected from the channel tcfchan#15.
+01:52:30 INFO  : Launching XSCT server: xsct -n  -interactive /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/temp_xsdb_launch_script.tcl
+01:52:34 INFO  : Registering command handlers for Vitis TCF services
+01:52:35 INFO  : XSCT server has started successfully.
+01:52:35 INFO  : Successfully done setting XSCT server connection channel  
+01:52:35 INFO  : plnx-install-location is set to ''
+01:52:36 INFO  : Successfully done setting workspace for the tool. 
+01:52:36 INFO  : Successfully done query RDI_DATADIR 
+01:52:56 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+01:52:56 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+01:52:56 INFO  : 'jtag frequency' command is executed.
+01:52:56 INFO  : Context for 'APU' is selected.
+01:52:56 INFO  : System reset is completed.
+01:52:59 INFO  : 'after 3000' command is executed.
+01:52:59 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+01:53:01 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+01:53:01 INFO  : Context for 'APU' is selected.
+01:53:01 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+01:53:01 INFO  : 'configparams force-mem-access 1' command is executed.
+01:53:01 INFO  : Context for 'APU' is selected.
+01:53:01 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+01:53:01 INFO  : 'ps7_init' command is executed.
+01:53:01 INFO  : 'ps7_post_config' command is executed.
+01:53:01 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:53:01 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+01:53:01 INFO  : 'configparams force-mem-access 0' command is executed.
+01:53:01 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+01:53:01 INFO  : Memory regions updated for context APU
+01:53:01 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:53:01 INFO  : 'con' command is executed.
+01:53:01 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+01:53:01 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/debugger_helloworld-default.tcl'
+01:53:17 INFO  : Disconnected from the channel tcfchan#1.
+01:53:18 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+01:53:18 INFO  : Jtag cable 'Digilent Zybo Z7 210351AB72D9A' is selected.
+01:53:18 INFO  : 'jtag frequency' command is executed.
+01:53:18 INFO  : Context for 'APU' is selected.
+01:53:19 INFO  : System reset is completed.
+01:53:22 INFO  : 'after 3000' command is executed.
+01:53:22 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1' command is executed.
+01:53:23 INFO  : FPGA configured successfully with bitstream "/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit"
+01:53:23 INFO  : Context for 'APU' is selected.
+01:53:25 INFO  : Hardware design information is loaded from '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa'.
+01:53:25 INFO  : 'configparams force-mem-access 1' command is executed.
+01:53:25 INFO  : Context for 'APU' is selected.
+01:53:25 INFO  : Sourcing of '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl' is done.
+01:53:25 INFO  : 'ps7_init' command is executed.
+01:53:25 INFO  : 'ps7_post_config' command is executed.
+01:53:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:53:25 INFO  : The application '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf' is downloaded to processor 'ps7_cortexa9_0'.
+01:53:25 INFO  : 'configparams force-mem-access 0' command is executed.
+01:53:25 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent Zybo Z7 210351AB72D9A" && level==0} -index 1
+fpga -file /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/bitstream/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/design_1_wrapper/export/design_1_wrapper/hw/design_1_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/helloWorld/Debug/helloWorld.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+01:53:25 INFO  : Memory regions updated for context APU
+01:53:25 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+01:53:25 INFO  : 'con' command is executed.
+01:53:25 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+01:53:25 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/ext/helloWorld/vitis/.sdk/launch_scripts/single_application_debug/debugger_helloworld-default.tcl'
+01:53:33 INFO  : Disconnected from the channel tcfchan#2.

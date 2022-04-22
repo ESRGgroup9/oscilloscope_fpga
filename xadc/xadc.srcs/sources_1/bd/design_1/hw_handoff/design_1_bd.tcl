@@ -649,6 +649,14 @@ proc create_root_design { parentCell } {
 
   # Create instance: xadc_wiz_0, and set properties
   set xadc_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 xadc_wiz_0 ]
+  set_property -dict [ list \
+   CONFIG.CHANNEL_ENABLE_VP_VN {false} \
+   CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.SEQUENCER_MODE {Off} \
+   CONFIG.SINGLE_CHANNEL_ACQUISITION_TIME {false} \
+   CONFIG.SINGLE_CHANNEL_SELECTION {VP_VN} \
+   CONFIG.XADC_STARUP_SELECTION {single_channel} \
+ ] $xadc_wiz_0
 
   # Create interface connections
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]

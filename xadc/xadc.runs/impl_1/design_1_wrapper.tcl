@@ -80,6 +80,7 @@ set rc [catch {
   set_param project.isImplRun true
   add_files /home/tomas/oscilloscope_fpga/xadc/xadc.srcs/sources_1/bd/design_1/design_1.bd
   set_param project.isImplRun false
+  read_xdc /home/tomas/oscilloscope_fpga/xadc/xadc.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc
   set_param project.isImplRun true
   link_design -top design_1_wrapper -part xc7z010clg400-1
   set_param project.isImplRun false

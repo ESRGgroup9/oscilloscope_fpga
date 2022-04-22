@@ -1,7 +1,7 @@
 Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-| Date         : Thu Apr 14 22:37:06 2022
+| Date         : Fri Apr 22 01:38:56 2022
 | Host         : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 | Command      : report_control_sets -verbose -file HDMI_test_control_sets_placed.rpt
 | Design       : HDMI_test
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     7 |
-|    Minimum number of control sets                        |     7 |
+| Total control sets                                       |     5 |
+|    Minimum number of control sets                        |     5 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    21 |
+| Unused register locations in slices containing registers |    14 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,14 +39,14 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     7 |
+| Total control sets |     5 |
 | >= 0 to < 4        |     0 |
 | >= 4 to < 6        |     1 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     1 |
+| >= 8 to < 10       |     0 |
 | >= 10 to < 12      |     1 |
 | >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
+| >= 14 to < 16      |     0 |
 | >= 16              |     3 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
@@ -58,9 +58,9 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              56 |           17 |
+| No           | No                    | No                     |              60 |           13 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              57 |           21 |
+| No           | Yes                   | No                     |              20 |            4 |
 | Yes          | No                    | No                     |              10 |            3 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
@@ -74,12 +74,10 @@ Table of Contents
 | Clock Signal | Enable Signal |    Set/Reset Signal   | Slice Load Count | Bel Load Count |
 +--------------+---------------+-----------------------+------------------+----------------+
 |  clk_TMDS    |               | TMDS_mod10[3]_i_1_n_0 |                1 |              4 |
-|  pixclk      |               | blue[7]_i_1_n_0       |                2 |              8 |
 |  pixclk      | CounterY      |                       |                3 |             10 |
-|  pixclk      |               | red0[0]               |                4 |             14 |
-|  pixclk      |               |                       |               10 |             25 |
+|  pixclk      |               | encode_R/DrawArea_reg |                3 |             16 |
+|  pixclk      |               |                       |                6 |             29 |
 |  clk_TMDS    |               |                       |                7 |             31 |
-|  pixclk      |               | encode_R/DrawArea_reg |               14 |             31 |
 +--------------+---------------+-----------------------+------------------+----------------+
 
 
