@@ -431,3 +431,4 @@ con
 
 00:45:30 INFO  : Launch script is exported to file '/home/tomas/oscilloscope_fpga/xadc/vitis/.sdk/launch_scripts/single_application_debug/debugger_xadc-default.tcl'
 01:24:45 INFO  : Checking for BSP changes to sync application flags for project 'xadc'...
+01:51:17 INFO  : Disconnected from the channel tcfchan#11.
