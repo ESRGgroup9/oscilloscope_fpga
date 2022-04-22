@@ -49,13 +49,50 @@
 #include "platform.h"
 #include "xil_printf.h"
 
+#include "xparameters.h"
+#include "xadcps.h"
+
+XAdcPs XAdc;
+XAdcPs_Config* ConfigPtr;
 
 int main()
 {
-    init_platform();
+	init_platform();
+	print("---- Hello World!! ----\n\r");
 
-    print("Hello World\n\r");
+	print("Initializing XADC ...\n\r");
+	ConfigPtr = XAdcPs_LookupConfig(XPAR_XADCPS_0_DEVICE_ID);
+	if(ConfigPtr == NULL)
+	{
+		xil_printf("Invalid XADC configuration!\n\r");
+		return XST_FAILURE;
+	}
 
-    cleanup_platform();
+	XAdcPs_CfgInitialize(&XAdc, ConfigPtr, ConfigPtr->BaseAddress);
+	if(XAdcPs_SelfTest(&XAdc) != XST_SUCCESS)
+	{
+		xil_printf("Self test failed!\n\r");
+		return XST_FAILURE;
+	}
+
+	print("Setting up channel input mask ...\n\r");
+	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_SAFE);
+	XAdcPs_SetSeqInputMode(&XAdc, 0); // all unipolar
+//	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_SING_CHAN);
+//	XAdcPs_SetSingleChParams(&XAdc, XADCPS_CH_VPVN, FALSE, FALSE, FALSE);
+	XAdcPs_SetSeqChEnables(&XAdc, XADCPS_CH_VPVN);
+
+	print("XADC setup complete.\n\r");
+	print("Print channel VPVN:\n\r");
+	while(1)
+	{
+		u32 volt_raw = XAdcPs_GetAdcData(&XAdc, XADCPS_CH_VPVN);
+		printf("ADCval(%lu) = %.2f V\n\r", volt_raw, XAdcPs_RawToVoltage(volt_raw));
+
+		for(int i = 0; i < 100000000; i++)
+			;
+	}
+
+	cleanup_platform();
     return 0;
 }

@@ -50,6 +50,9 @@ set_property used_in_implementation false [get_files -all /home/tomas/oscillosco
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc /home/tomas/oscilloscope_fpga/xadc/xadc.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc
+set_property used_in_implementation false [get_files /home/tomas/oscilloscope_fpga/xadc/xadc.srcs/constrs_1/imports/Vivado/Zybo-Z7-Master.xdc]
+
 read_xdc dont_touch.xdc
 set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
