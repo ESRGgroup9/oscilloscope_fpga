@@ -3,7 +3,7 @@
 <!--                                                         -->
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="44" Path="/home/fernandes/code/oscilloscope_fpga/hdmi_test/hdmi_test.xpr">
+<Project Version="7" Minor="44" Path="/home/tomas/oscilloscope_fpga/hdmi_test2/hdmi_test.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
     <Option Name="Id" Val="434945673d9e49e2a6de45fa886eb1e6"/>
