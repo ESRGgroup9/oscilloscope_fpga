@@ -24,16 +24,32 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`define SIM_MODE
 
-module HDMI_test(
-	input clk,  // 125MHz
-	output [2:0] TMDSp, TMDSn,
-	output TMDSp_clock, TMDSn_clock
-);
+`ifdef SIM_MODE
+    // SIMULATION ONLY - TOO MANY I/O
+    module HDMI_test(
+        input clk,
+        output pixclk,
+        output [7:0] red_o, green_o, blue_o,
+        output [9:0] CounterX_o, CounterY_o, Counter_o,
+        output hSync_o, vSync_o, DrawArea_o
+    );
+    
+    wire [2:0] TMDSp, TMDSn;
+    wire TMDSp_clock, TMDSn_clock;
+`else
+    module HDMI_test(
+        input clk,  // 125MHz
+        output [2:0] TMDSp, TMDSn,
+        output TMDSp_clock, TMDSn_clock
+    );
+`endif
 
 ////////////////////////////////////////////////////////////////////////
 // clk divider 125 MHz to 25 MHz pixclk, and multiplier 125 MHz to 250 MHz
-wire MMCM_pix_clock, pixclk;
+//wire MMCM_pix_clock, pixclk;
+wire MMCM_pix_clock;
 wire clk_TMDS, DCM_TMDS_CLKFX;
 wire clkfb_in, clkfb_out;
 
@@ -136,151 +152,119 @@ wire clkfb_in, clkfb_out;
 // end clk divider to 25 MHz pixclk
 
 ////////////////////////////////////////////////////////////////////////
-// counter and sync generation
-reg [9:0] CounterX = 0, CounterY = 0;
-reg hSync, vSync, DrawArea;
-reg [5:0] counter;
+// picture dimensions
 localparam width = 640;
 localparam height = 480;
 
-always @(posedge pixclk)
-    begin  
-        DrawArea <= (CounterX<width) && (CounterY<height);           // define picture dimensions for 640x480 (off-screen data 800x525)
-        CounterX <= (CounterX==799) ? 0 : CounterX+1;           // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels 
-        if(CounterX==799) 
-            CounterY <= (CounterY==524) ? 0 : CounterY+1;       /* vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
-                                                                   only counts up 1 count after horizontal finishes. */                                                          
-        hSync <= (CounterX>=656) && (CounterX<752);         // hsync high for 96 counts                                                 
-        vSync <= (CounterY>=490) && (CounterY<492);         // vsync high for 2 counts
-        
-        counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
+// counter and sync generation
+reg [9:0] CounterX = 0, CounterY = 0;
+reg hSync=0, vSync=0, DrawArea=0;
+reg [9:0] counter=0;
+
+always @(posedge pixclk) begin  
+    // define picture dimensions for 640x480 (off-screen data 800x525)
+    DrawArea <= (CounterX < width) && (CounterY < height);
+    
+    // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels
+    CounterX <= (CounterX == 799) ? 0 : CounterX + 1; 
+    
+    // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
+    // only counts up 1 count after horizontal finishes.
+    if(CounterX == 799) 
+        CounterY <= (CounterY == 524) ? 0 : CounterY + 1;
+    
+    // hsync high for 96 counts                                      
+    hSync <= (CounterX >= 656) && (CounterX < 752);
+    // vsync high for 2 counts
+    vSync <= (CounterY >= 490) && (CounterY < 492);
+    
+    counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
 //        counter <= (counter == (2*2 - 1)) ? 0 : counter + 1;
-    end
+end
 // end counter and sync generation  
 
 ///////////////////////////////////////////////////////////////////////
-// color generation (not part of HDMI standard, jsut for generating some patterns)
-wire [7:0] W = {8{CounterX[7:0]==CounterY[7:0]}};                     
-wire [7:0] A = {8{CounterX[7:5]==3'h2 && CounterY[7:5]==3'h2}};
-reg [7:0] red, green, blue;
-
 localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
+reg [7:0] red_r=0, green_r=0, blue_r=0;
+wire [7:0] red_w, green_w, blue_w;
+
+always @(posedge pixclk) begin
+    red_r   <= red_w;
+    green_r <= green_w;
+    blue_r  <= blue_w;
+end
+    
+////////////////////////////////////////////////////////////////////////
+/*
+[47:0] image = {24'hFFFFFF, 24'h000000}
+    - Pixel0 [ 0:23]
+    - Pixel1 [24:47]
+     
+                 R         G         B           
+Pixel1  (MSB)1111_1111 1111_1111 1111_1111      = 24'hFFFFFF, counter=1
+Pixel0       0000_0000 0000_0000 0000_0000(LSB) = 24'h000000, counter=0
+
+Pixel0
+    B = image & 0xFF
+    G = (image >> 8) & 0xFF
+    R = (image >> 16) & 0xFF
+
+Pixel1
+    B = (image >> (24*1)) & 0xFF
+    G = (image >> (24*1 + 8)) & 0xFF
+    R = (image >> (24*1 + 16)) & 0xFF
+    
+So,
+    B = (image >> (24*counter)) & 0xFF
+    G = (image >> (24*counter + 8)) & 0xFF
+    R = (image >> (24*counter + 16)) & 0xFF
+    
+*/
+assign red_w    = (image >> (counter*24))       & 8'hFF;
+assign green_w  = (image >> (counter*24 + 8))   & 8'hFF;
+assign blue_w   = (image >> (counter*24 + 16))  & 8'hFF;
+
+////////////////////////////////////////////////////////////////////////
+
+//wire [7:0] pixel_w;
+//assign pixel_w = image[counter*`NUM_PIX +: 24];
+
+//assign red_w    = image[counter*`NUM_PIX      +: 8];
+//assign green_w  = image[counter*`NUM_PIX + 8  +: 8];
+//assign blue_w   = image[counter*`NUM_PIX + 16 +: 8];
+
+//assign red_w    = pixel_w & 8'hFF;
+//assign green_w  = (pixel_w >> 8) & 8'hFF;
+//assign blue_w   = (pixel_w >> 16) & 8'hFF;
+
+////////////////////////////////////////////////////////////////////////
 reg [10:0] inc_point = 10;
 
-//always @(posedge pixclk) 
-//    red <= (image >> (counter*`NUM_PIX)) & 8'h8;
-    
-//always @(posedge pixclk) 
-//    green <= (image >> (counter*`NUM_PIX + 8)) & 8'h8;
-    
-//always @(posedge pixclk) 
-//    blue <= (image >> (counter*`NUM_PIX + 16)) & 8'h8;
-    
-always @(posedge pixclk) 
-    red <= image[counter*`NUM_PIX +: 8];
-    
-always @(posedge pixclk) 
-    green <= image[counter*`NUM_PIX + 8 +: 8];
-    
-always @(posedge pixclk) 
-    blue <= image[counter*`NUM_PIX + 16 +: 8];
-    
-//always @(posedge pixclk) 
-//    red <= ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
-    
-//always @(posedge pixclk) 
-//    blue <= ((CounterX < inc_point)) ? 8'hFF : 8'h00;
-    
-//always @(posedge pixclk) 
-//    green <= (CounterY < inc_point) ? 8'hFF : 8'h00;
+//assign red_w    = ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
+//assign green_w  = ((CounterX < inc_point)) ? 8'hFF : 8'h00;
+//assign blue_w   = (CounterY < inc_point) ? 8'hFF : 8'h00;
+
+////////////////////////////////////////////////////////////////////////
+
+`ifdef SIM_MODE
+    assign {red_o, green_o, blue_o} = {red_r, green_r, blue_r};
+    assign {CounterX_o, CounterY_o} = {CounterX, CounterY};
+    assign {hSync_o, vSync_o, DrawArea_o} = {hSync, vSync, DrawArea};
+    assign Counter_o = counter;
+`endif // !SIM_MODE
 
 ////////////////////////////////////////////////////////////////////////
 // 8b/10b encoding for transmission
 wire [9:0] TMDS_red, TMDS_green, TMDS_blue;
 
 // instantiate TMDS encoders (TMDS_encoder.vhd file from github)
-encoder_TMDS encode_R(.clk(pixclk), .VD(red  ), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_red));
-encoder_TMDS encode_G(.clk(pixclk), .VD(green), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_green));
-encoder_TMDS encode_B(.clk(pixclk), .VD(blue ), .CD({vSync,hSync}), .VDE(DrawArea), .TMDS(TMDS_blue));   // I think HDMI standard says both "sync" signals are sent over the "blue" line control inputs
+encoder_TMDS encode_R(.clk(pixclk), .VD(red_r  ), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_red));
+encoder_TMDS encode_G(.clk(pixclk), .VD(green_r), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_green));
+// HDMI standard says both "sync" signals are sent over the "blue" line control inputs
+encoder_TMDS encode_B(.clk(pixclk), .VD(blue_r ), .CD({vSync,hSync}), .VDE(DrawArea), .TMDS(TMDS_blue));
 // end 8b/10b encoding
 
 ////////////////////////////////////////////////////////////////////////
-//localparam [7:0] image [(3*20*20):0] = {2'hC1, 2'hC1, 2'hBC, 2'hC1, 2'hC1, 'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC};
 // Serializer and output buffers
 reg [3:0] TMDS_mod10=0;  // modulus 10 counter
 reg [9:0] TMDS_shift_red=0, TMDS_shift_green=0, TMDS_shift_blue=0;
