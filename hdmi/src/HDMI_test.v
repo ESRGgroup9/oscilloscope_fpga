@@ -1,3 +1,8 @@
+
+`define NUM_PIX 4
+`define NUM_COLOURS 3 // R,G,B
+`define NUM_BIT_COL 8 //8bit image
+
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
@@ -135,10 +140,12 @@ wire clkfb_in, clkfb_out;
 reg [9:0] CounterX = 0, CounterY = 0;
 reg hSync, vSync, DrawArea;
 reg [5:0] counter;
+localparam width = 20;
+localparam height = 20;
 
 always @(posedge pixclk)
     begin  
-        DrawArea <= (CounterX<640) && (CounterY<480);           // define picture dimensions for 640x480 (off-screen data 800x525)
+        DrawArea <= (CounterX<width) && (CounterY<height);           // define picture dimensions for 640x480 (off-screen data 800x525)
         CounterX <= (CounterX==799) ? 0 : CounterX+1;           // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels 
         if(CounterX==799) 
             CounterY <= (CounterY==524) ? 0 : CounterY+1;       /* vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
@@ -147,6 +154,7 @@ always @(posedge pixclk)
         vSync <= (CounterY>=490) && (CounterY<492);         // vsync high for 2 counts
         
         counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
+//        counter <= (counter == (2*2 - 1)) ? 0 : counter + 1;
     end
 // end counter and sync generation  
 
@@ -156,24 +164,30 @@ wire [7:0] W = {8{CounterX[7:0]==CounterY[7:0]}};
 wire [7:0] A = {8{CounterX[7:5]==3'h2 && CounterY[7:5]==3'h2}};
 reg [7:0] red, green, blue;
 
+localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*4{24'h00000}};
+reg [10:0] inc_point = 10;
 //always @(posedge pixclk) 
-//    red <= ({CounterX[5:0] & {6{CounterY[4:3]==~CounterX[4:3]}}, 2'b00} | W) & ~A;
+//    red <= (image >> (counter*`NUM_PIX)) & 8'h8;
     
 //always @(posedge pixclk) 
-//    green <= (CounterX[7:0] & {8{CounterY[6]}} | W) & ~A;
+//    green <= (image >> (counter*`NUM_PIX + 8)) & 8'h8;
     
 //always @(posedge pixclk) 
-//    blue <= CounterY[7:0] | W | A;
-// end color generation
+//    blue <= (image >> (counter*`NUM_PIX + 16)) & 8'h8;
 
-always @(posedge pixclk) 
-    red <= image[counter+2];
+//always @(posedge pixclk) 
+//    inc <= (inc_point > 799) ? 1 : 0;
+    
+//    inc_point <= ((inc_point > 799) || (inc_point < 1)) ? inc_point + inc;
     
 always @(posedge pixclk) 
-    green <= image[counter+1];
+    red <= ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
     
 always @(posedge pixclk) 
-    blue <= image[counter];
+    blue <= ((CounterX < inc_point)) ? 8'hFF : 8'h00;
+    
+always @(posedge pixclk) 
+    green <= (CounterY < inc_point) ? 8'hFF : 8'h00;
 
 ////////////////////////////////////////////////////////////////////////
 // 8b/10b encoding for transmission
@@ -186,82 +200,82 @@ encoder_TMDS encode_B(.clk(pixclk), .VD(blue ), .CD({vSync,hSync}), .VDE(DrawAre
 // end 8b/10b encoding
 
 ////////////////////////////////////////////////////////////////////////
-localparam [3*20*20:0] image = {1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
-1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
-1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
-1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
-1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC};
+//localparam [7:0] image [(3*20*20):0] = {2'hC1, 2'hC1, 2'hBC, 2'hC1, 2'hC1, 'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 
+//1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 
+//1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 
+//1'h44, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'h46, 1'h44, 1'hBC, 1'h46, 1'h44, 
+//1'hBC, 1'h46, 1'h44, 1'hBC, 1'hC1, 1'hC1, 1'hBC, 1'hC1, 1'hC1, 1'hBC};
 // Serializer and output buffers
 reg [3:0] TMDS_mod10=0;  // modulus 10 counter
 reg [9:0] TMDS_shift_red=0, TMDS_shift_green=0, TMDS_shift_blue=0;

@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Wed Apr 20 23:56:00 2022
-// Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
-// Command     : write_verilog -force -mode synth_stub -rename_top design_1_auto_pc_0 -prefix
-//               design_1_auto_pc_0_ design_1_auto_pc_0_stub.v
+// Date        : Tue Apr 26 14:03:30 2022
+// Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+// Command     : write_verilog -force -mode synth_stub
+//               /home/fernandes/code/oscilloscope_fpga/ext/helloWorld/ip/design_1/ip/design_1_auto_pc_0/design_1_auto_pc_0_stub.v
 // Design      : design_1_auto_pc_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
