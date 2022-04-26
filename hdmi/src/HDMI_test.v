@@ -140,8 +140,8 @@ wire clkfb_in, clkfb_out;
 reg [9:0] CounterX = 0, CounterY = 0;
 reg hSync, vSync, DrawArea;
 reg [5:0] counter;
-localparam width = 20;
-localparam height = 20;
+localparam width = 640;
+localparam height = 480;
 
 always @(posedge pixclk)
     begin  
@@ -164,8 +164,9 @@ wire [7:0] W = {8{CounterX[7:0]==CounterY[7:0]}};
 wire [7:0] A = {8{CounterX[7:5]==3'h2 && CounterY[7:5]==3'h2}};
 reg [7:0] red, green, blue;
 
-localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*4{24'h00000}};
+localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
 reg [10:0] inc_point = 10;
+
 //always @(posedge pixclk) 
 //    red <= (image >> (counter*`NUM_PIX)) & 8'h8;
     
@@ -174,20 +175,24 @@ reg [10:0] inc_point = 10;
     
 //always @(posedge pixclk) 
 //    blue <= (image >> (counter*`NUM_PIX + 16)) & 8'h8;
-
+    
+always @(posedge pixclk) 
+    red <= image[counter*`NUM_PIX +: 8];
+    
+always @(posedge pixclk) 
+    green <= image[counter*`NUM_PIX + 8 +: 8];
+    
+always @(posedge pixclk) 
+    blue <= image[counter*`NUM_PIX + 16 +: 8];
+    
 //always @(posedge pixclk) 
-//    inc <= (inc_point > 799) ? 1 : 0;
+//    red <= ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
     
-//    inc_point <= ((inc_point > 799) || (inc_point < 1)) ? inc_point + inc;
+//always @(posedge pixclk) 
+//    blue <= ((CounterX < inc_point)) ? 8'hFF : 8'h00;
     
-always @(posedge pixclk) 
-    red <= ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
-    
-always @(posedge pixclk) 
-    blue <= ((CounterX < inc_point)) ? 8'hFF : 8'h00;
-    
-always @(posedge pixclk) 
-    green <= (CounterY < inc_point) ? 8'hFF : 8'h00;
+//always @(posedge pixclk) 
+//    green <= (CounterY < inc_point) ? 8'hFF : 8'h00;
 
 ////////////////////////////////////////////////////////////////////////
 // 8b/10b encoding for transmission
