@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xCC6CFA5306BD3ECB",
+      "boundary_crc": "0x5EFDEB09ABD27C71",
       "device": "xc7z010clg400-1",
       "name": "design_1",
       "synth_flow_mode": "Hierarchical",
@@ -82,6 +82,14 @@
             "value_src": "default"
           }
         }
+      }
+    },
+    "ports": {
+      "vauxn6": {
+        "direction": "I"
+      },
+      "vauxp6": {
+        "direction": "I"
       }
     },
     "components": {
@@ -1107,7 +1115,7 @@
             "value": "false"
           },
           "SINGLE_CHANNEL_SELECTION": {
-            "value": "VP_VN"
+            "value": "VAUXP6_VAUXN6"
           },
           "XADC_STARUP_SELECTION": {
             "value": "single_channel"
@@ -1240,16 +1248,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -1316,28 +1324,28 @@
       }
     },
     "interface_nets": {
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
-        ]
-      },
-      "processing_system7_0_DDR": {
-        "interface_ports": [
-          "DDR",
-          "processing_system7_0/DDR"
-        ]
-      },
       "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
           "processing_system7_0/M_AXI_GP0",
           "ps7_0_axi_periph/S00_AXI"
         ]
       },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
+        ]
+      },
       "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
           "ps7_0_axi_periph/M00_AXI",
           "xadc_wiz_0/s_axi_lite"
+        ]
+      },
+      "processing_system7_0_DDR": {
+        "interface_ports": [
+          "DDR",
+          "processing_system7_0/DDR"
         ]
       }
     },
@@ -1366,6 +1374,18 @@
           "xadc_wiz_0/s_axi_aresetn",
           "ps7_0_axi_periph/M00_ARESETN",
           "ps7_0_axi_periph/ARESETN"
+        ]
+      },
+      "vauxn6_1": {
+        "ports": [
+          "vauxn6",
+          "xadc_wiz_0/vauxn6"
+        ]
+      },
+      "vauxp6_1": {
+        "ports": [
+          "vauxp6",
+          "xadc_wiz_0/vauxp6"
         ]
       }
     },

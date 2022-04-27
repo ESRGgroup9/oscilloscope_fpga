@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Apr 21 23:46:44 2022" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr 27 15:44:00 2022" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-10:part0:1.1" DEVICE="7z010" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -107,6 +107,16 @@
     <PORT DIR="IO" LEFT="3" NAME="DDR_dqs_p" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_DDR_DQS">
       <CONNECTIONS>
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_DQS"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="vauxn6" SIGIS="undef" SIGNAME="External_Ports_vauxn6">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxn6"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="vauxp6" SIGIS="undef" SIGNAME="External_Ports_vauxp6">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="xadc_wiz_0" PORT="vauxp6"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -2336,7 +2346,7 @@
         <PARAMETER NAME="C_HAS_VCCPINT_ALARM" VALUE="1"/>
         <PARAMETER NAME="C_HAS_VCCPAUX_ALARM" VALUE="1"/>
         <PARAMETER NAME="C_HAS_VCCDDRO_ALARM" VALUE="1"/>
-        <PARAMETER NAME="C_CONFIGURATION_R0" VALUE="3"/>
+        <PARAMETER NAME="C_CONFIGURATION_R0" VALUE="22"/>
         <PARAMETER NAME="C_CONFIGURATION_R1" VALUE="12704"/>
         <PARAMETER NAME="C_CONFIGURATION_R2" VALUE="1024"/>
         <PARAMETER NAME="C_ALARM_LIMIT_R0" VALUE="46573"/>
@@ -2369,7 +2379,7 @@
         <PARAMETER NAME="C_VAUX3" VALUE="0"/>
         <PARAMETER NAME="C_VAUX4" VALUE="0"/>
         <PARAMETER NAME="C_VAUX5" VALUE="0"/>
-        <PARAMETER NAME="C_VAUX6" VALUE="0"/>
+        <PARAMETER NAME="C_VAUX6" VALUE="1"/>
         <PARAMETER NAME="C_VAUX7" VALUE="0"/>
         <PARAMETER NAME="C_VAUX8" VALUE="0"/>
         <PARAMETER NAME="C_VAUX9" VALUE="0"/>
@@ -2437,7 +2447,7 @@
         <PARAMETER NAME="VCCPAUX_ALARM_UPPER" VALUE="1.8"/>
         <PARAMETER NAME="VCCDDRO_ALARM_LOWER" VALUE="1.2"/>
         <PARAMETER NAME="VCCDDRO_ALARM_UPPER" VALUE="1.25"/>
-        <PARAMETER NAME="SINGLE_CHANNEL_SELECTION" VALUE="VP_VN"/>
+        <PARAMETER NAME="SINGLE_CHANNEL_SELECTION" VALUE="VAUXP6_VAUXN6"/>
         <PARAMETER NAME="SINGLE_CHANNEL_ENABLE_CALIBRATION" VALUE="true"/>
         <PARAMETER NAME="BIPOLAR_OPERATION" VALUE="false"/>
         <PARAMETER NAME="SINGLE_CHANNEL_ACQUISITION_TIME" VALUE="false"/>
@@ -2646,6 +2656,16 @@
         <PORT DIR="O" NAME="ip2intc_irpt" SENSITIVITY="LEVEL_HIGH" SIGIS="INTERRUPT"/>
         <PORT DIR="I" NAME="vp_in" SIGIS="undef"/>
         <PORT DIR="I" NAME="vn_in" SIGIS="undef"/>
+        <PORT DIR="I" NAME="vauxp6" SIGIS="undef" SIGNAME="External_Ports_vauxp6">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="vauxp6"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="vauxn6" SIGIS="undef" SIGNAME="External_Ports_vauxn6">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="vauxn6"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" NAME="user_temp_alarm_out" SIGIS="undef"/>
         <PORT DIR="O" NAME="vccint_alarm_out" SIGIS="undef"/>
         <PORT DIR="O" NAME="vccaux_alarm_out" SIGIS="undef"/>
@@ -2716,6 +2736,12 @@
           <PORTMAPS>
             <PORTMAP LOGICAL="V_N" PHYSICAL="vn_in"/>
             <PORTMAP LOGICAL="V_P" PHYSICAL="vp_in"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="__NOC__" NAME="Vaux6" TYPE="TARGET" VLNV="xilinx.com:interface:diff_analog_io:1.0">
+          <PORTMAPS>
+            <PORTMAP LOGICAL="V_N" PHYSICAL="vauxn6"/>
+            <PORTMAP LOGICAL="V_P" PHYSICAL="vauxp6"/>
           </PORTMAPS>
         </BUSINTERFACE>
       </BUSINTERFACES>

@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Tue Apr 26 14:46:12 2022
-// Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+// Date        : Wed Apr 27 15:45:11 2022
+// Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               /home/fernandes/code/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_stub.v
+//               /home/tomas/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_stub.v
 // Design      : design_1_xadc_wiz_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
@@ -16,10 +16,11 @@
 module design_1_xadc_wiz_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr, 
   s_axi_awvalid, s_axi_awready, s_axi_wdata, s_axi_wstrb, s_axi_wvalid, s_axi_wready, 
   s_axi_bresp, s_axi_bvalid, s_axi_bready, s_axi_araddr, s_axi_arvalid, s_axi_arready, 
-  s_axi_rdata, s_axi_rresp, s_axi_rvalid, s_axi_rready, ip2intc_irpt, channel_out, busy_out, 
-  eoc_out, eos_out, ot_out, vccddro_alarm_out, vccpaux_alarm_out, vccpint_alarm_out, 
-  vccaux_alarm_out, vccint_alarm_out, user_temp_alarm_out, alarm_out, vp_in, vn_in)
-/* synthesis syn_black_box black_box_pad_pin="s_axi_aclk,s_axi_aresetn,s_axi_awaddr[10:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[10:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,ip2intc_irpt,channel_out[4:0],busy_out,eoc_out,eos_out,ot_out,vccddro_alarm_out,vccpaux_alarm_out,vccpint_alarm_out,vccaux_alarm_out,vccint_alarm_out,user_temp_alarm_out,alarm_out,vp_in,vn_in" */;
+  s_axi_rdata, s_axi_rresp, s_axi_rvalid, s_axi_rready, ip2intc_irpt, vauxp6, vauxn6, 
+  channel_out, busy_out, eoc_out, eos_out, ot_out, vccddro_alarm_out, vccpaux_alarm_out, 
+  vccpint_alarm_out, vccaux_alarm_out, vccint_alarm_out, user_temp_alarm_out, alarm_out, 
+  vp_in, vn_in)
+/* synthesis syn_black_box black_box_pad_pin="s_axi_aclk,s_axi_aresetn,s_axi_awaddr[10:0],s_axi_awvalid,s_axi_awready,s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid,s_axi_wready,s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_araddr[10:0],s_axi_arvalid,s_axi_arready,s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid,s_axi_rready,ip2intc_irpt,vauxp6,vauxn6,channel_out[4:0],busy_out,eoc_out,eos_out,ot_out,vccddro_alarm_out,vccpaux_alarm_out,vccpint_alarm_out,vccaux_alarm_out,vccint_alarm_out,user_temp_alarm_out,alarm_out,vp_in,vn_in" */;
   input s_axi_aclk;
   input s_axi_aresetn;
   input [10:0]s_axi_awaddr;
@@ -40,6 +41,8 @@ module design_1_xadc_wiz_0_0(s_axi_aclk, s_axi_aresetn, s_axi_awaddr,
   output s_axi_rvalid;
   input s_axi_rready;
   output ip2intc_irpt;
+  input vauxp6;
+  input vauxn6;
   output [4:0]channel_out;
   output busy_out;
   output eoc_out;

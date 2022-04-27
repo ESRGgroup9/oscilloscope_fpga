@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Tue Apr 26 14:46:13 2022
--- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+-- Date        : Wed Apr 27 15:45:12 2022
+-- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/fernandes/code/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.vhdl
+--               /home/tomas/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.vhdl
 -- Design      : design_1_xadc_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -3311,6 +3311,8 @@ entity design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp is
     vn_in : in STD_LOGIC;
     vp_in : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    vauxn6 : in STD_LOGIC;
+    vauxp6 : in STD_LOGIC;
     \status_reg_reg[7]_0\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
     reset2ip_reset : in STD_LOGIC;
     local_reg_wrack_d1_reg_0 : in STD_LOGIC;
@@ -3468,7 +3470,7 @@ begin
     );
 XADC_INST: unisim.vcomponents.XADC
     generic map(
-      INIT_40 => X"0003",
+      INIT_40 => X"0016",
       INIT_41 => X"31A0",
       INIT_42 => X"0400",
       INIT_43 => X"0000",
@@ -3529,8 +3531,12 @@ XADC_INST: unisim.vcomponents.XADC
       MUXADDR(4 downto 0) => NLW_XADC_INST_MUXADDR_UNCONNECTED(4 downto 0),
       OT => \^s_axi_aclk_0\(0),
       RESET => RESET,
-      VAUXN(15 downto 0) => B"0000000000000000",
-      VAUXP(15 downto 0) => B"0000000000000000",
+      VAUXN(15 downto 7) => B"000000000",
+      VAUXN(6) => vauxn6,
+      VAUXN(5 downto 0) => B"000000",
+      VAUXP(15 downto 7) => B"000000000",
+      VAUXP(6) => vauxp6,
+      VAUXP(5 downto 0) => B"000000",
       VN => vn_in,
       VP => vp_in
     );
@@ -5271,6 +5277,8 @@ entity design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_axi_xadc is
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC;
+    vauxp6 : in STD_LOGIC;
+    vauxn6 : in STD_LOGIC;
     busy_out : out STD_LOGIC;
     channel_out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     eoc_out : out STD_LOGIC;
@@ -5665,6 +5673,8 @@ AXI_XADC_CORE_I: entity work.design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_co
       status_reg_rdack_d1 => status_reg_rdack_d1,
       \status_reg_reg[10]_0\(10 downto 0) => status_reg(10 downto 0),
       \status_reg_reg[7]_0\(2 downto 0) => bus2ip_addr(6 downto 4),
+      vauxn6 => vauxn6,
+      vauxp6 => vauxp6,
       vn_in => vn_in,
       vp_in => vp_in
     );
@@ -6108,6 +6118,8 @@ entity design_1_xadc_wiz_0_0 is
     s_axi_rvalid : out STD_LOGIC;
     s_axi_rready : in STD_LOGIC;
     ip2intc_irpt : out STD_LOGIC;
+    vauxp6 : in STD_LOGIC;
+    vauxn6 : in STD_LOGIC;
     channel_out : out STD_LOGIC_VECTOR ( 4 downto 0 );
     busy_out : out STD_LOGIC;
     eoc_out : out STD_LOGIC;
@@ -6183,6 +6195,8 @@ inst: entity work.design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_axi_xadc
       s_axi_wready => s_axi_wready,
       s_axi_wstrb(3 downto 0) => s_axi_wstrb(3 downto 0),
       s_axi_wvalid => s_axi_wvalid,
+      vauxn6 => vauxn6,
+      vauxp6 => vauxp6,
       vn_in => vn_in,
       vp_in => vp_in
     );

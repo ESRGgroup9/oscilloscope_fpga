@@ -190,6 +190,8 @@ entity design_1_xadc_wiz_0_0_axi_xadc is
    -- XADC External interface signals
 
     -- Conversion start control signal for Event driven mode
+    vauxp6          : in  STD_LOGIC;                         -- Auxiliary Channel 6
+    vauxn6          : in  STD_LOGIC;
     busy_out        : out  STD_LOGIC;                        -- ADC Busy signal
     channel_out     : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
     eoc_out         : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -265,6 +267,8 @@ component design_1_xadc_wiz_0_0_xadc_core_drp
      ---------------- interrupt interface with the system  -----------
      Interrupt_status       : out std_logic_vector(0 to IP_INTR_NUM-1);
      ----------------  sysmon macro interface  -------------------
+     vauxp6                 : in  STD_LOGIC;                         -- Auxiliary Channel 6
+     vauxn6                 : in  STD_LOGIC;
      busy_out               : out  STD_LOGIC;                        -- ADC Busy signal
      channel_out            : out  STD_LOGIC_VECTOR (4 downto 0);    -- Channel Selection Outputs
      eoc_out                : out  STD_LOGIC;                        -- End of Conversion Signal
@@ -715,6 +719,8 @@ AXI_XADC_CORE_I : design_1_xadc_wiz_0_0_xadc_core_drp
     Sysmon_IP2Bus_RdAck          => xadc_ip2bus_rdack,
     Interrupt_status             => interrupt_status_i,
     --- external interface signals ------------------
+    vauxp6                       => vauxp6,
+    vauxn6                       => vauxn6,
     busy_out                     => busy_out,
     channel_out                  => channel_out,
     eoc_out                      => eoc_out,
