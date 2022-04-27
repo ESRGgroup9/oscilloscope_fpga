@@ -1,5 +1,5 @@
 
-`define NUM_PIX 4
+//`define NUM_PIX 4
 `define NUM_COLOURS 3 // R,G,B
 `define NUM_BIT_COL 8 //8bit image
 
@@ -24,27 +24,35 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-//`define SIM_MODE
+// enable this to print self-generated debug image
+`define DEBUG
+
+// enable this to see hdmi module signals in simulation
+`define SIM_MODE
 
 `ifdef SIM_MODE
+    
     // SIMULATION ONLY - TOO MANY I/O
     module HDMI_test(
         input clk,
         output pixclk, // = clk/5
         output [7:0] red_o, green_o, blue_o,
-        output [9:0] CounterX_o, CounterY_o, //Counter_o,
-        output hSync_o, vSync_o, DrawArea_o
+        output [9:0] counterX_o, counterY_o,
+        output hSync_o, vSync_o, drawArea_o
     );
     
     wire [2:0] TMDSp, TMDSn;
     wire TMDSp_clock, TMDSn_clock;
+    
 `else
+    
     module HDMI_test(
         input clk,  // 125MHz
         output [2:0] TMDSp, TMDSn,
         output TMDSp_clock, TMDSn_clock
     );
-`endif
+    
+`endif // !SIM_MODE
 
 ////////////////////////////////////////////////////////////////////////
 // clk divider 125 MHz to 25 MHz pixclk, and multiplier 125 MHz to 250 MHz
@@ -153,42 +161,39 @@ wire clkfb_in, clkfb_out;
 // end clk divider to 25 MHz pixclk
 
 ////////////////////////////////////////////////////////////////////////
-// picture dimensions
-localparam width = 100;//640;
-localparam height = 100;//480;
+// off screen area
+`define MAX_X 800
+`define MAX_Y 525
 
-// counter and sync generation
-reg [9:0] CounterX = 0, CounterY = 0;
-reg hSync=0, vSync=0, DrawArea=0;
-//reg [9:0] counter=0;
+// picture dimensions
+`define WIDTH   128//320//640
+`define HEIGHT  128//240//480
+
+// counter generation
+reg [9:0] counterX = 0;
+reg [9:0] counterY = 0;
+// sync generation
+reg hSync=0, vSync=0, drawArea=0;
 
 always @(posedge pixclk) begin  
-    // define picture dimensions for 640x480 (off-screen data 800x525)
-    DrawArea <= (CounterX < width) && (CounterY < height);
+    // define picture dimensions
+    drawArea <= (counterX < `WIDTH) && (counterY < `HEIGHT);
+      
+    // horizontal counter
+    counterX <= (counterX == (`MAX_X-1)) ? 0 : counterX + 1; 
     
-    // horizontal counter (including off-screen horizontal 160 pixels) total of 800 pixels
-    CounterX <= (CounterX == 799) ? 0 : CounterX + 1; 
-    
-    // vertical counter (including off-screen vertical 45 pixels) total of 525 pixels
-    // only counts up 1 count after horizontal finishes.
-    if(CounterX == 799) 
-        CounterY <= (CounterY == 524) ? 0 : CounterY + 1;
+    // vertical counter
+    if(counterX == (`MAX_X-1)) 
+        counterY <= (counterY == (`MAX_Y-1)) ? 0 : counterY + 1;
     
     // hsync high for 96 counts                                      
-    hSync <= (CounterX >= 656) && (CounterX < 752);
+    hSync <= (counterX >= (`WIDTH+16)) && (counterX < (`WIDTH+16+96));
     // vsync high for 2 counts
-    vSync <= (CounterY >= 490) && (CounterY < 492);
-    
-    //counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
-//        counter <= (counter == (2*2 - 1)) ? 0 : counter + 1;
+    vSync <= (counterY >= (`HEIGHT+10)) && (counterY < (`HEIGHT+10+2));
 end
 // end counter and sync generation  
 
 ///////////////////////////////////////////////////////////////////////
-//localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
-//localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = //{width*height{24'hFF0000, 24'h0000FF}};
-localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {(width*height/2){24'hFFFFFF, 24'h000000}};
-
 /*
 [47:0] image = {24'hFFFFFF, 24'h000000}
     - Pixel0 [ 0:23]
@@ -204,50 +209,44 @@ So,
     R = (image >> (24*counter + 16)) & 0xFF     -> bits  0-7
 */
 
-// get current pixel - truncates image to its 24 LSBs (pixel size)
-wire [23:0] pixel;
-//assign pixel = (image >> (counter*24));
-assign pixel = ((CounterX < width) & (CounterY < height)) ? image[CounterX*24 + CounterY*width +: 24] : 24'h000000;
+//localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
+//localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = //{width*height{24'hFF0000, 24'h0000FF}};
+//localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {(width*height/2){24'hFFFFFF, 24'h000000}};
 
-// pixel values
-reg [7:0] red_r = 0;
-reg [7:0] green_r = 0;
-reg [7:0] blue_r = 0;
-
-// update pixel values
-always @(posedge pixclk) begin
-    red_r   <= pixel[7:0];
-    green_r <= pixel[15:8];
-    blue_r  <= pixel[23:16];
-end
-
-////////////////////////////////////////////////////////////////////////
-//wire [7:0] red_w, green_w, blue_w;
-//wire [7:0] pixel_w;
-//assign pixel_w = image[counter*`NUM_PIX +: 24];
-
-//assign red_w    = image[counter*`NUM_PIX      +: 8];
-//assign green_w  = image[counter*`NUM_PIX + 8  +: 8];
-//assign blue_w   = image[counter*`NUM_PIX + 16 +: 8];
-
-//assign red_w    = pixel_w & 8'hFF;
-//assign green_w  = (pixel_w >> 8) & 8'hFF;
-//assign blue_w   = (pixel_w >> 16) & 8'hFF;
-
-////////////////////////////////////////////////////////////////////////
-//reg [10:0] inc_point = 10;
-
-//assign red_w    = ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
-//assign green_w  = ((CounterX < inc_point)) ? 8'hFF : 8'h00;
-//assign blue_w   = (CounterY < inc_point) ? 8'hFF : 8'h00;
+`ifdef DEBUG
+ 
+    // prints debug test image
+    wire [7:0] red_r = {counterX[5:0] & {6{counterY[4:3]==~counterX[4:3]}}, 2'b00};
+    wire [7:0] green_r = counterX[7:0] & {8{counterY[6]}};
+    wire [7:0] blue_r = counterY[7:0];
+    
+`else
+    // get current pixel - truncates image to its 24 LSBs (pixel size)
+    wire [23:0] pixel;
+    //assign pixel = (image >> (counter*24));
+    //assign pixel = ((CounterX < width) & (CounterY < height)) ? image[CounterX*24 + CounterY*width +: 24] : 24'h000000;
+    //assign pixel = image[counterX*24 + counterY*`WIDTH +: 24];
+    
+    // pixel values
+    reg [7:0] red_r = 0;
+    reg [7:0] green_r = 0;
+    reg [7:0] blue_r = 0;
+    
+    // update pixel values
+    always @(posedge pixclk) begin
+        red_r   <= pixel[7:0];
+        green_r <= pixel[15:8];
+        blue_r  <= pixel[23:16];
+    end
+    
+`endif // !DEBUG
 
 ////////////////////////////////////////////////////////////////////////
 
 `ifdef SIM_MODE
     assign {red_o, green_o, blue_o} = {red_r, green_r, blue_r};
-    assign {CounterX_o, CounterY_o} = {CounterX, CounterY};
-    assign {hSync_o, vSync_o, DrawArea_o} = {hSync, vSync, DrawArea};
-//    assign Counter_o = counter;
+    assign {counterX_o, counterY_o} = {counterX, counterY};
+    assign {hSync_o, vSync_o, drawArea_o} = {hSync, vSync, drawArea};
 `endif // !SIM_MODE
 
 ////////////////////////////////////////////////////////////////////////
@@ -255,10 +254,10 @@ end
 wire [9:0] TMDS_red, TMDS_green, TMDS_blue;
 
 // instantiate TMDS encoders (TMDS_encoder.vhd file from github)
-encoder_TMDS encode_R(.clk(pixclk), .VD(red_r  ), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_red));
-encoder_TMDS encode_G(.clk(pixclk), .VD(green_r), .CD(2'b00)        , .VDE(DrawArea), .TMDS(TMDS_green));
+encoder_TMDS encode_R(.clk(pixclk), .VD(red_r  ), .CD(2'b00)        , .VDE(drawArea), .TMDS(TMDS_red));
+encoder_TMDS encode_G(.clk(pixclk), .VD(green_r), .CD(2'b00)        , .VDE(drawArea), .TMDS(TMDS_green));
 // HDMI standard says both "sync" signals are sent over the "blue" line control inputs
-encoder_TMDS encode_B(.clk(pixclk), .VD(blue_r ), .CD({vSync,hSync}), .VDE(DrawArea), .TMDS(TMDS_blue));
+encoder_TMDS encode_B(.clk(pixclk), .VD(blue_r ), .CD({vSync,hSync}), .VDE(drawArea), .TMDS(TMDS_blue));
 // end 8b/10b encoding
 
 ////////////////////////////////////////////////////////////////////////
