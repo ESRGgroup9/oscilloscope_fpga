@@ -32,7 +32,7 @@
         input clk,
         output pixclk, // = clk/5
         output [7:0] red_o, green_o, blue_o,
-        output [9:0] CounterX_o, CounterY_o, Counter_o,
+        output [9:0] CounterX_o, CounterY_o, //Counter_o,
         output hSync_o, vSync_o, DrawArea_o
     );
     
@@ -154,13 +154,13 @@ wire clkfb_in, clkfb_out;
 
 ////////////////////////////////////////////////////////////////////////
 // picture dimensions
-localparam width = 640;
-localparam height = 480;
+localparam width = 100;//640;
+localparam height = 100;//480;
 
 // counter and sync generation
 reg [9:0] CounterX = 0, CounterY = 0;
 reg hSync=0, vSync=0, DrawArea=0;
-reg [9:0] counter=0;
+//reg [9:0] counter=0;
 
 always @(posedge pixclk) begin  
     // define picture dimensions for 640x480 (off-screen data 800x525)
@@ -179,28 +179,15 @@ always @(posedge pixclk) begin
     // vsync high for 2 counts
     vSync <= (CounterY >= 490) && (CounterY < 492);
     
-    counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
+    //counter <= (counter == (640*480 - 1)) ? 0 : counter + 1;
 //        counter <= (counter == (2*2 - 1)) ? 0 : counter + 1;
 end
 // end counter and sync generation  
 
 ///////////////////////////////////////////////////////////////////////
-localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFF0000, 24'h0000FF}};
+//localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
 //localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = //{width*height{24'hFF0000, 24'h0000FF}};
-
-//localparam [(10*10*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image =
-//{
-//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
-//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF
-//};
+localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {(width*height/2){24'hFFFFFF, 24'h000000}};
 
 /*
 [47:0] image = {24'hFFFFFF, 24'h000000}
@@ -219,7 +206,8 @@ So,
 
 // get current pixel - truncates image to its 24 LSBs (pixel size)
 wire [23:0] pixel;
-assign pixel = (image >> (counter*24));
+//assign pixel = (image >> (counter*24));
+assign pixel = ((CounterX < width) & (CounterY < height)) ? image[CounterX*24 + CounterY*width +: 24] : 24'h000000;
 
 // pixel values
 reg [7:0] red_r = 0;
@@ -259,7 +247,7 @@ end
     assign {red_o, green_o, blue_o} = {red_r, green_r, blue_r};
     assign {CounterX_o, CounterY_o} = {CounterX, CounterY};
     assign {hSync_o, vSync_o, DrawArea_o} = {hSync, vSync, DrawArea};
-    assign Counter_o = counter;
+//    assign Counter_o = counter;
 `endif // !SIM_MODE
 
 ////////////////////////////////////////////////////////////////////////

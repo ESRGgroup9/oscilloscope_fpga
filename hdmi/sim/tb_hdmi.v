@@ -25,14 +25,14 @@ module tb_hdmi();
 reg clk;
 wire pixclk;
 wire [7:0] red, green, blue;
-wire [9:0] counterX, counterY, counter;
+wire [9:0] counterX, counterY;//, counter;
 wire hSync, vSync, drawArea;
 
 HDMI_test dut(
     .clk(clk),
     .pixclk(pixclk),
     .red_o(red), .green_o(green), .blue_o(blue),
-    .CounterX_o(counterX), .CounterY_o(counterY), .Counter_o(counter),
+    .CounterX_o(counterX), .CounterY_o(counterY), //.Counter_o(counter),
     .hSync_o(hSync), .vSync_o(vSync), .DrawArea_o(drawArea)
 );
 
