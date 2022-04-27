@@ -24,13 +24,13 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-`define SIM_MODE
+//`define SIM_MODE
 
 `ifdef SIM_MODE
     // SIMULATION ONLY - TOO MANY I/O
     module HDMI_test(
         input clk,
-        output pixclk,
+        output pixclk, // = clk/5
         output [7:0] red_o, green_o, blue_o,
         output [9:0] CounterX_o, CounterY_o, Counter_o,
         output hSync_o, vSync_o, DrawArea_o
@@ -50,6 +50,7 @@
 // clk divider 125 MHz to 25 MHz pixclk, and multiplier 125 MHz to 250 MHz
 //wire MMCM_pix_clock, pixclk;
 wire MMCM_pix_clock;
+
 wire clk_TMDS, DCM_TMDS_CLKFX;
 wire clkfb_in, clkfb_out;
 
@@ -184,17 +185,23 @@ end
 // end counter and sync generation  
 
 ///////////////////////////////////////////////////////////////////////
-localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFFFFFF, 24'h000000}};
-reg [7:0] red_r=0, green_r=0, blue_r=0;
-wire [7:0] red_w, green_w, blue_w;
+localparam [(160*50*`NUM_PIX*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = {160*50*2{24'hFF0000, 24'h0000FF}};
+//localparam [(width*height*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image = //{width*height{24'hFF0000, 24'h0000FF}};
 
-always @(posedge pixclk) begin
-    red_r   <= red_w;
-    green_r <= green_w;
-    blue_r  <= blue_w;
-end
-    
-////////////////////////////////////////////////////////////////////////
+//localparam [(10*10*`NUM_COLOURS-1)*`NUM_BIT_COL:0] image =
+//{
+//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'h000000,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,
+//24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF,24'hFFFFFF
+//};
+
 /*
 [47:0] image = {24'hFFFFFF, 24'h000000}
     - Pixel0 [ 0:23]
@@ -203,29 +210,31 @@ end
                  R         G         B           
 Pixel1  (MSB)1111_1111 1111_1111 1111_1111      = 24'hFFFFFF, counter=1
 Pixel0       0000_0000 0000_0000 0000_0000(LSB) = 24'h000000, counter=0
-
-Pixel0
-    B = image & 0xFF
-    G = (image >> 8) & 0xFF
-    R = (image >> 16) & 0xFF
-
-Pixel1
-    B = (image >> (24*1)) & 0xFF
-    G = (image >> (24*1 + 8)) & 0xFF
-    R = (image >> (24*1 + 16)) & 0xFF
     
 So,
-    B = (image >> (24*counter)) & 0xFF
-    G = (image >> (24*counter + 8)) & 0xFF
-    R = (image >> (24*counter + 16)) & 0xFF
-    
+    B = (image >> (24*counter)) & 0xFF          -> bits 15-23
+    G = (image >> (24*counter + 8)) & 0xFF      -> bits  8-14
+    R = (image >> (24*counter + 16)) & 0xFF     -> bits  0-7
 */
-assign red_w    = (image >> (counter*24))       & 8'hFF;
-assign green_w  = (image >> (counter*24 + 8))   & 8'hFF;
-assign blue_w   = (image >> (counter*24 + 16))  & 8'hFF;
+
+// get current pixel - truncates image to its 24 LSBs (pixel size)
+wire [23:0] pixel;
+assign pixel = (image >> (counter*24));
+
+// pixel values
+reg [7:0] red_r = 0;
+reg [7:0] green_r = 0;
+reg [7:0] blue_r = 0;
+
+// update pixel values
+always @(posedge pixclk) begin
+    red_r   <= pixel[7:0];
+    green_r <= pixel[15:8];
+    blue_r  <= pixel[23:16];
+end
 
 ////////////////////////////////////////////////////////////////////////
-
+//wire [7:0] red_w, green_w, blue_w;
 //wire [7:0] pixel_w;
 //assign pixel_w = image[counter*`NUM_PIX +: 24];
 
@@ -238,7 +247,7 @@ assign blue_w   = (image >> (counter*24 + 16))  & 8'hFF;
 //assign blue_w   = (pixel_w >> 16) & 8'hFF;
 
 ////////////////////////////////////////////////////////////////////////
-reg [10:0] inc_point = 10;
+//reg [10:0] inc_point = 10;
 
 //assign red_w    = ((CounterX < inc_point) & (CounterY < inc_point)) ? 8'hFF : 8'h00;
 //assign green_w  = ((CounterX < inc_point)) ? 8'hFF : 8'h00;
