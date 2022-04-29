@@ -24,7 +24,7 @@ module hdmi(
    input pixclk,     // 25 MHz
    input clk_TMDS,   // 250 MHz
    // control signals
-   input hSync_i, vSync_i, drawArea_i,  
+   input hSync_i, vSync_i, VDEn,  
    // pixel RGB values
    input [7:0] red_i, green_i, blue_i,
 

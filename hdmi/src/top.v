@@ -38,6 +38,8 @@
 `else
     module top(
         input clk, // 125 MHz
+        input [7:0] red_i, green_i, blue_i,
+        
         output [2:0] TMDSp, TMDSn,
         output TMDSp_clock, TMDSn_clock
     ); 
@@ -173,7 +175,8 @@ wire [7:0] blue_i = counterY[7:0];
 
 // update pixel values
 always @(posedge pixclk) begin
-    pixel <= {red_i, green_i, blue_i};
+    // pixel <= {red_i, green_i, blue_i};
+    pixel <= pixel_i;
 end
 
 ////////////////////////////////////////////////////////////////////////////////
