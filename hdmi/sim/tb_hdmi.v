@@ -28,13 +28,15 @@ wire [7:0] red, green, blue;
 wire [9:0] counterX, counterY;
 wire hSync, vSync, drawArea;
 
-HDMI_test dut(
-    .clk(clk),
-    .pixclk(pixclk),
-    .red_o(red), .green_o(green), .blue_o(blue),
-    .counterX_o(counterX), .counterY_o(counterY), //.Counter_o(counter),
-    .hSync_o(hSync), .vSync_o(vSync), .drawArea_o(drawArea)
-);
+//hdmi dut(
+//    .clk(clk),
+//    .pixclk(pixclk),
+//    .red_o(red), .green_o(green), .blue_o(blue),
+//    .counterX_o(counterX), .counterY_o(counterY), //.Counter_o(counter),
+//    .hSync_o(hSync), .vSync_o(vSync), .drawArea_o(drawArea)
+//);
+
+top dut(.clk(clk));
 
 always #100 clk = ~clk;
 
