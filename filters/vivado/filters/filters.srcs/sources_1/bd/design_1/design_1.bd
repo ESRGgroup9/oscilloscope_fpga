@@ -1,0 +1,20 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x0",
+      "device": "xc7z010clg400-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2"
+    },
+    "design_tree": {
+      "filter_0": ""
+    },
+    "components": {
+      "filter_0": {
+        "vlnv": "xilinx.com:hls:filter:1.0",
+        "xci_name": "design_1_filter_0_1"
+      }
+    }
+  }
+}
