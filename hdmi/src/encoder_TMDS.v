@@ -9,6 +9,7 @@ module encoder_TMDS(
 	output reg [9:0] TMDS = 0
 );
 
+////////////////////////////////////////////////////////////////////////
 wire [3:0] Nb1s = VD[0] + VD[1] + VD[2] + VD[3] + VD[4] + VD[5] + VD[6] + VD[7];
 wire XNOR 		= (Nb1s>4'd4) || (Nb1s==4'd4 && VD[0]==1'b0);
 wire [8:0] q_m 	= {~XNOR, q_m[6:0] ^ VD[7:1] ^ {7{XNOR}}, VD[0]};
