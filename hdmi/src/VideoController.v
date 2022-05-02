@@ -19,7 +19,6 @@ module VideoController(
 // picture dimensions
 `define WIDTH   128//320//640
 `define HEIGHT  128//240//480
-
 ////////////////// counter generation
 
 reg [9:0] counterX = 0;

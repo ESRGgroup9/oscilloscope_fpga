@@ -12,6 +12,7 @@ module hdmiIP(
    output TMDSp_clock_o, TMDSn_clock_o
 );
 
+////////////////////////////////////////////////////////////////////////
 wire VDEn_w;
 wire hSync_w, vSync_w;
 wire [23:0] pixel_w;
