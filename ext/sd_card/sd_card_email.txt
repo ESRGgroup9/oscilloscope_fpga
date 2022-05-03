@@ -1,0 +1,5 @@
+Na altura seguimos os exemplos da xilinx (https://github.com/Xilinx/embeddedsw/tree/master/XilinxProcessorIPLib/drivers/axicdma/examples). Aliás, estes ficheiros de código são guardados no diretório da xilinx aquando a instalação. O código para escrever/ler do sd-card foi encontrado em outro repositório.
+Eu acho que tinhamos feito um ppt passo a passo mas não o encontrei. Vou falar com o João. De qualquer forma, este Video-tutorial usa um exemplo da xilinx: https://youtu.be/Yklu68WopBo
+
+Aqui está o tutorial que tínhamos enviado na altura. Tem a informação inicial relacionada com o módulo que desenvolvemos mas depois apresenta a instanciação do CDMA + smart connect para transferência de dados entre a DDR e BRAM.
+Encontrei mais um video interessante, talvez mais detalhado. Foi-me útil numa fase inicial. (https://youtu.be/kxvEcCchRrI)
