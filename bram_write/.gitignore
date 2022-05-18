@@ -1,0 +1,6 @@
+# project name
+xadc/
+#!*.xsa
+
+.Xil/
+#ps7_*
