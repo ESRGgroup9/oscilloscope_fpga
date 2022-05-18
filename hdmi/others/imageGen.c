@@ -48,7 +48,7 @@ int main(int argc, char *argv[])
 				fputc('0', fp);
 			}
 
-			fputc(',', fp);
+			// fputc(',', fp);
 		}
 
 		fputc('\n', fp);
@@ -60,9 +60,9 @@ int main(int argc, char *argv[])
 	// sed '$ s/.$//' im.data 				# to remove last comma from text
 	// sed -e "s/1/24b'FFFFFF/g" im.data 	# to replace 1's
 	// sed -e "s/0/24b'000000/g" im.data 	# to replace 0's
-	system("sed -i '$ s/.$//' im.data >nul");
-	system("sed -i \"s/1/24'hFFFFFF/g\" im.data >nul");
-	system("sed -i \"s/0/24'h000000/g\" im.data >nul");
+	// system("sed -i '$ s/.$//' im.data >nul");
+	// system("sed -i \"s/1/24'hFFFFFF/g\" im.data >nul");
+	// system("sed -i \"s/0/24'h000000/g\" im.data >nul");
 
 	printf("Image %dx%d generated to: %s\n", width, height, FILENAME);
 
