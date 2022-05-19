@@ -3,11 +3,14 @@
 module mymodule(
     input [31:0] width_i,
     input [31:0] height_i,
-    output [31:0] axi_size_o//,
-//    output [31:0] size_o
+    output [31:0] axi_size_o,
+    output [31:0] size_o
 );
 
-//assign size_o = width_i * height_i;
-assign axi_size_o = width_i * height_i; 
+wire [31:0] size;
+assign size = width_i * height_i;
+
+assign size_o = size;
+assign axi_size_o = size; 
 
 endmodule
