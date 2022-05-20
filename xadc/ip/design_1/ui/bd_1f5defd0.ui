@@ -13,15 +13,15 @@ preplace inst processing_system7_0 -pg 1 -lvl 1 -x 230 -y 110 -defaultsOSRD
 preplace inst xadc_wiz_0 -pg 1 -lvl 3 -x 930 -y 280 -defaultsOSRD
 preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 600 -y 200 -defaultsOSRD
 preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 230 -y 450 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 220 440 320 760
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 220 440 320 N
 preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 230 430
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 450 360 N
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 450 360 770
 preplace netloc vauxn6_1 1 0 3 NJ 330 NJ 330 750J
-preplace netloc vauxp6_1 1 0 3 NJ 350 NJ 350 770J
-preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 80 NJ 80 NJ
-preplace netloc processing_system7_0_DDR 1 1 3 NJ 60 NJ 60 NJ
+preplace netloc vauxp6_1 1 0 3 NJ 350 NJ 350 760J
 preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 450 120n
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N 200
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 80 NJ 80 NJ
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 750 200n
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 60 NJ 60 NJ
 levelinfo -pg 1 0 230 600 930 1110
 pagesize -pg 1 -db -bbox -sgen -110 0 1230 550
 "

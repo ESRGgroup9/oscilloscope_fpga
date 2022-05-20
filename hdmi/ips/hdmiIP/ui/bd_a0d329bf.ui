@@ -1,0 +1,47 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-359,-631",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 540 -y -500 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 540 -y -480 -defaultsOSRD
+preplace port clk -pg 1 -lvl 0 -x -140 -y -510 -defaultsOSRD
+preplace port pixclk -pg 1 -lvl 0 -x -140 -y -490 -defaultsOSRD
+preplace port rst -pg 1 -lvl 0 -x -140 -y -470 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 540 -y -540 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 540 -y -520 -defaultsOSRD
+preplace portBus height -pg 1 -lvl 0 -x -140 -y -410 -defaultsOSRD
+preplace portBus val -pg 1 -lvl 0 -x -140 -y -450 -defaultsOSRD
+preplace portBus width -pg 1 -lvl 0 -x -140 -y -430 -defaultsOSRD
+preplace inst hdmiInterface -pg 1 -lvl 2 -x 340 -y -510 -defaultsOSRD
+preplace inst bram0 -pg 1 -lvl 2 -x 340 -y -310 -defaultsOSRD
+preplace inst bram1 -pg 1 -lvl 2 -x 340 -y -110 -defaultsOSRD
+preplace inst hdmiController -pg 1 -lvl 1 -x 20 -y -440 -defaultsOSRD
+preplace netloc hdmiController_0_VDEn 1 1 1 N -520
+preplace netloc hdmiController_0_hSync 1 1 1 N -500
+preplace netloc hdmiController_0_vSync 1 1 1 N -480
+preplace netloc hdmiController_0_pixel 1 1 1 N -460
+preplace netloc hdmiController_0_WE0 1 1 1 190 -440n
+preplace netloc hdmiController_0_addrB0 1 1 1 180 -420n
+preplace netloc hdmiController_0_WE1 1 1 1 160 -400n
+preplace netloc hdmiController_0_addrB1 1 1 1 170 -380n
+preplace netloc hdmiController_0_WD 1 1 1 150 -360n
+preplace netloc blk_mem_gen_1_douta 1 0 2 -110 -80 NJ
+preplace netloc blk_mem_gen_0_douta 1 0 2 -120 -280 NJ
+preplace netloc hdmiInterface_0_TMDSp_o 1 2 1 N -540
+preplace netloc hdmiInterface_0_TMDSn_o 1 2 1 N -520
+preplace netloc hdmiInterface_0_TMDSp_clock_o 1 2 1 N -500
+preplace netloc hdmiInterface_0_TMDSn_clock_o 1 2 1 N -480
+preplace netloc clk_0_1 1 0 2 -120J -590 200
+preplace netloc height_0_1 1 0 1 NJ -410
+preplace netloc pixclk_0_1 1 0 2 -110J -580 210
+preplace netloc rst_0_1 1 0 1 NJ -470
+preplace netloc val_0_1 1 0 1 NJ -450
+preplace netloc width_0_1 1 0 1 NJ -430
+levelinfo -pg 1 -140 20 340 540
+pagesize -pg 1 -db -bbox -sgen -280 -620 690 280
+"
+}
+

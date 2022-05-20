@@ -1,0 +1,303 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x8C6EF260D8AD875C",
+      "device": "xc7z010clg400-1",
+      "name": "hdmiIP",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "hdmiInterface": "",
+      "bram0": "",
+      "bram1": "",
+      "hdmiController": ""
+    },
+    "ports": {
+      "TMDSp": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "TMDSn": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "TMDSp_clock": {
+        "direction": "O"
+      },
+      "TMDSn_clock": {
+        "direction": "O"
+      },
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rst",
+            "value_src": "default"
+          },
+          "CLK_DOMAIN": {
+            "value": "hdmiIP_clk_0",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "height": {
+        "direction": "I",
+        "left": "31",
+        "right": "0"
+      },
+      "pixclk": {
+        "direction": "I"
+      },
+      "rst": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      },
+      "val": {
+        "direction": "I",
+        "left": "11",
+        "right": "0"
+      },
+      "width": {
+        "direction": "I",
+        "left": "31",
+        "right": "0"
+      }
+    },
+    "components": {
+      "hdmiInterface": {
+        "vlnv": "user.org:user:hdmiInterface:1.0",
+        "xci_name": "hdmiIP_hdmiInterface_0_0"
+      },
+      "bram0": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "hdmiIP_blk_mem_gen_0_0",
+        "parameters": {
+          "Enable_32bit_Address": {
+            "value": "false"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Read_Width_A": {
+            "value": "1"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Use_Byte_Write_Enable": {
+            "value": "false"
+          },
+          "Use_RSTA_Pin": {
+            "value": "false"
+          },
+          "Write_Depth_A": {
+            "value": "307200"
+          },
+          "Write_Width_A": {
+            "value": "1"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "bram1": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "hdmiIP_blk_mem_gen_0_1",
+        "parameters": {
+          "Enable_32bit_Address": {
+            "value": "false"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Read_Width_A": {
+            "value": "1"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Use_Byte_Write_Enable": {
+            "value": "false"
+          },
+          "Use_RSTA_Pin": {
+            "value": "false"
+          },
+          "Write_Depth_A": {
+            "value": "307200"
+          },
+          "Write_Width_A": {
+            "value": "1"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "hdmiController": {
+        "vlnv": "user.org:user:hdmiController:1.0",
+        "xci_name": "hdmiIP_hdmiController_0_0"
+      }
+    },
+    "nets": {
+      "hdmiController_0_VDEn": {
+        "ports": [
+          "hdmiController/VDEn",
+          "hdmiInterface/VDEn_i"
+        ]
+      },
+      "hdmiController_0_hSync": {
+        "ports": [
+          "hdmiController/hSync",
+          "hdmiInterface/hSync_i"
+        ]
+      },
+      "hdmiController_0_vSync": {
+        "ports": [
+          "hdmiController/vSync",
+          "hdmiInterface/vSync_i"
+        ]
+      },
+      "hdmiController_0_pixel": {
+        "ports": [
+          "hdmiController/pixel",
+          "hdmiInterface/pixel_i"
+        ]
+      },
+      "hdmiController_0_WE0": {
+        "ports": [
+          "hdmiController/WE0",
+          "bram0/wea"
+        ]
+      },
+      "hdmiController_0_addrB0": {
+        "ports": [
+          "hdmiController/addrB0",
+          "bram0/addra"
+        ]
+      },
+      "hdmiController_0_WE1": {
+        "ports": [
+          "hdmiController/WE1",
+          "bram1/wea"
+        ]
+      },
+      "hdmiController_0_addrB1": {
+        "ports": [
+          "hdmiController/addrB1",
+          "bram1/addra"
+        ]
+      },
+      "hdmiController_0_WD": {
+        "ports": [
+          "hdmiController/WD",
+          "bram0/dina",
+          "bram1/dina"
+        ]
+      },
+      "blk_mem_gen_1_douta": {
+        "ports": [
+          "bram1/douta",
+          "hdmiController/RD1"
+        ]
+      },
+      "blk_mem_gen_0_douta": {
+        "ports": [
+          "bram0/douta",
+          "hdmiController/RD0"
+        ]
+      },
+      "hdmiInterface_0_TMDSp_o": {
+        "ports": [
+          "hdmiInterface/TMDSp_o",
+          "TMDSp"
+        ]
+      },
+      "hdmiInterface_0_TMDSn_o": {
+        "ports": [
+          "hdmiInterface/TMDSn_o",
+          "TMDSn"
+        ]
+      },
+      "hdmiInterface_0_TMDSp_clock_o": {
+        "ports": [
+          "hdmiInterface/TMDSp_clock_o",
+          "TMDSp_clock"
+        ]
+      },
+      "hdmiInterface_0_TMDSn_clock_o": {
+        "ports": [
+          "hdmiInterface/TMDSn_clock_o",
+          "TMDSn_clock"
+        ]
+      },
+      "clk_0_1": {
+        "ports": [
+          "clk",
+          "hdmiInterface/TMDS_clk_i",
+          "bram0/clka",
+          "bram1/clka",
+          "hdmiController/clk"
+        ]
+      },
+      "height_0_1": {
+        "ports": [
+          "height",
+          "hdmiController/height"
+        ]
+      },
+      "pixclk_0_1": {
+        "ports": [
+          "pixclk",
+          "hdmiInterface/pixclk_i",
+          "hdmiController/pixclk"
+        ]
+      },
+      "rst_0_1": {
+        "ports": [
+          "rst",
+          "hdmiController/rst"
+        ]
+      },
+      "val_0_1": {
+        "ports": [
+          "val",
+          "hdmiController/val"
+        ]
+      },
+      "width_0_1": {
+        "ports": [
+          "width",
+          "hdmiController/width"
+        ]
+      }
+    }
+  }
+}
