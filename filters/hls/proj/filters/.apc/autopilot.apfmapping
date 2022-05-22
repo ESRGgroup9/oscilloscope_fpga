@@ -3,5 +3,8 @@
   <source>
     <originFiles name="lpf.c" path="/home/tomas/oscilloscope_fpga/filters/hls/src/lpf.c"/>
   </source>
-  <testbench/>
+  <testbench>
+    <originFiles name="testbench.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/testbench.c"/>
+    <originFiles name="20input.txt" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/20input.txt"/>
+  </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

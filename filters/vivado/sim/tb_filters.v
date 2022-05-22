@@ -1,19 +1,7 @@
-/* 
- * Do not change Module name 
-*/
-module main;/*(
-en,
-clk,
-x,
-x_ant
-);
+`timescale 1ns / 1ps
 
+module tb_filters;
 
-input en;
-input clk;
-input [11:0] x;
-input reg x_ant [0:(M-1)];
-*/
 //output [11:0] rbuf [0:M-1];
 
 parameter M = 6;
@@ -28,8 +16,8 @@ initial begin
     
     #1; clk = 0;
     #1; clk = 1;
+    #1; $finish;
 end
-
 
 initial begin
     x_ant[0] = 12'd0;
@@ -38,16 +26,18 @@ initial begin
     x_ant[3] = 12'd3;
     x_ant[4] = 12'd4;
     x_ant[5] = 12'd5;
+    
+    x = 12'd10;
 end
 
- 
 integer i;
 always@(posedge clk) begin
     if(en) begin
+        // shift old input values. dump x_ant(M) out
         for(i = 1; i < M; i = i + 1) begin
             x_ant[i] <= x_ant[i-1];
         end
-        
+        // insert new input value
         x_ant[0] <= x;
         
         for(i = 0; i < M; i = i + 1) begin

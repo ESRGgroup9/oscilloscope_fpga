@@ -47,6 +47,16 @@
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/src/lpf.c</location>
 		</link>
 		<link>
+			<name>testbench/20input.txt</name>
+			<type>1</type>
+			<location>/home/tomas/oscilloscope_fpga/filters/hls/testbench/20input.txt</location>
+		</link>
+		<link>
+			<name>testbench/testbench.c</name>
+			<type>1</type>
+			<location>/home/tomas/oscilloscope_fpga/filters/hls/testbench/testbench.c</location>
+		</link>
+		<link>
 			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/proj/filters/solution1/solution1.directive</location>
