@@ -18,7 +18,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../../testbench/testbench.c ../../../../../src/lpf.c
+HLS_SOURCES = ../../../../../testbench/testbench.c ../../../../../src/filter.c ../../../../../src/lpf.c
 
 TARGET := csim.exe
 
@@ -78,6 +78,12 @@ $(ObjDir)/testbench.o: ../../../../../testbench/testbench.c $(ObjDir)/.dir
 	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/testbench.d
+
+$(ObjDir)/filter.o: ../../../../../src/filter.c $(ObjDir)/.dir
+	$(Echo) "   Compiling(apcc) ../../../../../src/filter.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/filter.d
 
 $(ObjDir)/lpf.o: ../../../../../src/lpf.c $(ObjDir)/.dir
 	$(Echo) "   Compiling(apcc) ../../../../../src/lpf.c in $(BuildMode) mode" $(AVE_DIR_DLOG)

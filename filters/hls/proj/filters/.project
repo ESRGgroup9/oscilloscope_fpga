@@ -42,14 +42,14 @@
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/proj/filters/solution1/.tcls</location>
 		</link>
 		<link>
+			<name>source/filter.c</name>
+			<type>1</type>
+			<location>/home/tomas/oscilloscope_fpga/filters/hls/src/filter.c</location>
+		</link>
+		<link>
 			<name>source/lpf.c</name>
 			<type>1</type>
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/src/lpf.c</location>
-		</link>
-		<link>
-			<name>testbench/20input.txt</name>
-			<type>1</type>
-			<location>/home/tomas/oscilloscope_fpga/filters/hls/testbench/20input.txt</location>
 		</link>
 		<link>
 			<name>testbench/testbench.c</name>

@@ -7,6 +7,15 @@
       <mgLog/>
       <packageLog/>
       <csimLog>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.467+0100"/>
+        <logs message="ERROR: [APCC 202-1] APCC failed.&#xA;make: *** [csim.mk:78: obj/testbench.o] Error 1" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.459+0100"/>
+        <logs message="ERROR: [APCC 202-1] ProcessSources failed" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.450+0100"/>
+        <logs message="ERROR: [APCC 202-10] clang compile failed: child process exited abnormally" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.439+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:55:00.381+0100"/>
+        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.851+0100"/>
+        <logs message="ERROR: [APCC 202-1] APCC failed.&#xA;make: *** [csim.mk:78: obj/testbench.o] Error 1" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.820+0100"/>
+        <logs message="ERROR: [APCC 202-1] ProcessSources failed" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.802+0100"/>
+        <logs message="ERROR: [APCC 202-10] clang compile failed: child process exited abnormally" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.781+0100"/>
         <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:43:08.602+0100"/>
         <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:42:09.784+0100"/>
         <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:41:37.835+0100"/>

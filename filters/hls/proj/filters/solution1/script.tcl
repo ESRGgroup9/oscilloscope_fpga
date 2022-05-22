@@ -5,15 +5,15 @@
 ############################################################
 open_project filters
 set_top filter
+add_files ../src/filter.c
 add_files ../src/lpf.c
-add_files -tb ../testbench/20input.txt
 add_files -tb ../testbench/testbench.c
 open_solution "solution1"
 set_part {xc7z010-clg400-1}
 create_clock -period 10 -name default
 config_export -format ip_catalog -rtl verilog -version 1.0.0
 #source "./filters/solution1/directives.tcl"
-csim_design
+csim_design -clean
 csynth_design
 cosim_design
 export_design -rtl verilog -format ip_catalog -version "1.0.0"

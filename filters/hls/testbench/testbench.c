@@ -1,20 +1,22 @@
 #include <ap_cint.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 // number of iterations
 #define NUM_TRANS 50
 
 // input/output filenames
-#define INPUT_FILENAME 		"./20input.txt"
-#define OUTPUT_FILENAME 	"./20output.txt"
-#define OUTGOLD_FILENAME 	"./20out_golden.txt"
+#define INPUT_FILENAME 		"../../../../../testbench/20input.txt"
+#define OUTPUT_FILENAME 	"../../../../../testbench/20output.txt"
+#define OUTGOLD_FILENAME 	"../../../../../testbench/20out_golden.txt"
 
 int main ()
 {
 	int i;
 	int x[NUM_TRANS];
 	FILE *fp;
+	uint16 y = 0;
 
 	fp = fopen(INPUT_FILENAME, "r");
 	if(!fp)
@@ -43,14 +45,17 @@ int main ()
 
 	// Capture the output results of the filter to a file
 	for(i=0; i<NUM_TRANS; i++){
-		fprintf(fp, "%d\n", filter(x));
+		y = filter(x[i]);
+		// truncate output value
+		y = (y > 4095) ? 4095 : y;
+		fprintf(fp, "%d\n", y);
 	}
 
 	fclose(fp);
 
 	// Compare the results of the function against expected results
-	char cmd[64];
-	snprintf(cmd, sizeof(cmd),"diff --brief -w %s %s", OUTPUT_FILENAME, OUTGOLD_FILENAME)
+	char cmd[128];
+	snprintf(cmd, sizeof(cmd),"diff --brief -w %s %s", OUTPUT_FILENAME, OUTGOLD_FILENAME);
 
 	int ret = system(cmd);
 	if (ret != 0) {

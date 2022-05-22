@@ -53,6 +53,8 @@
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
+                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                    									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
@@ -86,6 +88,8 @@
                                 <option id="gnu.c.compiler.option.include.paths.975656560" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
@@ -221,6 +225,8 @@
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
+                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                    									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
@@ -244,6 +250,8 @@
                                 <option id="gnu.c.compiler.option.include.paths.5874651" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                    									
+                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
