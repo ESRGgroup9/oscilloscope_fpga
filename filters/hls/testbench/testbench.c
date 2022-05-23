@@ -3,66 +3,57 @@
 #include <stdio.h>
 #include <math.h>
 
-// number of iterations
-#define NUM_TRANS 50
-
-// input/output filenames
-#define INPUT_FILENAME 		"../../../../../testbench/20input.txt"
-#define OUTPUT_FILENAME 	"../../../../../testbench/20output.txt"
-#define OUTGOLD_FILENAME 	"../../../../../testbench/20out_golden.txt"
+#define _M_ 22
 
 int main ()
 {
-	int i;
-	int x[NUM_TRANS];
-	FILE *fp;
-	uint16 y = 0;
+	// declare filters coefs
+	int lpf_coefs[_M_ + 1];
+	int hpf_coefs[_M_ + 1];
+	int bpf_coefs[_M_ + 1];
+	FILE *fp_lpf, *fp_hpf, *fp_bpf;
 
-	fp = fopen(INPUT_FILENAME, "r");
-	if(!fp)
+	printf("****************************** C Simulation ******************************\n");
+	// ---------------------------------------------------------------------
+	// load filter coefficients
+	// ---------------------------------------------------------------------
+
+	fp_lpf = fopen("../../../../../testbench/LPF/LPFCoefs.txt", "r");
+	fp_hpf = fopen("../../../../../testbench/HPF/HPFCoefs.txt", "r");
+	fp_bpf = fopen("../../../../../testbench/BPF/BPFCoefs.txt", "r");
+
+	if(!fp_lpf || !fp_hpf || !fp_bpf)
 	{
-		printf("\nERROR: simulation input file not found!\n");
-		return 0;
+		printf("ERROR: Cannot open coefs file!\n");
+		return 1;
 	}
 
 	// load input values from file
-	for(i=0; i<NUM_TRANS; i++)
-		fscanf(fp, "%d", &x[i]);
-
-	fclose(fp);
-
-	// ---------------------------------------------------------------------
-	// simulate filter behavior
-	// ---------------------------------------------------------------------
-
-	// open output file
-	fp = fopen(OUTPUT_FILENAME, "w");
-	if(!fp)
+	for(int i=0; i<_M_+1; i++)
 	{
-		printf("\nERROR: simulation output file not created!\n");
-		return 0;
+		fscanf(fp_lpf, "%d", &lpf_coefs[i]);
+		fscanf(fp_hpf, "%d", &hpf_coefs[i]);
+		fscanf(fp_bpf, "%d", &bpf_coefs[i]);
 	}
 
-	// Capture the output results of the filter to a file
-	for(i=0; i<NUM_TRANS; i++){
-		y = filter(x[i]);
-		// truncate output value
-		y = (y > 4095) ? 4095 : y;
-		fprintf(fp, "%d\n", y);
-	}
+	fclose(fp_lpf);
+	fclose(fp_hpf);
+	fclose(fp_bpf);
 
-	fclose(fp);
+	// ---------------------------------------------------------------------
+	// test filters
+	// ---------------------------------------------------------------------
 
-	// Compare the results of the function against expected results
-	char cmd[128];
-	snprintf(cmd, sizeof(cmd),"diff --brief -w %s %s", OUTPUT_FILENAME, OUTGOLD_FILENAME);
+	filter_tb("LPF", lpf_coefs, 20, 0);
+	filter_tb("LPF", lpf_coefs, 100, 0);
 
-	int ret = system(cmd);
-	if (ret != 0) {
-		printf("Test FAILED\n");
-	} else {
-		printf("Test PASSED\n");
-	}
+	filter_tb("HPF", hpf_coefs, 20, 1);
+	filter_tb("HPF", hpf_coefs, 100, 1);
 
+	filter_tb("BPF", bpf_coefs, 20, 1);
+	filter_tb("BPF", bpf_coefs, 120, 1);
+	filter_tb("BPF", bpf_coefs, 220, 1);
+
+	printf("**************************** End C Simulation ****************************\n");
 	return 0;
 }
