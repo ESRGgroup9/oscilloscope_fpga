@@ -1,0 +1,9 @@
+{
+	"version": "1.0",
+	"modules": {
+		"fir_filter": {
+			"proto_instances": {
+			}
+		}
+	}
+}

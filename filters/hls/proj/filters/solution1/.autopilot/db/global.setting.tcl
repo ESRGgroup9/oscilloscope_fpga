@@ -1,5 +1,5 @@
 
-set TopModule "filter"
+set TopModule "fir_filter"
 set ClockPeriod 10
 set ClockList ap_clk
 set HasVivadoClockPeriod 0
@@ -8,12 +8,12 @@ set PipelineFlag 0
 set DataflowTaskPipelineFlag 1
 set TrivialPipelineFlag 0
 set noPortSwitchingFlag 0
-set FloatingPointFlag 0
+set FloatingPointFlag 1
 set FftOrFirFlag 0
 set NbRWValue 0
 set intNbAccess 0
 set NewDSPMapping 1
-set HasDSPModule 1
+set HasDSPModule 0
 set ResetLevelFlag 1
 set ResetStyle control
 set ResetSyncFlag 1
@@ -40,15 +40,15 @@ set SCTraceFileName mytrace
 set SCTraceFileFormat vcd
 set SCTraceOption all
 set TargetInfo xc7z010:-clg400:-1
-set SourceFiles {sc {} c ../../../src/lpf.c}
+set SourceFiles {sc {} c ../../../src/fir_filter.c}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile /home/tomas/oscilloscope_fpga/filters/hls/proj/filters/solution1/solution1.directive
-set TBFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
+set TBFiles {verilog {../../../testbench/testbench.c ../../../testbench/filter_tb.c} bc {../../../testbench/testbench.c ../../../testbench/filter_tb.c} sc {../../../testbench/testbench.c ../../../testbench/filter_tb.c} vhdl {../../../testbench/testbench.c ../../../testbench/filter_tb.c} c {} cas {../../../testbench/testbench.c ../../../testbench/filter_tb.c}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
-set TBTops {bc "" c "" sc "" cas "" vhdl "" verilog ""}
-set TBInstNames {bc "" c "" sc "" cas "" vhdl "" verilog ""}
+set TBTops {verilog {} bc {} sc {} vhdl {} c {} cas {}}
+set TBInstNames {verilog {} bc {} sc {} vhdl {} c {} cas {}}
 set XDCFiles {}
 set ExtraGlobalOptions {"area_timing" 1 "clock_gate" 1 "impl_flow" map "power_gate" 0}
 set TBTVFileNotFound {}

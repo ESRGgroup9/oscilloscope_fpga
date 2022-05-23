@@ -18,7 +18,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../../testbench/testbench.c ../../../../../src/filter.c ../../../../../src/lpf.c
+HLS_SOURCES = ../../../../../testbench/filter_tb.c ../../../../../testbench/testbench.c ../../../../../src/fir_filter.c
 
 TARGET := csim.exe
 
@@ -73,20 +73,20 @@ all: $(TARGET)
 
 AUTOCC := apcc  
 
+$(ObjDir)/filter_tb.o: ../../../../../testbench/filter_tb.c $(ObjDir)/.dir
+	$(Echo) "   Compiling(apcc) ../../../../../testbench/filter_tb.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/filter_tb.d
+
 $(ObjDir)/testbench.o: ../../../../../testbench/testbench.c $(ObjDir)/.dir
 	$(Echo) "   Compiling(apcc) ../../../../../testbench/testbench.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/testbench.d
 
-$(ObjDir)/filter.o: ../../../../../src/filter.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../../../src/filter.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
+$(ObjDir)/fir_filter.o: ../../../../../src/fir_filter.c $(ObjDir)/.dir
+	$(Echo) "   Compiling(apcc) ../../../../../src/fir_filter.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
 	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
--include $(ObjDir)/filter.d
-
-$(ObjDir)/lpf.o: ../../../../../src/lpf.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../../../src/lpf.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/lpf.d
+-include $(ObjDir)/fir_filter.d

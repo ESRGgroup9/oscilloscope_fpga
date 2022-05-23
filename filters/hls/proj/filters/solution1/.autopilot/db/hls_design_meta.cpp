@@ -2,11 +2,13 @@
 const Port_Property HLS_Design_Meta::port_props[]={
 	Port_Property("ap_clk", 1, hls_in, -1, "", "", 1),
 	Port_Property("ap_rst", 1, hls_in, -1, "", "", 1),
-	Port_Property("ap_start", 1, hls_in, -1, "", "", 1),
-	Port_Property("ap_done", 1, hls_out, -1, "", "", 1),
-	Port_Property("ap_idle", 1, hls_out, -1, "", "", 1),
-	Port_Property("ap_ready", 1, hls_out, -1, "", "", 1),
-	Port_Property("x", 16, hls_in, 0, "ap_none", "in_data", 1),
+	Port_Property("x_ant_address0", 5, hls_out, 0, "ap_memory", "mem_address", 1),
+	Port_Property("x_ant_ce0", 1, hls_out, 0, "ap_memory", "mem_ce", 1),
+	Port_Property("x_ant_q0", 16, hls_in, 0, "ap_memory", "mem_dout", 1),
+	Port_Property("x_coefs_address0", 5, hls_out, 1, "ap_memory", "mem_address", 1),
+	Port_Property("x_coefs_ce0", 1, hls_out, 1, "ap_memory", "mem_ce", 1),
+	Port_Property("x_coefs_q0", 32, hls_in, 1, "ap_memory", "mem_dout", 1),
+	Port_Property("dcValEn", 1, hls_in, 2, "ap_none", "in_data", 1),
 	Port_Property("ap_return", 16, hls_out, -1, "", "", 1),
 };
-const char* HLS_Design_Meta::dut_name = "filter";
+const char* HLS_Design_Meta::dut_name = "fir_filter";

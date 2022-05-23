@@ -1,13 +1,16 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-238,-352",
+   "Default View_TopLeft":"-220,-61",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace inst filter_0 -pg 1 -lvl 2 -x 490 -y -110 -defaultsOSRD
-levelinfo -pg 1 -30 130 490 660
-pagesize -pg 1 -db -bbox -sgen -30 -360 660 180
+preplace inst blk_mem_gen_0 -pg 1 -lvl 2 -x 550 -y 180 -defaultsOSRD
+preplace inst LPF -pg 1 -lvl 1 -x 210 -y 150 -defaultsOSRD
+preplace netloc fir_filter_0_x_ant_address0 1 1 1 410J 130n
+preplace netloc blk_mem_gen_0_douta 1 0 2 10 250 410
+levelinfo -pg 1 -10 210 550 690
+pagesize -pg 1 -db -bbox -sgen -10 0 690 310
 "
 }
 0

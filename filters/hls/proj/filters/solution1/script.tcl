@@ -4,16 +4,16 @@
 ## Copyright (C) 1986-2019 Xilinx, Inc. All Rights Reserved.
 ############################################################
 open_project filters
-set_top filter
-add_files ../src/filter.c
-add_files ../src/lpf.c
+set_top fir_filter
+add_files ../src/fir_filter.c
+add_files -tb ../testbench/filter_tb.c
 add_files -tb ../testbench/testbench.c
 open_solution "solution1"
 set_part {xc7z010-clg400-1}
 create_clock -period 10 -name default
-config_export -format ip_catalog -rtl verilog -version 1.0.0
+config_export -display_name fir_filter -format ip_catalog -rtl verilog -version 1.0.5
 #source "./filters/solution1/directives.tcl"
-csim_design -clean
+csim_design
 csynth_design
 cosim_design
-export_design -rtl verilog -format ip_catalog -version "1.0.0"
+export_design -rtl verilog -format ip_catalog -version "1.0.6" -display_name "fir_filter"

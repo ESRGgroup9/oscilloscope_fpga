@@ -6,38 +6,7 @@
       <simLog/>
       <mgLog/>
       <packageLog/>
-      <csimLog>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.467+0100"/>
-        <logs message="ERROR: [APCC 202-1] APCC failed.&#xA;make: *** [csim.mk:78: obj/testbench.o] Error 1" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.459+0100"/>
-        <logs message="ERROR: [APCC 202-1] ProcessSources failed" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.450+0100"/>
-        <logs message="ERROR: [APCC 202-10] clang compile failed: child process exited abnormally" projectName="filters" solutionName="solution1" date="2022-05-22T10:55:51.439+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:55:00.381+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.851+0100"/>
-        <logs message="ERROR: [APCC 202-1] APCC failed.&#xA;make: *** [csim.mk:78: obj/testbench.o] Error 1" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.820+0100"/>
-        <logs message="ERROR: [APCC 202-1] ProcessSources failed" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.802+0100"/>
-        <logs message="ERROR: [APCC 202-10] clang compile failed: child process exited abnormally" projectName="filters" solutionName="solution1" date="2022-05-22T10:39:06.781+0100"/>
-        <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:43:08.602+0100"/>
-        <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:42:09.784+0100"/>
-        <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:41:37.835+0100"/>
-        <logs message="ERROR: simulation input file not found!" projectName="filters" solutionName="solution1" date="2022-05-22T00:40:56.570+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T00:10:51.878+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: nonzero return value." projectName="filters" solutionName="solution1" date="2022-05-22T00:03:16.255+0100"/>
-        <logs message="Didnt find the input file!@E Simulation failed: Function 'main' returns nonzero value '1'." projectName="filters" solutionName="solution1" date="2022-05-22T00:03:16.248+0100"/>
-        <logs message="ERROR: [SIM 211-100] 'csim_design' failed: compilation error(s)." projectName="filters" solutionName="solution1" date="2022-05-22T00:02:43.946+0100"/>
-        <logs message="ERROR: [APCC 202-1] APCC failed.&#xA;make: *** [csim.mk:78: obj/testbench.o] Error 1" projectName="filters" solutionName="solution1" date="2022-05-22T00:02:43.938+0100"/>
-        <logs message="ERROR: [APCC 202-1] ProcessSources failed" projectName="filters" solutionName="solution1" date="2022-05-22T00:02:43.922+0100"/>
-        <logs message="ERROR: [APCC 202-10] clang compile failed: child process exited abnormally" projectName="filters" solutionName="solution1" date="2022-05-22T00:02:43.911+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="filters" solutionName="solution1" date="2022-05-21T23:59:51.035+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="filters" solutionName="solution1" date="2022-05-21T23:59:51.029+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="filters" solutionName="solution1" date="2022-05-21T23:59:03.627+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="filters" solutionName="solution1" date="2022-05-21T23:59:03.619+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="filters" solutionName="solution1" date="2022-05-21T23:58:35.746+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="filters" solutionName="solution1" date="2022-05-21T23:58:35.739+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="filters" solutionName="solution1" date="2022-05-21T23:57:28.537+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="filters" solutionName="solution1" date="2022-05-21T23:57:28.531+0100"/>
-        <logs message="ERROR: [SIM 211-100] CSim failed with errors." projectName="filters" solutionName="solution1" date="2022-05-21T23:55:46.329+0100"/>
-        <logs message="@E Simulation failed: SIGSEGV." projectName="filters" solutionName="solution1" date="2022-05-21T23:55:46.321+0100"/>
-      </csimLog>
+      <csimLog/>
     </logs>
   </errorLogs>
   <warningLogs>
@@ -45,7 +14,11 @@
       <synLog/>
       <simLog/>
       <mgLog/>
-      <packageLog/>
+      <packageLog>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_sitodp_4_no_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:21.620+0100" type="Warning"/>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_dmul_4_max_dsp_64' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:18.733+0100" type="Warning"/>
+        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_dadd_3_full_dsp_64' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:14.828+0100" type="Warning"/>
+      </packageLog>
       <csimLog/>
     </logs>
   </warningLogs>
