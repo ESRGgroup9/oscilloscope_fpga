@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:hdmiController:1.0
-// IP Revision: 3
+// IP Revision: 4
 
 `timescale 1ns/1ps
 
@@ -59,6 +59,7 @@ module hdmiIP_hdmiController_0_0 (
   pixclk,
   rst,
   val,
+  readValEn,
   width,
   height,
   RD0,
@@ -82,6 +83,7 @@ input wire pixclk;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
 input wire [11 : 0] val;
+input wire readValEn;
 input wire [31 : 0] width;
 input wire [31 : 0] height;
 input wire RD0;
@@ -104,6 +106,7 @@ output wire WD;
     .pixclk(pixclk),
     .rst(rst),
     .val(val),
+    .readValEn(readValEn),
     .width(width),
     .height(height),
     .RD0(RD0),

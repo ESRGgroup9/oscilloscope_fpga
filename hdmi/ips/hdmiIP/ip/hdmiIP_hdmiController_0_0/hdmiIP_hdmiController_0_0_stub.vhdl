@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Thu May 19 13:25:57 2022
--- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
+-- Date        : Mon May 23 10:25:41 2022
+-- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/tomas/oscilloscope_fpga/hdmi/ips/hdmiIP/ip/hdmiIP_hdmiController_0_0/hdmiIP_hdmiController_0_0_stub.vhdl
+--               /home/fernandes/code/oscilloscope_fpga/hdmi/ips/hdmiIP/ip/hdmiIP_hdmiController_0_0/hdmiIP_hdmiController_0_0_stub.vhdl
 -- Design      : hdmiIP_hdmiController_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
@@ -18,6 +18,7 @@ entity hdmiIP_hdmiController_0_0 is
     pixclk : in STD_LOGIC;
     rst : in STD_LOGIC;
     val : in STD_LOGIC_VECTOR ( 11 downto 0 );
+    readValEn : in STD_LOGIC;
     width : in STD_LOGIC_VECTOR ( 31 downto 0 );
     height : in STD_LOGIC_VECTOR ( 31 downto 0 );
     RD0 : in STD_LOGIC;
@@ -39,7 +40,7 @@ architecture stub of hdmiIP_hdmiController_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "clk,pixclk,rst,val[11:0],width[31:0],height[31:0],RD0,RD1,VDEn,hSync,vSync,pixel[23:0],WE0,addrB0[18:0],WE1,addrB1[18:0],WD";
+attribute black_box_pad_pin of stub : architecture is "clk,pixclk,rst,val[11:0],readValEn,width[31:0],height[31:0],RD0,RD1,VDEn,hSync,vSync,pixel[23:0],WE0,addrB0[18:0],WE1,addrB1[18:0],WD";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "hdmiController,Vivado 2019.2";
 begin

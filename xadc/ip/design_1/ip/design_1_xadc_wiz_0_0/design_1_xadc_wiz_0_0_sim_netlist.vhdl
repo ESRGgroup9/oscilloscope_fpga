@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Wed Apr 27 15:45:12 2022
--- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
+-- Date        : Tue May 24 14:28:38 2022
+-- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/tomas/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.vhdl
+--               /home/fernandes/code/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.vhdl
 -- Design      : design_1_xadc_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

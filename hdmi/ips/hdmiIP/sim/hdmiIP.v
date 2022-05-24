@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Thu May 19 13:25:00 2022
-//Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
+//Date        : Mon May 23 10:24:55 2022
+//Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target hdmiIP.bd
 //Design      : hdmiIP
 //Purpose     : IP block netlist
@@ -90,6 +90,7 @@ module hdmiIP
         .height(height_0_1),
         .pixclk(pixclk_0_1),
         .pixel(hdmiController_0_pixel),
+        .readValEn(1'b0),
         .rst(rst_0_1),
         .vSync(hdmiController_0_vSync),
         .val(val_0_1),

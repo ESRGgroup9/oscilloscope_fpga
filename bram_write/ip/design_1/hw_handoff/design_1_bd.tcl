@@ -163,33 +163,19 @@ proc create_root_design { parentCell } {
   set vauxn6 [ create_bd_port -dir I vauxn6 ]
   set vauxp6 [ create_bd_port -dir I vauxp6 ]
 
-  # Create instance: axi_bram_ctrl_0, and set properties
-  set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.1 axi_bram_ctrl_0 ]
+  # Create instance: ila_0, and set properties
+  set ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:ila:6.2 ila_0 ]
   set_property -dict [ list \
-   CONFIG.ECC_TYPE {0} \
-   CONFIG.PROTOCOL {AXI4LITE} \
-   CONFIG.READ_LATENCY {2} \
-   CONFIG.SINGLE_PORT_BRAM {1} \
- ] $axi_bram_ctrl_0
-
-  # Create instance: blk_mem_gen_0, and set properties
-  set blk_mem_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 blk_mem_gen_0 ]
-  set_property -dict [ list \
-   CONFIG.Byte_Size {9} \
-   CONFIG.Collision_Warnings {NONE} \
-   CONFIG.Disable_Collision_Warnings {true} \
-   CONFIG.EN_SAFETY_CKT {false} \
-   CONFIG.Enable_32bit_Address {false} \
-   CONFIG.Read_Width_A {1} \
-   CONFIG.Read_Width_B {1} \
-   CONFIG.Register_PortA_Output_of_Memory_Primitives {true} \
-   CONFIG.Use_Byte_Write_Enable {false} \
-   CONFIG.Use_RSTA_Pin {false} \
-   CONFIG.Write_Depth_A {512000} \
-   CONFIG.Write_Width_A {1} \
-   CONFIG.Write_Width_B {1} \
-   CONFIG.use_bram_block {Stand_Alone} \
- ] $blk_mem_gen_0
+   CONFIG.C_ADV_TRIGGER {true} \
+   CONFIG.C_ENABLE_ILA_AXI_MON {false} \
+   CONFIG.C_MONITOR_TYPE {Native} \
+   CONFIG.C_NUM_OF_PROBES {9} \
+   CONFIG.C_PROBE0_WIDTH {1} \
+   CONFIG.C_PROBE2_WIDTH {2} \
+   CONFIG.C_PROBE3_WIDTH {1} \
+   CONFIG.C_PROBE4_WIDTH {32} \
+   CONFIG.C_PROBE5_WIDTH {2} \
+ ] $ila_0
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
@@ -669,7 +655,7 @@ proc create_root_design { parentCell } {
   # Create instance: ps7_0_axi_periph, and set properties
   set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {2} \
+   CONFIG.NUM_MI {1} \
  ] $ps7_0_axi_periph
 
   # Create instance: rst_ps7_0_50M, and set properties
@@ -678,28 +664,44 @@ proc create_root_design { parentCell } {
   # Create instance: xadc_wiz_0, and set properties
   set xadc_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 xadc_wiz_0 ]
   set_property -dict [ list \
+   CONFIG.ADC_CONVERSION_RATE {1000} \
    CONFIG.CHANNEL_ENABLE_VP_VN {false} \
+   CONFIG.DCLK_FREQUENCY {250} \
+   CONFIG.ENABLE_VCCDDRO_ALARM {false} \
+   CONFIG.ENABLE_VCCPAUX_ALARM {false} \
+   CONFIG.ENABLE_VCCPINT_ALARM {false} \
    CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.OT_ALARM {false} \
    CONFIG.SEQUENCER_MODE {Off} \
    CONFIG.SINGLE_CHANNEL_ACQUISITION_TIME {false} \
    CONFIG.SINGLE_CHANNEL_SELECTION {VAUXP6_VAUXN6} \
+   CONFIG.USER_TEMP_ALARM {false} \
+   CONFIG.VCCAUX_ALARM {false} \
+   CONFIG.VCCINT_ALARM {false} \
    CONFIG.XADC_STARUP_SELECTION {single_channel} \
  ] $xadc_wiz_0
 
   # Create interface connections
-  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins blk_mem_gen_0/BRAM_PORTA]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins ps7_0_axi_periph/M00_AXI] [get_bd_intf_pins xadc_wiz_0/s_axi_lite]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_bram_ctrl_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
 
   # Create port connections
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins xadc_wiz_0/s_axi_aclk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins ila_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins xadc_wiz_0/s_axi_aclk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins xadc_wiz_0/s_axi_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins xadc_wiz_0/s_axi_aresetn]
   connect_bd_net -net vauxn6_1 [get_bd_ports vauxn6] [get_bd_pins xadc_wiz_0/vauxn6]
   connect_bd_net -net vauxp6_1 [get_bd_ports vauxp6] [get_bd_pins xadc_wiz_0/vauxp6]
+  connect_bd_net -net xadc_wiz_0_eoc_out [get_bd_pins ila_0/probe8] [get_bd_pins xadc_wiz_0/eoc_out]
+  connect_bd_net -net xadc_wiz_0_s_axi_arready [get_bd_pins ila_0/probe0] [get_bd_pins xadc_wiz_0/s_axi_arready]
+  connect_bd_net -net xadc_wiz_0_s_axi_awready [get_bd_pins ila_0/probe1] [get_bd_pins xadc_wiz_0/s_axi_awready]
+  connect_bd_net -net xadc_wiz_0_s_axi_bresp [get_bd_pins ila_0/probe2] [get_bd_pins xadc_wiz_0/s_axi_bresp]
+  connect_bd_net -net xadc_wiz_0_s_axi_bvalid [get_bd_pins ila_0/probe3] [get_bd_pins xadc_wiz_0/s_axi_bvalid]
+  connect_bd_net -net xadc_wiz_0_s_axi_rdata [get_bd_pins ila_0/probe4] [get_bd_pins xadc_wiz_0/s_axi_rdata]
+  connect_bd_net -net xadc_wiz_0_s_axi_rresp [get_bd_pins ila_0/probe5] [get_bd_pins xadc_wiz_0/s_axi_rresp]
+  connect_bd_net -net xadc_wiz_0_s_axi_rvalid [get_bd_pins ila_0/probe6] [get_bd_pins xadc_wiz_0/s_axi_rvalid]
+  connect_bd_net -net xadc_wiz_0_s_axi_wready [get_bd_pins ila_0/probe7] [get_bd_pins xadc_wiz_0/s_axi_wready]
 
   # Create address segments
   assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs xadc_wiz_0/s_axi_lite/Reg] -force

@@ -1,0 +1,28 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-354,-61",
+   "ExpandedHierarchyInLayout":"",
+   "commentid":"",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port vauxn6 -pg 1 -lvl 0 -x 0 -y 240 -defaultsOSRD
+preplace port vauxp6 -pg 1 -lvl 0 -x 0 -y 260 -defaultsOSRD
+preplace port sys_clock -pg 1 -lvl 0 -x 0 -y 280 -defaultsOSRD
+preplace inst xadc_wiz_0 -pg 1 -lvl 1 -x 190 -y 180 -defaultsOSRD
+preplace inst system_ila_0 -pg 1 -lvl 2 -x 450 -y 140 -defaultsOSRD
+preplace netloc vauxn6_1 1 0 1 NJ 240
+preplace netloc vauxp6_1 1 0 1 NJ 260
+preplace netloc eoc_out 1 1 1 N 160
+preplace netloc do_out 1 0 2 30 360 360
+preplace netloc sys_clock_1 1 0 2 20J 370 350
+levelinfo -pg 1 0 190 450 550
+pagesize -pg 1 -db -bbox -sgen -120 0 550 380
+"
+}
+{
+   "da_axi4_cnt":"1",
+   "da_board_cnt":"2",
+   "da_clkrst_cnt":"9",
+   "da_ps7_cnt":"1"
+}

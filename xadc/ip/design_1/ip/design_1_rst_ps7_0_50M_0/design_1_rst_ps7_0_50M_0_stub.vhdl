@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Tue Apr 26 14:46:08 2022
+-- Date        : Tue May 24 14:28:34 2022
 -- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/fernandes/code/oscilloscope_fpga/xadc/ip/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_stub.vhdl

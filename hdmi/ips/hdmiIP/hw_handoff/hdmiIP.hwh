@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu May 19 13:25:00 2022" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 23 10:24:56 2022" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo:part0:2.0" DEVICE="7z010" NAME="hdmiIP" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -461,7 +461,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="3" FULLNAME="/hdmiController" HWVERSION="1.0" INSTANCE="hdmiController" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiController" VLNV="user.org:user:hdmiController:1.0">
+    <MODULE COREREVISION="4" FULLNAME="/hdmiController" HWVERSION="1.0" INSTANCE="hdmiController" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiController" VLNV="user.org:user:hdmiController:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="ADDR_WIDTH" VALUE="19"/>
@@ -490,6 +490,7 @@
             <CONNECTION INSTANCE="External_Ports" PORT="val"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" NAME="readValEn" SIGIS="undef"/>
         <PORT DIR="I" LEFT="31" NAME="width" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_width">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="width"/>

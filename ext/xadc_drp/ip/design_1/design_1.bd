@@ -1,0 +1,170 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x77D86451300B31D3",
+      "device": "xc7z010clg400-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "xadc_wiz_0": "",
+      "system_ila_0": ""
+    },
+    "ports": {
+      "vauxn6": {
+        "direction": "I"
+      },
+      "vauxp6": {
+        "direction": "I"
+      },
+      "sys_clock": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "design_1_sys_clock",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "125000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000"
+          }
+        }
+      }
+    },
+    "components": {
+      "xadc_wiz_0": {
+        "vlnv": "xilinx.com:ip:xadc_wiz:3.3",
+        "xci_name": "design_1_xadc_wiz_0_0",
+        "parameters": {
+          "ADC_CONVERSION_RATE": {
+            "value": "1000"
+          },
+          "CHANNEL_ENABLE_VP_VN": {
+            "value": "false"
+          },
+          "DCLK_FREQUENCY": {
+            "value": "250"
+          },
+          "ENABLE_RESET": {
+            "value": "true"
+          },
+          "ENABLE_VCCDDRO_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPAUX_ALARM": {
+            "value": "false"
+          },
+          "ENABLE_VCCPINT_ALARM": {
+            "value": "false"
+          },
+          "EXTERNAL_MUX_CHANNEL": {
+            "value": "VP_VN"
+          },
+          "INTERFACE_SELECTION": {
+            "value": "ENABLE_DRP"
+          },
+          "OT_ALARM": {
+            "value": "false"
+          },
+          "SEQUENCER_MODE": {
+            "value": "Off"
+          },
+          "SINGLE_CHANNEL_ACQUISITION_TIME": {
+            "value": "false"
+          },
+          "SINGLE_CHANNEL_SELECTION": {
+            "value": "VAUXP6_VAUXN6"
+          },
+          "USER_TEMP_ALARM": {
+            "value": "false"
+          },
+          "VCCAUX_ALARM": {
+            "value": "false"
+          },
+          "VCCINT_ALARM": {
+            "value": "false"
+          },
+          "XADC_STARUP_SELECTION": {
+            "value": "single_channel"
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "design_1_system_ila_0_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "2"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE1_TYPE": {
+            "value": "0"
+          }
+        }
+      }
+    },
+    "nets": {
+      "vauxn6_1": {
+        "ports": [
+          "vauxn6",
+          "xadc_wiz_0/vauxn6"
+        ]
+      },
+      "vauxp6_1": {
+        "ports": [
+          "vauxp6",
+          "xadc_wiz_0/vauxp6"
+        ]
+      },
+      "eoc_out": {
+        "ports": [
+          "xadc_wiz_0/eoc_out",
+          "system_ila_0/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "do_out": {
+        "ports": [
+          "xadc_wiz_0/do_out",
+          "system_ila_0/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "sys_clock_1": {
+        "ports": [
+          "sys_clock",
+          "xadc_wiz_0/dclk_in",
+          "system_ila_0/clk"
+        ]
+      }
+    }
+  }
+}
