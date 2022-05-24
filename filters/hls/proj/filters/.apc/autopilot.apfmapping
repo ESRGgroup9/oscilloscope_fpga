@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
   <source>
-    <originFiles name="lpf.c" path="/home/tomas/oscilloscope_fpga/filters/hls/src/lpf.c"/>
-    <originFiles name="filter.c" path="/home/tomas/oscilloscope_fpga/filters/hls/src/filter.c"/>
+    <originFiles name="fir_filter.c" path="/home/tomas/oscilloscope_fpga/filters/hls/src/fir_filter.c"/>
   </source>
   <testbench>
+    <originFiles name="filter_tb.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/filter_tb.c"/>
     <originFiles name="testbench.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/testbench.c"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

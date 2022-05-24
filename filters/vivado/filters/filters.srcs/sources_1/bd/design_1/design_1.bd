@@ -8,12 +8,31 @@
       "tool_version": "2019.2"
     },
     "design_tree": {
-      "filter_0": ""
+      "blk_mem_gen_0": "",
+      "LPF": ""
     },
     "components": {
-      "filter_0": {
-        "vlnv": "xilinx.com:hls:filter:1.0",
-        "xci_name": "design_1_filter_0_1"
+      "blk_mem_gen_0": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "design_1_blk_mem_gen_0_0"
+      },
+      "LPF": {
+        "vlnv": "xilinx.com:hls:fir_filter:1.0",
+        "xci_name": "design_1_fir_filter_0_0"
+      }
+    },
+    "nets": {
+      "fir_filter_0_x_ant_address0": {
+        "ports": [
+          "LPF/x_ant_address0",
+          "blk_mem_gen_0/addra"
+        ]
+      },
+      "blk_mem_gen_0_douta": {
+        "ports": [
+          "blk_mem_gen_0/douta",
+          "LPF/x_ant_q0"
+        ]
       }
     }
   }

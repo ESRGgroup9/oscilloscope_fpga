@@ -9,11 +9,11 @@
         <clock name="default" period="10"/>
     </clockList>
     <config>
-        <schedule model="filter"/>
-        <config_export format="ip_catalog" rtl="verilog" version="1.0.0"/>
+        <schedule model="fir_filter"/>
+        <config_export display_name="fir_filter" format="ip_catalog" rtl="verilog" version="1.0.6"/>
     </config>
     <UIConfigurations>
-        <UIAutosynConf boardInfo="Zybo Z7-10 (xc7z010clg400-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="true" isStopAskAgain="false" showDetailDesignViewer="false">
+        <UIAutosynConf boardInfo="Zybo Z7-10 (xc7z010clg400-1) " hideTrivialOp="true" isBasedOnBoard="true" isSolutionDirty="false" isStopAskAgain="false" showDetailDesignViewer="false">
             <Platform>xilinx/zynq/zynq</Platform>
             <Platform>xilinx/zynq/zynq_fpv6</Platform>
             <customLibs/>
@@ -45,7 +45,7 @@
         </UIAutoSimConf>
     </UIConfigurations>
     <ExportDesign askAgain="true" evaluate="false" flow="false" flowChoice="syn" formatName="ip_catalog" rtl="verilog" rtlButton="true" rtlCombo="verilog">
-        <Format formatName="ip_catalog" version="1.0.0"/>
+        <Format display_name="fir_filter" formatName="ip_catalog" version="1.0.6" description="" vendor="" library="" ipname="" driver_input_dir="" taxonomy=""/>
         <Format formatName="sysgen"/>
         <Format formatName="sysgen_ise"/>
         <Format formatName="syn_dcp"/>
