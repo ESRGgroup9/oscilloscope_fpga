@@ -1,5 +1,5 @@
 # project name
-filters/
+./filters/
 proj.sublime-*
 #!*.xsa
 
