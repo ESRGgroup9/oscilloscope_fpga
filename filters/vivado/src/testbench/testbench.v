@@ -99,7 +99,7 @@ end
 
 always @(negedge filt_done) begin
     if(num_iter == `NUM_ITER) begin
-       fp = $fopen(OUTPUT_FILENAME, "w");
+       fp <= $fopen(OUTPUT_FILENAME, "w");
         
        $display("\nWriting output results to %0s", OUTPUT_FILENAME);
        for(j = 0; j < `NUM_ITER; j = j + 1) begin
@@ -109,7 +109,7 @@ always @(negedge filt_done) begin
        $fclose(fp);
         
         $display("Comparing output results with %0s ...", OUTPUT_GOLDEN_FILENAME);
-        fp = $fopen(OUTPUT_GOLDEN_FILENAME, "r");
+        fp <= $fopen(OUTPUT_GOLDEN_FILENAME, "r");
 
         for(j = 0; j < `NUM_ITER; j = j + 1) begin
             // use input_buf to hold golden vector values
@@ -117,13 +117,13 @@ always @(negedge filt_done) begin
 
             if(output_buf[j] != input_buf[j]) begin
                 $display("ERROR at input[%2d]: Output values differ output=%4d, golden=%4d", j, output_buf[j], input_buf[j]);
-                num_errors = num_errors + 1;
+                num_errors <= num_errors + 1;
             end
         end
 
         $display("Simulation completed with %2d errors!\n", num_errors);
         $fclose(fp);
-        num_iter = 0;
+        num_iter <= 0;
         $stop;
     end
     else begin
@@ -133,13 +133,13 @@ end
 
 // read/write to buffers
 always @(posedge rst or negedge filt_done) begin
-    if(rst) begin
-        i = 0;
+    if(rst | (num_iter == `NUM_ITER)) begin
+        i <= 0;
     end
     else begin
         // write to output buffer
-        output_buf[i] = filt_result;
-        i = i + 1; 
+        output_buf[i] <= filt_result;
+        i <= i + 1; 
     end
 end
 
@@ -147,12 +147,30 @@ end
 assign input_val = input_buf[i];
 
 // ===========================================================================
-// simulate filter inputs
+// 
 // ===========================================================================
 
 initial begin
-	filt_select <= FILT_SEL_BPF;
+	$display("\nTesting LPF:");
+    filt_select <= FILT_SEL_LPF;
 end
+
+integer num_test;
+
+//always @(posedge rst or negedge filt_done) begin
+//    if(rst) begin
+//        // num_test <= 0;
+//        filt_select <= FILT_SEL_LPF;
+//    end
+//    else if((filt_select == FILT_SEL_LPF) & (num_iter == `NUM_ITER)) begin
+//       $display("\nTesting HPF:");
+//       filt_select <= FILT_SEL_HPF; 
+//    end
+//    else if((filt_select == FILT_SEL_HPF) & (num_iter == `NUM_ITER)) begin
+//       $display("\nTesting BPF:");
+//       filt_select <= FILT_SEL_HPF; 
+//    end
+//end
 
 // filter enable
 always @(rst or negedge filt_done) begin

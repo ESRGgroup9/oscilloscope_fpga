@@ -6,7 +6,7 @@ module filters(
 	filt_select,
 	val,
 
-	out,
+	result,
 	done
 );
 
@@ -31,7 +31,7 @@ input wire start;
 input wire [1:0] filt_select;
 input wire [XADC_DATA_SIZE-1:0] val;
 
-output wire [XADC_DATA_SIZE-1:0] out;
+output reg [XADC_DATA_SIZE-1:0] result;
 output wire done;
 
 // ===========================================================================
@@ -56,6 +56,8 @@ wire hpf_start;
 wire bpf_start;
 
 // outputs
+wire [XADC_DATA_SIZE-1:0] out;
+
 wire lpf_done;
 wire [XADC_DATA_SIZE -1:0] lpf_result;
 wire [XANT_ADDR_SIZE -1:0] lpf_xant_addr;
@@ -185,28 +187,6 @@ assign lpf_start = filt_start & (filt_select == FILT_SEL_LPF);
 assign hpf_start = filt_start & (filt_select == FILT_SEL_HPF);
 assign bpf_start = filt_start & (filt_select == FILT_SEL_BPF);
 
-// mux filter results
-mux4 #(XADC_DATA_SIZE) filt_result_mux(
-	lpf_result,
-	hpf_result,
-	bpf_result,
-	val,
-
-	filt_select,
-	out
-);
-
-// mux filter done flag
-mux4 #(1) filt_done_mux(
-	lpf_done,
-	hpf_done,
-	bpf_done,
-	1'b1,
-
-	filt_select,
-	done
-);
-
 // LPF - Low Pass Filter
 fir_filter_0 fir_lpf (
   .x_ant_ce0(),                             // output wire x_ant_ce0
@@ -275,5 +255,36 @@ fir_filter_0 fir_bpf (
 
   .dcValEn(1'b1)                    		// input wire [0 : 0] dcValEn
 );
+
+// mux filter results
+mux4 #(XADC_DATA_SIZE) filt_result_mux(
+    lpf_result,
+    hpf_result,
+    bpf_result,
+    val,
+
+    filt_select,
+    out
+);
+
+// mux filter done flag
+mux4 #(1) filt_done_mux(
+    lpf_done,
+    hpf_done,
+    bpf_done,
+    1'b1,
+
+    filt_select,
+    done
+);
+
+always @(posedge rst or posedge done) begin
+    if(rst) begin
+        result = {XADC_DATA_SIZE{1'bx}};
+    end
+    else begin
+        result = out;
+    end
+end
 
 endmodule

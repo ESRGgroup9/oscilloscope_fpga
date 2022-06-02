@@ -129,7 +129,8 @@ end
 // ===========================================================================
 
 // done flag
-assign done = shift_done_w;
+// assign done = shift_done_w;
+assign done = write_done_w;
 
 // shift register complete - generate 1 clk cycle pulse
 assign shift_done_w = (state == S_SHIFT) & (i == 0);

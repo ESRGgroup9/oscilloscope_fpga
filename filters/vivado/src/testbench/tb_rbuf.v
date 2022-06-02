@@ -28,9 +28,9 @@ end
 // number of testing iterations
 `define NUM_ITER    50
 
-`define M           (3 + 1)     // write/read depth
+`define M           (22 + 1)     // write/read depth
 `define ADDR_SIZE   5
-`define DATA_SIZE   12          // write/read width
+`define DATA_SIZE   16          // write/read width
 
 // rbuf inputs
 reg en_r;
@@ -50,7 +50,7 @@ wire [`DATA_SIZE-1:0] bram_do_w;
 // ===========================================================================
 
 // input buffer values filename
-`define INPUT_FILENAME "20input.txt"
+`define INPUT_FILENAME "../../../../../../golden_vectors/input/20input.txt"
 
 // input buffer
 reg [`DATA_SIZE:0] input_buf[0:`NUM_ITER-1];

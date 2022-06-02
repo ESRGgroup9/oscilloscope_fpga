@@ -12,16 +12,16 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="200001fs"></ZoomEndTime>
+      <ZoomEndTime time="253601fs"></ZoomEndTime>
       <Cursor1Time time="0fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="160"></NameColumnWidth>
-      <ValueColumnWidth column_width="73"></ValueColumnWidth>
+      <ValueColumnWidth column_width="69"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
    <wave_markers>
-      <marker label="" time="96000" />
+      <marker label="" time="216000" />
       <marker label="" time="24000" />
    </wave_markers>
    <wvobject type="logic" fp_name="/tb_rbuf/clk">
@@ -41,16 +41,16 @@
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_rbuf/di_r">
-      <obj_property name="ElementShortName">di_r[11:0]</obj_property>
-      <obj_property name="ObjectShortName">di_r[11:0]</obj_property>
+      <obj_property name="ElementShortName">di_r[15:0]</obj_property>
+      <obj_property name="ObjectShortName">di_r[15:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_rbuf/addr_w">
       <obj_property name="ElementShortName">addr_w[4:0]</obj_property>
       <obj_property name="ObjectShortName">addr_w[4:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_rbuf/do_w">
-      <obj_property name="ElementShortName">do_w[11:0]</obj_property>
-      <obj_property name="ObjectShortName">do_w[11:0]</obj_property>
+      <obj_property name="ElementShortName">do_w[15:0]</obj_property>
+      <obj_property name="ObjectShortName">do_w[15:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_rbuf/owe_w">
       <obj_property name="ElementShortName">owe_w</obj_property>
@@ -65,7 +65,7 @@
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_rbuf/bram_do_w">
-      <obj_property name="ElementShortName">bram_do_w[11:0]</obj_property>
-      <obj_property name="ObjectShortName">bram_do_w[11:0]</obj_property>
+      <obj_property name="ElementShortName">bram_do_w[15:0]</obj_property>
+      <obj_property name="ObjectShortName">bram_do_w[15:0]</obj_property>
    </wvobject>
 </wave_config>
