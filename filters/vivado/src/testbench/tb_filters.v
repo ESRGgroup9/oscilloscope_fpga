@@ -32,8 +32,6 @@ end
 `define ADDR_SIZE   5
 `define DATA_SIZE   16          // write/read width
 
-`define NUM_ITER 50
-
 // ------------------ rbuf
 // rbuf inputs
 reg rbuf_en;
@@ -52,19 +50,16 @@ wire [31:0] xcoefs;
 reg filt_dcValEn;
 
 // filter outputs
-wire filt_xant_ce;
-wire filt_xcoefs_ce;
 wire filt_done;
-wire filt_idle;
-wire filt_ready;
-
 wire [`DATA_SIZE-1:0] filt_result;
 wire [`ADDR_SIZE-1:0] filt_xant_addr;
 wire [`ADDR_SIZE-1:0] filt_xcoefs_addr;
 
 // ------------------ internal registers
+reg [1:0] filt_select;
+
 wire [`ADDR_SIZE-1:0] addr_bram_xant;
-wire [`ADDR_SIZE-1:0] addr_bram_xcoefs;
+wire [6:0] addr_bram_xcoefs;
 
 wire [`DATA_SIZE-1:0] input_val;
 
@@ -72,9 +67,16 @@ wire [`DATA_SIZE-1:0] input_val;
 // input/output vectors
 // ===========================================================================
 `define INPUT_FILENAME          "../../../../../../golden_vectors/input/20input.txt"
-`define OUTPUT_GOLDEN_FILENAME  "../../../../../../golden_vectors/LPF/LPF_20out_golden.txt"
 
-`define OUTPUT_FILENAME         "../../../../../sim/LPF/LPF_20sim_output.txt"
+//`define OUTPUT_GOLDEN_FILENAME  "../../../../../../golden_vectors/LPF/LPF_20out_golden.txt"
+//`define OUTPUT_FILENAME         "../../../../../sim/LPF/LPF_20sim_output.txt"
+
+ // `define OUTPUT_GOLDEN_FILENAME  "../../../../../../golden_vectors/HPF/HPF_20out_golden.txt"
+ // `define OUTPUT_FILENAME         "../../../../../sim/HPF/HPF_20sim_output.txt"
+
+`define OUTPUT_GOLDEN_FILENAME  "../../../../../../golden_vectors/BPF/BPF_20out_golden.txt"
+`define OUTPUT_FILENAME         "../../../../../sim/BPF/BPF_20sim_output.txt"
+
 
 // input buffer
 reg [`DATA_SIZE-1:0] input_buf[0:`NUM_ITER-1];
@@ -113,7 +115,7 @@ always @(negedge filt_done) begin
         
        $fclose(fp);
         
-        $display("Comparing output results with golden vector ...");
+        $display("Comparing output results with %s ...", `OUTPUT_GOLDEN_FILENAME);
         fp = $fopen(`OUTPUT_GOLDEN_FILENAME, "r");
 
         for(j = 0; j < `NUM_ITER; j = j + 1) begin
@@ -141,7 +143,8 @@ end
 // ===========================================================================
 
 initial begin
-    filt_dcValEn <= 0;
+    filt_dcValEn <= 1;
+    filt_select <= 2'b10;
 end
 
 // read/write to buffers
@@ -167,26 +170,32 @@ always @(rst or negedge filt_done) begin
     end
 end
 
-// control filter calc start
-always @(posedge rst or negedge rbuf_done) begin
-    if(rst) begin
-        filt_start = 0;
+// --------------------- control filter calc start
+reg filt_start_count;
+
+always @(posedge clk or posedge rst) begin
+    if(rst | ((filt_start) & (filt_start_count))) begin
+        filt_start_count <= 1'b0;
+        filt_start <= 1'b0;
     end
-    else begin
-        filt_start = 1;
-        #(`CLK_PERIOD*3) filt_start = 0;
+    else if(rbuf_done) begin
+        filt_start <= 1'b1;
+    end
+    else if((filt_start) & (~filt_start_count))begin
+        filt_start_count <= ~filt_start_count;
     end
 end
+
 
 // read from input buffer
 assign input_val = input_buf[i];
 
 // select xant BRAM addr from filter or rbuf
 assign addr_bram_xant = (rbuf_owe) ? rbuf_addr : (
-                        (filt_xant_addr == `M) ? {`ADDR_SIZE{1'bx}} : filt_xant_addr);
+                        (filt_xant_addr > `M-1) ? {`ADDR_SIZE{1'bx}} : filt_xant_addr);
 
 // truncate xcoef addr if invalid
-assign addr_bram_xcoefs = (filt_xcoefs_addr == `M) ? {`ADDR_SIZE{1'bx}} : filt_xcoefs_addr;
+assign addr_bram_xcoefs = (filt_xcoefs_addr > `M-1) ? {7{1'bx}} : {filt_select, filt_xcoefs_addr};
 
 // ===========================================================================
 // design under testing instantiation
@@ -219,22 +228,22 @@ bram_xant x_ant_bram (
 bram_coefs x_coefs_bram (
   .clka(~clk),              // input wire clka
   .wea(1'b0),               // input wire [0 : 0] wea
-  .addra(addr_bram_xcoefs), // input wire [4 : 0] addra
+  .addra(addr_bram_xcoefs), // input wire [6 : 0] addra
   .dina({32{1'b0}}),        // input wire [31 : 0] dina
   .douta(xcoefs)            // output wire [31 : 0] douta
 );
 
 fir_filter_0 fir_lpf (
-  .x_ant_ce0(filt_xant_ce),                 // output wire x_ant_ce0
-  .x_coefs_ce0(filt_xcoefs_ce),             // output wire x_coefs_ce0
+  .x_ant_ce0(),                             // output wire x_ant_ce0
+  .x_coefs_ce0(),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
   .ap_rst(rst),                             // input wire ap_rst
   .ap_start(filt_start),                    // input wire ap_start
-
   .ap_done(filt_done),                      // output wire ap_done
-  .ap_idle(filt_idle),                      // output wire ap_idle
-  .ap_ready(filt_ready),                    // output wire ap_ready
+
+  .ap_idle(),                               // output wire ap_idle
+  .ap_ready(),                              // output wire ap_ready
   .ap_return(filt_result),                  // output wire [15 : 0] ap_return
 
   .x_ant_address0(filt_xant_addr),          // output wire [4 : 0] x_ant_address0

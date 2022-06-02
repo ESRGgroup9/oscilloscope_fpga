@@ -38,6 +38,7 @@ writeToFile = 0;
     
     % change coefs to fixed point
     xcoefs=round(hh*2^15);
+%     xcoefs = typecast(round(hh*2^15),'uint16');
     
     % -------------------------------------------------------------------------
     % simulate input

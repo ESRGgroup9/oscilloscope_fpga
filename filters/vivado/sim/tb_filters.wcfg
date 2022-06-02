@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="38901083fs"></ZoomStartTime>
-      <ZoomEndTime time="39240584fs"></ZoomEndTime>
-      <Cursor1Time time="39184000fs"></Cursor1Time>
+      <ZoomStartTime time="57119167fs"></ZoomStartTime>
+      <ZoomEndTime time="57604168fs"></ZoomEndTime>
+      <Cursor1Time time="57200000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="73"></ValueColumnWidth>
+      <ValueColumnWidth column_width="69"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="11" />
    <wvobject type="logic" fp_name="/tb_filters/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -39,8 +39,8 @@
       <obj_property name="ObjectShortName">addr_bram_xant[4:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_filters/addr_bram_xcoefs">
-      <obj_property name="ElementShortName">addr_bram_xcoefs[4:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_bram_xcoefs[4:0]</obj_property>
+      <obj_property name="ElementShortName">addr_bram_xcoefs[6:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_bram_xcoefs[6:0]</obj_property>
    </wvobject>
    <wvobject fp_name="divider53" type="divider">
       <obj_property name="label">RBUF signals</obj_property>
@@ -49,6 +49,7 @@
    <wvobject type="group" fp_name="group83">
       <obj_property name="label">RBUF signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/tb_filters/rbuf_en">
          <obj_property name="ElementShortName">rbuf_en</obj_property>
          <obj_property name="ObjectShortName">rbuf_en</obj_property>
@@ -109,9 +110,5 @@
       </wvobject>
    </wvobject>
    <wvobject fp_name="divider102" type="divider">
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_filters/filt_dcValEn">
-      <obj_property name="ElementShortName">filt_dcValEn</obj_property>
-      <obj_property name="ObjectShortName">filt_dcValEn</obj_property>
    </wvobject>
 </wave_config>
