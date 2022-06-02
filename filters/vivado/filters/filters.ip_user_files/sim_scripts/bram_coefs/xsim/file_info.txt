@@ -1,2 +1,0 @@
-bram_coefs.v,verilog,xil_defaultlib,../../../../../ip/bram_coefs/sim/bram_coefs.v,
-glbl.v,Verilog,xil_defaultlib,glbl.v

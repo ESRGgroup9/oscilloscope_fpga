@@ -1,7 +1,0 @@
-verilog xil_defaultlib  \
-"../../../ipstatic/hdl/verilog/fir_filter.v" \
-"../../../../../ip/fir_filter_0/sim/fir_filter_0.v" \
-
-verilog xil_defaultlib "glbl.v"
-
-nosort
