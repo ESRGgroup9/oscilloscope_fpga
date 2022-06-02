@@ -121,6 +121,7 @@ xvlog.*
 *.hw
 *.backup.*
 *.debug
+*.sublime-*
 
 ## checkpoint files
 *.dcp

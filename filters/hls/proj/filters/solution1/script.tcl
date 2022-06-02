@@ -6,14 +6,14 @@
 open_project filters
 set_top fir_filter
 add_files ../src/fir_filter.c
-add_files -tb ../testbench/filter_tb.c
-add_files -tb ../testbench/testbench.c
+add_files -tb ../testbench/testbench.c -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
+add_files -tb ../testbench/filter_tb.c -cflags "-Wno-unknown-pragmas" -csimflags "-Wno-unknown-pragmas"
 open_solution "solution1"
 set_part {xc7z010-clg400-1}
 create_clock -period 10 -name default
-config_export -display_name fir_filter -format ip_catalog -rtl verilog -version 1.0.5
+config_export -display_name fir_filter -format ip_catalog -rtl verilog -version 1.0.9
 #source "./filters/solution1/directives.tcl"
 csim_design
 csynth_design
 cosim_design
-export_design -rtl verilog -format ip_catalog -version "1.0.6" -display_name "fir_filter"
+export_design -rtl verilog -format ip_catalog -version "1.0.10" -display_name "fir_filter"

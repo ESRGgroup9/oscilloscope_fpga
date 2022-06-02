@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_filters_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_filters" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="38901083fs"></ZoomStartTime>
+      <ZoomEndTime time="39240584fs"></ZoomEndTime>
+      <Cursor1Time time="39184000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="73"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject type="logic" fp_name="/tb_filters/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_filters/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider43" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_filters/input_val">
+      <obj_property name="ElementShortName">input_val[15:0]</obj_property>
+      <obj_property name="ObjectShortName">input_val[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_filters/addr_bram_xant">
+      <obj_property name="ElementShortName">addr_bram_xant[4:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_bram_xant[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_filters/addr_bram_xcoefs">
+      <obj_property name="ElementShortName">addr_bram_xcoefs[4:0]</obj_property>
+      <obj_property name="ObjectShortName">addr_bram_xcoefs[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider53" type="divider">
+      <obj_property name="label">RBUF signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group83">
+      <obj_property name="label">RBUF signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_filters/rbuf_en">
+         <obj_property name="ElementShortName">rbuf_en</obj_property>
+         <obj_property name="ObjectShortName">rbuf_en</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_filters/rbuf_owe">
+         <obj_property name="ElementShortName">rbuf_owe</obj_property>
+         <obj_property name="ObjectShortName">rbuf_owe</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/rbuf_addr">
+         <obj_property name="ElementShortName">rbuf_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rbuf_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/rbuf_do">
+         <obj_property name="ElementShortName">rbuf_do[15:0]</obj_property>
+         <obj_property name="ObjectShortName">rbuf_do[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_filters/rbuf_done">
+         <obj_property name="ElementShortName">rbuf_done</obj_property>
+         <obj_property name="ObjectShortName">rbuf_done</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider52" type="divider">
+      <obj_property name="label">Filter signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group84">
+      <obj_property name="label">Filter signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_filters/filt_start">
+         <obj_property name="ElementShortName">filt_start</obj_property>
+         <obj_property name="ObjectShortName">filt_start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_filters/filt_done">
+         <obj_property name="ElementShortName">filt_done</obj_property>
+         <obj_property name="ObjectShortName">filt_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/filt_xant_addr">
+         <obj_property name="ElementShortName">filt_xant_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">filt_xant_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/xant">
+         <obj_property name="ElementShortName">xant[15:0]</obj_property>
+         <obj_property name="ObjectShortName">xant[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/filt_xcoefs_addr">
+         <obj_property name="ElementShortName">filt_xcoefs_addr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">filt_xcoefs_addr[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/xcoefs">
+         <obj_property name="ElementShortName">xcoefs[31:0]</obj_property>
+         <obj_property name="ObjectShortName">xcoefs[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_filters/filt_result">
+         <obj_property name="ElementShortName">filt_result[15:0]</obj_property>
+         <obj_property name="ObjectShortName">filt_result[15:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider102" type="divider">
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_filters/filt_dcValEn">
+      <obj_property name="ElementShortName">filt_dcValEn</obj_property>
+      <obj_property name="ObjectShortName">filt_dcValEn</obj_property>
+   </wvobject>
+</wave_config>

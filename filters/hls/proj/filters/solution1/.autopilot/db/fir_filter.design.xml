@@ -16,13 +16,13 @@
 <EstimatedClockPeriod>8.510</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
-<Best-caseLatency>114</Best-caseLatency>
-<Average-caseLatency>114</Average-caseLatency>
-<Worst-caseLatency>114</Worst-caseLatency>
-<Best-caseRealTimeLatency>1.140 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>1.140 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>1.140 us</Worst-caseRealTimeLatency>
-<PipelineInitiationInterval>115</PipelineInitiationInterval>
+<Best-caseLatency>93</Best-caseLatency>
+<Average-caseLatency>93</Average-caseLatency>
+<Worst-caseLatency>93</Worst-caseLatency>
+<Best-caseRealTimeLatency>0.930 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>0.930 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>0.930 us</Worst-caseRealTimeLatency>
+<PipelineInitiationInterval>94</PipelineInitiationInterval>
 <PipelineType>none</PipelineType>
 </SummaryOfOverallLatency>
 <SummaryOfLoopLatency>
@@ -37,10 +37,10 @@
 </PerformanceEstimates>
 <AreaEstimates>
 <Resources>
-<BRAM_18K>2</BRAM_18K>
-<DSP48E>16</DSP48E>
-<FF>1818</FF>
-<LUT>3999</LUT>
+<DSP48E>2</DSP48E>
+<FF>127</FF>
+<LUT>220</LUT>
+<BRAM_18K>0</BRAM_18K>
 <URAM>0</URAM>
 </Resources>
 </AreaEstimates>
@@ -50,7 +50,7 @@
 <Object>fir_filter</Object>
 <Type>return value</Type>
 <Scope></Scope>
-<IOProtocol>ap_ctrl_none</IOProtocol>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
 <Bits>1</Bits>
@@ -61,9 +61,53 @@
 <Object>fir_filter</Object>
 <Type>return value</Type>
 <Scope></Scope>
-<IOProtocol>ap_ctrl_none</IOProtocol>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_start</name>
+<Object>fir_filter</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>in</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_done</name>
+<Object>fir_filter</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_idle</name>
+<Object>fir_filter</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
+<Bits>1</Bits>
+<Attribute>control</Attribute>
+</RtlPorts>
+<RtlPorts>
+<name>ap_ready</name>
+<Object>fir_filter</Object>
+<Type>return value</Type>
+<Scope></Scope>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
+<IOConfig></IOConfig>
+<Dir>out</Dir>
 <Bits>1</Bits>
 <Attribute>control</Attribute>
 </RtlPorts>
@@ -72,7 +116,7 @@
 <Object>fir_filter</Object>
 <Type>return value</Type>
 <Scope></Scope>
-<IOProtocol>ap_ctrl_none</IOProtocol>
+<IOProtocol>ap_ctrl_hs</IOProtocol>
 <IOConfig></IOConfig>
 <Dir>out</Dir>
 <Bits>16</Bits>

@@ -53,8 +53,6 @@
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
-                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
-                                    									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
@@ -88,8 +86,6 @@
                                 <option id="gnu.c.compiler.option.include.paths.975656560" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
@@ -161,6 +157,66 @@
                         					
                     </folderInfo>
                     					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1952724122.349130854" name="testbench.c" rcbsApplicability="disable" resourcePath="testbench/testbench.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123.1039862733">
+                        						
+                        <tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123.1039862733" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123">
+                            							
+                            <option id="gnu.c.compiler.option.preprocessor.def.symbols.1225511830" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+                            							
+                            <option id="gnu.c.compiler.option.include.paths.1380052451" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/ap_sysc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/systemc/include"/>
+                                							
+                            </option>
+                            							
+                            <option id="gnu.c.compiler.option.misc.other.418408690" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            							
+                            <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.2109681207" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            						
+                        </tool>
+                        					
+                    </fileInfo>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.debug.1952724122.1989158938" name="filter_tb.c" rcbsApplicability="disable" resourcePath="testbench/filter_tb.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123.1273797021">
+                        						
+                        <tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123.1273797021" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.debug.1085312123">
+                            							
+                            <option id="gnu.c.compiler.option.preprocessor.def.symbols.454840421" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+                            							
+                            <option id="gnu.c.compiler.option.include.paths.1440631689" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/ap_sysc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/systemc/include"/>
+                                							
+                            </option>
+                            							
+                            <option id="gnu.c.compiler.option.misc.other.206651846" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            							
+                            <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.957495375" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            						
+                        </tool>
+                        					
+                    </fileInfo>
+                    					
                     <sourceEntries>
                         						
                         <entry excluding="solution1|*.c*|*.C*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
@@ -225,8 +281,6 @@
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
                                     									
-                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
-                                    									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
@@ -250,8 +304,6 @@
                                 <option id="gnu.c.compiler.option.include.paths.5874651" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
-                                    									
-                                    <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
                                     									
                                     <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
                                     									
@@ -312,6 +364,66 @@
                         </toolChain>
                         					
                     </folderInfo>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1170082743.1115971205" name="testbench.c" rcbsApplicability="disable" resourcePath="testbench/testbench.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491.1424918012">
+                        						
+                        <tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491.1424918012" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491">
+                            							
+                            <option id="gnu.c.compiler.option.preprocessor.def.symbols.1423424611" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+                            							
+                            <option id="gnu.c.compiler.option.include.paths.50750852" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/ap_sysc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/systemc/include"/>
+                                							
+                            </option>
+                            							
+                            <option id="gnu.c.compiler.option.misc.other.1496240077" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            							
+                            <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1472857283" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            						
+                        </tool>
+                        					
+                    </fileInfo>
+                    					
+                    <fileInfo id="cdt.managedbuild.config.gnu.exe.release.1170082743.1054055994" name="filter_tb.c" rcbsApplicability="disable" resourcePath="testbench/filter_tb.c" toolsToInvoke="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491.1917213198">
+                        						
+                        <tool id="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491.1917213198" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.exe.release.1660376491">
+                            							
+                            <option id="gnu.c.compiler.option.preprocessor.def.symbols.1848568609" name="Defined symbols (-D)" superClass="gnu.c.compiler.option.preprocessor.def.symbols"/>
+                            							
+                            <option id="gnu.c.compiler.option.include.paths.1997697084" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/etc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/home/tomas/oscilloscope_fpga/filters/hls/proj"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/auto_cc/include"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/include/ap_sysc"/>
+                                								
+                                <listOptionValue builtIn="false" value="/tools/Xilinx/Vivado/2019.2/lnx64/tools/systemc/include"/>
+                                							
+                            </option>
+                            							
+                            <option id="gnu.c.compiler.option.misc.other.684912525" name="Other flags" superClass="gnu.c.compiler.option.misc.other" value="-Wno-unknown-pragmas -c -fmessage-length=0" valueType="string"/>
+                            							
+                            <inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1287690276" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+                            						
+                        </tool>
+                        					
+                    </fileInfo>
                     					
                     <sourceEntries>
                         						

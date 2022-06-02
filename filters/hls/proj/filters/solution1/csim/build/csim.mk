@@ -18,7 +18,7 @@ __SIM_DDS__ = 1
 
 ObjDir = obj
 
-HLS_SOURCES = ../../../../../testbench/filter_tb.c ../../../../../testbench/testbench.c ../../../../../src/fir_filter.c
+HLS_SOURCES = ../../../../../testbench/testbench.c ../../../../../testbench/filter_tb.c ../../../../../src/fir_filter.c
 
 TARGET := csim.exe
 
@@ -57,6 +57,7 @@ IFLAG += -D__SIM_FIR__
 IFLAG += -D__SIM_DDS__
 
 IFLAG += -D__DSP48E1__
+IFLAG += -Wno-unknown-pragmas 
 IFLAG += -g
 DFLAG += -DAUTOCC
 DFLAG += -D__xilinx_ip_top= -DAESL_TB
@@ -73,17 +74,17 @@ all: $(TARGET)
 
 AUTOCC := apcc  
 
-$(ObjDir)/filter_tb.o: ../../../../../testbench/filter_tb.c $(ObjDir)/.dir
-	$(Echo) "   Compiling(apcc) ../../../../../testbench/filter_tb.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
-
--include $(ObjDir)/filter_tb.d
-
 $(ObjDir)/testbench.o: ../../../../../testbench/testbench.c $(ObjDir)/.dir
 	$(Echo) "   Compiling(apcc) ../../../../../testbench/testbench.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
-	$(Verb)  $(AUTOCC) -c -MMD  $(IFLAG) $(DFLAG) $< -o $@ ; \
+	$(Verb)  $(AUTOCC) -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
 
 -include $(ObjDir)/testbench.d
+
+$(ObjDir)/filter_tb.o: ../../../../../testbench/filter_tb.c $(ObjDir)/.dir
+	$(Echo) "   Compiling(apcc) ../../../../../testbench/filter_tb.c in $(BuildMode) mode" $(AVE_DIR_DLOG)
+	$(Verb)  $(AUTOCC) -c -MMD -Wno-unknown-pragmas -Wno-unknown-pragmas  $(IFLAG) $(DFLAG) $< -o $@ ; \
+
+-include $(ObjDir)/filter_tb.d
 
 $(ObjDir)/fir_filter.o: ../../../../../src/fir_filter.c $(ObjDir)/.dir
 	$(Echo) "   Compiling(apcc) ../../../../../src/fir_filter.c in $(BuildMode) mode" $(AVE_DIR_DLOG)

@@ -4,7 +4,7 @@
     <originFiles name="fir_filter.c" path="/home/tomas/oscilloscope_fpga/filters/hls/src/fir_filter.c"/>
   </source>
   <testbench>
-    <originFiles name="filter_tb.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/filter_tb.c"/>
     <originFiles name="testbench.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/testbench.c"/>
+    <originFiles name="filter_tb.c" path="/home/tomas/oscilloscope_fpga/filters/hls/testbench/filter_tb.c"/>
   </testbench>
 </autopilotfilemapping:AutoPilotFileMapping>

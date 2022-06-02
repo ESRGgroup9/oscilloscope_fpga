@@ -1,73 +1,182 @@
-`timescale 1ns / 1ps
+module tb_bram;
 
-module bram(
+reg clk;
+reg [4:0] addr;
+reg [11:0] din;
 
-    );
+wire [11:0] dout;
+reg we;
+//reg ena;
 
+always #4 clk = ~clk;
 
-// BRAM_SINGLE_MACRO: Single Port RAM
-//                    Artix-7
-// Xilinx HDL Language Template, version 2019.2
+always @(posedge clk) begin
+    if(addr < 10) begin    
+        addr <= addr + 1;
+        din <= din + 1;
+    end
+    else
+        addr <= 0;
+end
 
-/////////////////////////////////////////////////////////////////////
-//  READ_WIDTH | BRAM_SIZE | READ Depth  | ADDR Width |            //
-// WRITE_WIDTH |           | WRITE Depth |            |  WE Width  //
-// ============|===========|=============|============|============//
-//    37-72    |  "36Kb"   |      512    |    9-bit   |    8-bit   //
-//    19-36    |  "36Kb"   |     1024    |   10-bit   |    4-bit   //
-//    19-36    |  "18Kb"   |      512    |    9-bit   |    4-bit   //
-//    10-18    |  "36Kb"   |     2048    |   11-bit   |    2-bit   //
-//    10-18    |  "18Kb"   |     1024    |   10-bit   |    2-bit   //
-//     5-9     |  "36Kb"   |     4096    |   12-bit   |    1-bit   //
-//     5-9     |  "18Kb"   |     2048    |   11-bit   |    1-bit   //
-//     3-4     |  "36Kb"   |     8192    |   13-bit   |    1-bit   //
-//     3-4     |  "18Kb"   |     4096    |   12-bit   |    1-bit   //
-//       2     |  "36Kb"   |    16384    |   14-bit   |    1-bit   //
-//       2     |  "18Kb"   |     8192    |   13-bit   |    1-bit   //
-//       1     |  "36Kb"   |    32768    |   15-bit   |    1-bit   //
-//       1     |  "18Kb"   |    16384    |   14-bit   |    1-bit   //
-/////////////////////////////////////////////////////////////////////
-
-BRAM_SINGLE_MACRO #(
-  .BRAM_SIZE("18Kb"), // Target BRAM, "18Kb" or "36Kb" 
-  .DEVICE("7SERIES"), // Target Device: "7SERIES" 
-  .DO_REG(0), // Optional output register (0 or 1)
-  .INIT(36'h000000000), // Initial values on output port
-  .INIT_FILE ("NONE"),
-  .WRITE_WIDTH(0), // Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-  .READ_WIDTH(0),  // Valid values are 1-72 (37-72 only valid when BRAM_SIZE="36Kb")
-  .SRVAL(36'h000000000), // Set/Reset value for port output
-  .WRITE_MODE("WRITE_FIRST"), // "WRITE_FIRST", "READ_FIRST", or "NO_CHANGE" 
+initial begin
+//    clk <= 1;
+//    ena <= 1;
+//    addr <= 0;
+//    #8;
+    
+   clk <= 1;
+//    ena <= 1;
+    we <= 1;
+    addr <= 0;
+    din <= 0;
+    
+    #80;
+    we <= 0;
+//    addr <= 0;
   
-) BRAM_SINGLE_MACRO_inst (
-  .DO(DO),       // Output data, width defined by READ_WIDTH parameter
-  .ADDR(ADDR),   // Input address, width defined by read/write port depth
-  .CLK(CLK),     // 1-bit input clock
-  .DI(DI),       // Input data port, width defined by WRITE_WIDTH parameter
-  .EN(EN),       // 1-bit input RAM enable
-  .REGCE(REGCE), // 1-bit input output register enable
-  .RST(RST),     // 1-bit input reset
-  .WE(WE)        // Input write enable, width defined by write port depth
+    #400; $stop;
+end
+
+//assign ena = we;
+
+//design_1_wrapper dut
+//(
+//    addr,
+//    clk,
+//    din,
+//    dout,
+//    ena,
+//    we
+//);
+
+blk_mem_gen_0 dut (
+  .clka(~clk),    // input wire clka
+//  .ena(ena),      // input wire ena
+  .wea(we),      // input wire [0 : 0] wea
+  .addra(addr),  // input wire [4 : 0] addra
+  .dina(din),    // input wire [11 : 0] dina
+  .douta(dout)  // output wire [11 : 0] douta
 );
-
-// End of BRAM_SINGLE_MACRO_inst instantiation
-
-
-mux2 addr0(
-  addrWR,
-  addrRD,
-  addrSel,
-  addr0
-);
-
-mux2 addr1(
-  addrWR,
-  addrRD,
-  ~addrSel,
-  addr1
-);
-
-
-
 
 endmodule
+
+
+
+
+//initial begin
+//    clk <= 0;
+//    ena <= 0;
+//    #2;
+//    clk <= 1;
+//    din <= 32;
+//    ena <= 1;
+//    // write to bram
+//    for(i = 0; i < 4; i = i + 1) begin
+//        addr <= i;
+//        din <= i*2;
+//        we <= 1;
+//        #8;
+//        we <= 0;
+//        #8;
+//    end
+//    ena <= 0;
+    
+//    #16;
+//    // read from bram
+//    for(i = 0; i < 4; i = i + 1) begin
+//        addr <= i;
+        
+//        ena <= 1;
+//        #8;
+//        ena <= 0;
+//        #8;
+//    end
+    
+//    #400; $stop;
+//end
+
+
+
+//module BRAM_tb;
+//    // Inputs
+//    reg clk;
+//    reg [3:0] wea;                  // write enable signal
+//    reg [31:0] addra;               // address
+//    reg signed [31:0] dina;     // data in
+
+//    // Outputs
+//    wire [31:0] douta;          // data out
+
+//    // Instantiate the Unit Under Test (UUT)
+////    BLOCK_MEM uut (
+////        .clka(clk), 
+////        .wea(wea), 
+////        .addra(addra), 
+////        .dina(dina), 
+////        .douta(douta)
+////    );
+//    design_1_wrapper dut
+//    (
+//        addra,
+//        clk,
+//        dina,
+//        douta,
+//        wea
+//    );
+//    always begin
+//        #15 clk =~clk;
+//    end
+
+//    task writeStuff;    //write to address
+//        begin
+//            addra <= addra + 1;
+//            dina <= dina+1;
+//        end
+//    endtask
+
+//    task readStuff; // read the at address
+//        begin
+//            addra <= addra + 1;
+//        end
+//    endtask
+
+//    reg [1:0] writing;
+//    integer counter;
+//    initial begin
+//        // Initialize Inputs
+//        clk = 0;
+//        addra = 0;
+//        dina = 16;
+//        counter = 0;
+//        writing = 2'b10; //idle state
+//        // Wait 100 ns for global reset to finish
+//        #100;
+//        wea <= 1;
+//        writing <=1;
+//    end
+
+//    always @(posedge clk)begin
+//        case(writing)
+//            1: if(counter<10) begin
+//                    writeStuff;
+//                    counter <=counter+1;
+//                end else begin
+//                    writing <=0;    // change state to reading
+//                    counter <=0;
+//                    addra <= 0;
+//                    wea <=0;    // stop writing
+//                end
+//            0:  if(counter<10) begin
+//                    readStuff;
+//                    counter <=counter+1;
+//                end else begin // change addra to zero and do nothing
+//                    addra <= 0;
+//                    writing <=2'b10; //goto idle state
+//                end
+//            2: if(1) begin
+//                    //do nothing
+//                end
+//        endcase
+//    end
+//endmodule

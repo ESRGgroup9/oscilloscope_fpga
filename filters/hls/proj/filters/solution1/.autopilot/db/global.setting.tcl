@@ -8,7 +8,7 @@ set PipelineFlag 0
 set DataflowTaskPipelineFlag 1
 set TrivialPipelineFlag 0
 set noPortSwitchingFlag 0
-set FloatingPointFlag 1
+set FloatingPointFlag 0
 set FftOrFirFlag 0
 set NbRWValue 0
 set intNbAccess 0
@@ -43,7 +43,7 @@ set TargetInfo xc7z010:-clg400:-1
 set SourceFiles {sc {} c ../../../src/fir_filter.c}
 set SourceFlags {sc {} c {{}}}
 set DirectiveFile /home/tomas/oscilloscope_fpga/filters/hls/proj/filters/solution1/solution1.directive
-set TBFiles {verilog {../../../testbench/testbench.c ../../../testbench/filter_tb.c} bc {../../../testbench/testbench.c ../../../testbench/filter_tb.c} sc {../../../testbench/testbench.c ../../../testbench/filter_tb.c} vhdl {../../../testbench/testbench.c ../../../testbench/filter_tb.c} c {} cas {../../../testbench/testbench.c ../../../testbench/filter_tb.c}}
+set TBFiles {verilog {../../../testbench/filter_tb.c ../../../testbench/testbench.c} bc {../../../testbench/filter_tb.c ../../../testbench/testbench.c} sc {../../../testbench/filter_tb.c ../../../testbench/testbench.c} vhdl {../../../testbench/filter_tb.c ../../../testbench/testbench.c} c {} cas {../../../testbench/filter_tb.c ../../../testbench/testbench.c}}
 set SpecLanguage C
 set TVInFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}
 set TVOutFiles {bc {} c {} sc {} cas {} vhdl {} verilog {}}

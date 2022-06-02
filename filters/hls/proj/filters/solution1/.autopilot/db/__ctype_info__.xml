@@ -12,7 +12,7 @@
 <RtlPorts>
 <name>x_coefs</name>
 <CType>
-<TypeName>int</TypeName>
+<TypeName>uint32</TypeName>
 <TypeWidth>32</TypeWidth>
 <PhysicalWidth>32</PhysicalWidth>
 </CType>

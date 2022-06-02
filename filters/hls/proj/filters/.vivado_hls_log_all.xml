@@ -14,11 +14,7 @@
       <synLog/>
       <simLog/>
       <mgLog/>
-      <packageLog>
-        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_sitodp_4_no_dsp_32' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:21.620+0100" type="Warning"/>
-        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_dmul_4_max_dsp_64' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:18.733+0100" type="Warning"/>
-        <logs message="WARNING: [IP_Flow 19-4832] The IP name 'fir_filter_ap_dadd_3_full_dsp_64' you have specified is long. The Windows operating system has path length limitations. It is recommended you use shorter names to reduce the likelihood of issues." projectName="filters" solutionName="solution1" date="2022-05-23T12:01:14.828+0100" type="Warning"/>
-      </packageLog>
+      <packageLog/>
       <csimLog/>
     </logs>
   </warningLogs>

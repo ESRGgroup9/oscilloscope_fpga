@@ -6,7 +6,7 @@ set isDatapathOnly 0
 set isFreeRunPipelineModule 0
 set isPipelined 0
 set pipeline_type none
-set FunctionProtocol ap_ctrl_none
+set FunctionProtocol ap_ctrl_hs
 set isOneStateSeq 0
 set ProfileFlag 0
 set StallSigGenFlag 0
@@ -20,14 +20,18 @@ set C_modelArgList {
 }
 set C_modelArgMapList {[ 
 	{ "Name" : "x_ant", "interface" : "memory", "bitwidth" : 16, "direction" : "READONLY", "bitSlice":[{"low":0,"up":15,"cElement": [{"cName": "x_ant","cData": "uint16","bit_use": { "low": 0,"up": 15},"cArray": [{"low" : 0,"up" : 22,"step" : 1}]}]}]} , 
- 	{ "Name" : "x_coefs", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "x_coefs","cData": "int","bit_use": { "low": 0,"up": 31},"cArray": [{"low" : 0,"up" : 22,"step" : 1}]}]}]} , 
+ 	{ "Name" : "x_coefs", "interface" : "memory", "bitwidth" : 32, "direction" : "READONLY", "bitSlice":[{"low":0,"up":31,"cElement": [{"cName": "x_coefs","cData": "uint32","bit_use": { "low": 0,"up": 31},"cArray": [{"low" : 0,"up" : 22,"step" : 1}]}]}]} , 
  	{ "Name" : "dcValEn", "interface" : "wire", "bitwidth" : 1, "direction" : "READONLY", "bitSlice":[{"low":0,"up":0,"cElement": [{"cName": "dcValEn","cData": "uint1","bit_use": { "low": 0,"up": 0},"cArray": [{"low" : 0,"up" : 0,"step" : 0}]}]}]} , 
  	{ "Name" : "ap_return", "interface" : "wire", "bitwidth" : 16,"bitSlice":[{"low":0,"up":15,"cElement": [{"cName": "return","cData": "uint16","bit_use": { "low": 0,"up": 15},"cArray": [{"low" : 0,"up" : 1,"step" : 0}]}]}]} ]}
 # RTL Port declarations: 
-set portNum 10
+set portNum 14
 set portList { 
 	{ ap_clk sc_in sc_logic 1 clock -1 } 
 	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
+	{ ap_start sc_in sc_logic 1 start -1 } 
+	{ ap_done sc_out sc_logic 1 predone -1 } 
+	{ ap_idle sc_out sc_logic 1 done -1 } 
+	{ ap_ready sc_out sc_logic 1 ready -1 } 
 	{ x_ant_address0 sc_out sc_lv 5 signal 0 } 
 	{ x_ant_ce0 sc_out sc_logic 1 signal 0 } 
 	{ x_ant_q0 sc_in sc_lv 16 signal 0 } 
@@ -40,6 +44,10 @@ set portList {
 set NewPortList {[ 
 	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
  	{ "name": "ap_rst", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst", "role": "default" }} , 
+ 	{ "name": "ap_start", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "start", "bundle":{"name": "ap_start", "role": "default" }} , 
+ 	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
+ 	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
+ 	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
  	{ "name": "x_ant_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":5, "type": "signal", "bundle":{"name": "x_ant", "role": "address0" }} , 
  	{ "name": "x_ant_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "x_ant", "role": "ce0" }} , 
  	{ "name": "x_ant_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "x_ant", "role": "q0" }} , 
@@ -50,13 +58,13 @@ set NewPortList {[
  	{ "name": "ap_return", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "ap_return", "role": "default" }}  ]}
 
 set RtlHierarchyInfo {[
-	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4"],
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "",
 		"CDFG" : "fir_filter",
-		"Protocol" : "ap_ctrl_none",
-		"ControlExist" : "0", "ap_start" : "0", "ap_ready" : "0", "ap_done" : "0", "ap_continue" : "0", "ap_idle" : "0",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1",
 		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
 		"II" : "0",
-		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "114", "EstimateLatencyMax" : "114",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "93", "EstimateLatencyMax" : "93",
 		"Combinational" : "0",
 		"Datapath" : "0",
 		"ClockEnable" : "0",
@@ -66,26 +74,20 @@ set RtlHierarchyInfo {[
 		"Port" : [
 			{"Name" : "x_ant", "Type" : "Memory", "Direction" : "I"},
 			{"Name" : "x_coefs", "Type" : "Memory", "Direction" : "I"},
-			{"Name" : "dcValEn", "Type" : "None", "Direction" : "I"},
-			{"Name" : "mask_table1", "Type" : "Memory", "Direction" : "I"}]},
-	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mask_table1_U", "Parent" : "0"},
-	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.fir_filter_dadd_6cud_U1", "Parent" : "0"},
-	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.fir_filter_dmul_6dEe_U2", "Parent" : "0"},
-	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.fir_filter_sitodpeOg_U3", "Parent" : "0"}]}
+			{"Name" : "dcValEn", "Type" : "None", "Direction" : "I"}]}]}
 
 
 set ArgLastReadFirstWriteLatency {
 	fir_filter {
 		x_ant {Type I LastRead 1 FirstWrite -1}
 		x_coefs {Type I LastRead 1 FirstWrite -1}
-		dcValEn {Type I LastRead 0 FirstWrite -1}
-		mask_table1 {Type I LastRead -1 FirstWrite -1}}}
+		dcValEn {Type I LastRead 0 FirstWrite -1}}}
 
 set hasDtUnsupportedChannel 0
 
 set PerformanceInfo {[
-	{"Name" : "Latency", "Min" : "114", "Max" : "114"}
-	, {"Name" : "Interval", "Min" : "115", "Max" : "115"}
+	{"Name" : "Latency", "Min" : "93", "Max" : "93"}
+	, {"Name" : "Interval", "Min" : "94", "Max" : "94"}
 ]}
 
 set PipelineEnableSignalInfo {[

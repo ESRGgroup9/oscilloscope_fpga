@@ -37,21 +37,6 @@
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/proj/filters/.apc/.tb</location>
 		</link>
 		<link>
-			<name>.reference/ap_cint.h</name>
-			<type>1</type>
-			<location>/tools/Xilinx/Vivado/2019.2/include/ap_cint.h</location>
-		</link>
-		<link>
-			<name>.reference/ap_int.h</name>
-			<type>1</type>
-			<location>/tools/Xilinx/Vivado/2019.2/include/ap_int.h</location>
-		</link>
-		<link>
-			<name>.reference/autopilot_dt.def</name>
-			<type>1</type>
-			<location>/tools/Xilinx/Vivado/2019.2/include/etc/autopilot_dt.def</location>
-		</link>
-		<link>
 			<name>solution1/constraints</name>
 			<type>2</type>
 			<location>/home/tomas/oscilloscope_fpga/filters/hls/proj/filters/solution1/.tcls</location>

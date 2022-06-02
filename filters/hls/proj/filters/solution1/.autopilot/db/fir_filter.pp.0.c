@@ -5895,30 +5895,34 @@ extern int __overflow (FILE *, int);
 
 
 
-typedef uint16 fixed_point_t;
+typedef uint32 fixed_point_t;
 
-uint16 fir_filter(uint16 x_ant[22 + 1], int x_coefs[22 + 1], uint1 dcValEn)
+uint16 fir_filter(uint16 x_ant[22 + 1], fixed_point_t x_coefs[22 + 1], uint1 dcValEn)
 {_ssdm_SpecArrayDimSize(x_ant, 23);_ssdm_SpecArrayDimSize(x_coefs, 23);
 
-#pragma HLS interface ap_ctrl_none port=return
+ uint32 y32b = 0;
 
-
- int y = 0;
- int i;
+ uint16 y16b;
+ uint16 i;
 
  for(i = 0; i < 22 +1; i++)
  {
-  y += x_coefs[i] * x_ant[i];
+# 31 "../src/fir_filter.c"
+  y32b += x_ant[i] * (x_coefs[i] - ((x_coefs[i]>>31) & 0x01)*(0xffffffff + 1));
  }
 
 
- y = floor(y*pow(2, -15) + dcValEn*2047);
+
+ y16b = y32b >> 15;
+
+ y16b = dcValEn*2047 + (y16b - ((y16b>>15) & 0x01)*(0xffff + 1));
 
 
- if(y < 0)
-  y = 0;
- else if (y > 4095)
-  y = 4095;
+ if(y16b>>15)
+  y16b = 0;
 
- return y;
+ else if(y16b > 4095)
+  y16b = 4095;
+
+ return y16b;
 }

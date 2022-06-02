@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vivado HLS Report for 'fir_filter'" level="0">
-<item name = "Date">Mon May 23 12:00:27 2022
+<item name = "Date">Thu Jun  2 00:53:22 2022
 </item>
 <item name = "Version">2019.2 (Build 2704478 on Wed Nov 06 22:10:23 MST 2019)</item>
 <item name = "Project">filters</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">114, 114, 1.140 us, 1.140 us, 114, 114, none</column>
+<column name="">93, 93, 0.930 us, 0.930 us, 93, 93, none</column>
 </table>
 </item>
 <item name = "Detail">

@@ -25,7 +25,7 @@ set Pointer2 "0"
 set Reference2 "0"
 set Dims2 [list 23]
 set Interface2 "wire"
-set DataType2 "int"
+set DataType2 "uint32"
 set Port2 [list $PortName2 $Interface2 $DataType2 $Pointer2 $Dims2 $Const2 $Volatile2 $ArrayOpt2]
 lappend PortList $Port2
 set PortName3 "dcValEn"
@@ -55,7 +55,7 @@ lappend PortList $Port0
 set globalAPint "" 
 set returnAPInt "" 
 set hasCPPAPInt 0 
-set argAPInt [list  uint1 uint16 ]
+set argAPInt [list  uint1 uint16 uint32 ]
 set hasCPPAPFix 0 
 set hasSCFix 0 
 set hasCBool 0 
