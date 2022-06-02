@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
-	<item value="/home/fernandes/code/oscilloscope_fpga/bram_write/xadc" key="scw_hwspec_file_selection"/>
-	<item value="/home/fernandes/code/oscilloscope_fpga/bram_write/xadc" key="scw_hwspec"/>
+	<item value="/home/fernandes/code/oscilloscope_fpga/ext/xadc_drp/xadc" key="scw_hwspec"/>
 </section>

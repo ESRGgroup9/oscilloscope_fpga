@@ -22,3 +22,7 @@ timestamp=[2022-05-24 15:56:57], mode=PLATFORM_GENERATION, duration=0:00:05.062,
 timestamp=[2022-05-24 16:21:49], mode=PLATFORM_GENERATION, duration=0:00:05.033, duration_ms=5033, data={name=design_1_wrapper}
 timestamp=[2022-05-24 16:32:24], mode=PLATFORM_GENERATION, duration=0:00:05.065, duration_ms=5065, data={name=design_1_wrapper}
 timestamp=[2022-05-24 16:48:51], mode=PLATFORM_GENERATION, duration=0:00:05.909, duration_ms=5909, data={name=design_1_wrapper}
+timestamp=[2022-05-25 13:15:10], mode=WORKBENCH_START, duration=0:00:11.130, duration_ms=11130, data={}
+timestamp=[2022-05-25 13:15:11], mode=WORKBENCH_UI_INIT, duration=0:00:00.951, duration_ms=951, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
+timestamp=[2022-05-26 20:30:54], mode=WORKBENCH_START, duration=0:00:11.194, duration_ms=11194, data={}
+timestamp=[2022-05-26 20:30:55], mode=WORKBENCH_UI_INIT, duration=0:00:00.958, duration_ms=958, data={editors_count=4, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=true, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
