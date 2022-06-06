@@ -51,22 +51,22 @@ wire WE1;
 wire [(ADDR_WIDTH-1):0] addrB1;
 wire WD;
 
-wire[1:0] state;
-wire[(ADDR_WIDTH-1):0] counter;
-wire[9:0] col;
+// wire[1:0] state;
+// wire[(ADDR_WIDTH-1):0] counter;
+// wire[9:0] col;
 
-wire [(ADDR_WIDTH-1):0] addrWR;
-wire [(ADDR_WIDTH-1):0] addrRD;
-wire addrSel;
+// wire [(ADDR_WIDTH-1):0] addrWR;
+// wire [(ADDR_WIDTH-1):0] addrRD;
+// wire addrSel;
 
-wire [VAL_RES:0] valAverage;
-wire [9:0] valIndex;
+// wire [VAL_RES:0] valAverage;
+// wire [9:0] valIndex;
  
-wire pixSel;
-wire vSync_up;
-wire [9:0] counterX;
-wire [9:0] counterY;
-wire frame_written;
+// wire pixSel;
+// wire vSync_up;
+// wire [9:0] counterX;
+// wire [9:0] counterY;
+// wire frame_written;
 
 // ===========================================================================
 // 
@@ -81,8 +81,8 @@ wire frame_written;
 // end
 
 initial begin
-	// width <= 640;
-	// height <= 480;
+//	 width <= 640;
+//	 height <= 480;
 	width <= 8;
 	height <= 6;
 
@@ -101,6 +101,22 @@ end
 // ===========================================================================
 // dut
 // ===========================================================================
+
+bram bram0 (
+  .clka(~TMDSclk),    // input wire clka
+  .wea(WE0),      // input wire [0 : 0] wea
+  .addra(addrB0),  // input wire [5 : 0] addra
+  .dina(WD),    // input wire [0 : 0] dina
+  .douta(RD0)  // output wire [0 : 0] douta
+);
+
+bram bram1 (
+  .clka(~TMDSclk),    // input wire clka
+  .wea(WE1),      // input wire [0 : 0] wea
+  .addra(addrB1),  // input wire [5 : 0] addra
+  .dina(WD),    // input wire [0 : 0] dina
+  .douta(RD1)  // output wire [0 : 0] douta
+);
 
 hdmiController #(
 	.ADDR_WIDTH(ADDR_WIDTH),  // log(width*height)/ log(2)
@@ -136,22 +152,22 @@ hdmiController #(
 	addrB0,
 	WE1,
 	addrB1,
-	WD,
+	WD
 
-	state,
-	counter,
-	counterX,
-	counterY,
-	col,
+	// state,
+	// counter,
+	// counterX,
+	// counterY,
+	// col,
 
-	addrWR,
-	addrRD,
-	addrSel,
+	// addrWR,
+	// addrRD,
+	// addrSel,
 	 
-	valAverage,
-	valIndex,
-	pixSel,
-	frame_written
+	// valAverage,
+	// valIndex,
+	// pixSel,
+	// frame_written
 );
 
 endmodule

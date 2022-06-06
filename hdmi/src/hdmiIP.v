@@ -3,10 +3,10 @@ module hdmiIP(
 	pixclk,
 	rst,
 
-	val,
-	readValEn,
-	width,
-	height,
+	// val,
+	// readValEn,
+	// width,
+	// height,
 
 	// outputs
 	TMDSp,
@@ -22,10 +22,13 @@ input TMDSclk;
 input pixclk;
 input rst;
 
-input wire [VAL_RES - 1:0] val;
-input wire readValEn;
-input wire [31:0] width;
-input wire [31:0] height;
+// input wire [VAL_RES - 1:0] val;
+// input wire readValEn;
+// input wire [31:0] width;
+// input wire [31:0] height;
+parameter width = 640;
+parameter height = 480;
+parameter val = 1000;
 
 output wire [2:0] TMDSp;
 output wire [2:0] TMDSn;
@@ -71,7 +74,7 @@ hdmiController #(
 	.rst(rst),
 
 	.val(val),
-	.readValEn(readValEn),
+	.readValEn(1'b1),
 	.width(width),
 	.height(height),
 	.RD0(rd0),
@@ -91,7 +94,7 @@ hdmiController #(
 );
 
 bram bram0 (
-	.clka(TMDSclk),    	// input wire clka
+	.clka(~TMDSclk),    	// input wire clka
 	.wea(we0),      	// input wire [0 : 0] wea
 	.addra(addrB0),  	// input wire [18 : 0] addra
 	.dina(wd),    		// input wire [0 : 0] dina
@@ -99,7 +102,7 @@ bram bram0 (
 );
 
 bram bram1 (
-	.clka(TMDSclk),    	// input wire clka
+	.clka(~TMDSclk),    	// input wire clka
 	.wea(we1),      	// input wire [0 : 0] wea
 	.addra(addrB1),  	// input wire [18 : 0] addra
 	.dina(wd),    		// input wire [0 : 0] dina

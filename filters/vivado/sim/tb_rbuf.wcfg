@@ -12,16 +12,18 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="253601fs"></ZoomEndTime>
-      <Cursor1Time time="0fs"></Cursor1Time>
+      <ZoomEndTime time="494501fs"></ZoomEndTime>
+      <Cursor1Time time="87500fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="160"></NameColumnWidth>
-      <ValueColumnWidth column_width="69"></ValueColumnWidth>
+      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="12" />
    <wave_markers>
+      <marker label="" time="400000" />
       <marker label="" time="216000" />
+      <marker label="" time="32000" />
       <marker label="" time="24000" />
    </wave_markers>
    <wvobject type="logic" fp_name="/tb_rbuf/clk">
@@ -59,6 +61,10 @@
    <wvobject type="logic" fp_name="/tb_rbuf/done_w">
       <obj_property name="ElementShortName">done_w</obj_property>
       <obj_property name="ObjectShortName">done_w</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_rbuf/ready_w">
+      <obj_property name="ElementShortName">ready_w</obj_property>
+      <obj_property name="ObjectShortName">ready_w</obj_property>
    </wvobject>
    <wvobject fp_name="divider53" type="divider">
       <obj_property name="label">BRAM signals</obj_property>

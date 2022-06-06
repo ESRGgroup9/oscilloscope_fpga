@@ -41,6 +41,7 @@ wire [`ADDR_SIZE-1:0] addr_w;
 wire [`DATA_SIZE-1:0] do_w;
 wire owe_w;
 wire done_w;
+wire ready_w;
 
 // bram outputs
 wire [`DATA_SIZE-1:0] bram_do_w;
@@ -78,11 +79,11 @@ initial begin
     di_r <= 0;
     i <= 0;
 
-    #200 $stop;
+    #400 $stop;
 end
 
 // rbuf enable and data in control
-always @(negedge rst or negedge done_w) begin
+always @(negedge rst or negedge ready_w) begin
     #(`CLK_PERIOD*2) en_r = 1;
     di_r = input_buf[i];
     #(`CLK_PERIOD*2) en_r = 0;
@@ -106,7 +107,8 @@ rbuf #(
     addr_w,
     do_w,
     owe_w,
-    done_w
+    done_w,
+    ready_w
 );
 
 bram_xant bram (

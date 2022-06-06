@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Thu Jun  2 00:58:41 2022
+// Date        : Tue Jun  7 00:34:11 2022
 // Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/tomas/oscilloscope_fpga/filters/vivado/ip/fir_filter_0/fir_filter_0_stub.v

@@ -41,6 +41,7 @@ wire [`ADDR_SIZE-1:0] rbuf_addr;
 wire [`DATA_SIZE-1:0] rbuf_do;
 wire rbuf_owe;
 wire rbuf_done;
+wire rbuf_ready;
 
 // ------------------ filter
 // filter inputs
@@ -192,10 +193,10 @@ assign input_val = input_buf[i];
 
 // select xant BRAM addr from filter or rbuf
 assign addr_bram_xant = (rbuf_owe) ? rbuf_addr : (
-                        (filt_xant_addr > `M-1) ? {`ADDR_SIZE{1'bx}} : filt_xant_addr);
+                        (filt_xant_addr > `M-1) ? {`ADDR_SIZE{1'b0}} : filt_xant_addr);
 
 // truncate xcoef addr if invalid
-assign addr_bram_xcoefs = (filt_xcoefs_addr > `M-1) ? {7{1'bx}} : {filt_select, filt_xcoefs_addr};
+assign addr_bram_xcoefs = (filt_xcoefs_addr > `M-1) ? {7{1'b0}} : {filt_select, filt_xcoefs_addr};
 
 // ===========================================================================
 // design under testing instantiation
@@ -214,7 +215,8 @@ rbuf #(
     rbuf_addr,
     rbuf_do,
     rbuf_owe,
-    rbuf_done
+    rbuf_done,
+    rbuf_ready
 );
 
 bram_xant x_ant_bram (

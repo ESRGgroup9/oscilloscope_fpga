@@ -2,7 +2,7 @@ module filters(
 	clk,
 	rst,
 
-	start,
+    start,
 	filt_select,
 	val,
 
@@ -34,6 +34,11 @@ input wire [XADC_DATA_SIZE-1:0] val;
 output reg [XADC_DATA_SIZE-1:0] result;
 output wire done;
 
+// wire [XADC_DATA_SIZE-1:0] val;
+// assign val = 2048;
+
+// reg [XADC_DATA_SIZE-1:0] result;
+// wire done;
 // ===========================================================================
 // internal registers
 // ===========================================================================
@@ -44,6 +49,7 @@ wire [XANT_ADDR_SIZE-1:0] rbuf_addr;
 wire [XADC_DATA_SIZE-1:0] rbuf_do;
 wire rbuf_owe;
 wire rbuf_done;
+wire rbuf_ready;
 
 // ------------------ filters
 // inputs
@@ -97,7 +103,8 @@ rbuf #(
     rbuf_addr,
     rbuf_do,
     rbuf_owe,
-    rbuf_done
+    rbuf_done,
+    rbuf_ready
 );
 
 // ===========================================================================
@@ -116,7 +123,7 @@ mux3 #(XANT_ADDR_SIZE) filt_xant_addr_mux(
 
 // mux filter xant address and RBUF address
 mux2 #(XANT_ADDR_SIZE) xant_addr_mux(
-	(rbuf_owe) ? rbuf_addr : ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'bx}} : filt_xant_addr),
+	(rbuf_owe) ? rbuf_addr : ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
 	rbuf_addr,
 
 	rbuf_owe,
@@ -148,7 +155,7 @@ mux3 #(XCOEF_ADDR_SIZE) filt_xcoefs_addr_mux(
 // truncate xcoef addr if invalid
 mux2 #(`XCOEF_ADDR_SIZE_BRAM) filt_xcoefs_addr_trunc_mux(
 	{filt_select, filt_xcoefs_addr},
-	{`XCOEF_ADDR_SIZE_BRAM{1'bx}},
+	{`XCOEF_ADDR_SIZE_BRAM{1'b0}},
 
 	(filt_xcoefs_addr > M-1),
 	addr_bram_xcoefs
@@ -169,7 +176,7 @@ bram_coefs xcoefs_bram (
 // ------------------ filter start signal generation
 reg filt_start_count;
 
-always @(posedge clk or posedge rst) begin
+always @(posedge clk) begin //or posedge rst) begin
     if(rst | ((filt_start) & (filt_start_count))) begin
         filt_start_count <= 1'b0;
         filt_start <= 1'b0;
@@ -278,11 +285,12 @@ mux4 #(1) filt_done_mux(
     done
 );
 
-always @(posedge rst or posedge done) begin
+// always @(posedge rst or posedge done) begin
+always @(posedge clk or posedge rst) begin
     if(rst) begin
-        result = {XADC_DATA_SIZE{1'bx}};
+        result = {XADC_DATA_SIZE{1'b0}};
     end
-    else begin
+    else if(done) begin
         result = out;
     end
 end
