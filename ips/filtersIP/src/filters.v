@@ -1,6 +1,6 @@
 module filters(
 	clk,
-	rst,
+	rstn,
 
     start,
 	filt_select,
@@ -25,7 +25,7 @@ localparam FILT_SEL_BPF = 2'b10;
 `define XCOEF_ADDR_SIZE_BRAM 7
 
 input wire clk;
-input wire rst;
+input wire rstn;
 
 input wire start;
 input wire [1:0] filt_select;
@@ -91,7 +91,7 @@ rbuf #(
     .DATA_SIZE(XADC_DATA_SIZE)
 ) rbuf_mod(
     clk,
-    rst,
+    ~rstn,
     start,
     val,
 
@@ -172,7 +172,7 @@ bram_coefs xcoefs_bram (
 reg filt_start_count;
 
 always @(posedge clk) begin //or posedge rst) begin
-    if(rst | ((filt_start) & (filt_start_count))) begin
+    if(~rstn | ((filt_start) & (filt_start_count))) begin
         filt_start_count <= 1'b0;
         filt_start <= 1'b0;
     end
@@ -195,7 +195,7 @@ fir_filter_0 fir_lpf (
   .x_coefs_ce0(),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
-  .ap_rst(rst),                             // input wire ap_rst
+  .ap_rst(~rstn),                             // input wire ap_rst
   .ap_start(lpf_start),                    	// input wire ap_start
   .ap_done(lpf_done),                      	// output wire ap_done
 
@@ -218,7 +218,7 @@ fir_filter_0 fir_hpf (
   .x_coefs_ce0(),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
-  .ap_rst(rst),                             // input wire ap_rst
+  .ap_rst(~rstn),                             // input wire ap_rst
   .ap_start(hpf_start),                    	// input wire ap_start
   .ap_done(hpf_done),                      	// output wire ap_done
 
@@ -241,7 +241,7 @@ fir_filter_0 fir_bpf (
   .x_coefs_ce0(),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
-  .ap_rst(rst),                             // input wire ap_rst
+  .ap_rst(~rstn),                             // input wire ap_rst
   .ap_start(bpf_start),                    	// input wire ap_start
   .ap_done(bpf_done),                      	// output wire ap_done
 
@@ -282,7 +282,7 @@ mux4 #(1) filt_done_mux(
 
 // always @(posedge rst or posedge done) begin
 always @(posedge clk) begin// or posedge rst) begin
-    if(rst) begin
+    if(~rstn) begin
         result = {XADC_DATA_SIZE{1'b0}};
     end
     else if(done) begin

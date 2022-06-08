@@ -3,7 +3,7 @@
   <spirit:vendor>user.org</spirit:vendor>
   <spirit:library>user</spirit:library>
   <spirit:name>AXIM_read_xadc</spirit:name>
-  <spirit:version>1</spirit:version>
+  <spirit:version>3</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
       <spirit:name>MAXI_ADC</spirit:name>
@@ -15,18 +15,18 @@
       <spirit:portMaps>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>AWADDR</spirit:name>
+            <spirit:name>RREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_awaddr</spirit:name>
+            <spirit:name>maxi_adc_rready</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>AWPROT</spirit:name>
+            <spirit:name>BREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_awprot</spirit:name>
+            <spirit:name>maxi_adc_bready</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -39,10 +39,34 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>AWREADY</spirit:name>
+            <spirit:name>AWADDR</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_awready</spirit:name>
+            <spirit:name>maxi_adc_awaddr</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>WVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_wvalid</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>ARVALID</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_arvalid</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>AWPROT</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_awprot</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -63,42 +87,10 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>WVALID</spirit:name>
+            <spirit:name>ARPROT</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_wvalid</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>WREADY</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_wready</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>BRESP</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_bresp</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>BVALID</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_bvalid</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>BREADY</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_bready</spirit:name>
+            <spirit:name>maxi_adc_arprot</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -111,34 +103,18 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>ARPROT</spirit:name>
+            <spirit:name>BVALID</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_arprot</spirit:name>
+            <spirit:name>maxi_adc_bvalid</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>ARVALID</spirit:name>
+            <spirit:name>AWREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_arvalid</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>ARREADY</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_arready</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>RDATA</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>maxi_adc_rdata</spirit:name>
+            <spirit:name>maxi_adc_awready</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -159,10 +135,34 @@
         </spirit:portMap>
         <spirit:portMap>
           <spirit:logicalPort>
-            <spirit:name>RREADY</spirit:name>
+            <spirit:name>ARREADY</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>maxi_adc_rready</spirit:name>
+            <spirit:name>maxi_adc_arready</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>WREADY</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_wready</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>BRESP</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_bresp</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RDATA</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>maxi_adc_rdata</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
       </spirit:portMaps>
@@ -178,7 +178,7 @@
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>MAXI_ADC_RST</spirit:name>
+      <spirit:name>maxi_adc_aresetn</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -195,12 +195,12 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_RST.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_ARESETN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
     <spirit:busInterface>
-      <spirit:name>MAXI_ADC_CLK</spirit:name>
+      <spirit:name>maxi_adc_aclk</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
       <spirit:slave/>
@@ -217,11 +217,11 @@
       <spirit:parameters>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_BUSIF</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_CLK.ASSOCIATED_BUSIF">MAXI_ADC</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_ACLK.ASSOCIATED_BUSIF">MAXI_ADC</spirit:value>
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>ASSOCIATED_RESET</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_CLK.ASSOCIATED_RESET">maxi_adc_aresetn</spirit:value>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.MAXI_ADC_ACLK.ASSOCIATED_RESET">maxi_adc_aresetn</spirit:value>
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
@@ -247,7 +247,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5eee5f82</spirit:value>
+            <spirit:value>960a78bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -263,7 +263,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5eee5f82</spirit:value>
+            <spirit:value>960a78bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -277,7 +277,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>e080735d</spirit:value>
+            <spirit:value>928d420a</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -656,48 +656,39 @@
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
-        <spirit:name>C_MAXI_ADC_START_DATA_VALUE</spirit:name>
-        <spirit:displayName>C MAXI ADC START DATA VALUE</spirit:displayName>
-        <spirit:description>The master will start generating data from the C_M_START_DATA_VALUE value</spirit:description>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_START_DATA_VALUE" spirit:order="3" spirit:bitStringLength="32">0xAA000000</spirit:value>
-      </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR</spirit:name>
-        <spirit:displayName>C MAXI ADC TARGET SLAVE BASE ADDR</spirit:displayName>
-        <spirit:description>The master requires a target slave base address.
-    // The master will initiate read and write transactions on the slave with base address specified here as a parameter.</spirit:description>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR" spirit:order="4" spirit:bitStringLength="32">0x43C00000</spirit:value>
-      </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>C_MAXI_ADC_ADDR_WIDTH</spirit:name>
-        <spirit:displayName>C MAXI ADC ADDR WIDTH</spirit:displayName>
-        <spirit:description>Width of M_AXI address bus. 
-    // The master generates the read and write addresses of width specified as C_M_AXI_ADDR_WIDTH.</spirit:description>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_ADDR_WIDTH" spirit:order="5" spirit:rangeType="long">32</spirit:value>
-      </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>C_MAXI_ADC_DATA_WIDTH</spirit:name>
-        <spirit:displayName>C MAXI ADC DATA WIDTH</spirit:displayName>
-        <spirit:description>Width of M_AXI data bus. 
-    // The master issues write data and accept read data where the width of the data bus is C_M_AXI_DATA_WIDTH</spirit:description>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_DATA_WIDTH" spirit:order="6" spirit:rangeType="long">32</spirit:value>
-      </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
-        <spirit:name>C_MAXI_ADC_TRANSACTIONS_NUM</spirit:name>
-        <spirit:displayName>C MAXI ADC TRANSACTIONS NUM</spirit:displayName>
-        <spirit:description>Transaction number is the number of write 
-    // and read transactions the master will perform as a part of this example memory test.</spirit:description>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_TRANSACTIONS_NUM" spirit:order="7" spirit:minimum="1" spirit:rangeType="long">1</spirit:value>
-      </spirit:modelParameter>
-      <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>XADC_SLV_OFFSET</spirit:name>
         <spirit:displayName>Xadc Slv Offset</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.XADC_SLV_OFFSET" spirit:bitStringLength="32">0x00010000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.XADC_SLV_OFFSET" spirit:bitStringLength="32">0x00000000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>CONFIG_REG_SLV_OFFSET</spirit:name>
         <spirit:displayName>Config Reg Slv Offset</spirit:displayName>
-        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CONFIG_REG_SLV_OFFSET" spirit:bitStringLength="32">0x00000000</spirit:value>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CONFIG_REG_SLV_OFFSET" spirit:bitStringLength="32">0x00010000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_MAXI_ADC_START_DATA_VALUE</spirit:name>
+        <spirit:displayName>C Maxi Adc Start Data Value</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_START_DATA_VALUE" spirit:bitStringLength="32">0xAA000000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR</spirit:name>
+        <spirit:displayName>C Maxi Adc Target Slave Base Addr</spirit:displayName>
+        <spirit:value spirit:format="bitString" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR" spirit:bitStringLength="32">0x43C00000</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_MAXI_ADC_ADDR_WIDTH</spirit:name>
+        <spirit:displayName>C Maxi Adc Addr Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_ADDR_WIDTH">32</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_MAXI_ADC_DATA_WIDTH</spirit:name>
+        <spirit:displayName>C Maxi Adc Data Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_DATA_WIDTH">32</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter spirit:dataType="integer">
+        <spirit:name>C_MAXI_ADC_TRANSACTIONS_NUM</spirit:name>
+        <spirit:displayName>C Maxi Adc Transactions Num</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_MAXI_ADC_TRANSACTIONS_NUM">1</spirit:value>
       </spirit:modelParameter>
     </spirit:modelParameters>
   </spirit:model>
@@ -727,7 +718,7 @@
       <spirit:file>
         <spirit:name>hdl/AXIM_read_xadc_v1.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_709edf6f</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_7b070657</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -744,9 +735,9 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/AXIM_read_xadc_v1.tcl</spirit:name>
+        <spirit:name>xgui/AXIM_read_xadc_v3.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_e080735d</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_928d420a</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
@@ -761,66 +752,43 @@
   <spirit:description>Reads the xadc values by axi</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
-      <spirit:name>C_MAXI_ADC_START_DATA_VALUE</spirit:name>
-      <spirit:displayName>C MAXI ADC START DATA VALUE</spirit:displayName>
-      <spirit:description>The master will start generating data from the C_M_START_DATA_VALUE value</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_START_DATA_VALUE" spirit:order="3" spirit:bitStringLength="32">0xAA000000</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR</spirit:name>
-      <spirit:displayName>C MAXI ADC TARGET SLAVE BASE ADDR</spirit:displayName>
-      <spirit:description>The master requires a target slave base address.
-    // The master will initiate read and write transactions on the slave with base address specified here as a parameter.</spirit:description>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR" spirit:order="4" spirit:bitStringLength="32">0x43C00000</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>C_MAXI_ADC_ADDR_WIDTH</spirit:name>
-      <spirit:displayName>C MAXI ADC ADDR WIDTH</spirit:displayName>
-      <spirit:description>Width of M_AXI address bus. 
-    // The master generates the read and write addresses of width specified as C_M_AXI_ADDR_WIDTH.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_ADDR_WIDTH" spirit:order="5" spirit:rangeType="long">32</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_MAXI_ADC_ADDR_WIDTH">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>C_MAXI_ADC_DATA_WIDTH</spirit:name>
-      <spirit:displayName>C MAXI ADC DATA WIDTH</spirit:displayName>
-      <spirit:description>Width of M_AXI data bus. 
-    // The master issues write data and accept read data where the width of the data bus is C_M_AXI_DATA_WIDTH</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_DATA_WIDTH" spirit:choiceRef="choice_list_6fc15197" spirit:order="6">32</spirit:value>
-      <spirit:vendorExtensions>
-        <xilinx:parameterInfo>
-          <xilinx:enablement>
-            <xilinx:isEnabled xilinx:id="PARAM_ENABLEMENT.C_MAXI_ADC_DATA_WIDTH">false</xilinx:isEnabled>
-          </xilinx:enablement>
-        </xilinx:parameterInfo>
-      </spirit:vendorExtensions>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>C_MAXI_ADC_TRANSACTIONS_NUM</spirit:name>
-      <spirit:displayName>C MAXI ADC TRANSACTIONS NUM</spirit:displayName>
-      <spirit:description>Transaction number is the number of write 
-    // and read transactions the master will perform as a part of this example memory test.</spirit:description>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_TRANSACTIONS_NUM" spirit:order="7">1</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
       <spirit:name>Component_Name</spirit:name>
       <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">AXIM_read_xadc_v1</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>XADC_SLV_OFFSET</spirit:name>
       <spirit:displayName>Xadc Slv Offset</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.XADC_SLV_OFFSET" spirit:bitStringLength="32">0x00010000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.XADC_SLV_OFFSET" spirit:bitStringLength="32">0x00000000</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>CONFIG_REG_SLV_OFFSET</spirit:name>
       <spirit:displayName>Config Reg Slv Offset</spirit:displayName>
-      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.CONFIG_REG_SLV_OFFSET" spirit:bitStringLength="32">0x00000000</spirit:value>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.CONFIG_REG_SLV_OFFSET" spirit:bitStringLength="32">0x00010000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_MAXI_ADC_START_DATA_VALUE</spirit:name>
+      <spirit:displayName>C Maxi Adc Start Data Value</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_START_DATA_VALUE" spirit:bitStringLength="32">0xAA000000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR</spirit:name>
+      <spirit:displayName>C Maxi Adc Target Slave Base Addr</spirit:displayName>
+      <spirit:value spirit:format="bitString" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_TARGET_SLAVE_BASE_ADDR" spirit:bitStringLength="32">0x43C00000</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_MAXI_ADC_ADDR_WIDTH</spirit:name>
+      <spirit:displayName>C Maxi Adc Addr Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_ADDR_WIDTH">32</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_MAXI_ADC_DATA_WIDTH</spirit:name>
+      <spirit:displayName>C Maxi Adc Data Width</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_DATA_WIDTH">32</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C_MAXI_ADC_TRANSACTIONS_NUM</spirit:name>
+      <spirit:displayName>C Maxi Adc Transactions Num</spirit:displayName>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C_MAXI_ADC_TRANSACTIONS_NUM">1</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -832,8 +800,11 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>AXIM_read_xadc</xilinx:displayName>
-      <xilinx:coreRevision>21</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-06-07T14:19:06Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>2</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>user.org:user:AXIM_read_xadc:1</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2022-06-08T23:30:14Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@725c9744_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/ip_repo/AXIM_read_xadc_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1a3f131c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/ip_repo/AXIM_read_xadc_1</xilinx:tag>
@@ -1066,16 +1037,71 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4a641b8e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/ip_repo/AXIM_read_xadc_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1e1bbf78_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/ip_repo/AXIM_read_xadc_1</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@606939d0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/ip_repo/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fd54ad6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f3b62f4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46c87a54_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a4ba56e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e314a40_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19cfa3be_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@831f485_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e5dbf8a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b536a52_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c47c91_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e9c030c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@46ab17dc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@af5a3ad_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@201a9275_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16d956a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6374e91e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f557336_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ecd3d45_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f031441_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a63bd56_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38f71de0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@716b1fa0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e34234b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29b9698c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e03780a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f9c8be2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b279805_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43458459_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3879453c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ef1d0dc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12957c91_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e8ea868_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ab41870_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c9dcdfc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5790c001_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@663b7c2a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22509d53_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5510b76f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55d90770_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28aca5e9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@38c0b17c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d420b78_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43b6c1fd_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b2c9935_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2923a37b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@751e3283_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58b9c645_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@412d2900_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5455a8e5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18b5433d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49142539_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54f76ba6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24982de3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a232c97_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45d15cad_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/AXIM_read_xadc_1</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4433e72f"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="776ffe31"/>
       <xilinx:checksum xilinx:scope="addressSpaces" xilinx:value="46c35fc6"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="837eaf29"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="7a5c5229"/>
-      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="ad4c8101"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="5a8a6f6c"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="57235c82"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="d6970ace"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="1c09f88a"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="a71e88e9"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

@@ -3,43 +3,36 @@
 
 	module AXIM_read_xadc_v1_MAXI_ADC #
 	(
-		// Users to add parameters here
-        parameter XADC_SLV_OFFSET 		= 32'h0001_0000, // XADC slave address
-		parameter CONFIG_REG_SLV_OFFSET = 32'h0000_0000, // Config register slave address
+        // Users to add parameters here
+        parameter XADC_SLV_OFFSET 		= 32'h0000_0000, // XADC slave address
+		parameter CONFIG_REG_SLV_OFFSET = 32'h0001_0000, // Config register slave address
 		// User parameters ends
 		// Do not modify the parameters beyond this line
 
 		// The master will start generating data from the C_M_START_DATA_VALUE value
-		parameter  C_M_START_DATA_VALUE	= 32'hAA00_0000,
+		parameter  C_M_START_DATA_VALUE	= 32'hAA000000,
 		// The master requires a target slave base address.
-        // The master will initiate read and write transactions on the slave with base address specified here as a parameter.
+    // The master will initiate read and write transactions on the slave with base address specified here as a parameter.
 		parameter  C_M_TARGET_SLAVE_BASE_ADDR	= 32'h43C0_0000,
 		// Width of M_AXI address bus. 
-        // The master generates the read and write addresses of width specified as C_M_AXI_ADDR_WIDTH.
+    // The master generates the read and write addresses of width specified as C_M_AXI_ADDR_WIDTH.
 		parameter integer C_M_AXI_ADDR_WIDTH	= 32,
 		// Width of M_AXI data bus. 
-        // The master issues write data and accept read data where the width of the data bus is C_M_AXI_DATA_WIDTH
+    // The master issues write data and accept read data where the width of the data bus is C_M_AXI_DATA_WIDTH
 		parameter integer C_M_AXI_DATA_WIDTH	= 32,
 		// Transaction number is the number of write 
-        // and read transactions the master will perform as a part of this example memory test.
-		parameter integer C_M_TRANSACTIONS_NUM	= 1		
+    // and read transactions the master will perform as a part of this example memory test.
+		parameter integer C_M_TRANSACTIONS_NUM	= 1
 	)
 	(
 		// Users to add ports here
-		output [15:0] val,
-
+        output [15:0] val,
+        
+        output reg  RX_DONE,
+		output reg [1:0] mst_exec_state,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
-		// Initiate AXI transactions
-		//input wire  INIT_AXI_TXN,
-		// Asserts when ERROR is detected
-		//output reg  ERROR,
-		// Asserts when AXI transactions is complete
-		output reg  RX_DONE,
-		output reg [1:0] mst_exec_state,
-		
-		
 		// AXI clock signal
 		input wire  M_AXI_ACLK,
 		// AXI active low reset signal
@@ -118,8 +111,7 @@
 		//OUT_VAL 		 = 2'b10, // This state outputs the xadc read value and sinalizes
 			// it by setting the RX_DONE flag
 		WAIT_COMPARE	 = 2'b11; // This state verifies if the xadc have been configured
-
-	 
+		
 
 	// AXI4LITE signals
 	//write address valid
@@ -186,7 +178,7 @@
 	//Read and Read Response (R)
 	assign M_AXI_RREADY	= axi_rready;
 
-	//*************************************
+    //*************************************
 	// User Logic
 	//*************************************		
     
@@ -203,7 +195,8 @@
                       
 	        else if (read_issued == 0)                 
 	          begin                                                 
-	            axi_araddr <= ((mst_exec_state == WAIT) | (mst_exec_state == WAIT_COMPARE)) ? CONFIG_REG_SLV_OFFSET : (XADC_SLV_OFFSET + 32'h258);            
+	            //axi_araddr <= ((mst_exec_state == WAIT) | (mst_exec_state == WAIT_COMPARE)) ? CONFIG_REG_SLV_OFFSET : (XADC_SLV_OFFSET + 32'h258);
+	            axi_araddr <= ((mst_exec_state == WAIT) | (mst_exec_state == WAIT_COMPARE)) ? CONFIG_REG_SLV_OFFSET : (CONFIG_REG_SLV_OFFSET + 32'h8);            
 	          end                                                   
 	      end 
 
@@ -328,7 +321,7 @@
 	    if (M_AXI_ARESETN == 0)                                                         
 	    	config_done <= 1'b0;                                                          
 
-	    else if (M_AXI_RDATA == 32'h0000_0001)      
+	    else if ((M_AXI_RDATA == 32'h0000_0001) && (mst_exec_state == WAIT_COMPARE))      
 	      	config_done <= 1'b1;                                                        
 	    else                                                                            
 	      	config_done <= config_done;                                               
@@ -347,7 +340,7 @@
 	       error_reg <= 1'b1;                                                            
 	     else                                                                            
 	       error_reg <= error_reg;                                                       
-	   end                                                                               
+	   end                                                                            
     
     	
 	//******************************************************

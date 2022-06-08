@@ -2,7 +2,7 @@
 <spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <spirit:vendor>user.org</spirit:vendor>
   <spirit:library>user</spirit:library>
-  <spirit:name>sniff_axim_xadc_read</spirit:name>
+  <spirit:name>debugIP</spirit:name>
   <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
@@ -266,7 +266,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5dc5aa6a</spirit:value>
+            <spirit:value>668f63d0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -282,7 +282,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>5dc5aa6a</spirit:value>
+            <spirit:value>668f63d0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -351,6 +351,40 @@
         <spirit:name>eoc</spirit:name>
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>state</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">1</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_verilogsynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_verilogbehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>result</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">15</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>wire</spirit:typeName>
@@ -711,7 +745,7 @@
       <spirit:file>
         <spirit:name>hdl/sniff_axim_xadc_read_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_a534b368</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_2af2cc26</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -760,7 +794,7 @@
     <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>xgui/sniff_axim_xadc_read_v1_0.tcl</spirit:name>
+        <spirit:name>xgui/debugIP_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
         <spirit:userFileType>CHECKSUM_080b65eb</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
@@ -774,7 +808,7 @@
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
-  <spirit:description>IP to sniff the val and eoc of AXIM_xadc_read</spirit:description>
+  <spirit:description>IP used to debug the signals and send to PS</spirit:description>
   <spirit:parameters>
     <spirit:parameter>
       <spirit:name>C_S00_AXI_DATA_WIDTH</spirit:name>
@@ -839,9 +873,12 @@
       <xilinx:taxonomies>
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
-      <xilinx:displayName>sniff_axim_xadc_read</xilinx:displayName>
-      <xilinx:coreRevision>6</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-06-07T15:36:01Z</xilinx:coreCreationDateTime>
+      <xilinx:displayName>debugIP</xilinx:displayName>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>user.org:user:sniff_axim_xadc_read:1.0</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2022-06-08T15:10:18Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@4630ec72_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/sniff_axim_xadc_read_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@58487bca_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/sniff_axim_xadc_read_1.0</xilinx:tag>
@@ -904,14 +941,58 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@3601b850_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/sniff_axim_xadc_read_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1fa3544b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/sniff_axim_xadc_read_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@335ccd6e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5cebaad7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16d7a413_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ea333c7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27460ff6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4dcf3b5a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d9ab21_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@755fdcc9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b745d39_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55bef394_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@541d0168_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30bd90ea_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60d3b050_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44a4256c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8a44e1c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d46d9f8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c383df4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e0df78d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55a2c791_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@480faa67_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f912dd0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78564350_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fa3a8ce_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c865f3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d9e8aea_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57537127_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50e9c472_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ea75fda_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@335b7e3a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40b5792f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47e94815_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f0e1821_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d3f8468_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@526569d0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60a214c5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b65736f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53fc2a70_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f6c58ba_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@312fc4f9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@206dadcc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@704cc4e4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74b1d743_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@438cdfa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55734739_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@289794dc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/old_ips/sniff_axim_xadc_read_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="616027be"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="ed1368d5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="0b0850b8"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="fe072ded"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="67e09215"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="e2425521"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="2e811c89"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="d4c5f75b"/>
     </xilinx:packagingInfo>
