@@ -1,0 +1,10 @@
+# project name
+./xadc_axi/
+#!*.xsa
+
+.Xil/
+#ps7_*
+
+webtalk/
+.metadata/
+.sdk/
