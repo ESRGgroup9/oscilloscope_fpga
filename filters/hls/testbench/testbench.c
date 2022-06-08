@@ -8,9 +8,9 @@
 int main ()
 {
 	// declare filters coefs
-	int lpf_coefs[_M_ + 1];
-	int hpf_coefs[_M_ + 1];
-	int bpf_coefs[_M_ + 1];
+	uint32 lpf_coefs[_M_ + 1];
+	uint32 hpf_coefs[_M_ + 1];
+	uint32 bpf_coefs[_M_ + 1];
 	FILE *fp_lpf, *fp_hpf, *fp_bpf;
 
 	printf("****************************** C Simulation ******************************\n");
@@ -18,9 +18,9 @@ int main ()
 	// load filter coefficients
 	// ---------------------------------------------------------------------
 
-	fp_lpf = fopen("../../../../../testbench/LPF/LPFCoefs.txt", "r");
-	fp_hpf = fopen("../../../../../testbench/HPF/HPFCoefs.txt", "r");
-	fp_bpf = fopen("../../../../../testbench/BPF/BPFCoefs.txt", "r");
+	fp_lpf = fopen("../../../../../../golden_vectors/LPF/LPFCoefs.txt", "r");
+	fp_hpf = fopen("../../../../../../golden_vectors/HPF/HPFCoefs.txt", "r");
+	fp_bpf = fopen("../../../../../../golden_vectors/BPF/BPFCoefs.txt", "r");
 
 	if(!fp_lpf || !fp_hpf || !fp_bpf)
 	{

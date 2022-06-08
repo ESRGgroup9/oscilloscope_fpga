@@ -1,0 +1,28 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-301,-164",
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port clk -pg 1 -lvl 0 -x 0 -y 90 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 460 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 460 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 460 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 460 -y 80 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 80 -defaultsOSRD
+preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 330 -y 90 -defaultsOSRD
+preplace netloc hdmiIP_0_TMDSp 1 2 1 NJ 60
+preplace netloc hdmiIP_0_TMDSn 1 2 1 NJ 80
+preplace netloc hdmiIP_0_TMDSp_clk 1 2 1 NJ 100
+preplace netloc hdmiIP_0_TMDSn_clk 1 2 1 NJ 120
+preplace netloc clk_1 1 0 1 NJ 90
+preplace netloc reset_1 1 0 2 20 10 220
+preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 70
+preplace netloc clk_wiz_0_pixclk 1 1 1 N 90
+levelinfo -pg 1 0 120 330 460
+pagesize -pg 1 -db -bbox -sgen -90 0 610 180
+"
+}
+0

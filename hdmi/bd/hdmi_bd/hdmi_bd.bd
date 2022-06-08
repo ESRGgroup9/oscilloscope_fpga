@@ -1,0 +1,262 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x3097E479AC421EDE",
+      "device": "xc7z010clg400-1",
+      "name": "hdmi_bd",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "clk_wiz_0": "",
+      "hdmiIP_0": ""
+    },
+    "ports": {
+      "clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "hdmi_bd_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "125000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "reset": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_HIGH"
+          }
+        }
+      },
+      "TMDSp": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "TMDSn": {
+        "direction": "O",
+        "left": "2",
+        "right": "0"
+      },
+      "TMDSp_clock": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "hdmi_bd_hdmiIP_0_0_TMDSp_clk",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "TMDSn_clock": {
+        "type": "clk",
+        "direction": "O",
+        "parameters": {
+          "CLK_DOMAIN": {
+            "value": "hdmi_bd_hdmiIP_0_0_TMDSn_clk",
+            "value_src": "default_prop"
+          },
+          "FREQ_HZ": {
+            "value": "100000000",
+            "value_src": "default"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      }
+    },
+    "components": {
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "hdmi_bd_clk_wiz_0_0",
+        "parameters": {
+          "CLKIN1_JITTER_PS": {
+            "value": "80.0"
+          },
+          "CLKOUT1_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT1_JITTER": {
+            "value": "428.758"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "335.459"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "20"
+          },
+          "CLKOUT2_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "557.522"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "335.459"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "4.7"
+          },
+          "CLKOUT2_USED": {
+            "value": "true"
+          },
+          "CLKOUT3_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT4_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT5_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT6_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLKOUT7_DRIVES": {
+            "value": "BUFG"
+          },
+          "CLK_IN1_BOARD_INTERFACE": {
+            "value": "sys_clock"
+          },
+          "CLK_OUT1_PORT": {
+            "value": "TMDSclk"
+          },
+          "CLK_OUT2_PORT": {
+            "value": "pixclk"
+          },
+          "FEEDBACK_SOURCE": {
+            "value": "FDBK_AUTO"
+          },
+          "MMCM_BANDWIDTH": {
+            "value": "OPTIMIZED"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "24.000"
+          },
+          "MMCM_CLKIN1_PERIOD": {
+            "value": "8.0"
+          },
+          "MMCM_CLKIN2_PERIOD": {
+            "value": "10.0"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "30.000"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "128"
+          },
+          "MMCM_COMPENSATION": {
+            "value": "ZHOLD"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "2"
+          },
+          "PRIMITIVE": {
+            "value": "MMCM"
+          },
+          "PRIM_IN_FREQ": {
+            "value": "125.000"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          }
+        }
+      },
+      "hdmiIP_0": {
+        "vlnv": "user.org:user:hdmiIP:1.0",
+        "xci_name": "hdmi_bd_hdmiIP_0_0"
+      }
+    },
+    "nets": {
+      "hdmiIP_0_TMDSp": {
+        "ports": [
+          "hdmiIP_0/TMDSp",
+          "TMDSp"
+        ]
+      },
+      "hdmiIP_0_TMDSn": {
+        "ports": [
+          "hdmiIP_0/TMDSn",
+          "TMDSn"
+        ]
+      },
+      "hdmiIP_0_TMDSp_clk": {
+        "ports": [
+          "hdmiIP_0/TMDSp_clk",
+          "TMDSp_clock"
+        ]
+      },
+      "hdmiIP_0_TMDSn_clk": {
+        "ports": [
+          "hdmiIP_0/TMDSn_clk",
+          "TMDSn_clock"
+        ]
+      },
+      "clk_1": {
+        "ports": [
+          "clk",
+          "clk_wiz_0/clk_in1"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "reset",
+          "clk_wiz_0/reset",
+          "hdmiIP_0/rst"
+        ]
+      },
+      "clk_wiz_0_TMDSclk": {
+        "ports": [
+          "clk_wiz_0/TMDSclk",
+          "hdmiIP_0/TMDSclk"
+        ]
+      },
+      "clk_wiz_0_pixclk": {
+        "ports": [
+          "clk_wiz_0/pixclk",
+          "hdmiIP_0/pixclk"
+        ]
+      }
+    }
+  }
+}

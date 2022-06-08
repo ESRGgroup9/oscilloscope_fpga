@@ -1,5 +1,5 @@
 # project name
-xadc/
+./xadc_axi/
 #!*.xsa
 
 .Xil/

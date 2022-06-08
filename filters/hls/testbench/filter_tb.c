@@ -7,22 +7,24 @@
 #define NUM_ITER 50
 // filter order
 #define _M_ 22
-// output/input files path
-#define INOUT_PATH "../../../../../testbench"
 
-int filter_tb(char *filter, int x_coefs[_M_ + 1], int Fc, uint1 dcValEn)
+// output/input files path
+#define INPUT_PATH  "../../../../../../golden_vectors"
+#define OUTPUT_PATH "../../../../../sim"
+
+int filter_tb(char *filter, uint32 x_coefs[_M_ + 1], int Fc, uint1 dcValEn)
 {
-	char input_file[64];
-	char outgold_file[64];
-	char output_file[64];
+	char input_file[128];
+	char outgold_file[128];
+	char output_file[128];
 
 	printf("%s Test @%dHz\t- ", filter, Fc);
 
 	// input files
-	snprintf(input_file   , sizeof(input_file), "%s/input/%dinput.txt", INOUT_PATH, Fc);
-	snprintf(outgold_file , sizeof(outgold_file), "%s/%s/%s_%dout_golden.txt", INOUT_PATH, filter, filter, Fc);
+	snprintf(input_file   , sizeof(input_file), "%s/input/%dinput.txt", INPUT_PATH, Fc);
+	snprintf(outgold_file , sizeof(outgold_file), "%s/%s/%s_%dout_golden.txt", INPUT_PATH, filter, filter, Fc);
 	// output file
-	snprintf(output_file  , sizeof(output_file), "%s/%s/%s_%dsim_output.txt", INOUT_PATH, filter, filter, Fc);
+	snprintf(output_file  , sizeof(output_file), "%s/%s/%s_%dsim_output.txt", OUTPUT_PATH, filter, filter, Fc);
 
 	// ---------------------------------------------------------------------
 	// load filter input values
