@@ -14,3 +14,7 @@ timestamp=[2022-05-24 15:22:16], mode=WORKBENCH_START, duration=0:00:08.257, dur
 timestamp=[2022-05-24 15:22:17], mode=WORKBENCH_UI_INIT, duration=0:00:00.909, duration_ms=909, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
 timestamp=[2022-05-24 15:22:48], mode=PLATFORM_GENERATION, duration=0:00:17.261, duration_ms=17261, data={name=design_1_wrapper}
 timestamp=[2022-05-24 15:27:23], mode=PLATFORM_GENERATION, duration=0:00:05.049, duration_ms=5049, data={name=design_1_wrapper}
+timestamp=[2022-06-01 23:55:08], mode=WORKBENCH_START, duration=0:00:11.239, duration_ms=11239, data={}
+timestamp=[2022-06-01 23:55:09], mode=WORKBENCH_UI_INIT, duration=0:00:01.003, duration_ms=1003, data={editors_count=4, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
+timestamp=[2022-06-06 16:33:56], mode=WORKBENCH_START, duration=0:00:08.410, duration_ms=8410, data={}
+timestamp=[2022-06-06 16:33:57], mode=WORKBENCH_UI_INIT, duration=0:00:00.949, duration_ms=949, data={editors_count=6, platform_editors_count=3, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}

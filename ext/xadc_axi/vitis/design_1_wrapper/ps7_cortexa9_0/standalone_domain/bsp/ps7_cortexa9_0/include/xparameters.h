@@ -31,6 +31,17 @@
  
  
 /******************************************************************/
+/* Definitions for driver AXIM_READ_XADC */
+#define XPAR_AXIM_READ_XADC_NUM_INSTANCES 1
+
+/* Definitions for peripheral AXIM_READ_XADC_0 */
+#define XPAR_AXIM_READ_XADC_0_DEVICE_ID 0
+#define XPAR_AXIM_READ_XADC_0_SPS_AXI_BASEADDR 0x43C20000
+#define XPAR_AXIM_READ_XADC_0_SPS_AXI_HIGHADDR 0x43C2FFFF
+
+
+/******************************************************************/
+
 
 /* Definitions for peripheral PS7_DDR_0 */
 #define XPAR_PS7_DDR_0_S_AXI_BASEADDR 0x00100000
@@ -235,6 +246,17 @@
 #define XPAR_XGPIOPS_0_DEVICE_ID XPAR_PS7_GPIO_0_DEVICE_ID
 #define XPAR_XGPIOPS_0_BASEADDR 0xE000A000
 #define XPAR_XGPIOPS_0_HIGHADDR 0xE000AFFF
+
+
+/******************************************************************/
+
+/* Definitions for driver MY_SLAVE */
+#define XPAR_MY_SLAVE_NUM_INSTANCES 1
+
+/* Definitions for peripheral MY_SLAVE_0 */
+#define XPAR_MY_SLAVE_0_DEVICE_ID 0
+#define XPAR_MY_SLAVE_0_S00_AXI_BASEADDR 0x43C10000
+#define XPAR_MY_SLAVE_0_S00_AXI_HIGHADDR 0x43C1FFFF
 
 
 /******************************************************************/

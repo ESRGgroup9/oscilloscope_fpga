@@ -1,28 +1,16 @@
-timestamp=[2022-05-23 12:13:41], mode=WORKBENCH_START, duration=0:00:03.040, duration_ms=3040, data={}
-timestamp=[2022-05-23 12:13:45], mode=WORKBENCH_UI_INIT, duration=0:00:03.956, duration_ms=3956, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
-timestamp=[2022-05-23 12:16:11], mode=APP_CREATION, duration=0:00:18.897, duration_ms=18897, data={name=xadc, project_type=sdk, os=standalone, processor=ps7_cortexa9, runtime=cpp, platform=design_1_wrapper, application_type=application}
-timestamp=[2022-05-24 11:02:35], mode=WORKBENCH_START, duration=0:00:09.570, duration_ms=9570, data={}
-timestamp=[2022-05-24 11:02:36], mode=WORKBENCH_UI_INIT, duration=0:00:01.109, duration_ms=1109, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-24 11:03:51], mode=PLATFORM_GENERATION, duration=0:00:29.711, duration_ms=29711, data={name=design_1_wrapper}
-timestamp=[2022-05-24 11:22:14], mode=PLATFORM_GENERATION, duration=0:00:05.868, duration_ms=5868, data={name=design_1_wrapper}
-timestamp=[2022-05-24 11:33:07], mode=PLATFORM_GENERATION, duration=0:00:05.955, duration_ms=5955, data={name=design_1_wrapper}
-timestamp=[2022-05-24 11:36:20], mode=WORKBENCH_START, duration=0:00:10.614, duration_ms=10614, data={}
-timestamp=[2022-05-24 11:36:21], mode=WORKBENCH_UI_INIT, duration=0:00:01.049, duration_ms=1049, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-24 11:36:56], mode=PLATFORM_GENERATION, duration=0:00:06.186, duration_ms=6186, data={name=design_1_wrapper}
-timestamp=[2022-05-24 11:37:23], mode=PLATFORM_GENERATION, duration=0:00:25.838, duration_ms=25838, data={name=design_1_wrapper}
-timestamp=[2022-05-24 11:50:37], mode=WORKBENCH_START, duration=0:00:08.914, duration_ms=8914, data={}
-timestamp=[2022-05-24 11:50:38], mode=WORKBENCH_UI_INIT, duration=0:00:01.082, duration_ms=1082, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-24 12:09:39], mode=PLATFORM_GENERATION, duration=0:00:05.882, duration_ms=5882, data={name=design_1_wrapper}
-timestamp=[2022-05-24 13:47:16], mode=WORKBENCH_START, duration=0:00:08.333, duration_ms=8333, data={}
-timestamp=[2022-05-24 13:47:17], mode=WORKBENCH_UI_INIT, duration=0:00:00.997, duration_ms=997, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-24 15:54:19], mode=WORKBENCH_START, duration=0:00:08.129, duration_ms=8129, data={}
-timestamp=[2022-05-24 15:54:20], mode=WORKBENCH_UI_INIT, duration=0:00:00.900, duration_ms=900, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-24 15:55:11], mode=PLATFORM_GENERATION, duration=0:00:17.537, duration_ms=17537, data={name=design_1_wrapper}
-timestamp=[2022-05-24 15:56:57], mode=PLATFORM_GENERATION, duration=0:00:05.062, duration_ms=5062, data={name=design_1_wrapper}
-timestamp=[2022-05-24 16:21:49], mode=PLATFORM_GENERATION, duration=0:00:05.033, duration_ms=5033, data={name=design_1_wrapper}
-timestamp=[2022-05-24 16:32:24], mode=PLATFORM_GENERATION, duration=0:00:05.065, duration_ms=5065, data={name=design_1_wrapper}
-timestamp=[2022-05-24 16:48:51], mode=PLATFORM_GENERATION, duration=0:00:05.909, duration_ms=5909, data={name=design_1_wrapper}
-timestamp=[2022-05-25 13:15:10], mode=WORKBENCH_START, duration=0:00:11.130, duration_ms=11130, data={}
-timestamp=[2022-05-25 13:15:11], mode=WORKBENCH_UI_INIT, duration=0:00:00.951, duration_ms=951, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
-timestamp=[2022-05-26 20:30:54], mode=WORKBENCH_START, duration=0:00:11.194, duration_ms=11194, data={}
-timestamp=[2022-05-26 20:30:55], mode=WORKBENCH_UI_INIT, duration=0:00:00.958, duration_ms=958, data={editors_count=4, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=true, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc,xadc_system}
+timestamp=[2022-06-07 17:50:28], mode=WORKBENCH_START, duration=0:00:02.324, duration_ms=2324, data={}
+timestamp=[2022-06-07 17:50:31], mode=WORKBENCH_UI_INIT, duration=0:00:02.969, duration_ms=2969, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2022-06-07 17:51:15], mode=APP_CREATION, duration=0:00:15.945, duration_ms=15945, data={name=xadc_axi, project_type=sdk, os=standalone, processor=ps7_cortexa9, runtime=cpp, platform=design_1_wrapper, application_type=application}
+timestamp=[2022-06-07 17:55:32], mode=PLATFORM_GENERATION, duration=0:00:24.694, duration_ms=24694, data={name=design_1_wrapper}
+timestamp=[2022-06-07 18:45:12], mode=PLATFORM_GENERATION, duration=0:00:05.072, duration_ms=5072, data={name=design_1_wrapper}
+timestamp=[2022-06-07 18:46:15], mode=PLATFORM_GENERATION, duration=0:00:14.178, duration_ms=14178, data={name=design_1_wrapper}
+timestamp=[2022-06-07 18:47:12], mode=PLATFORM_GENERATION, duration=0:00:14.134, duration_ms=14134, data={name=design_1_wrapper}
+timestamp=[2022-06-07 19:07:44], mode=PLATFORM_GENERATION, duration=0:00:05.006, duration_ms=5006, data={name=design_1_wrapper}
+timestamp=[2022-06-07 19:17:02], mode=PLATFORM_GENERATION, duration=0:00:04.960, duration_ms=4960, data={name=design_1_wrapper}
+timestamp=[2022-06-07 19:19:54], mode=PLATFORM_GENERATION, duration=0:00:05.010, duration_ms=5010, data={name=design_1_wrapper}
+timestamp=[2022-06-07 19:24:08], mode=PLATFORM_GENERATION, duration=0:00:05.008, duration_ms=5008, data={name=design_1_wrapper}
+timestamp=[2022-06-08 10:46:30], mode=WORKBENCH_START, duration=0:00:09.845, duration_ms=9845, data={}
+timestamp=[2022-06-08 10:46:32], mode=WORKBENCH_UI_INIT, duration=0:00:01.365, duration_ms=1365, data={editors_count=3, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,design_1_wrapper,xadc_axi,xadc_axi_system}
+timestamp=[2022-06-08 10:53:36], mode=PLATFORM_GENERATION, duration=0:00:21.852, duration_ms=21852, data={name=design_1_wrapper}
+timestamp=[2022-06-08 11:11:11], mode=PLATFORM_GENERATION, duration=0:00:05.801, duration_ms=5801, data={name=design_1_wrapper}
+timestamp=[2022-06-08 11:19:23], mode=PLATFORM_GENERATION, duration=0:00:05.827, duration_ms=5827, data={name=design_1_wrapper}
