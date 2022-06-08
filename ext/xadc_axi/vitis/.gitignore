@@ -10,3 +10,5 @@ webtalk/
 .sdk/
 xadc_axi/
 xadc_axi_system/
+.analytics
+design_1_wrapper/
