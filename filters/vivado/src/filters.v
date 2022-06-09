@@ -34,16 +34,18 @@ input wire [XADC_DATA_SIZE-1:0] val;
 output reg [XADC_DATA_SIZE-1:0] result;
 output wire done;
 
-// wire [XADC_DATA_SIZE-1:0] val;
-// assign val = 2048;
-
-// reg [XADC_DATA_SIZE-1:0] result;
-// wire done;
 // ===========================================================================
 // internal registers
 // ===========================================================================
 
 // ------------------ rbuf
+// rbuf start signal generation
+reg filt_done_r;            // is asserted if filter has completed the calculations
+reg start_pulse_width_r;    // is asserted if start has occured and done has not
+
+// inputs
+wire rbuf_start;            // rbuf start signal
+
 // outputs
 wire [XANT_ADDR_SIZE-1:0] rbuf_addr;
 wire [XADC_DATA_SIZE-1:0] rbuf_do;
@@ -90,6 +92,22 @@ wire [`XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
 // RBUF
 // ===========================================================================
 
+// ------------------ rbuf start signal generation
+assign rbuf_start = start & filt_done_r;
+
+always @(posedge clk) begin //or posedge rst) begin
+    if(rst | done) begin
+        filt_done_r <= 1'b1;
+        start_pulse_width_r <= 1'b0;
+    end
+    else if(start & ~start_pulse_width_r) begin
+        start_pulse_width_r <= ~start_pulse_width_r;
+    end
+    else if(start & start_pulse_width_r) begin
+        filt_done_r <= 1'b0;
+    end
+end
+
 rbuf #(
     .M(M),
     .ADDR_SIZE(XANT_ADDR_SIZE),
@@ -97,7 +115,7 @@ rbuf #(
 ) rbuf_mod(
     clk,
     rst,
-    start,
+    rbuf_start,
     val,
 
     rbuf_addr,

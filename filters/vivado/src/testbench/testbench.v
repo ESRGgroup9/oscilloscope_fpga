@@ -76,7 +76,6 @@ reg [`XADC_DATA_SIZE-1:0] output_buf[0:`NUM_ITER-1];
 
 integer fp;
 integer j;
-reg [8*32:0] str;
 
 initial begin
     fp = $fopen(INPUT_FILENAME, "r");
@@ -116,7 +115,7 @@ always @(negedge filt_done) begin
             $fscanf(fp, "%d\n", input_buf[j]);
 
             if(output_buf[j] != input_buf[j]) begin
-                $display("ERROR at input[%2d]: Output values differ output=%4d, golden=%4d", j, output_buf[j], input_buf[j]);
+                $display("ERROR at input[%2d]: Output values differ output=%5d, golden=%5d", j, output_buf[j], input_buf[j]);
                 num_errors <= num_errors + 1;
             end
         end
@@ -152,10 +151,10 @@ assign input_val = input_buf[i];
 
 initial begin
 	$display("\nTesting LPF:");
-    filt_select <= FILT_SEL_LPF;
+    filt_select <= FILT_SEL_HPF;
 end
 
-integer num_test;
+// integer num_test;
 
 //always @(posedge rst or negedge filt_done) begin
 //    if(rst) begin
@@ -172,16 +171,23 @@ integer num_test;
 //    end
 //end
 
-// filter enable
-always @(rst or negedge filt_done) begin
-    if(rst) begin
-        filt_start = 0;
-    end
-    else begin
-        filt_start = 1;
-        #(`CLK_PERIOD*2) filt_start = 0;
-    end
+initial filt_start <= 0;
+
+always begin
+    #24 filt_start <= 1;
+    #16 filt_start <= 0;
 end
+ 
+// filter enable
+//always @(rst or negedge filt_done) begin
+//    if(rst) begin
+//        filt_start = 0;
+//    end
+//    else begin
+//        filt_start = 1;
+//        #(`CLK_PERIOD*2) filt_start = 0;
+//    end
+//end
 
 
 // ===========================================================================

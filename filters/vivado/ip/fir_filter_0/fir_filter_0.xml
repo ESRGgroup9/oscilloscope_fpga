@@ -319,11 +319,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:12 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:15:39 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -339,11 +339,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:13 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:16:07 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -354,7 +354,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -370,11 +370,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:13 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:16:07 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -390,11 +390,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:13 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:16:07 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:8507828e</spirit:value>
+            <spirit:value>9:356fe37d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -410,11 +410,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:13 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:16:07 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:8507828e</spirit:value>
+            <spirit:value>9:356fe37d</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -428,11 +428,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:33:13 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:16:07 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -446,11 +446,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Mon Jun 06 23:34:11 UTC 2022</spirit:value>
+            <spirit:value>Thu Jun 09 10:17:10 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:2456f2db</spirit:value>
+            <spirit:value>9:cb035974</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -684,7 +684,19 @@
         <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>hdl/verilog/fir_filter_mul_32bkb.v</spirit:name>
+        <spirit:name>hdl/verilog/fir_filter_add_64eOg.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_mul_16bkb.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_mul_32cud.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_sub_64dEe.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
@@ -703,7 +715,22 @@
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>hdl/verilog/fir_filter_mul_32bkb.v</spirit:name>
+        <spirit:name>hdl/verilog/fir_filter_add_64eOg.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_mul_16bkb.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_mul_32cud.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/verilog/fir_filter_sub_64dEe.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:userFileType>USED_IN_ipstatic</spirit:userFileType>
       </spirit:file>
@@ -806,7 +833,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>latency</spirit:name>
-      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">232</spirit:value>
+      <spirit:value spirit:id="PARAM_VALUE.latency" spirit:order="5">301</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -831,14 +858,14 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>fir_filter</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>11</xilinx:coreRevision>
+      <xilinx:coreRevision>0</xilinx:coreRevision>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="4b974a04"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="ab65a779"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="3ff338ae"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="32ea2aa8"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="3c8371a3"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="e4c01318"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

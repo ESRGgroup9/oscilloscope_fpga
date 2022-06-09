@@ -46,8 +46,8 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
-// IP VLNV: xilinx.com:hls:fir_filter:1.0
-// IP Revision: 11
+// IP VLNV: xilinx.com:hls:fir_filter:2.0
+// IP Revision: 0
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
