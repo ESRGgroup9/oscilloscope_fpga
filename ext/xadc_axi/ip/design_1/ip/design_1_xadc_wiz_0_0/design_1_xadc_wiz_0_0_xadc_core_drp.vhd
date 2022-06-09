@@ -969,7 +969,7 @@ alarm_out <= alarm_reg(8 downto 1);-- updated from 2 downto 1 to 8 downto 1 for 
      generic map(
         INIT_40 => X"0016", -- config reg 0
         INIT_41 => X"31AF", -- config reg 1
-        INIT_42 => X"0A00", -- config reg 2
+        INIT_42 => X"0400", -- config reg 2
         INIT_48 => X"0100", -- Sequencer channel selection
         INIT_49 => X"0000", -- Sequencer channel selection
         INIT_4A => X"0000", -- Sequencer Average selection

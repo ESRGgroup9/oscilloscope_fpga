@@ -1,0 +1,5 @@
+XADC_ADDR for the VAUX6:
+	XADCPS_CH_AUX_MIN	 16
+	+
+	XADCPS_CH_AUX6		 6
+

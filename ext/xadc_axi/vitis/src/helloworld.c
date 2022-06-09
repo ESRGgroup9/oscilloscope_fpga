@@ -55,6 +55,17 @@
 XAdcPs XAdc;
 XAdcPs_Config* ConfigPtr;
 
+#define ADCVAL_TO_VOLT(volt_raw)			((((float)(volt_raw))* (1.0f))/65535.0f)
+
+//#define AXI_XADC_ADDR 18186502144 //43C000000
+#define AXI_XADC_ADDR 			0x43C00000
+#define AXI_CONFIG_DONE_ADDR 	0x43C10000
+#define AXI_READ_XADC_ADDR 		0x43C20000
+
+#define STATE_ADDR_OFFSET 		0x00000008
+#define EOC_ADDR_OFFSET 		0x00000004
+#define VAL_ADDR_OFFSET 		0x00000000
+
 int main()
 {
 	init_platform();
@@ -78,19 +89,36 @@ int main()
 	print("Setting up channel input mask ...\n\r");
 	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_SAFE);
 	XAdcPs_SetSeqInputMode(&XAdc, 0); // all unipolar
-//	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_SING_CHAN);
-//	XAdcPs_SetSingleChParams(&XAdc, XADCPS_CH_VPVN, FALSE, FALSE, FALSE);
-	XAdcPs_SetSeqChEnables(&XAdc, XADCPS_CH_VPVN);
+	if(XAdcPs_SetSeqChEnables(&XAdc, XADCPS_SEQ_CH_AUX06) == XST_FAILURE)
+	{
+		print("XADC set enables failed.\n\r");
+		return XST_FAILURE;
+	}
 
+	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_CONTINPASS);
 	print("XADC setup complete.\n\r");
-	print("Print channel VPVN:\n\r");
+	// Config done Reg
+	Xil_Out32(AXI_CONFIG_DONE_ADDR, 0x00000001);
+	u32 config_done = Xil_In32(AXI_CONFIG_DONE_ADDR);
+	if(!config_done)
+	{
+		print("Config Done reg not written!");
+		return XST_FAILURE;
+	}
+	print("Config Done reg written!\n\r");
+
+	print("Print channel VAUX6:\n\r");
+
 	while(1)
 	{
-		u32 volt_raw = XAdcPs_GetAdcData(&XAdc, XADCPS_CH_VPVN);
-		printf("ADCval(%lu) = %.2f V\n\r", volt_raw, XAdcPs_RawToVoltage(volt_raw));
+		u32 volt_val = Xil_In32(AXI_READ_XADC_ADDR + VAL_ADDR_OFFSET);
+		printf("AXIM_Val(%lu) = %.3f V\n\r", volt_val, ADCVAL_TO_VOLT(volt_val));
+
+		u32 volt_raw = XAdcPs_GetAdcData(&XAdc, XADCPS_CH_AUX_MIN + 6);
+		printf("ADCPS_Val(%lu) = %.3f V\n\r", volt_raw, ADCVAL_TO_VOLT(volt_raw));
 
 		for(int i = 0; i < 100000000; i++)
-			;
+								;
 	}
 
 	cleanup_platform();

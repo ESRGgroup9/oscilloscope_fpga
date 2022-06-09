@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Mon May 23 11:08:48 2022
+// Date        : Mon Jun  6 16:28:35 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/fernandes/code/oscilloscope_fpga/bram_write/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.v
+//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/ip/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0_sim_netlist.v
 // Design      : design_1_xadc_wiz_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -4572,7 +4572,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(FF_WRACK_i_1_n_0),
         .Q(wrack),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'h2)) 
     FF_WRACK_i_1
@@ -4607,7 +4607,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[10].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[11]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[10].RST_FLOPS_i_1 
@@ -4628,7 +4628,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[11].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[12]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[11].RST_FLOPS_i_1 
@@ -4649,7 +4649,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[12].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[13]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[12].RST_FLOPS_i_1 
@@ -4670,7 +4670,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[13].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[14]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[13].RST_FLOPS_i_1 
@@ -4691,7 +4691,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[14].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[15]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[14].RST_FLOPS_i_1 
@@ -4712,7 +4712,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[15].RST_FLOPS_i_1_n_0 ),
         .Q(\RESET_FLOPS[15].RST_FLOPS_0 ),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[15].RST_FLOPS_i_1 
@@ -4733,7 +4733,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[1].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[2]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[1].RST_FLOPS_i_1 
@@ -4754,7 +4754,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[2].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[3]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[2].RST_FLOPS_i_1 
@@ -4775,7 +4775,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[3].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[4]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[3].RST_FLOPS_i_1 
@@ -4796,7 +4796,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[4].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[5]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[4].RST_FLOPS_i_1 
@@ -4817,7 +4817,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[5].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[6]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[5].RST_FLOPS_i_1 
@@ -4838,7 +4838,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[6].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[7]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[6].RST_FLOPS_i_1 
@@ -4859,7 +4859,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[7].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[8]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[7].RST_FLOPS_i_1 
@@ -4880,7 +4880,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[8].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[9]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[8].RST_FLOPS_i_1 
@@ -4901,7 +4901,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_soft_reset
         .D(\RESET_FLOPS[9].RST_FLOPS_i_1_n_0 ),
         .Q(flop_q_chain[10]),
         .R(bus2ip_reset_active_high));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \RESET_FLOPS[9].RST_FLOPS_i_1 
@@ -5125,6 +5125,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
        (.I0(alarm_0_d1),
         .I1(s_axi_aclk_0[1]),
         .O(interrupt_status_i[0]));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT5 #(
     .INIT(32'hBBBBBBBA)) 
     \INTR_CTRLR_GEN_I.ip2bus_error_i_1 
@@ -5150,6 +5151,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I3(rst_ip2bus_rdack),
         .I4(dummy_intr_reg_rdack),
         .O(ip2bus_rdack_int1));
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \INTR_CTRLR_GEN_I.ip2bus_wrack_i_2 
@@ -5160,7 +5162,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
   XADC #(
     .INIT_40(16'h0016),
     .INIT_41(16'h31AF),
-    .INIT_42(16'h0A00),
+    .INIT_42(16'h0400),
     .INIT_43(16'h0000),
     .INIT_44(16'h0000),
     .INIT_45(16'h0000),
@@ -5219,6 +5221,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .VAUXP({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxp6,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .VN(vn_in),
         .VP(vp_in));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h04)) 
     XADC_INST_i_1
@@ -5226,7 +5229,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I1(drdy_wr_ack_i_reg_0),
         .I2(den_d1),
         .O(DEN));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     XADC_INST_i_10
@@ -5234,6 +5237,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I1(s_axi_arvalid),
         .I2(s_axi_awaddr[0]),
         .O(bus2ip_addr[2]));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
     .INIT(16'h0010)) 
     XADC_INST_i_2
@@ -5249,7 +5253,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I1(bus2ip_reset_active_high),
         .I2(jtagmodified_d1_reg_0),
         .O(RESET));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     XADC_INST_i_4
@@ -5257,7 +5261,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I1(s_axi_arvalid),
         .I2(s_axi_awaddr[3]),
         .O(bus2ip_addr[8]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     XADC_INST_i_5
@@ -5265,7 +5269,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .I1(s_axi_arvalid),
         .I2(s_axi_awaddr[2]),
         .O(bus2ip_addr[7]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     XADC_INST_i_9
@@ -5504,6 +5508,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .D(dwe_d1_reg_0),
         .Q(dwe_d1),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hBA)) 
     eoc_d1_i_1
@@ -5517,6 +5522,7 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .D(eoc_d1_i_1_n_0),
         .Q(eoc_d1),
         .R(reset2ip_reset));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hBA)) 
     eos_d1_i_1
@@ -5581,12 +5587,14 @@ module design_1_xadc_wiz_0_0_design_1_xadc_wiz_0_0_xadc_core_drp
         .D(s_axi_aclk_0[0]),
         .Q(ot_d1),
         .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \status_reg[5]_i_1 
        (.I0(eoc_out),
         .I1(eoc_d1),
         .O(p_4_out[5]));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \status_reg[6]_i_1 

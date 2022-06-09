@@ -1,1 +1,14 @@
-proj/
+# project name
+./xadc_axi/
+#!*.xsa
+
+.Xil/
+#ps7_*
+
+webtalk/
+.metadata/
+.sdk/
+xadc_axi/
+xadc_axi_system/
+.analytics
+design_1_wrapper/
