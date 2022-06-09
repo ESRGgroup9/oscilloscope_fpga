@@ -1,10 +1,13 @@
 module hdmiIP(
 	TMDSclk,
 	pixclk,
+	writeclk,
 	rst,
 
+	valBtns,
 	// val,
 	// readValEn,
+	
 	// width,
 	// height,
 
@@ -16,19 +19,21 @@ module hdmiIP(
 );
 
 parameter ADDR_WIDTH = 19;  // log(width*height)/ log(2)
-parameter VAL_RES = 12;     // val resolution
+parameter VAL_RES = 16;     // val resolution
 
+input writeclk;
 input TMDSclk;
 input pixclk;
 input rst;
 
 // input wire [VAL_RES - 1:0] val;
 // input wire readValEn;
+input wire [3:0] valBtns;
+
 // input wire [31:0] width;
 // input wire [31:0] height;
 parameter width = 640;
 parameter height = 480;
-parameter val = 1000;
 
 output wire [2:0] TMDSp;
 output wire [2:0] TMDSn;
@@ -61,20 +66,42 @@ wire we1;
 wire [ADDR_WIDTH-1:0] addrB0;
 wire [ADDR_WIDTH-1:0] addrB1;
 
+// reg [VAL_RES-1:0] valAverage;
+wire [31:0] row;
+
+wire [VAL_RES - 1:0] val;
+
+assign val = {valBtns, {12{1'b0}}};
+// assign val = {{12{1'b0}}, valBtns};
+
+// compute val Average
+// always @(posedge writeclk) begin //or posedge rst) begin
+// 	if(rst) begin
+// 		valAverage <= 0;
+// 	end
+// 	else begin
+// 		// valAverage <= (val + valAverage) >> 1;
+
+// 		// valAverage <= val<<7;
+// 		// valAverage <= 17'd2048;
+// 		valAverage <= val<<12;
+// 	end
+// end
+
 // ===========================================================================
 // 
 // ===========================================================================
 
 hdmiController #(
-	.ADDR_WIDTH(19),
-	.VAL_RES(12)
+	.ADDR_WIDTH(ADDR_WIDTH),
+	.VAL_RES(VAL_RES)
 ) controller(
-	.clk(TMDSclk),
-	.pixclk(pixclk),
+	.clkWR(writeclk),
+	.clkRD(pixclk),
 	.rst(rst),
 
 	.val(val),
-	.readValEn(1'b1),
+	// .readValEn(1'b1),
 	.width(width),
 	.height(height),
 	.RD0(rd0),
@@ -94,7 +121,7 @@ hdmiController #(
 );
 
 bram bram0 (
-	.clka(~TMDSclk),    	// input wire clka
+	.clka(~pixclk),    	// input wire clka
 	.wea(we0),      	// input wire [0 : 0] wea
 	.addra(addrB0),  	// input wire [18 : 0] addra
 	.dina(wd),    		// input wire [0 : 0] dina
@@ -102,7 +129,7 @@ bram bram0 (
 );
 
 bram bram1 (
-	.clka(~TMDSclk),    	// input wire clka
+	.clka(~pixclk),    	// input wire clka
 	.wea(we1),      	// input wire [0 : 0] wea
 	.addra(addrB1),  	// input wire [18 : 0] addra
 	.dina(wd),    		// input wire [0 : 0] dina

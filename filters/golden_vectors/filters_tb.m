@@ -1,8 +1,8 @@
-% function filters_tb(Fc, filter, printFig, writeToFile)
-Fc = 20;
-filter = "LPF";
-printFig = 0;
-writeToFile = 0;
+function filters_tb(Fc, filter, printFig, writeToFile)
+% Fc = 20;
+% filter = "LPF";
+% printFig = 0;
+% writeToFile = 0;
 
     % -------------------------------------------------------------------------
     % simulation parameters
@@ -11,7 +11,7 @@ writeToFile = 0;
     fsamp = 1000;
     
     % adc resolution    
-    adcRes = 4095;
+    adcRes = 65535;
     
     % -------------------------------------------------------------------------
     % design filter
@@ -87,8 +87,8 @@ writeToFile = 0;
         legend('x = sin(100t)','y = filter(x)')
         hold off
     
-        s1=sprintf("./figures/%s_%dinout.png", filter, Fc);
-        saveas(fig,s1)
+%         s1=sprintf("./figures/%s_%dinout.png", filter, Fc);
+%         saveas(fig,s1)
     end
     
     % Print results to file
@@ -112,4 +112,4 @@ writeToFile = 0;
         fclose(fp);
     end
 
-% end
+end

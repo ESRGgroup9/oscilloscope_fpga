@@ -1,12 +1,15 @@
+printFig = 1;
+writeToFile = 0;
+
 fprintf("*************** LPF ***************\n");
-filters_tb(20, "LPF", 0, 1)
-filters_tb(100, "LPF", 0, 1)
+filters_tb(20, "LPF", printFig, writeToFile)
+filters_tb(100, "LPF", printFig, writeToFile)
 
 fprintf("*************** HPF ***************\n");
-filters_tb(20, "HPF", 0, 1)
-filters_tb(100, "HPF", 0, 1)
+filters_tb(20, "HPF", printFig, writeToFile)
+filters_tb(100, "HPF", printFig, writeToFile)
 
 fprintf("*************** BPF ***************\n");
-filters_tb(20, "BPF", 0, 1)
-filters_tb(120, "BPF", 0, 1)
-filters_tb(220, "BPF", 0, 1)
+filters_tb(20, "BPF", printFig, writeToFile)
+filters_tb(120, "BPF", printFig, writeToFile)
+filters_tb(220, "BPF", printFig, writeToFile)

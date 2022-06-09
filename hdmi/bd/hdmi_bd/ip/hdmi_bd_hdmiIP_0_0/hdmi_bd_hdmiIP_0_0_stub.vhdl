@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Tue Jun  7 00:37:45 2022
+-- Date        : Wed Jun  8 16:51:50 2022
 -- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/tomas/oscilloscope_fpga/hdmi/bd/hdmi_bd/ip/hdmi_bd_hdmiIP_0_0/hdmi_bd_hdmiIP_0_0_stub.vhdl
@@ -16,7 +16,9 @@ entity hdmi_bd_hdmiIP_0_0 is
   Port ( 
     TMDSclk : in STD_LOGIC;
     pixclk : in STD_LOGIC;
+    writeclk : in STD_LOGIC;
     rst : in STD_LOGIC;
+    valBtns : in STD_LOGIC_VECTOR ( 3 downto 0 );
     TMDSp : out STD_LOGIC_VECTOR ( 2 downto 0 );
     TMDSn : out STD_LOGIC_VECTOR ( 2 downto 0 );
     TMDSp_clk : out STD_LOGIC;
@@ -29,7 +31,7 @@ architecture stub of hdmi_bd_hdmiIP_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "TMDSclk,pixclk,rst,TMDSp[2:0],TMDSn[2:0],TMDSp_clk,TMDSn_clk";
+attribute black_box_pad_pin of stub : architecture is "TMDSclk,pixclk,writeclk,rst,valBtns[3:0],TMDSp[2:0],TMDSn[2:0],TMDSp_clk,TMDSn_clk";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "hdmiIP,Vivado 2019.2";
 begin

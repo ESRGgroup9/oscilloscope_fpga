@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_controller_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_controller" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="134300000001fs"></ZoomEndTime>
+      <Cursor1Time time="40810280000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="88"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="20" />
+   <wave_markers>
+      <marker label="" time="1228808000" />
+      <marker label="" time="16800000000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/tb_controller/TMDSclk">
+      <obj_property name="ElementShortName">TMDSclk</obj_property>
+      <obj_property name="ObjectShortName">TMDSclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/pixclk">
+      <obj_property name="ElementShortName">pixclk</obj_property>
+      <obj_property name="ObjectShortName">pixclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/writeclk">
+      <obj_property name="ElementShortName">writeclk</obj_property>
+      <obj_property name="ObjectShortName">writeclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider78" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/val">
+      <obj_property name="ElementShortName">val[15:0]</obj_property>
+      <obj_property name="ObjectShortName">val[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/readValEn">
+      <obj_property name="ElementShortName">readValEn</obj_property>
+      <obj_property name="ObjectShortName">readValEn</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider79" type="divider">
+   </wvobject>
+   <wvobject type="group" fp_name="group29">
+      <obj_property name="label">HDMI interface</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_controller/pixel">
+         <obj_property name="ElementShortName">pixel[23:0]</obj_property>
+         <obj_property name="ObjectShortName">pixel[23:0]</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/VDEn">
+         <obj_property name="ElementShortName">VDEn</obj_property>
+         <obj_property name="ObjectShortName">VDEn</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/hSync">
+         <obj_property name="ElementShortName">hSync</obj_property>
+         <obj_property name="ObjectShortName">hSync</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/vSync">
+         <obj_property name="ElementShortName">vSync</obj_property>
+         <obj_property name="ObjectShortName">vSync</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider34" type="divider">
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/WD">
+      <obj_property name="ElementShortName">WD</obj_property>
+      <obj_property name="ObjectShortName">WD</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group30">
+      <obj_property name="label">BRAM0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_controller/WE0">
+         <obj_property name="ElementShortName">WE0</obj_property>
+         <obj_property name="ObjectShortName">WE0</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/addrB0">
+         <obj_property name="ElementShortName">addrB0[18:0]</obj_property>
+         <obj_property name="ObjectShortName">addrB0[18:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/RD0">
+         <obj_property name="ElementShortName">RD0</obj_property>
+         <obj_property name="ObjectShortName">RD0</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group31">
+      <obj_property name="label">BRAM1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_controller/WE1">
+         <obj_property name="ElementShortName">WE1</obj_property>
+         <obj_property name="ObjectShortName">WE1</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/addrB1">
+         <obj_property name="ElementShortName">addrB1[18:0]</obj_property>
+         <obj_property name="ObjectShortName">addrB1[18:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/RD1">
+         <obj_property name="ElementShortName">RD1</obj_property>
+         <obj_property name="ObjectShortName">RD1</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider89" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/state_addrsel">
+      <obj_property name="ElementShortName">state_addrsel[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state_addrsel[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/addrWR">
+      <obj_property name="ElementShortName">addrWR[18:0]</obj_property>
+      <obj_property name="ObjectShortName">addrWR[18:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/addrSel">
+      <obj_property name="ElementShortName">addrSel</obj_property>
+      <obj_property name="ObjectShortName">addrSel</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/valAverage">
+      <obj_property name="ElementShortName">valAverage</obj_property>
+      <obj_property name="ObjectShortName">valAverage</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_controller/valIndex">
+      <obj_property name="ElementShortName">valIndex</obj_property>
+      <obj_property name="ObjectShortName">valIndex</obj_property>
+   </wvobject>
+</wave_config>
