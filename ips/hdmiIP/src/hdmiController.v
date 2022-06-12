@@ -6,9 +6,6 @@ module hdmiController (
 	rst,
 
 	val,
-	// readValEn,
-	width,
-	height,
 	RD0,
 	RD1,
 
@@ -18,33 +15,41 @@ module hdmiController (
 	vSync,
 	pixel,
 
+	EN0,
 	WE0,
 	addrB0,
+	
+	EN1,
 	WE1,
 	addrB1,
+	
 	WD,
 
-	state_fsm_write,
-	state_fsm_addrsel,
-	// counter_WR,
-	// counterX_RD,
-	// counterY_RD,
-	// counterY_WR,
+	// ----- debug
+	state_fsm_main,
+	counterX_WR,
+	counterY_WR,
+	write_done,
 
-	addrWR,
-	// addrRD,
-	addrSel,
-	 
-	// valAverage,
-	row_WR
-	// pixSel,
-	// read_done
+	valSub_r,
+	valMul_r,
+	valDiv_r,
+
+	addrMul_r,
+	addrAdd_r,
+
+	val_r,
+	rowWR_w
 );
 
-parameter ADDR_WIDTH = 19;  // log(width*height)/ log(2)
+parameter ADDR_WIDTH = 19;  // log(WIDTH*HEIGHT)/ log(2)
 
-parameter VAL_RES = 16;     // val resolution
-parameter VAL_MAX = (1<<VAL_RES) - 1;	// val maximum value
+parameter VAL_RES = 16;     			// val resolution
+// parameter VAL_MAX = (1<<VAL_RES) - 1;	// val maximum value
+parameter VAL_MAX = 65535;
+
+parameter WIDTH 	= 640;
+parameter HEIGHT 	= 480;
 
 // off screen area
 parameter OFFSCREEN_MAX_X = 800;
@@ -57,7 +62,7 @@ parameter HS = 96;	// Horizontal Sync period
 
 parameter VBP = 0;	// Vertical Back Porch
 parameter VFP = 10;	// Vertical Front Porch
-parameter VS = 2;		// Vertical Sync period
+parameter VS = 2;	// Vertical Sync period
 
 // INPUTS
 input wire clkWR;
@@ -66,8 +71,6 @@ input wire rst;
 
 input wire [VAL_RES-1:0] val;
 // input wire readValEn;
-input wire [31:0] width;
-input wire [31:0] height;
 input wire RD0; // bram0 read data
 input wire RD1; // bram1 read data
 
@@ -77,103 +80,156 @@ output wire hSync;
 output wire vSync;
 output wire [23:0] pixel;
 
-output wire WE0; // bram0 write enable
-output wire [ADDR_WIDTH-1:0] addrB0; // bram 0 address
-output wire WE1; // bram1 write enable
-output wire [ADDR_WIDTH-1:0] addrB1; // bram 1 address
+// bram0 control
+output wire EN0; // enable
+output wire WE0; // write enable
+output wire [ADDR_WIDTH-1:0] addrB0; // address
+
+// bram1 control
+output wire EN1; // enable
+output wire WE1; // write enable
+output wire [ADDR_WIDTH-1:0] addrB1; // address
+
 output wire WD; // write data
 
 // ===========================================================================
 // internal registers
 // ===========================================================================
+
 // select BRAM addr for write/read
-output reg addrSel;
-// reg addrSel;
+reg addrSel;
 
 // Pixel output
-// output wire pixSel;
 wire pixSel;
 wire [7:0] greenPix;
 
-// ------------------ FSM write
-output reg [ADDR_WIDTH-1:0] addrWR;
-// reg [ADDR_WIDTH-1:0] addrWR;
-wire clean_done;
-wire write_done;
-// to improve readability
-wire writeX_done;
-wire writeY_done;
+// ===========================================================================
+// FSM main
+// ===========================================================================
 
-// this must be double than 'val' - i.e must have one more bit
-// output reg [VAL_RES:0] valAverage;
-output wire [31:0] row_WR;
-// reg [VAL_RES:0] valAverage;
-// wire [31:0] row_WR;
+// define states
+localparam FSM_MAIN_S_CLEAN = 2'b00; 
+localparam FSM_MAIN_S_WRITE = 2'b01;
+localparam FSM_MAIN_S_IDLE  = 2'b10;
 
-// counters
-// output wire [ADDR_WIDTH-1:0] counter_WR;
-// output reg [9:0] counterY_WR;
-wire [ADDR_WIDTH-1:0] counter_WR;
-reg [9:0] counterX_WR;
-reg [9:0] counterY_WR;
+// internal flags
+wire is_state_main_S_CLEAN;
+wire is_state_main_S_WRITE;
+wire is_state_main_S_IDLE;
 
-// ------------------ FSM read
-// output wire [ADDR_WIDTH-1:0] addrRD;
-// output wire read_done;
-wire [ADDR_WIDTH-1:0] addrRD;
-wire read_done;
+// state and nextstate registers
+output reg [1:0] state_fsm_main;
+reg [1:0] nstate_fsm_main;
 
-// counters
-wire [ADDR_WIDTH-1:0] counter_RD;
-// output reg [9:0] counterY_RD;
-// output reg [9:0] counterX_RD;
-reg [9:0] counterY_RD;
-reg [9:0] counterX_RD;
 // ===========================================================================
 // FSM write
 // ===========================================================================
 
+wire [VAL_RES-1:0] valSub_w;
+wire [VAL_RES+9-1:0] valMul_w;
+wire [VAL_RES+9-1:0] valDiv_w;
+
+output reg  [VAL_RES-1:0] valSub_r;
+output reg  [VAL_RES+9-1:0] valMul_r;
+output reg  [VAL_RES+9-1:0] valDiv_r;
+
+wire [ADDR_WIDTH+9-1:0] addrMul_w;
+wire [ADDR_WIDTH+9-1:0] addrAdd_w;
+
+output reg  [ADDR_WIDTH+9-1:0] addrMul_r;
+output reg  [ADDR_WIDTH+9-1:0] addrAdd_r;
+
+wire we_ctrl;
+output wire [9:0] rowWR_w;
+wire [9:0] valIndex_w;
+output reg [VAL_RES-1:0] val_r;
+
+wire writeX_done;
+wire writeY_done;
+output wire write_done;
+
+// counters
+output reg [9:0] counterX_WR;
+output reg [9:0] counterY_WR;
+
+// bram control
+wire [ADDR_WIDTH-1:0] addrWR_w;
+wire enWR;
+
+// ===========================================================================
+// FSM read
+// ===========================================================================
+
 // define states
-localparam FSM_WRITE_S_CLEAN = 2'b00; 
-localparam FSM_WRITE_S_WRITE = 2'b01;
-localparam FSM_WRITE_S_IDLE  = 2'b10;
+localparam FSM_READ_S_READ = 1'b0;
+localparam FSM_READ_S_HOLD = 1'b1;
 
 // state and nextstate registers
-output reg[1:0] state_fsm_write;
-// reg [1:0] state_fsm_write;
-reg [1:0] nstate_fsm_write;
+reg state_fsm_read;
+
+// internal vars
+wire read_done;
+
+// counters
+wire [ADDR_WIDTH-1:0] counter_RD;
+reg [9:0] counterY_RD;
+reg [9:0] counterX_RD;
+
+// bram control
+wire [ADDR_WIDTH-1:0] addrRD_w;
+wire enRD;
+
+// ===========================================================================
+// FSM main
+// ===========================================================================
+
+// FSM main state flags
+assign is_state_main_S_CLEAN 	= (state_fsm_main 	== FSM_MAIN_S_CLEAN);
+assign is_state_main_S_WRITE 	= (state_fsm_main 	== FSM_MAIN_S_WRITE);
+assign is_state_main_S_IDLE 	= (state_fsm_main 	== FSM_MAIN_S_IDLE);
 
 // state register
-always @(posedge clkWR) begin// or posedge rst) begin
+always @(posedge clkWR) begin
 	if(rst)
-		state_fsm_write <= FSM_WRITE_S_CLEAN;
+		state_fsm_main <= FSM_MAIN_S_CLEAN;
 	else begin
-		state_fsm_write <= nstate_fsm_write;
+		state_fsm_main <= nstate_fsm_main;
 	end
 end
 
 // nextstate logic
 always @(*) begin
-	case(state_fsm_write)
+	case(state_fsm_main)
 		// wait for the counter to reach end of frame
-		FSM_WRITE_S_CLEAN: nstate_fsm_write = clean_done ? FSM_WRITE_S_WRITE : FSM_WRITE_S_CLEAN;
+		FSM_MAIN_S_CLEAN: nstate_fsm_main = write_done ? FSM_MAIN_S_WRITE : FSM_MAIN_S_CLEAN;
+
 		// wait for drawing in every columns
-		FSM_WRITE_S_WRITE: nstate_fsm_write = write_done ? FSM_WRITE_S_IDLE  : FSM_WRITE_S_WRITE;
-		// wait for vSync
-		FSM_WRITE_S_IDLE : nstate_fsm_write = read_done  ? FSM_WRITE_S_CLEAN : FSM_WRITE_S_IDLE;
-		default: nstate_fsm_write = FSM_WRITE_S_CLEAN;
+		FSM_MAIN_S_WRITE: nstate_fsm_main = write_done ? FSM_MAIN_S_IDLE  : FSM_MAIN_S_WRITE;
+
+		// wait for complete read
+		FSM_MAIN_S_IDLE : nstate_fsm_main = read_done  ? FSM_MAIN_S_CLEAN : FSM_MAIN_S_IDLE;
+
+		default: nstate_fsm_main = FSM_MAIN_S_CLEAN;
 	endcase
 end
 
+assign enWR = (is_state_main_S_CLEAN | is_state_main_S_WRITE);
+
+// ===========================================================================
+// FSM write
+// ===========================================================================
+
 // counters
-always @(posedge clkWR) begin //or posedge rst) begin
-	if(rst | (state_fsm_write == FSM_WRITE_S_IDLE)) begin
+always @(posedge clkWR) begin
+	if(rst | (state_fsm_main == FSM_MAIN_S_IDLE)) begin
 		counterX_WR <= 0;
 		counterY_WR <= 0;
 	end
-	else if(state_fsm_write != FSM_WRITE_S_IDLE) begin
+	// else if(state_fsm_calc == FSM_CALC_S_WRITE) begin
+	// else if(is_state_main_S_WRITE & addrReady) begin
+	else begin
 		// horizontal counter
-		counterX_WR <= (writeX_done) ? 0 : counterX_WR + 1; 
+		counterX_WR <= (writeX_done) ? 0 : counterX_WR + 1;
 
 		// vertical counter
 		if(writeX_done) begin
@@ -182,96 +238,119 @@ always @(posedge clkWR) begin //or posedge rst) begin
 	end
 end
 
+// Write flags
+assign writeX_done = (counterX_WR == (WIDTH-1));
+assign writeY_done = (counterY_WR == (HEIGHT-1));
 
+// select correct write_done flag according to main FSM state
+mux2 #(1) writeDonemux(
+	writeX_done & writeY_done,		// on S_CLEAN
+	writeX_done,					// on S_WRITE
 
-// reg [VAL_RES-1:0] val_r;
+	is_state_main_S_WRITE,
+	write_done
+);
 
-// always @(posedge clkWR) begin
-// 	// if((state_fsm_write == FSM_WRITE_S_WRITE) & (counterX_WR > (width>>1))) begin
-// 	// 	// val_r <= val + 200;
-// 	// end
-// 	// else begin
-// 		val_r <= val;
-// 	// end
-// end
-reg [VAL_RES-1:0] row_WR_r;
+assign valSub_w = VAL_MAX - val_r;
+assign valMul_w = valSub_r * (HEIGHT-1);
+assign valDiv_w = valMul_r >> VAL_RES;			// valIndex
 
-`define WIDTH_MUL 3
-// ------------------ output logic
-always @(*) begin
-	case(state_fsm_write)
-		FSM_WRITE_S_CLEAN: addrWR = counter_WR;
+assign addrMul_w = rowWR_w * WIDTH;
+assign addrAdd_w = counterX_WR + addrMul_r;		// addrWR
 
-		// the same as addrWR = row_WR*(width) + counterX_WR;
-		// FSM_WRITE_S_WRITE: addrWR = (row_WR << `WIDTH_MUL) + counterX_WR;
-		FSM_WRITE_S_WRITE: addrWR = (row_WR_r << 9) + (row_WR_r << 7) + counterX_WR;
-
-		default : addrWR = {ADDR_WIDTH{1'b0}};
-	endcase
-end
-
-assign WD = (state_fsm_write == FSM_WRITE_S_WRITE);
-
-// ------------------ internal flags
-// define y coord to draw in frame
-// the same as row_WR = ((VAL_MAX - valAverage) * (height-1)) / VAL_MAX;
-// assign row_WR = (((VAL_MAX - valAverage) << 2) + ((VAL_MAX - valAverage))) >> (VAL_RES);
 always @(posedge clkWR) begin
 	if(rst) begin
-		row_WR_r <= 0;
+		val_r <= {VAL_RES{1'b0}};
+
+		valSub_r <= {VAL_RES{1'b0}};
+		valMul_r <= {VAL_RES+9{1'b0}};
+		valDiv_r <= {VAL_RES+9{1'b0}};
+
+		addrMul_r <= {ADDR_WIDTH{1'b0}};
+		addrAdd_r <= {ADDR_WIDTH{1'b0}};
+
+		// addrReadyCnt <= 0;
 	end
-	else begin
-		row_WR_r <= row_WR;
+	else if(is_state_main_S_WRITE) begin
+		val_r <= val;
+
+		valSub_r <= valSub_w; 
+		valMul_r <= valMul_w; 
+		valDiv_r <= valDiv_w;
+
+		addrMul_r <= addrMul_w;
+		addrAdd_r <= addrAdd_w;
+
+		// addrReadyCnt <= addrReadyCnt + 1;
 	end
 end
 
-// the same as row_WR = ((VAL_MAX - val) * (height-1)) / VAL_MAX;
-assign row_WR = (
-	(
-		((VAL_MAX - val)<<8) +
-		((VAL_MAX - val)<<7) +
-		((VAL_MAX - val)<<6) +
-		((VAL_MAX - val)<<4) +
-		((VAL_MAX - val)<<3) +
-		((VAL_MAX - val)<<2) +
-		((VAL_MAX - val)<<1) + 
-		 (VAL_MAX - val)
-	) >> VAL_RES);
+// assign addrReady = (addrReadyCnt == 6);
 
-// assign row_WR = (
-// 	(
-// 		((val)<<8) +
-// 		((val)<<7) +
-// 		((val)<<6) +
-// 		((val)<<4) +
-// 		((val)<<3) +
-// 		((val)<<2) +
-// 		((val)<<1) + 
-// 		 (val)
-// 	) >> VAL_RES);
+// assign row to draw the new input value
+assign valIndex_w 	= valDiv_r;
 
-// assign row_WR = val;
-// assign row_WR = val<<5;
+// assign write address
+assign addrWR_w 	= addrAdd_r;
 
-// the same as counter_WR = counterX_WR + counterY_WR*width;
-//assign counter_WR = counterX_WR + (counterY_WR << `WIDTH_MUL);
- assign counter_WR = counterX_WR + (counterY_WR << 9) + (counterY_WR << 7);
+// select correct calculated row according to fsm_write state
+mux2 #(10) rowWRmux(
+	counterY_WR,					// on S_CLEAN
+	valIndex_w,						// on S_WRITE
 
-assign clean_done = writeX_done & writeY_done;
-assign write_done = writeX_done;
+	is_state_main_S_WRITE,
+	rowWR_w
+);
 
-assign writeX_done = (counterX_WR == (width-1));
-assign writeY_done = (counterY_WR == (height-1));
+// control BRAMs write enables
+assign we_ctrl = is_state_main_S_WRITE | is_state_main_S_CLEAN;
+
+// define BRAM write enables
+assign WE0 = ~addrSel & we_ctrl;
+assign WE1 = addrSel & we_ctrl;
+
+// define BRAM write data
+assign WD = is_state_main_S_WRITE;
+
+// ===========================================================================
+// control BRAMs for alternate read and write
+// ===========================================================================
+
+// toggle memory selected for read/write
+always @(posedge clkWR) begin
+	if(rst) begin
+		addrSel <= 1'b0;
+	end
+	else if(read_done) begin
+		addrSel <= ~addrSel;
+	end
+end
+
+// determine if read is done
+assign read_done = vSync & (state_fsm_main == FSM_MAIN_S_IDLE);
+
 // ===========================================================================
 // FSM read
 // ===========================================================================
 
-always @(posedge clkRD) begin// or posedge rst) begin
+// state register
+always @(posedge clkRD) begin
+	if(rst)
+		state_fsm_read <= FSM_READ_S_READ;
+	else begin
+		state_fsm_read <= ~state_fsm_read;
+	end
+end
+
+assign enRD = (state_fsm_read == FSM_READ_S_READ) & VDEn;
+
+always @(posedge clkRD) begin
 	if(rst) begin
 		counterX_RD <= 0;
 		counterY_RD <= 0;
+		// addrRD_r <= {ADDR_WIDTH{1'b0}};
 	end
-	else begin
+	else if(state_fsm_read == FSM_READ_S_HOLD) begin
 		// horizontal counter
 		counterX_RD <= (counterX_RD == (OFFSCREEN_MAX_X-1)) ? 0 : counterX_RD + 1; 
 
@@ -280,81 +359,62 @@ always @(posedge clkRD) begin// or posedge rst) begin
 			counterY_RD <= (counterY_RD == (OFFSCREEN_MAX_Y-1)) ? 0 : counterY_RD + 1;
 		end
 	end
+	// else if(state_fsm_read == FSM_READ_S_READ) begin
+	// 	// addrRD_r <= counter_RD;
+	// end
 end
 
-// >>>>>> not needed since VDE is disabled during hSync and vSync 
-assign addrRD = (VDEn) ? (counter_RD) : {ADDR_WIDTH{1'b0}};
-
+// assign addrRD = (~vSync) ? counter_RD : {ADDR_WIDTH{1'b0}};
+// assign addrRD = addrRD_r;
+assign addrRD_w = (VDEn) ? counter_RD : {ADDR_WIDTH{1'b0}};
 // ------------------ internal flags
-// the same as counter_RD = counterX_RD + counterY_RD*width;
-// assign counter_RD = counterX_RD + (counterY_RD << `WIDTH_MUL);
-assign counter_RD = counterX_RD + (counterY_RD << 9) + (counterY_RD << 7);
-// assign read_done  = (counter_RD == 0);
+assign counter_RD = counterX_RD + (counterY_RD*WIDTH);
 
 // ===========================================================================
-// control BRAMs for alternate read and write
+// sync generation
 // ===========================================================================
 
-// define states
-localparam FSM_ADDRSEL_S_IDLE 	= 2'b00;
-localparam FSM_ADDRSEL_S_TOGGLE = 2'b01;
-localparam FSM_ADDRSEL_S_HOLD 	= 2'b10;
+// video data enable
+assign VDEn = (counterX_RD < WIDTH) && (counterY_RD < HEIGHT);
 
-// state and nextstate registers
-output reg[1:0] state_fsm_addrsel;
-reg[1:0] nstate_fsm_addrsel;
-
-// state register
-always @(posedge clkWR) begin
-	if(rst)
-		state_fsm_addrsel <= FSM_ADDRSEL_S_IDLE;
-	else begin
-		state_fsm_addrsel <= nstate_fsm_addrsel;
-	end
-end
-
-// nextstate logic
-always @(*) begin
-	case(state_fsm_addrsel)
-		FSM_ADDRSEL_S_IDLE	: nstate_fsm_addrsel = (vSync & (state_fsm_write == FSM_WRITE_S_IDLE))  ? FSM_ADDRSEL_S_TOGGLE : FSM_ADDRSEL_S_IDLE;
-		FSM_ADDRSEL_S_TOGGLE: nstate_fsm_addrsel = FSM_ADDRSEL_S_HOLD;
-		FSM_ADDRSEL_S_HOLD	: nstate_fsm_addrsel = ~vSync ? FSM_ADDRSEL_S_IDLE : FSM_ADDRSEL_S_HOLD;
-		default: nstate_fsm_addrsel = FSM_ADDRSEL_S_IDLE;
-	endcase
-end
-
-// toggle memory selected for read/write
-always @(posedge clkWR) begin
-	if(rst) begin
-		addrSel <= 0;
-	end
-	else if(state_fsm_addrsel == FSM_ADDRSEL_S_TOGGLE)begin
-		addrSel <= ~addrSel;
-	end
-end
-
-assign read_done  = (state_fsm_addrsel == FSM_ADDRSEL_S_TOGGLE);
+// hsync high for HS counts - asserted when a line is sent
+assign hSync = (counterX_RD >= (WIDTH+HFP)) && (counterX_RD < (WIDTH+HFP+HS));
+// vsync high for VS counts - asserted when a frame is sent
+assign vSync = (counterY_RD >= (HEIGHT+VFP)) && (counterY_RD < (HEIGHT+VFP+VS));
 
 // ===========================================================================
-// 
+// control BRAMs
 // ===========================================================================
 
-// define bram write enables
-assign WE0 = ~addrSel & (state_fsm_write != FSM_WRITE_S_IDLE);
-assign WE1 = addrSel & (state_fsm_write != FSM_WRITE_S_IDLE);
+// determine bram0 enable
+mux2 #(1) en0_mux(
+	enWR,
+	enRD,
+	addrSel,
+	EN0
+);
 
 // determine bram0 address
 mux2 #(ADDR_WIDTH) addr0_mux(
-	addrWR,
-	addrRD,
+	addrWR_w,
+	addrRD_w,
 	addrSel,
 	addrB0
 );
 
+
+// determine bram1 enable
+mux2 #(1) en1_mux(
+	enWR,
+	enRD,
+	~addrSel,
+	EN1
+);
+
 // determine bram1 address
 mux2 #(ADDR_WIDTH) addr1_mux(
-	addrWR,
-	addrRD,
+	addrWR_w,
+	addrRD_w,
 	~addrSel,
 	addrB1
 );
@@ -375,24 +435,11 @@ mux2 #(1) pixSrc_mux(
 mux2 #(8) pix_mux(
 	{8{1'b0}},
 	{8{1'b1}},
-	pixSel, 
+	pixSel & VDEn, 
 	greenPix
 );
 
 // define pixel colors: R,G,B
 assign pixel = {{8{1'b0}}, greenPix, {8{1'b0}}};
-
-// ===========================================================================
-// sync generation
-// ===========================================================================
-
-// video data enable
-assign VDEn = (counterX_RD < width) && (counterY_RD < height);
-
-// hsync high for HS counts - asserted when a line is sent
-assign hSync = (counterX_RD >= (width+HFP)) && (counterX_RD < (width+HFP+HS));
-// vsync high for VS counts - asserted when a frame is sent
-assign vSync = (counterY_RD >= (height+VFP)) && (counterY_RD < (height+VFP+VS));
-
 
 endmodule

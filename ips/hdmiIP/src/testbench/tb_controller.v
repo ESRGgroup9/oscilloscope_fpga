@@ -11,20 +11,25 @@ module tb_controller;
 
 reg TMDSclk;
 reg pixclk;
-reg writeclk;
+
+reg clkRD;
+reg clkWR;
 
 reg rst;
 
-always #(`CLK_PERIOD/2) TMDSclk = ~TMDSclk;
-always #(10*`CLK_PERIOD/2) pixclk = ~pixclk;
+always #(`CLK_PERIOD/2) TMDSclk = ~TMDSclk; 	// 250 MHz
+always #(10*`CLK_PERIOD/2) pixclk = ~pixclk; 	// 25 MHz
 
-// always #(200/2) writeclk = ~writeclk; // 5 MHz
-always #(4/2) writeclk = ~writeclk; // 250 MHz
+always #(5*`CLK_PERIOD/2) clkRD = ~clkRD;		// 50 MHz
+always #(25*`CLK_PERIOD/2) clkWR = ~clkWR; 		// 10 MHz
 
 initial begin
 		TMDSclk <= 1;
 		pixclk <= 1;
-		writeclk <= 1;
+		
+		clkRD <= 1;
+		clkWR <= 1;
+
 		rst <= 1;
 		
 		#(`CLK_PERIOD*2) rst <= 0;
@@ -38,10 +43,8 @@ parameter VAL_RES = 16;     // val resolution
 
 // inputs
 reg [VAL_RES-1:0] inputval;
-reg readValEn;
+// reg readValEn;
 
-reg [31:0] width;
-reg [31:0] height;
 wire RD0;
 wire RD1;
 
@@ -51,29 +54,30 @@ wire hSync;
 wire vSync;
 wire [23:0] pixel;
 
+wire EN0;
 wire WE0;
 wire [(ADDR_WIDTH-1):0] addrB0;
+
+wire EN1;
 wire WE1;
 wire [(ADDR_WIDTH-1):0] addrB1;
 wire WD;
 
-wire[1:0] state;
-wire [1:0] state_addrsel;
-// wire[(ADDR_WIDTH-1):0] counter;
-// wire[9:0] col;
+// ======================= debug
+wire [1:0] state_fsm_main;
+wire [9:0] counterX_WR;
+wire [9:0] counterY_WR;
 
-wire [(ADDR_WIDTH-1):0] addrWR;
-// wire [(ADDR_WIDTH-1):0] addrRD;
-wire addrSel;
+wire  [VAL_RES-1:0] valSub_r;
+wire  [VAL_RES+9-1:0] valMul_r;
+wire  [VAL_RES+9-1:0] valDiv_r;
 
-reg [VAL_RES:0] valAverage;
-wire [31:0] valIndex;
- 
-// wire pixSel;
-// wire vSync_up;
-// wire [9:0] counterX;
-// wire [9:0] counterY;
-// wire frame_written;
+wire  [ADDR_WIDTH+9-1:0] addrMul_r;
+wire  [ADDR_WIDTH+9-1:0] addrAdd_r;
+
+wire [VAL_RES-1:0] val_r;
+wire [9:0] rowWR_w;
+wire write_done;
 
 // ===========================================================================
 // 
@@ -85,26 +89,20 @@ reg hasbeenhere;
 
 initial begin
 	$display("Output results will be captured in %0s...\n", OUTPUT_FILENAME);
-	fp <= $fopen(OUTPUT_FILENAME, "w");
+	// fp <= $fopen(OUTPUT_FILENAME, "w");
 	inputval <= 0;
 end
 
-always @(posedge writeclk) begin
+always @(posedge clkWR) begin
 	if(rst | (~WD)) begin
 		hasbeenhere <= 0;
 	end
 	else if(WD & ~hasbeenhere) begin
-		// $display("\nval \t= %0d", inputval);
-		// $display("valAvg\t= %0d", valAverage);
-		// $display("index\t= %0d", valIndex);
-		// $display("addr\t= %0d", addrWR);
-   		// $fwrite(fp, "%0d,%0d,%0d,%0d\n", inputval, valAverage, valIndex, addrWR);
-		
 		$display("Writing [%0d] output ...", inputval);
-   		$fwrite(fp, "%0d,%0d,%0d\n", inputval, valIndex, addrWR);
+   		// $fwrite(fp, "%0d,%0d,%0d\n", inputval, valIndex, addrWR);
 		
    		if(inputval >= 65535) begin
-			$fclose(fp);	
+			// $fclose(fp);	
 			$display("\nSimulation completed");
 			$stop;
 		end
@@ -115,58 +113,31 @@ always @(posedge writeclk) begin
 end
 
 // ===========================================================================
-// 
+// simulate input value
 // ===========================================================================
 
-initial begin
-	width <= 640;
-	height <= 480;
-	// width <= 8;
-	// height <= 6;
-
-	// readValEn <= 1;
-end
-
-// compute val Average
-always @(posedge writeclk) begin //or posedge rst) begin
-	if(rst) begin
-		valAverage <= 0;
-	end
-	// else if(readValEn) begin
-	else begin
-		// valAverage <= (valAverage + inputval) >> 1;
-
-		// valAverage <= val<<12;
-		valAverage <= 15;
-		// valAverage <= val;
-	end
-end
-
+reg [3:0] valBtns;
 wire [VAL_RES-1:0] val;
-wire [31:0] row;
-assign val = {valAverage[3:0], {12{1'b0}}};// << 12;
 
-parameter VAL_MAX = 65535;
+always @(posedge clkWR) begin
+	if(rst) begin
+		valBtns <= 0;
+	end
+	else begin
+		// valBtns <= (valBtns == 15) ? 0 : valBtns + 1;
+		valBtns <= 15;
+	end
+end
 
-assign row = (
-	(
-		((VAL_MAX - val)<<8) +
-		((VAL_MAX - val)<<7) +
-		((VAL_MAX - val)<<6) +
-		((VAL_MAX - val)<<4) +
-		((VAL_MAX - val)<<3) +
-		((VAL_MAX - val)<<2) +
-		((VAL_MAX - val)<<1) + 
-		 (VAL_MAX - val)
-	) >> VAL_RES);
-
+assign val = {valBtns, {12{1'b0}}};
 
 // ===========================================================================
 // dut
 // ===========================================================================
 
 bram bram0 (
-	.clka(~writeclk),    // input wire clka
+	.clka(~clkRD),    // input wire clka
+	.ena(EN0),
 	.wea(WE0),      // input wire [0 : 0] wea
 	.addra(addrB0),  // input wire [5 : 0] addra
 	.dina(WD),    // input wire [0 : 0] dina
@@ -174,7 +145,8 @@ bram bram0 (
 );
 
 bram bram1 (
-	.clka(~writeclk),    // input wire clka
+	.clka(~clkRD),    // input wire clka
+	.ena(EN1),
 	.wea(WE1),      // input wire [0 : 0] wea
 	.addra(addrB1),  // input wire [5 : 0] addra
 	.dina(WD),    // input wire [0 : 0] dina
@@ -183,24 +155,26 @@ bram bram1 (
 
 hdmiController #(
 	.ADDR_WIDTH(ADDR_WIDTH),  // log(width*height)/ log(2)
-	.VAL_RES(VAL_RES)     // val resolution
+	.VAL_RES(VAL_RES),     // val resolution
 
-	// .OFFSCREEN_MAX_X(10),
-	// .OFFSCREEN_MAX_Y(8),
+	// debug------------
+	.WIDTH(8),
+	.HEIGHT(6),
 
-	// .HFP(0),
-	// .HS(2),
+	.OFFSCREEN_MAX_X(10),
+	.OFFSCREEN_MAX_Y(8),
 
-	// .VFP(0),
-	// .VS(2)
+	.HFP(0),
+	.HS(2),
+
+	.VFP(0),
+	.VS(2)
 )dut(
-	writeclk,
-	pixclk,
+	clkWR,
+	clkRD,
 	rst,
 
-	row,
-	width,
-	height,
+	val,
 	RD0,
 	RD1,
 
@@ -210,27 +184,32 @@ hdmiController #(
 	vSync,
 	pixel,
 
+	EN0,
 	WE0,
 	addrB0,
+	
+	EN1,
 	WE1,
 	addrB1,
+	
 	WD,
 
-	state,
-	state_addrsel,
-	// counter,
-	// counterX,
-	// counterY,
-	// col,
+	// ----- debug
+	state_fsm_main,
+	counterX_WR,
+	counterY_WR,
+	write_done,
 
-	addrWR,
-	// addrRD,
-	addrSel,
-	 
-	// valAverage,
-	valIndex
-	// pixSel,
-	// frame_written
+	valSub_r,
+	valMul_r,
+	valDiv_r,
+
+	addrMul_r,
+	addrAdd_r,
+
+	val_r,
+	rowWR_w,
+	write_done
 );
 
 endmodule
