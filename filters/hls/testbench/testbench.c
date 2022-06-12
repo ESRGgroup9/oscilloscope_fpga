@@ -11,6 +11,9 @@ int main ()
 	uint32 lpf_coefs[_M_ + 1];
 	uint32 hpf_coefs[_M_ + 1];
 	uint32 bpf_coefs[_M_ + 1];
+
+	uint1 randInput;
+
 	FILE *fp_lpf, *fp_hpf, *fp_bpf;
 
 	printf("****************************** C Simulation ******************************\n");
@@ -43,16 +46,24 @@ int main ()
 	// ---------------------------------------------------------------------
 	// test filters
 	// ---------------------------------------------------------------------
+	randInput = 0;
+	filter_tb("LPF", lpf_coefs, 20, randInput, 0);
+	filter_tb("LPF", lpf_coefs, 100, randInput, 0);
 
-	filter_tb("LPF", lpf_coefs, 20, 0);
-	filter_tb("LPF", lpf_coefs, 100, 0);
+	filter_tb("HPF", hpf_coefs, 20, randInput, 1);
+	filter_tb("HPF", hpf_coefs, 100, randInput, 1);
 
-	filter_tb("HPF", hpf_coefs, 20, 1);
-	filter_tb("HPF", hpf_coefs, 100, 1);
+	filter_tb("BPF", bpf_coefs, 20, randInput, 1);
+	filter_tb("BPF", bpf_coefs, 120, randInput, 1);
+	filter_tb("BPF", bpf_coefs, 220, randInput, 1);
 
-	filter_tb("BPF", bpf_coefs, 20, 1);
-	filter_tb("BPF", bpf_coefs, 120, 1);
-	filter_tb("BPF", bpf_coefs, 220, 1);
+	// --------------------------------------
+	printf("\nTesting with random inputs:\n");
+
+	randInput = 1;
+	filter_tb("LPF", lpf_coefs, 20, randInput, 0);
+	filter_tb("HPF", hpf_coefs, 20, randInput, 1);
+	filter_tb("BPF", bpf_coefs, 20, randInput, 1);
 
 	printf("**************************** End C Simulation ****************************\n");
 	return 0;

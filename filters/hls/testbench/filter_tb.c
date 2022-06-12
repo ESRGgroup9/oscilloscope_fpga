@@ -12,19 +12,32 @@
 #define INPUT_PATH  "../../../../../../golden_vectors"
 #define OUTPUT_PATH "../../../../../sim"
 
-int filter_tb(char *filter, uint32 x_coefs[_M_ + 1], int Fc, uint1 dcValEn)
+int filter_tb(char *filter, uint32 x_coefs[_M_ + 1], int Fc, uint1 inputrand, uint1 dcValEn)
 {
 	char input_file[128];
 	char outgold_file[128];
 	char output_file[128];
 
-	printf("%s Test @%dHz\t- ", filter, Fc);
+	if(inputrand)
+	{
+		printf("%s Test random\t- ", filter);
 
-	// input files
-	snprintf(input_file   , sizeof(input_file), "%s/input/%dinput.txt", INPUT_PATH, Fc);
-	snprintf(outgold_file , sizeof(outgold_file), "%s/%s/%s_%dout_golden.txt", INPUT_PATH, filter, filter, Fc);
-	// output file
-	snprintf(output_file  , sizeof(output_file), "%s/%s/%s_%dsim_output.txt", OUTPUT_PATH, filter, filter, Fc);
+		// input files
+		snprintf(input_file   , sizeof(input_file), "%s/input/randinput.txt", INPUT_PATH);
+		snprintf(outgold_file , sizeof(outgold_file), "%s/%s/%s_randdout_golden.txt", INPUT_PATH, filter, filter);
+		// output file
+		snprintf(output_file  , sizeof(output_file), "%s/%s/%s_randsim_output.txt", OUTPUT_PATH, filter, filter);
+	}
+	else
+	{
+		printf("%s Test @%dHz\t- ", filter, Fc);
+
+		// input files
+		snprintf(input_file   , sizeof(input_file), "%s/input/%dinput.txt", INPUT_PATH, Fc);
+		snprintf(outgold_file , sizeof(outgold_file), "%s/%s/%s_%dout_golden.txt", INPUT_PATH, filter, filter, Fc);
+		// output file
+		snprintf(output_file  , sizeof(output_file), "%s/%s/%s_%dsim_output.txt", OUTPUT_PATH, filter, filter, Fc);
+	}
 
 	// ---------------------------------------------------------------------
 	// load filter input values

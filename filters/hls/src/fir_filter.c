@@ -36,12 +36,20 @@ uint16 fir_filter(uint16 x_ant[_M_+ 1], fixed_point_t x_coefs[_M_+ 1], uint1 dcV
 			y64b = y64b + x_ant[i] * x_coefs[i];
 	}
 
+//	printf("%9ld\t", y64b);
 	// convert from fixed point
 	y32b = (y64b>>15);
 
+//	printf(">> %7d\t", y32b);
 	// add dc value if needed. y may be negative, so we need to check it
-	y32b = dcValEn*DCVAL + (y32b - ((y32b>>31) & 0x01)*(0xffffffff + 1));
+	//	y32b = dcValEn*DCVAL + (y32b - ((y32b>>31) & 0x01)*(0xffffffff + 1));
 
+	if((y32b>>31) & 0x01)
+		y32b = dcValEn*DCVAL - (~(y32b - 1));
+	else
+		y32b = dcValEn*DCVAL + y32b;
+
+//	printf("dc %6d\t", y32b);
 	// truncate output value if it is a negative number
 	if((y32b>>31) & 0x01)
 		y32b = 0;
@@ -49,5 +57,6 @@ uint16 fir_filter(uint16 x_ant[_M_+ 1], fixed_point_t x_coefs[_M_+ 1], uint1 dcV
 	else if(y32b > VAL_MAX)
 		y32b = VAL_MAX;
 
+//	printf("fin %6d\n", y32b);
 	return (uint16)(y32b);
 }

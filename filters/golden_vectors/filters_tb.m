@@ -1,4 +1,4 @@
-function filters_tb(Fc, filter, printFig, writeToFile)
+function filters_tb(genInputRand, inputRand, Fc, filter, printFig, writeToFile)
 % Fc = 20;
 % filter = "LPF";
 % printFig = 0;
@@ -38,8 +38,7 @@ function filters_tb(Fc, filter, printFig, writeToFile)
     
     % change coefs to fixed point
     xcoefs=round(hh*2^15);
-%     xcoefs = typecast(round(hh*2^15),'uint16');
-    
+
     % -------------------------------------------------------------------------
     % simulate input
     % -------------------------------------------------------------------------
@@ -47,10 +46,16 @@ function filters_tb(Fc, filter, printFig, writeToFile)
     dt = 1/fsamp;               % seconds per sample
     StopTime = 0.05;             % seconds
     t = (0:dt:StopTime-dt)';    % seconds
-    
-    %%Sine wave:
-    x = round((sin(2*pi*Fc*t)* adcRes/2 + adcRes/2));
-    
+ 
+    if(inputRand)
+        %%Random input values
+%         x=floor(adcRes.*rand(size(t),1));
+        x = floor(adcRes .* rand(50,1));
+    else
+        %%Sine wave:
+        x = round((sin(2*pi*Fc*t)* adcRes/2 + adcRes/2));
+    end
+
     % -------------------------------------------------------------------------
     % simulate filter behavior
     % -------------------------------------------------------------------------
@@ -68,9 +73,9 @@ function filters_tb(Fc, filter, printFig, writeToFile)
     % -------------------------------------------------------------------------
     % write results
     % -------------------------------------------------------------------------
-    fprintf("coefs: %s\n", regexprep(num2str(xcoefs),'\s+',','));
-    % fprintf("input: %s\n", x);
-    fprintf("outpt: %s\n", regexprep(num2str(out),'\s+',','));
+%     fprintf("coefs: %s\n", regexprep(num2str(xcoefs),'\s+',','));
+%     fprintf("input: %g\n", x);
+%     fprintf("outpt: %s\n", regexprep(num2str(out),'\s+',','));
 
     fprintf("Filter     : %s\n", filter);
     fprintf("Input freq : %d Hz\n", Fc);
@@ -93,23 +98,29 @@ function filters_tb(Fc, filter, printFig, writeToFile)
     
     % Print results to file
     if(writeToFile)
-        % write filter coefs
-        s1=sprintf("./%s/%sCoefs.txt", filter, filter);
-        fp = fopen(s1,'w');
-        fprintf(fp, "%s", regexprep(num2str(xcoefs),'\s+','\n'));
-        fclose(fp);
+        
+        if(inputRand)
+            sinput="./input/randinput.txt";
+            soutpt=sprintf("./%s/%s_randdout_golden.txt", filter, filter);
+        else        
+            sinput=sprintf("./input/%dinput.txt", Fc);
+            soutpt=sprintf("./%s/%s_%dout_golden.txt", filter, filter, Fc);
+        end
         
         % write input
-        s1=sprintf("./input/%dinput.txt", Fc);
-        fp = fopen(s1,'w');
+        fp = fopen(sinput,'w');
         fprintf(fp, '%g\n', x);
         fclose(fp);
-        
+
+        % write filter coefs
+        scoefs=sprintf("./%s/%sCoefs.txt", filter, filter);
+        fp = fopen(scoefs,'w');
+        fprintf(fp, "%s", regexprep(num2str(xcoefs),'\s+','\n'));
+        fclose(fp);
+         
         % write golden output
-        s1=sprintf("./%s/%s_%dout_golden.txt", filter, filter, Fc);
-        fp = fopen(s1,'w');
+        fp = fopen(soutpt,'w');
         fprintf(fp, "%s", regexprep(num2str(out),'\s+','\n'));
         fclose(fp);
     end
-
 end
