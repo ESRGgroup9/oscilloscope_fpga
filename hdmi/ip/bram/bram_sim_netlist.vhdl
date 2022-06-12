@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Sun Jun  5 23:03:59 2022
+-- Date        : Sat Jun 11 12:19:40 2022
 -- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim /home/tomas/oscilloscope_fpga/hdmi/ip/bram/bram_sim_netlist.vhdl
 -- Design      : bram
@@ -16,7 +16,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_bindec is
   port (
     ena_array : out STD_LOGIC_VECTOR ( 0 to 0 );
-    addra : in STD_LOGIC_VECTOR ( 4 downto 0 )
+    addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
+    ena : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of bram_bindec : entity is "bindec";
@@ -24,16 +25,17 @@ end bram_bindec;
 
 architecture STRUCTURE of bram_bindec is
 begin
-ENOUT: unisim.vcomponents.LUT5
+ENOUT: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"01000000"
+      INIT => X"0000100000000000"
     )
         port map (
-      I0 => addra(3),
+      I0 => addra(0),
       I1 => addra(2),
-      I2 => addra(0),
-      I3 => addra(1),
-      I4 => addra(4),
+      I2 => addra(1),
+      I3 => ena,
+      I4 => addra(3),
+      I5 => addra(4),
       O => ena_array(0)
     );
 end STRUCTURE;
@@ -44,6 +46,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_blk_mem_gen_mux is
   port (
     \^douta\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     clka : in STD_LOGIC;
     DOADO : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -60,6 +64,7 @@ end bram_blk_mem_gen_mux;
 architecture STRUCTURE of bram_blk_mem_gen_mux is
   signal \douta[0]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal \douta[0]_INST_0_i_2_n_0\ : STD_LOGIC;
+  signal \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\ : STD_LOGIC;
   signal sel_pipe : STD_LOGIC_VECTOR ( 4 downto 0 );
 begin
 \douta[0]_INST_0\: unisim.vcomponents.MUXF7
@@ -95,13 +100,22 @@ begin
       I5 => sel_pipe(3),
       O => \douta[0]_INST_0_i_2_n_0\
     );
+\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"2"
+    )
+        port map (
+      I0 => ena,
+      I1 => wea(0),
+      O => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\
+    );
 \no_softecc_sel_reg.ce_pri.sel_pipe_reg[0]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clka,
-      CE => '1',
+      CE => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\,
       D => addra(0),
       Q => sel_pipe(0),
       R => '0'
@@ -112,7 +126,7 @@ begin
     )
         port map (
       C => clka,
-      CE => '1',
+      CE => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\,
       D => addra(1),
       Q => sel_pipe(1),
       R => '0'
@@ -123,7 +137,7 @@ begin
     )
         port map (
       C => clka,
-      CE => '1',
+      CE => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\,
       D => addra(2),
       Q => sel_pipe(2),
       R => '0'
@@ -134,7 +148,7 @@ begin
     )
         port map (
       C => clka,
-      CE => '1',
+      CE => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\,
       D => addra(3),
       Q => sel_pipe(3),
       R => '0'
@@ -145,7 +159,7 @@ begin
     )
         port map (
       C => clka,
-      CE => '1',
+      CE => \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0\,
       D => addra(4),
       Q => sel_pipe(4),
       R => '0'
@@ -366,8 +380,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -582,8 +596,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -842,8 +856,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -1058,8 +1072,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -1318,8 +1332,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -1534,8 +1548,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -1794,8 +1808,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -2010,8 +2024,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -2065,7 +2079,8 @@ entity \bram_blk_mem_gen_prim_wrapper__parameterized3\ is
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wea : in STD_LOGIC_VECTOR ( 0 to 0 )
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \bram_blk_mem_gen_prim_wrapper__parameterized3\ : entity is "blk_mem_gen_prim_wrapper";
@@ -2259,8 +2274,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"000000000",
       SRVAL_B => X"000000000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -2304,15 +2319,16 @@ begin
       WEA(0) => wea(0),
       WEBWE(7 downto 0) => B"00000000"
     );
-\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1\: unisim.vcomponents.LUT4
+\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0002"
+      INIT => X"00000020"
     )
         port map (
       I0 => addra(18),
       I1 => addra(17),
-      I2 => addra(15),
+      I2 => ena,
       I3 => addra(16),
+      I4 => addra(15),
       O => \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1_n_0\
     );
 end STRUCTURE;
@@ -2438,8 +2454,8 @@ begin
       SIM_DEVICE => "7SERIES",
       SRVAL_A => X"00000",
       SRVAL_B => X"00000",
-      WRITE_MODE_A => "WRITE_FIRST",
-      WRITE_MODE_B => "WRITE_FIRST",
+      WRITE_MODE_A => "NO_CHANGE",
+      WRITE_MODE_B => "NO_CHANGE",
       WRITE_WIDTH_A => 1,
       WRITE_WIDTH_B => 1
     )
@@ -2597,7 +2613,8 @@ entity \bram_blk_mem_gen_prim_width__parameterized3\ is
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wea : in STD_LOGIC_VECTOR ( 0 to 0 )
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of \bram_blk_mem_gen_prim_width__parameterized3\ : entity is "blk_mem_gen_prim_width";
@@ -2611,6 +2628,7 @@ begin
       addra(18 downto 0) => addra(18 downto 0),
       clka => clka,
       dina(0) => dina(0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -2650,10 +2668,11 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_blk_mem_gen_generic_cstr is
   port (
     douta : out STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    dina : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wea : in STD_LOGIC_VECTOR ( 0 to 0 )
+    dina : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of bram_blk_mem_gen_generic_cstr : entity is "blk_mem_gen_generic_cstr";
@@ -2675,6 +2694,7 @@ begin
 \bindec_a.bindec_inst_a\: entity work.bram_bindec
      port map (
       addra(4 downto 0) => addra(18 downto 14),
+      ena => ena,
       ena_array(0) => ena_array(18)
     );
 \has_mux_a.A\: entity work.bram_blk_mem_gen_mux
@@ -2687,46 +2707,52 @@ begin
       \douta[0]\(0) => \ramloop[4].ram.r_n_0\,
       \douta[0]_0\(0) => \ramloop[2].ram.r_n_0\,
       \douta[0]_1\(0) => \ramloop[1].ram.r_n_0\,
-      \douta[0]_2\(0) => ram_douta
+      \douta[0]_2\(0) => ram_douta,
+      ena => ena,
+      wea(0) => wea(0)
     );
-ram_ena: unisim.vcomponents.LUT3
+ram_ena: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"01"
+      INIT => X"0100"
     )
         port map (
-      I0 => addra(17),
+      I0 => addra(16),
       I1 => addra(18),
-      I2 => addra(16),
+      I2 => addra(17),
+      I3 => ena,
       O => ram_ena_n_0
     );
-\ram_ena__0\: unisim.vcomponents.LUT3
+\ram_ena__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"10"
+      INIT => X"1000"
     )
         port map (
       I0 => addra(17),
       I1 => addra(18),
-      I2 => addra(16),
+      I2 => ena,
+      I3 => addra(16),
       O => \ram_ena__0_n_0\
     );
-\ram_ena__1\: unisim.vcomponents.LUT3
+\ram_ena__1\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"10"
+      INIT => X"1000"
     )
         port map (
-      I0 => addra(18),
-      I1 => addra(16),
-      I2 => addra(17),
+      I0 => addra(16),
+      I1 => addra(18),
+      I2 => ena,
+      I3 => addra(17),
       O => \ram_ena__1_n_0\
     );
-\ram_ena__2\: unisim.vcomponents.LUT3
+\ram_ena__2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"40"
+      INIT => X"2000"
     )
         port map (
-      I0 => addra(18),
-      I1 => addra(17),
-      I2 => addra(16),
+      I0 => ena,
+      I1 => addra(18),
+      I2 => addra(17),
+      I3 => addra(16),
       O => \ram_ena__2_n_0\
     );
 \ramloop[0].ram.r\: entity work.bram_blk_mem_gen_prim_width
@@ -2771,6 +2797,7 @@ ram_ena: unisim.vcomponents.LUT3
       addra(18 downto 0) => addra(18 downto 0),
       clka => clka,
       dina(0) => dina(0),
+      ena => ena,
       wea(0) => wea(0)
     );
 \ramloop[5].ram.r\: entity work.\bram_blk_mem_gen_prim_width__parameterized4\
@@ -2790,10 +2817,11 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_blk_mem_gen_top is
   port (
     douta : out STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    dina : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wea : in STD_LOGIC_VECTOR ( 0 to 0 )
+    dina : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of bram_blk_mem_gen_top : entity is "blk_mem_gen_top";
@@ -2807,6 +2835,7 @@ begin
       clka => clka,
       dina(0) => dina(0),
       douta(0) => douta(0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -2817,10 +2846,11 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_blk_mem_gen_v8_4_4_synth is
   port (
     douta : out STD_LOGIC_VECTOR ( 0 to 0 );
+    ena : in STD_LOGIC;
+    wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     clka : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
-    dina : in STD_LOGIC_VECTOR ( 0 to 0 );
-    wea : in STD_LOGIC_VECTOR ( 0 to 0 )
+    dina : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of bram_blk_mem_gen_v8_4_4_synth : entity is "blk_mem_gen_v8_4_4_synth";
@@ -2834,6 +2864,7 @@ begin
       clka => clka,
       dina(0) => dina(0),
       douta(0) => douta(0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -2954,13 +2985,13 @@ entity bram_blk_mem_gen_v8_4_4 is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of bram_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of bram_blk_mem_gen_v8_4_4 : entity is "Estimated Power for IP     :     2.28488 mW";
+  attribute C_EST_POWER_SUMMARY of bram_blk_mem_gen_v8_4_4 : entity is "Estimated Power for IP     :     1.98451 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of bram_blk_mem_gen_v8_4_4 : entity is "zynq";
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of bram_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_ENA : integer;
-  attribute C_HAS_ENA of bram_blk_mem_gen_v8_4_4 : entity is 0;
+  attribute C_HAS_ENA of bram_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_ENB : integer;
   attribute C_HAS_ENB of bram_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_INJECTERR : integer;
@@ -3048,7 +3079,7 @@ entity bram_blk_mem_gen_v8_4_4 is
   attribute C_WRITE_DEPTH_B : integer;
   attribute C_WRITE_DEPTH_B of bram_blk_mem_gen_v8_4_4 : entity is 307200;
   attribute C_WRITE_MODE_A : string;
-  attribute C_WRITE_MODE_A of bram_blk_mem_gen_v8_4_4 : entity is "WRITE_FIRST";
+  attribute C_WRITE_MODE_A of bram_blk_mem_gen_v8_4_4 : entity is "NO_CHANGE";
   attribute C_WRITE_MODE_B : string;
   attribute C_WRITE_MODE_B of bram_blk_mem_gen_v8_4_4 : entity is "WRITE_FIRST";
   attribute C_WRITE_WIDTH_A : integer;
@@ -3140,6 +3171,7 @@ inst_blk_mem_gen: entity work.bram_blk_mem_gen_v8_4_4_synth
       clka => clka,
       dina(0) => dina(0),
       douta(0) => douta(0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -3150,6 +3182,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram is
   port (
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 18 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -3233,13 +3266,13 @@ architecture STRUCTURE of bram is
   attribute C_EN_SLEEP_PIN : integer;
   attribute C_EN_SLEEP_PIN of U0 : label is 0;
   attribute C_EST_POWER_SUMMARY : string;
-  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     2.28488 mW";
+  attribute C_EST_POWER_SUMMARY of U0 : label is "Estimated Power for IP     :     1.98451 mW";
   attribute C_FAMILY : string;
   attribute C_FAMILY of U0 : label is "zynq";
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of U0 : label is 0;
   attribute C_HAS_ENA : integer;
-  attribute C_HAS_ENA of U0 : label is 0;
+  attribute C_HAS_ENA of U0 : label is 1;
   attribute C_HAS_ENB : integer;
   attribute C_HAS_ENB of U0 : label is 0;
   attribute C_HAS_INJECTERR : integer;
@@ -3327,7 +3360,7 @@ architecture STRUCTURE of bram is
   attribute C_WRITE_DEPTH_B : integer;
   attribute C_WRITE_DEPTH_B of U0 : label is 307200;
   attribute C_WRITE_MODE_A : string;
-  attribute C_WRITE_MODE_A of U0 : label is "WRITE_FIRST";
+  attribute C_WRITE_MODE_A of U0 : label is "NO_CHANGE";
   attribute C_WRITE_MODE_B : string;
   attribute C_WRITE_MODE_B of U0 : label is "WRITE_FIRST";
   attribute C_WRITE_WIDTH_A : integer;
@@ -3341,6 +3374,7 @@ architecture STRUCTURE of bram is
   attribute x_interface_info of clka : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK";
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of clka : signal is "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1";
+  attribute x_interface_info of ena : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA EN";
   attribute x_interface_info of addra : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA ADDR";
   attribute x_interface_info of dina : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DIN";
   attribute x_interface_info of douta : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DOUT";
@@ -3359,7 +3393,7 @@ U0: entity work.bram_blk_mem_gen_v8_4_4
       douta(0) => douta(0),
       doutb(0) => NLW_U0_doutb_UNCONNECTED(0),
       eccpipece => '0',
-      ena => '0',
+      ena => ena,
       enb => '0',
       injectdbiterr => '0',
       injectsbiterr => '0',

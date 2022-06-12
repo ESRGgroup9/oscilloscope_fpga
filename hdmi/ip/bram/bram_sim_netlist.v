@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Sun Jun  5 23:03:59 2022
+// Date        : Sat Jun 11 12:19:40 2022
 // Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim /home/tomas/oscilloscope_fpga/hdmi/ip/bram/bram_sim_netlist.v
 // Design      : bram
@@ -15,11 +15,13 @@
 (* NotValidForBitStream *)
 module bram
    (clka,
+    ena,
     wea,
     addra,
     dina,
     douta);
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1" *) input clka;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA EN" *) input ena;
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA WE" *) input [0:0]wea;
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA ADDR" *) input [18:0]addra;
   (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORTA DIN" *) input [0:0]dina;
@@ -29,6 +31,7 @@ module bram
   wire clka;
   wire [0:0]dina;
   wire [0:0]douta;
+  wire ena;
   wire [0:0]wea;
   wire NLW_U0_dbiterr_UNCONNECTED;
   wire NLW_U0_rsta_busy_UNCONNECTED;
@@ -74,10 +77,10 @@ module bram
   (* C_EN_SAFETY_CKT = "0" *) 
   (* C_EN_SHUTDOWN_PIN = "0" *) 
   (* C_EN_SLEEP_PIN = "0" *) 
-  (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     2.28488 mW" *) 
+  (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     1.98451 mW" *) 
   (* C_FAMILY = "zynq" *) 
   (* C_HAS_AXI_ID = "0" *) 
-  (* C_HAS_ENA = "0" *) 
+  (* C_HAS_ENA = "1" *) 
   (* C_HAS_ENB = "0" *) 
   (* C_HAS_INJECTERR = "0" *) 
   (* C_HAS_MEM_OUTPUT_REGS_A = "0" *) 
@@ -121,7 +124,7 @@ module bram
   (* C_WEB_WIDTH = "1" *) 
   (* C_WRITE_DEPTH_A = "307200" *) 
   (* C_WRITE_DEPTH_B = "307200" *) 
-  (* C_WRITE_MODE_A = "WRITE_FIRST" *) 
+  (* C_WRITE_MODE_A = "NO_CHANGE" *) 
   (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
   (* C_WRITE_WIDTH_A = "1" *) 
   (* C_WRITE_WIDTH_B = "1" *) 
@@ -139,7 +142,7 @@ module bram
         .douta(douta),
         .doutb(NLW_U0_doutb_UNCONNECTED[0]),
         .eccpipece(1'b0),
-        .ena(1'b0),
+        .ena(ena),
         .enb(1'b0),
         .injectdbiterr(1'b0),
         .injectsbiterr(1'b0),
@@ -196,41 +199,48 @@ endmodule
 (* ORIG_REF_NAME = "bindec" *) 
 module bram_bindec
    (ena_array,
-    addra);
+    addra,
+    ena);
   output [0:0]ena_array;
   input [4:0]addra;
+  input ena;
 
   wire [4:0]addra;
+  wire ena;
   wire [0:0]ena_array;
 
-  LUT5 #(
-    .INIT(32'h01000000)) 
+  LUT6 #(
+    .INIT(64'h0000100000000000)) 
     ENOUT
-       (.I0(addra[3]),
+       (.I0(addra[0]),
         .I1(addra[2]),
-        .I2(addra[0]),
-        .I3(addra[1]),
-        .I4(addra[4]),
+        .I2(addra[1]),
+        .I3(ena),
+        .I4(addra[3]),
+        .I5(addra[4]),
         .O(ena_array));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_generic_cstr" *) 
 module bram_blk_mem_gen_generic_cstr
    (douta,
+    ena,
+    wea,
     clka,
     addra,
-    dina,
-    wea);
+    dina);
   output [0:0]douta;
+  input ena;
+  input [0:0]wea;
   input clka;
   input [18:0]addra;
   input [0:0]dina;
-  input [0:0]wea;
 
   wire [18:0]addra;
   wire clka;
   wire [0:0]dina;
   wire [0:0]douta;
+  wire ena;
   wire [18:18]ena_array;
   wire ram_douta;
   wire ram_ena__0_n_0;
@@ -246,6 +256,7 @@ module bram_blk_mem_gen_generic_cstr
 
   bram_bindec \bindec_a.bindec_inst_a 
        (.addra(addra[18:14]),
+        .ena(ena),
         .ena_array(ena_array));
   bram_blk_mem_gen_mux \has_mux_a.A 
        (.DOADO(\ramloop[5].ram.r_n_0 ),
@@ -256,34 +267,40 @@ module bram_blk_mem_gen_generic_cstr
         .\douta[0] (\ramloop[4].ram.r_n_0 ),
         .\douta[0]_0 (\ramloop[2].ram.r_n_0 ),
         .\douta[0]_1 (\ramloop[1].ram.r_n_0 ),
-        .\douta[0]_2 (ram_douta));
-  LUT3 #(
-    .INIT(8'h01)) 
+        .\douta[0]_2 (ram_douta),
+        .ena(ena),
+        .wea(wea));
+  LUT4 #(
+    .INIT(16'h0100)) 
     ram_ena
-       (.I0(addra[17]),
+       (.I0(addra[16]),
         .I1(addra[18]),
-        .I2(addra[16]),
+        .I2(addra[17]),
+        .I3(ena),
         .O(ram_ena_n_0));
-  LUT3 #(
-    .INIT(8'h10)) 
+  LUT4 #(
+    .INIT(16'h1000)) 
     ram_ena__0
        (.I0(addra[17]),
         .I1(addra[18]),
-        .I2(addra[16]),
+        .I2(ena),
+        .I3(addra[16]),
         .O(ram_ena__0_n_0));
-  LUT3 #(
-    .INIT(8'h10)) 
+  LUT4 #(
+    .INIT(16'h1000)) 
     ram_ena__1
-       (.I0(addra[18]),
-        .I1(addra[16]),
-        .I2(addra[17]),
+       (.I0(addra[16]),
+        .I1(addra[18]),
+        .I2(ena),
+        .I3(addra[17]),
         .O(ram_ena__1_n_0));
-  LUT3 #(
-    .INIT(8'h40)) 
+  LUT4 #(
+    .INIT(16'h2000)) 
     ram_ena__2
-       (.I0(addra[18]),
-        .I1(addra[17]),
-        .I2(addra[16]),
+       (.I0(ena),
+        .I1(addra[18]),
+        .I2(addra[17]),
+        .I3(addra[16]),
         .O(ram_ena__2_n_0));
   bram_blk_mem_gen_prim_width \ramloop[0].ram.r 
        (.DOUTA(ram_douta),
@@ -318,6 +335,7 @@ module bram_blk_mem_gen_generic_cstr
         .addra(addra),
         .clka(clka),
         .dina(dina),
+        .ena(ena),
         .wea(wea));
   bram_blk_mem_gen_prim_width__parameterized4 \ramloop[5].ram.r 
        (.DOADO(\ramloop[5].ram.r_n_0 ),
@@ -331,6 +349,8 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_mux" *) 
 module bram_blk_mem_gen_mux
    (douta,
+    ena,
+    wea,
     addra,
     clka,
     DOADO,
@@ -340,6 +360,8 @@ module bram_blk_mem_gen_mux
     \douta[0]_1 ,
     \douta[0]_2 );
   output [0:0]douta;
+  input ena;
+  input [0:0]wea;
   input [4:0]addra;
   input clka;
   input [0:0]DOADO;
@@ -360,7 +382,10 @@ module bram_blk_mem_gen_mux
   wire [0:0]\douta[0]_2 ;
   wire \douta[0]_INST_0_i_1_n_0 ;
   wire \douta[0]_INST_0_i_2_n_0 ;
+  wire ena;
+  wire \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ;
   wire [4:0]sel_pipe;
+  wire [0:0]wea;
 
   MUXF7 \douta[0]_INST_0 
        (.I0(\douta[0]_INST_0_i_1_n_0 ),
@@ -387,11 +412,17 @@ module bram_blk_mem_gen_mux
         .I4(\douta[0] ),
         .I5(sel_pipe[3]),
         .O(\douta[0]_INST_0_i_2_n_0 ));
+  LUT2 #(
+    .INIT(4'h2)) 
+    \no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1 
+       (.I0(ena),
+        .I1(wea),
+        .O(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe_reg[0] 
        (.C(clka),
-        .CE(1'b1),
+        .CE(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ),
         .D(addra[0]),
         .Q(sel_pipe[0]),
         .R(1'b0));
@@ -399,7 +430,7 @@ module bram_blk_mem_gen_mux
     .INIT(1'b0)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe_reg[1] 
        (.C(clka),
-        .CE(1'b1),
+        .CE(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ),
         .D(addra[1]),
         .Q(sel_pipe[1]),
         .R(1'b0));
@@ -407,7 +438,7 @@ module bram_blk_mem_gen_mux
     .INIT(1'b0)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe_reg[2] 
        (.C(clka),
-        .CE(1'b1),
+        .CE(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ),
         .D(addra[2]),
         .Q(sel_pipe[2]),
         .R(1'b0));
@@ -415,7 +446,7 @@ module bram_blk_mem_gen_mux
     .INIT(1'b0)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe_reg[3] 
        (.C(clka),
-        .CE(1'b1),
+        .CE(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ),
         .D(addra[3]),
         .Q(sel_pipe[3]),
         .R(1'b0));
@@ -423,7 +454,7 @@ module bram_blk_mem_gen_mux
     .INIT(1'b0)) 
     \no_softecc_sel_reg.ce_pri.sel_pipe_reg[4] 
        (.C(clka),
-        .CE(1'b1),
+        .CE(\no_softecc_sel_reg.ce_pri.sel_pipe[4]_i_1_n_0 ),
         .D(addra[4]),
         .Q(sel_pipe[4]),
         .R(1'b0));
@@ -559,17 +590,20 @@ module bram_blk_mem_gen_prim_width__parameterized3
     clka,
     addra,
     dina,
-    wea);
+    wea,
+    ena);
   output [0:0]\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram ;
   input clka;
   input [18:0]addra;
   input [0:0]dina;
   input [0:0]wea;
+  input ena;
 
   wire [0:0]\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram ;
   wire [18:0]addra;
   wire clka;
   wire [0:0]dina;
+  wire ena;
   wire [0:0]wea;
 
   bram_blk_mem_gen_prim_wrapper__parameterized3 \prim_noinit.ram 
@@ -577,6 +611,7 @@ module bram_blk_mem_gen_prim_width__parameterized3
         .addra(addra),
         .clka(clka),
         .dina(dina),
+        .ena(ena),
         .wea(wea));
 endmodule
 
@@ -826,8 +861,8 @@ module bram_blk_mem_gen_prim_wrapper
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_B 
@@ -1036,8 +1071,8 @@ module bram_blk_mem_gen_prim_wrapper
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_T 
@@ -1290,8 +1325,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized0
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_B 
@@ -1500,8 +1535,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized0
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_T 
@@ -1754,8 +1789,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized1
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_B 
@@ -1964,8 +1999,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized1
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_T 
@@ -2218,8 +2253,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized2
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_B 
@@ -2428,8 +2463,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized2
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.CASCADED_PRIM36.ram_T 
@@ -2473,18 +2508,21 @@ module bram_blk_mem_gen_prim_wrapper__parameterized3
     clka,
     addra,
     dina,
-    wea);
+    wea,
+    ena);
   output [0:0]\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_0 ;
   input clka;
   input [18:0]addra;
   input [0:0]dina;
   input [0:0]wea;
+  input ena;
 
   wire [0:0]\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_0 ;
   wire \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1_n_0 ;
   wire [18:0]addra;
   wire clka;
   wire [0:0]dina;
+  wire ena;
   wire [0:0]wea;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTA_UNCONNECTED ;
   wire \NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_CASCADEOUTB_UNCONNECTED ;
@@ -2670,8 +2708,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized3
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(36'h000000000),
     .SRVAL_B(36'h000000000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram 
@@ -2707,13 +2745,14 @@ module bram_blk_mem_gen_prim_wrapper__parameterized3
         .SBITERR(\NLW_DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_SBITERR_UNCONNECTED ),
         .WEA({wea,wea,wea,wea}),
         .WEBWE({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}));
-  LUT4 #(
-    .INIT(16'h0002)) 
+  LUT5 #(
+    .INIT(32'h00000020)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1 
        (.I0(addra[18]),
         .I1(addra[17]),
-        .I2(addra[15]),
+        .I2(ena),
         .I3(addra[16]),
+        .I4(addra[15]),
         .O(\DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM36.ram_i_1_n_0 ));
 endmodule
 
@@ -2840,8 +2879,8 @@ module bram_blk_mem_gen_prim_wrapper__parameterized4
     .SIM_DEVICE("7SERIES"),
     .SRVAL_A(18'h00000),
     .SRVAL_B(18'h00000),
-    .WRITE_MODE_A("WRITE_FIRST"),
-    .WRITE_MODE_B("WRITE_FIRST"),
+    .WRITE_MODE_A("NO_CHANGE"),
+    .WRITE_MODE_B("NO_CHANGE"),
     .WRITE_WIDTH_A(1),
     .WRITE_WIDTH_B(1)) 
     \DEVICE_7SERIES.NO_BMM_INFO.SP.SIMPLE_PRIM18.ram 
@@ -2872,20 +2911,23 @@ endmodule
 (* ORIG_REF_NAME = "blk_mem_gen_top" *) 
 module bram_blk_mem_gen_top
    (douta,
+    ena,
+    wea,
     clka,
     addra,
-    dina,
-    wea);
+    dina);
   output [0:0]douta;
+  input ena;
+  input [0:0]wea;
   input clka;
   input [18:0]addra;
   input [0:0]dina;
-  input [0:0]wea;
 
   wire [18:0]addra;
   wire clka;
   wire [0:0]dina;
   wire [0:0]douta;
+  wire ena;
   wire [0:0]wea;
 
   bram_blk_mem_gen_generic_cstr \valid.cstr 
@@ -2893,6 +2935,7 @@ module bram_blk_mem_gen_top
         .clka(clka),
         .dina(dina),
         .douta(douta),
+        .ena(ena),
         .wea(wea));
 endmodule
 
@@ -2903,8 +2946,8 @@ endmodule
 (* C_DISABLE_WARN_BHV_COLL = "0" *) (* C_DISABLE_WARN_BHV_RANGE = "0" *) (* C_ELABORATION_DIR = "./" *) 
 (* C_ENABLE_32BIT_ADDRESS = "0" *) (* C_EN_DEEPSLEEP_PIN = "0" *) (* C_EN_ECC_PIPE = "0" *) 
 (* C_EN_RDADDRA_CHG = "0" *) (* C_EN_RDADDRB_CHG = "0" *) (* C_EN_SAFETY_CKT = "0" *) 
-(* C_EN_SHUTDOWN_PIN = "0" *) (* C_EN_SLEEP_PIN = "0" *) (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     2.28488 mW" *) 
-(* C_FAMILY = "zynq" *) (* C_HAS_AXI_ID = "0" *) (* C_HAS_ENA = "0" *) 
+(* C_EN_SHUTDOWN_PIN = "0" *) (* C_EN_SLEEP_PIN = "0" *) (* C_EST_POWER_SUMMARY = "Estimated Power for IP     :     1.98451 mW" *) 
+(* C_FAMILY = "zynq" *) (* C_HAS_AXI_ID = "0" *) (* C_HAS_ENA = "1" *) 
 (* C_HAS_ENB = "0" *) (* C_HAS_INJECTERR = "0" *) (* C_HAS_MEM_OUTPUT_REGS_A = "0" *) 
 (* C_HAS_MEM_OUTPUT_REGS_B = "0" *) (* C_HAS_MUX_OUTPUT_REGS_A = "0" *) (* C_HAS_MUX_OUTPUT_REGS_B = "0" *) 
 (* C_HAS_REGCEA = "0" *) (* C_HAS_REGCEB = "0" *) (* C_HAS_RSTA = "0" *) 
@@ -2919,7 +2962,7 @@ endmodule
 (* C_USE_BYTE_WEA = "0" *) (* C_USE_BYTE_WEB = "0" *) (* C_USE_DEFAULT_DATA = "0" *) 
 (* C_USE_ECC = "0" *) (* C_USE_SOFTECC = "0" *) (* C_USE_URAM = "0" *) 
 (* C_WEA_WIDTH = "1" *) (* C_WEB_WIDTH = "1" *) (* C_WRITE_DEPTH_A = "307200" *) 
-(* C_WRITE_DEPTH_B = "307200" *) (* C_WRITE_MODE_A = "WRITE_FIRST" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
+(* C_WRITE_DEPTH_B = "307200" *) (* C_WRITE_MODE_A = "NO_CHANGE" *) (* C_WRITE_MODE_B = "WRITE_FIRST" *) 
 (* C_WRITE_WIDTH_A = "1" *) (* C_WRITE_WIDTH_B = "1" *) (* C_XDEVICEFAMILY = "zynq" *) 
 (* ORIG_REF_NAME = "blk_mem_gen_v8_4_4" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module bram_blk_mem_gen_v8_4_4
@@ -3055,6 +3098,7 @@ module bram_blk_mem_gen_v8_4_4
   wire clka;
   wire [0:0]dina;
   wire [0:0]douta;
+  wire ena;
   wire [0:0]wea;
 
   assign dbiterr = \<const0> ;
@@ -3128,26 +3172,30 @@ module bram_blk_mem_gen_v8_4_4
         .clka(clka),
         .dina(dina),
         .douta(douta),
+        .ena(ena),
         .wea(wea));
 endmodule
 
 (* ORIG_REF_NAME = "blk_mem_gen_v8_4_4_synth" *) 
 module bram_blk_mem_gen_v8_4_4_synth
    (douta,
+    ena,
+    wea,
     clka,
     addra,
-    dina,
-    wea);
+    dina);
   output [0:0]douta;
+  input ena;
+  input [0:0]wea;
   input clka;
   input [18:0]addra;
   input [0:0]dina;
-  input [0:0]wea;
 
   wire [18:0]addra;
   wire clka;
   wire [0:0]dina;
   wire [0:0]douta;
+  wire ena;
   wire [0:0]wea;
 
   bram_blk_mem_gen_top \gnbram.gnativebmg.native_blk_mem_gen 
@@ -3155,6 +3203,7 @@ module bram_blk_mem_gen_v8_4_4_synth
         .clka(clka),
         .dina(dina),
         .douta(douta),
+        .ena(ena),
         .wea(wea));
 endmodule
 `ifndef GLBL

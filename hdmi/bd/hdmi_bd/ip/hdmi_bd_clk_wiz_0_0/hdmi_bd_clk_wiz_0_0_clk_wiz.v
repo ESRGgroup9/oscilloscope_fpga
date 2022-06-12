@@ -56,9 +56,10 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _TMDSclk__250.00000______0.000______50.0______114.413____122.096
-// __pixclk__25.00000______0.000______50.0______181.315____122.096
-// writeclk___5.00000______0.000______50.0______249.501____122.096
+// _TMDSclk__250.00000______0.000______50.0______104.759_____96.948
+// __pixclk__25.00000______0.000______50.0______165.419_____96.948
+// writeclk__10.00000______0.000______50.0______197.700_____96.948
+// _readclk__50.00000______0.000______50.0______143.688_____96.948
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -74,6 +75,7 @@ module hdmi_bd_clk_wiz_0_0_clk_wiz
   output        TMDSclk,
   output        pixclk,
   output        writeclk,
+  output        readclk,
   // Status and control signals
   input         reset,
   input         clk_in1
@@ -99,7 +101,7 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
   wire        TMDSclk_hdmi_bd_clk_wiz_0_0;
   wire        pixclk_hdmi_bd_clk_wiz_0_0;
   wire        writeclk_hdmi_bd_clk_wiz_0_0;
-  wire        clk_out4_hdmi_bd_clk_wiz_0_0;
+  wire        readclk_hdmi_bd_clk_wiz_0_0;
   wire        clk_out5_hdmi_bd_clk_wiz_0_0;
   wire        clk_out6_hdmi_bd_clk_wiz_0_0;
   wire        clk_out7_hdmi_bd_clk_wiz_0_0;
@@ -114,7 +116,6 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
     wire clkout0b_unused;
    wire clkout1b_unused;
    wire clkout2b_unused;
-   wire clkout3_unused;
    wire clkout3b_unused;
    wire clkout4_unused;
   wire        clkout5_unused;
@@ -129,21 +130,25 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (5.000),
+    .CLKFBOUT_MULT_F      (8.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (2.500),
+    .CLKOUT0_DIVIDE_F     (4.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (25),
+    .CLKOUT1_DIVIDE       (40),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKOUT2_DIVIDE       (125),
+    .CLKOUT2_DIVIDE       (100),
     .CLKOUT2_PHASE        (0.000),
     .CLKOUT2_DUTY_CYCLE   (0.500),
     .CLKOUT2_USE_FINE_PS  ("FALSE"),
+    .CLKOUT3_DIVIDE       (20),
+    .CLKOUT3_PHASE        (0.000),
+    .CLKOUT3_DUTY_CYCLE   (0.500),
+    .CLKOUT3_USE_FINE_PS  ("FALSE"),
     .CLKIN1_PERIOD        (8.000))
   mmcm_adv_inst
     // Output clocks
@@ -156,7 +161,7 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
     .CLKOUT1B            (clkout1b_unused),
     .CLKOUT2             (writeclk_hdmi_bd_clk_wiz_0_0),
     .CLKOUT2B            (clkout2b_unused),
-    .CLKOUT3             (clkout3_unused),
+    .CLKOUT3             (readclk_hdmi_bd_clk_wiz_0_0),
     .CLKOUT3B            (clkout3b_unused),
     .CLKOUT4             (clkout4_unused),
     .CLKOUT5             (clkout5_unused),
@@ -214,6 +219,10 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
   BUFG clkout3_buf
    (.O   (writeclk),
     .I   (writeclk_hdmi_bd_clk_wiz_0_0));
+
+  BUFG clkout4_buf
+   (.O   (readclk),
+    .I   (readclk_hdmi_bd_clk_wiz_0_0));
 
 
 

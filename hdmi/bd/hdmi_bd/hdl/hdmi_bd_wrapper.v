@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Wed Jun  8 16:50:03 2022
+//Date        : Sun Jun 12 17:33:45 2022
 //Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target hdmi_bd_wrapper.bd
 //Design      : hdmi_bd_wrapper
@@ -15,6 +15,7 @@ module hdmi_bd_wrapper
     TMDSp,
     TMDSp_clock,
     clk,
+    led,
     reset,
     valBtns);
   output [2:0]TMDSn;
@@ -22,6 +23,7 @@ module hdmi_bd_wrapper
   output [2:0]TMDSp;
   output TMDSp_clock;
   input clk;
+  output [3:0]led;
   input reset;
   input [3:0]valBtns;
 
@@ -30,6 +32,7 @@ module hdmi_bd_wrapper
   wire [2:0]TMDSp;
   wire TMDSp_clock;
   wire clk;
+  wire [3:0]led;
   wire reset;
   wire [3:0]valBtns;
 
@@ -39,6 +42,7 @@ module hdmi_bd_wrapper
         .TMDSp(TMDSp),
         .TMDSp_clock(TMDSp_clock),
         .clk(clk),
+        .led(led),
         .reset(reset),
         .valBtns(valBtns));
 endmodule

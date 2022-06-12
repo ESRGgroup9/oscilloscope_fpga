@@ -11,44 +11,37 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="134300000001fs"></ZoomEndTime>
-      <Cursor1Time time="40810280000fs"></Cursor1Time>
+      <ZoomStartTime time="4008000fs"></ZoomStartTime>
+      <ZoomEndTime time="6570001fs"></ZoomEndTime>
+      <Cursor1Time time="5268000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="88"></NameColumnWidth>
-      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+      <NameColumnWidth column_width="146"></NameColumnWidth>
+      <ValueColumnWidth column_width="70"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="20" />
+   <WVObjectSize size="17" />
    <wave_markers>
       <marker label="" time="1228808000" />
       <marker label="" time="16800000000" />
+      <marker label="" time="4900000" />
+      <marker label="" time="5000000" />
+      <marker label="" time="5100000" />
+      <marker label="" time="5200000" />
+      <marker label="" time="5300000" />
+      <marker label="" time="5400000" />
+      <marker label="" time="5500000" />
    </wave_markers>
-   <wvobject type="logic" fp_name="/tb_controller/TMDSclk">
-      <obj_property name="ElementShortName">TMDSclk</obj_property>
-      <obj_property name="ObjectShortName">TMDSclk</obj_property>
+   <wvobject type="logic" fp_name="/tb_controller/clkRD">
+      <obj_property name="ElementShortName">clkRD</obj_property>
+      <obj_property name="ObjectShortName">clkRD</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/pixclk">
-      <obj_property name="ElementShortName">pixclk</obj_property>
-      <obj_property name="ObjectShortName">pixclk</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/writeclk">
-      <obj_property name="ElementShortName">writeclk</obj_property>
-      <obj_property name="ObjectShortName">writeclk</obj_property>
+   <wvobject type="logic" fp_name="/tb_controller/clkWR">
+      <obj_property name="ElementShortName">clkWR</obj_property>
+      <obj_property name="ObjectShortName">clkWR</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/tb_controller/rst">
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
-   </wvobject>
-   <wvobject fp_name="divider78" type="divider">
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/val">
-      <obj_property name="ElementShortName">val[15:0]</obj_property>
-      <obj_property name="ObjectShortName">val[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/readValEn">
-      <obj_property name="ElementShortName">readValEn</obj_property>
-      <obj_property name="ObjectShortName">readValEn</obj_property>
    </wvobject>
    <wvobject fp_name="divider79" type="divider">
    </wvobject>
@@ -83,6 +76,10 @@
    <wvobject type="group" fp_name="group30">
       <obj_property name="label">BRAM0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_controller/EN0">
+         <obj_property name="ElementShortName">EN0</obj_property>
+         <obj_property name="ObjectShortName">EN0</obj_property>
+      </wvobject>
       <wvobject type="logic" fp_name="/tb_controller/WE0">
          <obj_property name="ElementShortName">WE0</obj_property>
          <obj_property name="ObjectShortName">WE0</obj_property>
@@ -99,6 +96,10 @@
    <wvobject type="group" fp_name="group31">
       <obj_property name="label">BRAM1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/tb_controller/EN1">
+         <obj_property name="ElementShortName">EN1</obj_property>
+         <obj_property name="ObjectShortName">EN1</obj_property>
+      </wvobject>
       <wvobject type="logic" fp_name="/tb_controller/WE1">
          <obj_property name="ElementShortName">WE1</obj_property>
          <obj_property name="ObjectShortName">WE1</obj_property>
@@ -114,28 +115,92 @@
    </wvobject>
    <wvobject fp_name="divider89" type="divider">
    </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/state">
-      <obj_property name="ElementShortName">state[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   <wvobject type="group" fp_name="group42">
+      <obj_property name="label">FSM main</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_controller/state_fsm_main">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">state_fsm_main[1:0]</obj_property>
+         <obj_property name="ObjectShortName">state_fsm_main[1:0]</obj_property>
+         <obj_property name="label">state</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_controller/write_done">
+         <obj_property name="ElementShortName">write_done</obj_property>
+         <obj_property name="ObjectShortName">write_done</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/counterY_WR">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">counterY_WR[9:0]</obj_property>
+         <obj_property name="ObjectShortName">counterY_WR[9:0]</obj_property>
+         <obj_property name="label">counterY_WR</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/counterX_WR">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">counterX_WR[9:0]</obj_property>
+         <obj_property name="ObjectShortName">counterX_WR[9:0]</obj_property>
+         <obj_property name="label">counterX_WR</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/state_addrsel">
-      <obj_property name="ElementShortName">state_addrsel[1:0]</obj_property>
-      <obj_property name="ObjectShortName">state_addrsel[1:0]</obj_property>
+   <wvobject fp_name="divider78" type="divider">
    </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/addrWR">
-      <obj_property name="ElementShortName">addrWR[18:0]</obj_property>
-      <obj_property name="ObjectShortName">addrWR[18:0]</obj_property>
+   <wvobject type="array" fp_name="/tb_controller/valBtns">
+      <obj_property name="ElementShortName">valBtns[3:0]</obj_property>
+      <obj_property name="ObjectShortName">valBtns[3:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/addrSel">
-      <obj_property name="ElementShortName">addrSel</obj_property>
-      <obj_property name="ObjectShortName">addrSel</obj_property>
+   <wvobject type="group" fp_name="group104">
+      <obj_property name="label">FSM write</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_controller/val_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">val_r[15:0]</obj_property>
+         <obj_property name="ObjectShortName">val_r[15:0]</obj_property>
+         <obj_property name="label">val_r</obj_property>
+         <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/valSub_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">valSub_r[15:0]</obj_property>
+         <obj_property name="ObjectShortName">valSub_r[15:0]</obj_property>
+         <obj_property name="label">valSub_r</obj_property>
+         <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/valMul_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">valMul_r[24:0]</obj_property>
+         <obj_property name="ObjectShortName">valMul_r[24:0]</obj_property>
+         <obj_property name="label">valMul_r</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/valDiv_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">valDiv_r[24:0]</obj_property>
+         <obj_property name="ObjectShortName">valDiv_r[24:0]</obj_property>
+         <obj_property name="label">valIndex</obj_property>
+         <obj_property name="CustomSignalColor">#808080</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/addrMul_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">addrMul_r[27:0]</obj_property>
+         <obj_property name="ObjectShortName">addrMul_r[27:0]</obj_property>
+         <obj_property name="label">addrMul_r</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/addrAdd_r">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">addrAdd_r[27:0]</obj_property>
+         <obj_property name="ObjectShortName">addrAdd_r[27:0]</obj_property>
+         <obj_property name="label">addrWR</obj_property>
+         <obj_property name="CustomSignalColor">#808080</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/valAverage">
-      <obj_property name="ElementShortName">valAverage</obj_property>
-      <obj_property name="ObjectShortName">valAverage</obj_property>
+   <wvobject fp_name="divider71" type="divider">
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/valIndex">
-      <obj_property name="ElementShortName">valIndex</obj_property>
-      <obj_property name="ObjectShortName">valIndex</obj_property>
+   <wvobject fp_name="divider36" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/rowWR_w">
+      <obj_property name="ElementShortName">rowWR_w[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rowWR_w[9:0]</obj_property>
    </wvobject>
 </wave_config>

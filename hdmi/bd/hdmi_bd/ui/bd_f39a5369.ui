@@ -1,31 +1,34 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-317,-113",
+   "Default View_TopLeft":"-307,-137",
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port clk -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace port clk -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
 preplace port reset -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
-preplace port TMDSp_clock -pg 1 -lvl 3 -x 480 -y 120 -defaultsOSRD
-preplace port TMDSn_clock -pg 1 -lvl 3 -x 480 -y 140 -defaultsOSRD
-preplace portBus TMDSp -pg 1 -lvl 3 -x 480 -y 80 -defaultsOSRD
-preplace portBus TMDSn -pg 1 -lvl 3 -x 480 -y 100 -defaultsOSRD
-preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 170 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 90 -defaultsOSRD
-preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 340 -y 110 -defaultsOSRD
-preplace netloc hdmiIP_0_TMDSp 1 2 1 NJ 80
-preplace netloc hdmiIP_0_TMDSn 1 2 1 NJ 100
-preplace netloc hdmiIP_0_TMDSp_clk 1 2 1 NJ 120
-preplace netloc hdmiIP_0_TMDSn_clk 1 2 1 NJ 140
-preplace netloc clk_1 1 0 1 NJ 100
-preplace netloc reset_1 1 0 2 20 10 220J
-preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 70
-preplace netloc clk_wiz_0_pixclk 1 1 1 N 90
-preplace netloc clk_wiz_0_writeclk 1 1 1 N 110
-preplace netloc valBtns_0_1 1 0 2 NJ 170 220J
-levelinfo -pg 1 0 120 340 480
-pagesize -pg 1 -db -bbox -sgen -140 0 630 210
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 500 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 500 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 500 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 500 -y 80 -defaultsOSRD
+preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 500 -y 200 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 110 -defaultsOSRD
+preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 350 -y 130 -defaultsOSRD
+preplace netloc hdmiIP_0_TMDSp 1 2 1 NJ 60
+preplace netloc hdmiIP_0_TMDSn 1 2 1 NJ 80
+preplace netloc hdmiIP_0_TMDSp_clk 1 2 1 NJ 100
+preplace netloc hdmiIP_0_TMDSn_clk 1 2 1 NJ 120
+preplace netloc clk_1 1 0 1 NJ 120
+preplace netloc reset_1 1 0 2 20 20 220J
+preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 80
+preplace netloc clk_wiz_0_pixclk 1 1 1 N 100
+preplace netloc clk_wiz_0_writeclk 1 1 1 N 120
+preplace netloc valBtns_0_1 1 0 2 NJ 200 220J
+preplace netloc hdmiIP_0_led 1 2 1 NJ 200
+preplace netloc clk_wiz_0_readclk 1 1 1 N 140
+levelinfo -pg 1 0 120 350 500
+pagesize -pg 1 -db -bbox -sgen -140 0 650 260
 "
 }
 0

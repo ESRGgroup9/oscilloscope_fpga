@@ -8,8 +8,6 @@
 #define VAL_RES 16
 void func(uint16_t val)
 {
-	// uint16_t ival = 65535-val;
-	// uint32_t row = (((ival<<8) + (ival<<7) + (ival<<6) + (ival<<4) + (ival<<3) + (ival<<2) + (ival<<1) + ival) >> 16);
 	uint32_t row = (
 		((VAL_MAX - val)<<8) +
 		((VAL_MAX - val)<<7) +

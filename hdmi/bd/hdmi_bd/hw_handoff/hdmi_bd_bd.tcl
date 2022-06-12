@@ -161,6 +161,7 @@ proc create_root_design { parentCell } {
   set TMDSp [ create_bd_port -dir O -from 2 -to 0 TMDSp ]
   set TMDSp_clock [ create_bd_port -dir O -type clk TMDSp_clock ]
   set clk [ create_bd_port -dir I -type clk -freq_hz 125000000 clk ]
+  set led [ create_bd_port -dir O -from 3 -to 0 led ]
   set reset [ create_bd_port -dir I -type rst reset ]
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_HIGH} \
@@ -172,20 +173,24 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.CLKIN1_JITTER_PS {80.0} \
    CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {114.413} \
-   CONFIG.CLKOUT1_PHASE_ERROR {122.096} \
+   CONFIG.CLKOUT1_JITTER {104.759} \
+   CONFIG.CLKOUT1_PHASE_ERROR {96.948} \
    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {250} \
    CONFIG.CLKOUT2_DRIVES {BUFG} \
-   CONFIG.CLKOUT2_JITTER {181.315} \
-   CONFIG.CLKOUT2_PHASE_ERROR {122.096} \
+   CONFIG.CLKOUT2_JITTER {165.419} \
+   CONFIG.CLKOUT2_PHASE_ERROR {96.948} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {25} \
    CONFIG.CLKOUT2_USED {true} \
    CONFIG.CLKOUT3_DRIVES {BUFG} \
-   CONFIG.CLKOUT3_JITTER {249.501} \
-   CONFIG.CLKOUT3_PHASE_ERROR {122.096} \
-   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {5} \
+   CONFIG.CLKOUT3_JITTER {197.700} \
+   CONFIG.CLKOUT3_PHASE_ERROR {96.948} \
+   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {10} \
    CONFIG.CLKOUT3_USED {true} \
    CONFIG.CLKOUT4_DRIVES {BUFG} \
+   CONFIG.CLKOUT4_JITTER {143.688} \
+   CONFIG.CLKOUT4_PHASE_ERROR {96.948} \
+   CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {50} \
+   CONFIG.CLKOUT4_USED {true} \
    CONFIG.CLKOUT5_DRIVES {BUFG} \
    CONFIG.CLKOUT6_DRIVES {BUFG} \
    CONFIG.CLKOUT7_DRIVES {BUFG} \
@@ -193,17 +198,19 @@ proc create_root_design { parentCell } {
    CONFIG.CLK_OUT1_PORT {TMDSclk} \
    CONFIG.CLK_OUT2_PORT {pixclk} \
    CONFIG.CLK_OUT3_PORT {writeclk} \
+   CONFIG.CLK_OUT4_PORT {readclk} \
    CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
    CONFIG.MMCM_BANDWIDTH {OPTIMIZED} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {8.000} \
    CONFIG.MMCM_CLKIN1_PERIOD {8.000} \
-   CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {2.500} \
-   CONFIG.MMCM_CLKOUT1_DIVIDE {25} \
-   CONFIG.MMCM_CLKOUT2_DIVIDE {125} \
+   CONFIG.MMCM_CLKIN2_PERIOD {10.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {4.000} \
+   CONFIG.MMCM_CLKOUT1_DIVIDE {40} \
+   CONFIG.MMCM_CLKOUT2_DIVIDE {100} \
+   CONFIG.MMCM_CLKOUT3_DIVIDE {20} \
    CONFIG.MMCM_COMPENSATION {ZHOLD} \
    CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-   CONFIG.NUM_OUT_CLKS {3} \
+   CONFIG.NUM_OUT_CLKS {4} \
    CONFIG.PRIMITIVE {MMCM} \
    CONFIG.PRIM_IN_FREQ {125.000} \
    CONFIG.USE_LOCKED {false} \
@@ -219,11 +226,13 @@ proc create_root_design { parentCell } {
   connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins clk_wiz_0/clk_in1]
   connect_bd_net -net clk_wiz_0_TMDSclk [get_bd_pins clk_wiz_0/TMDSclk] [get_bd_pins hdmiIP_0/TMDSclk]
   connect_bd_net -net clk_wiz_0_pixclk [get_bd_pins clk_wiz_0/pixclk] [get_bd_pins hdmiIP_0/pixclk]
-  connect_bd_net -net clk_wiz_0_writeclk [get_bd_pins clk_wiz_0/writeclk] [get_bd_pins hdmiIP_0/writeclk]
+  connect_bd_net -net clk_wiz_0_readclk [get_bd_pins clk_wiz_0/readclk] [get_bd_pins hdmiIP_0/clkRD]
+  connect_bd_net -net clk_wiz_0_writeclk [get_bd_pins clk_wiz_0/writeclk] [get_bd_pins hdmiIP_0/clkWR]
   connect_bd_net -net hdmiIP_0_TMDSn [get_bd_ports TMDSn] [get_bd_pins hdmiIP_0/TMDSn]
   connect_bd_net -net hdmiIP_0_TMDSn_clk [get_bd_ports TMDSn_clock] [get_bd_pins hdmiIP_0/TMDSn_clk]
   connect_bd_net -net hdmiIP_0_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_0/TMDSp]
   connect_bd_net -net hdmiIP_0_TMDSp_clk [get_bd_ports TMDSp_clock] [get_bd_pins hdmiIP_0/TMDSp_clk]
+  connect_bd_net -net hdmiIP_0_led [get_bd_ports led] [get_bd_pins hdmiIP_0/led]
   connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins hdmiIP_0/rst]
   connect_bd_net -net valBtns_0_1 [get_bd_ports valBtns] [get_bd_pins hdmiIP_0/valBtns]
 

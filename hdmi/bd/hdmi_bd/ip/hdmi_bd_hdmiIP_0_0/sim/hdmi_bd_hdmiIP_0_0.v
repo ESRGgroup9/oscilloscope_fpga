@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 60
+// IP Revision: 87
 
 `timescale 1ns/1ps
 
@@ -57,24 +57,29 @@
 module hdmi_bd_hdmiIP_0_0 (
   TMDSclk,
   pixclk,
-  writeclk,
+  clkWR,
+  clkRD,
   rst,
-  valBtns,
   TMDSp,
   TMDSn,
   TMDSp_clk,
-  TMDSn_clk
+  TMDSn_clk,
+  valIndex,
+  addrWR,
+  wd,
+  valBtns,
+  led
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF clk, FREQ_HZ 250000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire TMDSclk;
 input wire pixclk;
-input wire writeclk;
+input wire clkWR;
+input wire clkRD;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
 input wire rst;
-input wire [3 : 0] valBtns;
 output wire [2 : 0] TMDSp;
 output wire [2 : 0] TMDSn;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSp_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_0_0_TMDSp_clk, INSERT_VIP 0" *)
@@ -83,21 +88,29 @@ output wire TMDSp_clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSn_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_0_0_TMDSn_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TMDSn_clk CLK" *)
 output wire TMDSn_clk;
+output wire [9 : 0] valIndex;
+output wire [18 : 0] addrWR;
+output wire wd;
+input wire [3 : 0] valBtns;
+output wire [3 : 0] led;
 
   hdmiIP #(
     .ADDR_WIDTH(19),
-    .VAL_RES(12),
-    .width(640),
-    .height(480)
+    .VAL_RES(12)
   ) inst (
     .TMDSclk(TMDSclk),
     .pixclk(pixclk),
-    .writeclk(writeclk),
+    .clkWR(clkWR),
+    .clkRD(clkRD),
     .rst(rst),
-    .valBtns(valBtns),
     .TMDSp(TMDSp),
     .TMDSn(TMDSn),
     .TMDSp_clk(TMDSp_clk),
-    .TMDSn_clk(TMDSn_clk)
+    .TMDSn_clk(TMDSn_clk),
+    .valIndex(valIndex),
+    .addrWR(addrWR),
+    .wd(wd),
+    .valBtns(valBtns),
+    .led(led)
   );
 endmodule
