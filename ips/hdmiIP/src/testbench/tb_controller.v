@@ -24,15 +24,15 @@ always #(5*`CLK_PERIOD/2) clkRD = ~clkRD;		// 50 MHz
 always #(25*`CLK_PERIOD/2) clkWR = ~clkWR; 		// 10 MHz
 
 initial begin
-		TMDSclk <= 1;
-		pixclk <= 1;
-		
-		clkRD <= 1;
-		clkWR <= 1;
+	TMDSclk <= 1;
+	pixclk <= 1;
+	
+	clkRD <= 1;
+	clkWR <= 1;
 
-		rst <= 1;
-		
-		#(`CLK_PERIOD*2) rst <= 0;
+	rst <= 1;
+	
+	#(`CLK_PERIOD*2) rst <= 0;
 end
 
 // ===========================================================================
@@ -40,6 +40,9 @@ end
 // ===========================================================================
 parameter ADDR_WIDTH = 19;  // log(width*height)/ log(2)
 parameter VAL_RES = 16;     // val resolution
+
+parameter LOG2_WIDTH 	= 10; // 1024
+parameter LOG2_HEIGHT 	= 9;  // 512
 
 // inputs
 reg [VAL_RES-1:0] inputval;
@@ -65,19 +68,21 @@ wire WD;
 
 // ======================= debug
 wire [1:0] state_fsm_main;
-wire [9:0] counterX_WR;
-wire [9:0] counterY_WR;
+wire [LOG2_WIDTH-1:0] counterX_WR;
+wire [LOG2_HEIGHT-1:0] counterY_WR;
 
 wire  [VAL_RES-1:0] valSub_r;
 wire  [VAL_RES+9-1:0] valMul_r;
 wire  [VAL_RES+9-1:0] valDiv_r;
 
-wire  [ADDR_WIDTH+9-1:0] addrMul_r;
-wire  [ADDR_WIDTH+9-1:0] addrAdd_r;
+wire  [ADDR_WIDTH-1:0] addrMul_r;
+wire  [ADDR_WIDTH-1:0] addrAdd_r;
 
 wire [VAL_RES-1:0] val_r;
 wire [9:0] rowWR_w;
 wire write_done;
+
+wire [9:0] addrWR_ready_counter;
 
 // ===========================================================================
 // 
@@ -124,8 +129,8 @@ always @(posedge clkWR) begin
 		valBtns <= 0;
 	end
 	else begin
-		// valBtns <= (valBtns == 15) ? 0 : valBtns + 1;
-		valBtns <= 15;
+		valBtns <= (valBtns == 15) ? 0 : valBtns + 1;
+		// valBtns <= 0;
 	end
 end
 
@@ -209,7 +214,7 @@ hdmiController #(
 
 	val_r,
 	rowWR_w,
-	write_done
+	addrWR_ready_counter
 );
 
 endmodule

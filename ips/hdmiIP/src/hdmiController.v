@@ -33,13 +33,18 @@ module hdmiController (
 
 	valSub_r,
 	valMul_r,
+
+	// valMul_w,
+
+	// valDiv_w,
 	valDiv_r,
 
 	addrMul_r,
 	addrAdd_r,
 
 	val_r,
-	rowWR_w
+	rowWR_w,
+	addrWR_ready_counter
 );
 
 parameter ADDR_WIDTH = 19;  // log(WIDTH*HEIGHT)/ log(2)
@@ -50,6 +55,9 @@ parameter VAL_MAX = 65535;
 
 parameter WIDTH 	= 640;
 parameter HEIGHT 	= 480;
+
+parameter LOG2_WIDTH 	= 10; // 1024
+parameter LOG2_HEIGHT 	= 9;  // 512
 
 // off screen area
 parameter OFFSCREEN_MAX_X = 800;
@@ -126,22 +134,27 @@ reg [1:0] nstate_fsm_main;
 // ===========================================================================
 
 wire [VAL_RES-1:0] valSub_w;
-wire [VAL_RES+9-1:0] valMul_w;
-wire [VAL_RES+9-1:0] valDiv_w;
+// input wire [VAL_RES+LOG2_HEIGHT-1:0] valMul_w;
+wire [VAL_RES+LOG2_HEIGHT-1:0] valMul_w;
+
+// input wire [VAL_RES+9-1:0] valDiv_w;
+// wire [VAL_RES+9-1:0] valDiv_w;
+wire [LOG2_HEIGHT-1:0] valDiv_w;
 
 output reg  [VAL_RES-1:0] valSub_r;
-output reg  [VAL_RES+9-1:0] valMul_r;
-output reg  [VAL_RES+9-1:0] valDiv_r;
+output reg  [VAL_RES+LOG2_HEIGHT-1:0] valMul_r;
+// output reg  [VAL_RES+9-1:0] valDiv_r;
+output reg  [LOG2_HEIGHT-1:0] valDiv_r;
 
-wire [ADDR_WIDTH+9-1:0] addrMul_w;
-wire [ADDR_WIDTH+9-1:0] addrAdd_w;
+wire [ADDR_WIDTH-1:0] addrMul_w;
+wire [ADDR_WIDTH-1:0] addrAdd_w;
 
-output reg  [ADDR_WIDTH+9-1:0] addrMul_r;
-output reg  [ADDR_WIDTH+9-1:0] addrAdd_r;
+output reg  [ADDR_WIDTH-1:0] addrMul_r;
+output reg  [ADDR_WIDTH-1:0] addrAdd_r;
 
 wire we_ctrl;
-output wire [9:0] rowWR_w;
-wire [9:0] valIndex_w;
+output wire [LOG2_HEIGHT-1:0] rowWR_w;
+wire [LOG2_HEIGHT-1:0] valIndex_w;
 output reg [VAL_RES-1:0] val_r;
 
 wire writeX_done;
@@ -149,8 +162,8 @@ wire writeY_done;
 output wire write_done;
 
 // counters
-output reg [9:0] counterX_WR;
-output reg [9:0] counterY_WR;
+output reg [LOG2_WIDTH-1:0] counterX_WR;
+output reg [LOG2_HEIGHT-1:0] counterY_WR;
 
 // bram control
 wire [ADDR_WIDTH-1:0] addrWR_w;
@@ -172,8 +185,8 @@ wire read_done;
 
 // counters
 wire [ADDR_WIDTH-1:0] counter_RD;
-reg [9:0] counterY_RD;
-reg [9:0] counterX_RD;
+reg [LOG2_WIDTH -1:0] counterX_RD;
+reg [LOG2_HEIGHT-1:0] counterY_RD;
 
 // bram control
 wire [ADDR_WIDTH-1:0] addrRD_w;
@@ -213,28 +226,46 @@ always @(*) begin
 	endcase
 end
 
-assign enWR = (is_state_main_S_CLEAN | is_state_main_S_WRITE);
+wire addrWR_ready;
+wire enWR_write;
+
+assign enWR = (is_state_main_S_CLEAN | (is_state_main_S_WRITE & enWR_write));
 
 // ===========================================================================
 // FSM write
 // ===========================================================================
 
+output reg [LOG2_WIDTH-1:0] addrWR_ready_counter;
+
+// waits 6 cycles due to addrWR pipeline before asserting EN
+assign enWR_write 	= ((addrWR_ready_counter > 6-1) & (addrWR_ready_counter < 6+WIDTH));
+
+// give extra cycle in order to compute addr(0) when EN comes up
+assign addrWR_ready = ((addrWR_ready_counter > 5-1) & (addrWR_ready_counter < 6+WIDTH));
+
 // counters
 always @(posedge clkWR) begin
-	if(rst | (state_fsm_main == FSM_MAIN_S_IDLE)) begin
+	if(rst | is_state_main_S_IDLE | write_done) begin
 		counterX_WR <= 0;
 		counterY_WR <= 0;
 	end
-	// else if(state_fsm_calc == FSM_CALC_S_WRITE) begin
-	// else if(is_state_main_S_WRITE & addrReady) begin
-	else begin
+	else if(is_state_main_S_CLEAN | is_state_main_S_WRITE & addrWR_ready) begin
 		// horizontal counter
 		counterX_WR <= (writeX_done) ? 0 : counterX_WR + 1;
-
+		
 		// vertical counter
 		if(writeX_done) begin
 			counterY_WR <= (writeY_done) ? 0 : counterY_WR + 1;
 		end
+	end
+end
+
+always @(posedge clkWR) begin
+	if(rst | is_state_main_S_IDLE | write_done) begin
+		addrWR_ready_counter <= 0;
+	end
+	else begin
+		addrWR_ready_counter <= addrWR_ready_counter + 1;
 	end
 end
 
@@ -245,7 +276,8 @@ assign writeY_done = (counterY_WR == (HEIGHT-1));
 // select correct write_done flag according to main FSM state
 mux2 #(1) writeDonemux(
 	writeX_done & writeY_done,		// on S_CLEAN
-	writeX_done,					// on S_WRITE
+	// writeX_done,					// on S_WRITE
+	(addrWR_ready_counter == 6+WIDTH-1),
 
 	is_state_main_S_WRITE,
 	write_done
@@ -253,25 +285,23 @@ mux2 #(1) writeDonemux(
 
 assign valSub_w = VAL_MAX - val_r;
 assign valMul_w = valSub_r * (HEIGHT-1);
-assign valDiv_w = valMul_r >> VAL_RES;			// valIndex
+assign valDiv_w = valMul_r >> VAL_RES;			// same as valIndex
 
 assign addrMul_w = rowWR_w * WIDTH;
-assign addrAdd_w = counterX_WR + addrMul_r;		// addrWR
+assign addrAdd_w = counterX_WR + addrMul_r;		// same as addrWR
 
 always @(posedge clkWR) begin
 	if(rst) begin
 		val_r <= {VAL_RES{1'b0}};
 
 		valSub_r <= {VAL_RES{1'b0}};
-		valMul_r <= {VAL_RES+9{1'b0}};
-		valDiv_r <= {VAL_RES+9{1'b0}};
+		valMul_r <= {VAL_RES+LOG2_HEIGHT{1'b0}};
+		valDiv_r <= {VAL_RES{1'b0}};
 
 		addrMul_r <= {ADDR_WIDTH{1'b0}};
 		addrAdd_r <= {ADDR_WIDTH{1'b0}};
-
-		// addrReadyCnt <= 0;
 	end
-	else if(is_state_main_S_WRITE) begin
+	else if(~is_state_main_S_IDLE) begin
 		val_r <= val;
 
 		valSub_r <= valSub_w; 
@@ -280,12 +310,8 @@ always @(posedge clkWR) begin
 
 		addrMul_r <= addrMul_w;
 		addrAdd_r <= addrAdd_w;
-
-		// addrReadyCnt <= addrReadyCnt + 1;
 	end
 end
-
-// assign addrReady = (addrReadyCnt == 6);
 
 // assign row to draw the new input value
 assign valIndex_w 	= valDiv_r;
@@ -294,7 +320,7 @@ assign valIndex_w 	= valDiv_r;
 assign addrWR_w 	= addrAdd_r;
 
 // select correct calculated row according to fsm_write state
-mux2 #(10) rowWRmux(
+mux2 #(LOG2_HEIGHT) rowWRmux(
 	counterY_WR,					// on S_CLEAN
 	valIndex_w,						// on S_WRITE
 
@@ -310,7 +336,7 @@ assign WE0 = ~addrSel & we_ctrl;
 assign WE1 = addrSel & we_ctrl;
 
 // define BRAM write data
-assign WD = is_state_main_S_WRITE;
+assign WD = is_state_main_S_WRITE & enWR_write;
 
 // ===========================================================================
 // control BRAMs for alternate read and write

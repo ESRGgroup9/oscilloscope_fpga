@@ -13,9 +13,12 @@ module hdmiIP(
 	TMDSn_clk,
 	
 	// --- debug
-	valIndex,
-	addrWR,
-	wd,
+	// valSub_o,
+	// valMul_o,
+	// valIndex_o,
+
+	// addrWR,
+	// wd,
 
 	valBtns,
 	led
@@ -23,6 +26,8 @@ module hdmiIP(
 
 parameter ADDR_WIDTH = 19;  	// log(width*height)/ log(2)
 parameter VAL_RES 	 = 16;     	// val resolution
+parameter LOG2_WIDTH 	= 10; // 1024 < 640
+parameter LOG2_HEIGHT 	= 9;  // 512 < 480
 
 // inputs
 input TMDSclk;
@@ -58,7 +63,8 @@ wire rd1;
 
 // ------------------ controller outputs
 // write data
-output wire wd;
+// output wire wd;
+wire wd;
 
 // bram enable
 wire en0;
@@ -76,28 +82,34 @@ wire [ADDR_WIDTH-1:0] addrB1;
 // debug
 // ===========================================================================
 
+wire  [VAL_RES-1:0] valSub_o;
+wire  [VAL_RES+LOG2_HEIGHT-1:0] valMul_o;
+wire [ADDR_WIDTH-1:0] addrWR;
+wire [9:0] valIndex_o;
+
 input wire [3:0] valBtns;
 output wire [3:0] led;
 
-output wire [ADDR_WIDTH-1:0] addrWR;
-output wire [9:0] valIndex;
-// output reg [9:0] valIndex;
 
-assign val = {valBtns, {12{1'b0}}};
+reg [9:0] valDiv_i;
+wire [VAL_RES+9-1:0] valMul_i;
 
-// always @(posedge writeclk) begin
-// 	if(rst) begin
-// 		valIndex <= 0;
-// 	end
-// 	else begin
-// 		valIndex <= valBtns<<5;
-// 	end
-// end
+assign val 		= {valBtns, {12{1'b0}}};
+assign valMul_i = {valBtns, {21{1'b0}}};
 
-assign led[0] = (valIndex == 0);   // btns = 0
-assign led[1] = (valIndex == 256); // btns = 8
-assign led[2] = (valIndex == 320); // btns = 10
-assign led[3] = (valIndex == 480); // btns = 15
+always @(posedge clkWR) begin
+	if(rst) begin
+		valDiv_i <= 0;
+	end
+	else begin
+		valDiv_i <= valDiv_i<<5;
+	end
+end
+
+assign led[0] = (valIndex_o == 0);   // btns = 0
+assign led[1] = (valIndex_o == 256); // btns = 8
+assign led[2] = (valIndex_o == 320); // btns = 10
+assign led[3] = (valIndex_o == 478); // btns = 15
 
 // ===========================================================================
 // 
@@ -130,11 +142,16 @@ hdmiController #(
 	.WE1(we1),
 	.addrB1(addrB1),
 	
-	.WD(wd),
+	.WD(wd)
 
 	// --- debug
-	.addrAdd_r(addrWR),
-	.valDiv_r(valIndex)
+	// .addrAdd_r(addrWR),
+	// .valMul_w(valMul_i),
+
+	// .valDiv_w(valDiv_i),
+	// .valSub_r(valSub_o),
+	// .valMul_r(valMul_o),
+	// .valDiv_r(valIndex_o)
 );
 
 bram bram0 (

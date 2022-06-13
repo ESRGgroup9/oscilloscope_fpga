@@ -18,6 +18,24 @@ proc validate_PARAM_VALUE.ADDR_WIDTH { PARAM_VALUE.ADDR_WIDTH } {
 	return true
 }
 
+proc update_PARAM_VALUE.LOG2_HEIGHT { PARAM_VALUE.LOG2_HEIGHT } {
+	# Procedure called to update LOG2_HEIGHT when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.LOG2_HEIGHT { PARAM_VALUE.LOG2_HEIGHT } {
+	# Procedure called to validate LOG2_HEIGHT
+	return true
+}
+
+proc update_PARAM_VALUE.LOG2_WIDTH { PARAM_VALUE.LOG2_WIDTH } {
+	# Procedure called to update LOG2_WIDTH when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.LOG2_WIDTH { PARAM_VALUE.LOG2_WIDTH } {
+	# Procedure called to validate LOG2_WIDTH
+	return true
+}
+
 proc update_PARAM_VALUE.VAL_RES { PARAM_VALUE.VAL_RES } {
 	# Procedure called to update VAL_RES when any of the dependent parameters in the arguments change
 }
@@ -36,5 +54,15 @@ proc update_MODELPARAM_VALUE.ADDR_WIDTH { MODELPARAM_VALUE.ADDR_WIDTH PARAM_VALU
 proc update_MODELPARAM_VALUE.VAL_RES { MODELPARAM_VALUE.VAL_RES PARAM_VALUE.VAL_RES } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.VAL_RES}] ${MODELPARAM_VALUE.VAL_RES}
+}
+
+proc update_MODELPARAM_VALUE.LOG2_WIDTH { MODELPARAM_VALUE.LOG2_WIDTH PARAM_VALUE.LOG2_WIDTH } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.LOG2_WIDTH}] ${MODELPARAM_VALUE.LOG2_WIDTH}
+}
+
+proc update_MODELPARAM_VALUE.LOG2_HEIGHT { MODELPARAM_VALUE.LOG2_HEIGHT PARAM_VALUE.LOG2_HEIGHT } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.LOG2_HEIGHT}] ${MODELPARAM_VALUE.LOG2_HEIGHT}
 }
 
