@@ -54,14 +54,14 @@ pagesize -pg 1 -db -bbox -sgen -140 0 660 300
 #  -string -flagsOSRD
 preplace port clk -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
 preplace port reset -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
-preplace port TMDSp_clock -pg 1 -lvl 3 -x 510 -y 100 -defaultsOSRD
-preplace port TMDSn_clock -pg 1 -lvl 3 -x 510 -y 120 -defaultsOSRD
-preplace portBus TMDSp -pg 1 -lvl 3 -x 510 -y 60 -defaultsOSRD
-preplace portBus TMDSn -pg 1 -lvl 3 -x 510 -y 80 -defaultsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 480 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 480 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 480 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 480 -y 80 -defaultsOSRD
 preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 240 -defaultsOSRD
-preplace portBus led -pg 1 -lvl 3 -x 510 -y 140 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 480 -y 140 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 120 -defaultsOSRD -pinY reset 0L -pinY clk_in1 20L -pinY TMDSclk 0R -pinY pixclk 20R -pinY writeclk 40R -pinY readclk 60R
-preplace inst hdmiIP_1 -pg 1 -lvl 2 -x 350 -y 60 -swap {1 2 3 4 0 5 6 7 8 9 10} -defaultsOSRD -pinY TMDSclk 60L -pinY pixclk 80L -pinY clkWR 100L -pinY clkRD 120L -pinY rst 0L -pinBusY TMDSp 0R -pinBusY TMDSn 20R -pinY TMDSp_clk 40R -pinY TMDSn_clk 60R -pinBusY valBtns 180L -pinBusY led 80R
+preplace inst hdmiIP_1 -pg 1 -lvl 2 -x 340 -y 60 -swap {1 2 3 4 0 5 6 7 8 9 10} -defaultsOSRD -pinY TMDSclk 60L -pinY pixclk 80L -pinY clkWR 100L -pinY clkRD 120L -pinY rst 0L -pinBusY TMDSp 0R -pinBusY TMDSn 20R -pinY TMDSp_clk 40R -pinY TMDSn_clk 60R -pinBusY valBtns 180L -pinBusY led 80R
 preplace netloc clk_1 1 0 1 NJ 140
 preplace netloc reset_1 1 0 2 20 60 NJ
 preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 120
@@ -74,11 +74,11 @@ preplace netloc hdmiIP_1_TMDSn 1 2 1 NJ 80
 preplace netloc hdmiIP_1_TMDSp_clk 1 2 1 NJ 100
 preplace netloc hdmiIP_1_TMDSn_clk 1 2 1 NJ 120
 preplace netloc hdmiIP_1_led 1 2 1 NJ 140
-levelinfo -pg 1 0 120 350 510
-pagesize -pg 1 -db -bbox -sgen -140 -10 660 300
+levelinfo -pg 1 0 120 340 480
+pagesize -pg 1 -db -bbox -sgen -140 0 630 300
 ",
    "Reduced Jogs_ScaleFactor":"1.0",
-   "Reduced Jogs_TopLeft":"-302,-113",
+   "Reduced Jogs_TopLeft":"-317,-92",
    "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
 preplace port clk -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD

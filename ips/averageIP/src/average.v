@@ -5,7 +5,7 @@ module average(
 	rst,
 
 	val,
-	val_average
+	val_avg
 );
 
 parameter VAL_RES = 16;
@@ -14,7 +14,7 @@ input wire clk;
 input wire rst;
 
 input wire [VAL_RES-1:0] val;
-output wire [VAL_RES-1:0] val_average;
+output wire [VAL_RES-1:0] val_avg;
 
 // ===========================================================================
 // internal registers
@@ -46,6 +46,6 @@ always @(posedge clk) begin
 	end
 end
 
-assign val_average = val_div_r;
+assign val_avg = val_div_r;
 
 endmodule
