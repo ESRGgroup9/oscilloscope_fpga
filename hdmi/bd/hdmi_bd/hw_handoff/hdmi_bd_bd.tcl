@@ -216,25 +216,22 @@ proc create_root_design { parentCell } {
    CONFIG.USE_LOCKED {false} \
  ] $clk_wiz_0
 
-  # Create instance: hdmiIP_0, and set properties
-  set hdmiIP_0 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_0 ]
-  set_property -dict [ list \
-   CONFIG.VAL_RES {12} \
- ] $hdmiIP_0
+  # Create instance: hdmiIP_1, and set properties
+  set hdmiIP_1 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_1 ]
 
   # Create port connections
   connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins clk_wiz_0/clk_in1]
-  connect_bd_net -net clk_wiz_0_TMDSclk [get_bd_pins clk_wiz_0/TMDSclk] [get_bd_pins hdmiIP_0/TMDSclk]
-  connect_bd_net -net clk_wiz_0_pixclk [get_bd_pins clk_wiz_0/pixclk] [get_bd_pins hdmiIP_0/pixclk]
-  connect_bd_net -net clk_wiz_0_readclk [get_bd_pins clk_wiz_0/readclk] [get_bd_pins hdmiIP_0/clkRD]
-  connect_bd_net -net clk_wiz_0_writeclk [get_bd_pins clk_wiz_0/writeclk] [get_bd_pins hdmiIP_0/clkWR]
-  connect_bd_net -net hdmiIP_0_TMDSn [get_bd_ports TMDSn] [get_bd_pins hdmiIP_0/TMDSn]
-  connect_bd_net -net hdmiIP_0_TMDSn_clk [get_bd_ports TMDSn_clock] [get_bd_pins hdmiIP_0/TMDSn_clk]
-  connect_bd_net -net hdmiIP_0_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_0/TMDSp]
-  connect_bd_net -net hdmiIP_0_TMDSp_clk [get_bd_ports TMDSp_clock] [get_bd_pins hdmiIP_0/TMDSp_clk]
-  connect_bd_net -net hdmiIP_0_led [get_bd_ports led] [get_bd_pins hdmiIP_0/led]
-  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins hdmiIP_0/rst]
-  connect_bd_net -net valBtns_0_1 [get_bd_ports valBtns] [get_bd_pins hdmiIP_0/valBtns]
+  connect_bd_net -net clk_wiz_0_TMDSclk [get_bd_pins clk_wiz_0/TMDSclk] [get_bd_pins hdmiIP_1/TMDSclk]
+  connect_bd_net -net clk_wiz_0_pixclk [get_bd_pins clk_wiz_0/pixclk] [get_bd_pins hdmiIP_1/pixclk]
+  connect_bd_net -net clk_wiz_0_readclk [get_bd_pins clk_wiz_0/readclk] [get_bd_pins hdmiIP_1/clkRD]
+  connect_bd_net -net clk_wiz_0_writeclk [get_bd_pins clk_wiz_0/writeclk] [get_bd_pins hdmiIP_1/clkWR]
+  connect_bd_net -net hdmiIP_1_TMDSn [get_bd_ports TMDSn] [get_bd_pins hdmiIP_1/TMDSn]
+  connect_bd_net -net hdmiIP_1_TMDSn_clk [get_bd_ports TMDSn_clock] [get_bd_pins hdmiIP_1/TMDSn_clk]
+  connect_bd_net -net hdmiIP_1_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_1/TMDSp]
+  connect_bd_net -net hdmiIP_1_TMDSp_clk [get_bd_ports TMDSp_clock] [get_bd_pins hdmiIP_1/TMDSp_clk]
+  connect_bd_net -net hdmiIP_1_led [get_bd_ports led] [get_bd_pins hdmiIP_1/led]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins hdmiIP_1/rst]
+  connect_bd_net -net valBtns_0_1 [get_bd_ports valBtns] [get_bd_pins hdmiIP_1/valBtns]
 
   # Create address segments
 

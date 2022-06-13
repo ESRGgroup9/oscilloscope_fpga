@@ -1,34 +1,115 @@
 {
-   "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-307,-137",
-   "ExpandedHierarchyInLayout":"",
-   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+   "ActiveEmotionalView":"Reduced Jogs",
+   "Color Coded_ExpandedHierarchyInLayout":"",
+   "Color Coded_Layout":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port clk -pg 1 -lvl 0 -x 0 -y 120 -defaultsOSRD
-preplace port reset -pg 1 -lvl 0 -x 0 -y 20 -defaultsOSRD
-preplace port TMDSp_clock -pg 1 -lvl 3 -x 500 -y 100 -defaultsOSRD
-preplace port TMDSn_clock -pg 1 -lvl 3 -x 500 -y 120 -defaultsOSRD
-preplace portBus TMDSp -pg 1 -lvl 3 -x 500 -y 60 -defaultsOSRD
-preplace portBus TMDSn -pg 1 -lvl 3 -x 500 -y 80 -defaultsOSRD
-preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 200 -defaultsOSRD
-preplace portBus led -pg 1 -lvl 3 -x 500 -y 200 -defaultsOSRD
-preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 110 -defaultsOSRD
-preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 350 -y 130 -defaultsOSRD
+preplace port clk -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 40 -defaultsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 510 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 510 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 510 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 510 -y 80 -defaultsOSRD
+preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 510 -y 240 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 130 -defaultsOSRD
+preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 350 -y 150 -defaultsOSRD
 preplace netloc hdmiIP_0_TMDSp 1 2 1 NJ 60
 preplace netloc hdmiIP_0_TMDSn 1 2 1 NJ 80
 preplace netloc hdmiIP_0_TMDSp_clk 1 2 1 NJ 100
 preplace netloc hdmiIP_0_TMDSn_clk 1 2 1 NJ 120
-preplace netloc clk_1 1 0 1 NJ 120
-preplace netloc reset_1 1 0 2 20 20 220J
-preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 80
-preplace netloc clk_wiz_0_pixclk 1 1 1 N 100
-preplace netloc clk_wiz_0_writeclk 1 1 1 N 120
-preplace netloc valBtns_0_1 1 0 2 NJ 200 220J
-preplace netloc hdmiIP_0_led 1 2 1 NJ 200
-preplace netloc clk_wiz_0_readclk 1 1 1 N 140
-levelinfo -pg 1 0 120 350 500
-pagesize -pg 1 -db -bbox -sgen -140 0 650 260
+preplace netloc clk_1 1 0 1 NJ 140
+preplace netloc reset_1 1 0 2 20 40 220J
+preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 100
+preplace netloc clk_wiz_0_pixclk 1 1 1 N 120
+preplace netloc clk_wiz_0_writeclk 1 1 1 N 140
+preplace netloc valBtns_0_1 1 0 2 NJ 220 220J
+preplace netloc hdmiIP_0_led 1 2 1 NJ 240
+preplace netloc clk_wiz_0_readclk 1 1 1 N 160
+preplace netloc valSub_o 1 2 1 N 140
+preplace netloc valMul_o 1 2 1 N 160
+preplace netloc valIndex_o 1 2 1 N 180
+preplace netloc addrWR 1 2 1 N 200
+preplace netloc wd 1 2 1 N 220
+levelinfo -pg 1 0 120 350 510
+pagesize -pg 1 -db -bbox -sgen -140 0 660 300
+",
+   "Color Coded_ScaleFactor":"1.0",
+   "Color Coded_TopLeft":"-302,-91",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-202,-24",
+   "Display-PortTypeClock":"true",
+   "Display-PortTypeOthers":"true",
+   "Display-PortTypeReset":"true",
+   "ExpandedHierarchyInLayout":"",
+   "Grouping and No Loops_ScaleFactor":"1.0",
+   "Grouping and No Loops_TopLeft":"-351,-74",
+   "Interfaces View_Layers":"/clk_wiz_0_TMDSclk:false|/clk_wiz_0_readclk:false|/clk_1:false|/clk_wiz_0_writeclk:false|/clk_wiz_0_pixclk:false|/hdmiIP_0_TMDSn_clk:false|/reset_1:false|/hdmiIP_0_TMDSp_clk:false|",
+   "Interfaces View_ScaleFactor":"1.0",
+   "Interfaces View_TopLeft":"-518,-154",
+   "No Loops_ScaleFactor":"1.0",
+   "No Loops_TopLeft":"-322,-34",
+   "Reduced Jogs_ExpandedHierarchyInLayout":"",
+   "Reduced Jogs_Layers":"/clk_wiz_0_TMDSclk:true|/clk_wiz_0_readclk:true|/clk_1:true|/clk_wiz_0_writeclk:true|/clk_wiz_0_pixclk:true|/hdmiIP_0_TMDSn_clk:true|/reset_1:true|/hdmiIP_0_TMDSp_clk:true|",
+   "Reduced Jogs_Layout":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port clk -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 510 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 510 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 510 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 510 -y 80 -defaultsOSRD
+preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 240 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 510 -y 140 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 120 -y 120 -defaultsOSRD -pinY reset 0L -pinY clk_in1 20L -pinY TMDSclk 0R -pinY pixclk 20R -pinY writeclk 40R -pinY readclk 60R
+preplace inst hdmiIP_1 -pg 1 -lvl 2 -x 350 -y 60 -swap {1 2 3 4 0 5 6 7 8 9 10} -defaultsOSRD -pinY TMDSclk 60L -pinY pixclk 80L -pinY clkWR 100L -pinY clkRD 120L -pinY rst 0L -pinBusY TMDSp 0R -pinBusY TMDSn 20R -pinY TMDSp_clk 40R -pinY TMDSn_clk 60R -pinBusY valBtns 180L -pinBusY led 80R
+preplace netloc clk_1 1 0 1 NJ 140
+preplace netloc reset_1 1 0 2 20 60 NJ
+preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 120
+preplace netloc clk_wiz_0_pixclk 1 1 1 N 140
+preplace netloc clk_wiz_0_writeclk 1 1 1 N 160
+preplace netloc valBtns_0_1 1 0 2 NJ 240 NJ
+preplace netloc clk_wiz_0_readclk 1 1 1 N 180
+preplace netloc hdmiIP_1_TMDSp 1 2 1 NJ 60
+preplace netloc hdmiIP_1_TMDSn 1 2 1 NJ 80
+preplace netloc hdmiIP_1_TMDSp_clk 1 2 1 NJ 100
+preplace netloc hdmiIP_1_TMDSn_clk 1 2 1 NJ 120
+preplace netloc hdmiIP_1_led 1 2 1 NJ 140
+levelinfo -pg 1 0 120 350 510
+pagesize -pg 1 -db -bbox -sgen -140 -10 660 300
+",
+   "Reduced Jogs_ScaleFactor":"1.0",
+   "Reduced Jogs_TopLeft":"-302,-113",
+   "guistr":"# # String gsaved with Nlview 7.0.21  2019-05-29 bk=1.5064 VDI=41 GEI=36 GUI=JA:9.0 TLS
+#  -string -flagsOSRD
+preplace port clk -pg 1 -lvl 0 -x 0 -y 140 -defaultsOSRD
+preplace port reset -pg 1 -lvl 0 -x 0 -y 40 -defaultsOSRD
+preplace port TMDSp_clock -pg 1 -lvl 3 -x 710 -y 100 -defaultsOSRD
+preplace port TMDSn_clock -pg 1 -lvl 3 -x 710 -y 120 -defaultsOSRD
+preplace portBus TMDSp -pg 1 -lvl 3 -x 710 -y 60 -defaultsOSRD
+preplace portBus TMDSn -pg 1 -lvl 3 -x 710 -y 80 -defaultsOSRD
+preplace portBus valBtns -pg 1 -lvl 0 -x 0 -y 220 -defaultsOSRD
+preplace portBus led -pg 1 -lvl 3 -x 710 -y 240 -defaultsOSRD
+preplace inst clk_wiz_0 -pg 1 -lvl 1 -x 320 -y 130 -defaultsOSRD
+preplace inst hdmiIP_0 -pg 1 -lvl 2 -x 550 -y 150 -defaultsOSRD
+preplace netloc hdmiIP_0_TMDSp 1 2 1 NJ 60
+preplace netloc hdmiIP_0_TMDSn 1 2 1 NJ 80
+preplace netloc hdmiIP_0_TMDSp_clk 1 2 1 NJ 100
+preplace netloc hdmiIP_0_TMDSn_clk 1 2 1 NJ 120
+preplace netloc clk_1 1 0 1 NJ 140
+preplace netloc reset_1 1 0 2 20 40 420J
+preplace netloc clk_wiz_0_TMDSclk 1 1 1 N 100
+preplace netloc clk_wiz_0_pixclk 1 1 1 N 120
+preplace netloc clk_wiz_0_writeclk 1 1 1 N 140
+preplace netloc valBtns_0_1 1 0 2 NJ 220 420J
+preplace netloc hdmiIP_0_led 1 2 1 NJ 240
+preplace netloc clk_wiz_0_readclk 1 1 1 N 160
+preplace netloc valSub_o 1 2 1 N 140
+preplace netloc valMul_o 1 2 1 N 160
+preplace netloc valIndex_o 1 2 1 N 180
+preplace netloc addrWR 1 2 1 N 200
+preplace netloc wd 1 2 1 N 220
+levelinfo -pg 1 0 320 550 710
+pagesize -pg 1 -db -bbox -sgen -140 -110 860 360
 "
 }
 0

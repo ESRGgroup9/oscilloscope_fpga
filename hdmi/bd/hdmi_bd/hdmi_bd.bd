@@ -10,7 +10,7 @@
     },
     "design_tree": {
       "clk_wiz_0": "",
-      "hdmiIP_0": ""
+      "hdmiIP_1": ""
     },
     "ports": {
       "clk": {
@@ -62,7 +62,7 @@
         "direction": "O",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "hdmi_bd_hdmiIP_0_0_TMDSp_clk",
+            "value": "hdmi_bd_hdmiIP_1_0_TMDSp_clk",
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
@@ -84,7 +84,7 @@
         "direction": "O",
         "parameters": {
           "CLK_DOMAIN": {
-            "value": "hdmi_bd_hdmiIP_0_0_TMDSn_clk",
+            "value": "hdmi_bd_hdmiIP_1_0_TMDSn_clk",
             "value_src": "default_prop"
           },
           "FREQ_HZ": {
@@ -248,41 +248,12 @@
           }
         }
       },
-      "hdmiIP_0": {
+      "hdmiIP_1": {
         "vlnv": "user.org:user:hdmiIP:1.0",
-        "xci_name": "hdmi_bd_hdmiIP_0_0",
-        "parameters": {
-          "VAL_RES": {
-            "value": "12"
-          }
-        }
+        "xci_name": "hdmi_bd_hdmiIP_1_0"
       }
     },
     "nets": {
-      "hdmiIP_0_TMDSp": {
-        "ports": [
-          "hdmiIP_0/TMDSp",
-          "TMDSp"
-        ]
-      },
-      "hdmiIP_0_TMDSn": {
-        "ports": [
-          "hdmiIP_0/TMDSn",
-          "TMDSn"
-        ]
-      },
-      "hdmiIP_0_TMDSp_clk": {
-        "ports": [
-          "hdmiIP_0/TMDSp_clk",
-          "TMDSp_clock"
-        ]
-      },
-      "hdmiIP_0_TMDSn_clk": {
-        "ports": [
-          "hdmiIP_0/TMDSn_clk",
-          "TMDSn_clock"
-        ]
-      },
       "clk_1": {
         "ports": [
           "clk",
@@ -293,31 +264,31 @@
         "ports": [
           "reset",
           "clk_wiz_0/reset",
-          "hdmiIP_0/rst"
+          "hdmiIP_1/rst"
         ]
       },
       "clk_wiz_0_TMDSclk": {
         "ports": [
           "clk_wiz_0/TMDSclk",
-          "hdmiIP_0/TMDSclk"
+          "hdmiIP_1/TMDSclk"
         ]
       },
       "clk_wiz_0_pixclk": {
         "ports": [
           "clk_wiz_0/pixclk",
-          "hdmiIP_0/pixclk"
+          "hdmiIP_1/pixclk"
         ]
       },
       "clk_wiz_0_writeclk": {
         "ports": [
           "clk_wiz_0/writeclk",
-          "hdmiIP_0/clkWR"
+          "hdmiIP_1/clkWR"
         ]
       },
       "valBtns_0_1": {
         "ports": [
           "valBtns",
-          "hdmiIP_0/valBtns"
+          "hdmiIP_1/valBtns"
         ]
       },
       "row_WR": {
@@ -330,16 +301,90 @@
           }
         }
       },
-      "hdmiIP_0_led": {
-        "ports": [
-          "hdmiIP_0/led",
-          "led"
-        ]
-      },
       "clk_wiz_0_readclk": {
         "ports": [
           "clk_wiz_0/readclk",
-          "hdmiIP_0/clkRD"
+          "hdmiIP_1/clkRD"
+        ]
+      },
+      "addrWR_1": {
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "wd_1": {
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "valMul_o_1": {
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "valIndex_o_1": {
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "valSub_o_1": {
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "hdmiIP_1_TMDSp": {
+        "ports": [
+          "hdmiIP_1/TMDSp",
+          "TMDSp"
+        ]
+      },
+      "hdmiIP_1_TMDSn": {
+        "ports": [
+          "hdmiIP_1/TMDSn",
+          "TMDSn"
+        ]
+      },
+      "hdmiIP_1_TMDSp_clk": {
+        "ports": [
+          "hdmiIP_1/TMDSp_clk",
+          "TMDSp_clock"
+        ]
+      },
+      "hdmiIP_1_TMDSn_clk": {
+        "ports": [
+          "hdmiIP_1/TMDSn_clk",
+          "TMDSn_clock"
+        ]
+      },
+      "hdmiIP_1_led": {
+        "ports": [
+          "hdmiIP_1/led",
+          "led"
         ]
       }
     }

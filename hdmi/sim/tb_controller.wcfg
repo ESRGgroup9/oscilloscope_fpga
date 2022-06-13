@@ -11,25 +11,21 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="4008000fs"></ZoomStartTime>
-      <ZoomEndTime time="6570001fs"></ZoomEndTime>
-      <Cursor1Time time="5268000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="25860001fs"></ZoomEndTime>
+      <Cursor1Time time="8320000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="146"></NameColumnWidth>
-      <ValueColumnWidth column_width="70"></ValueColumnWidth>
+      <NameColumnWidth column_width="138"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="18" />
    <wave_markers>
       <marker label="" time="1228808000" />
       <marker label="" time="16800000000" />
       <marker label="" time="4900000" />
-      <marker label="" time="5000000" />
-      <marker label="" time="5100000" />
-      <marker label="" time="5200000" />
-      <marker label="" time="5300000" />
+      <marker label="" time="6200000" />
       <marker label="" time="5400000" />
-      <marker label="" time="5500000" />
    </wave_markers>
    <wvobject type="logic" fp_name="/tb_controller/clkRD">
       <obj_property name="ElementShortName">clkRD</obj_property>
@@ -76,6 +72,7 @@
    <wvobject type="group" fp_name="group30">
       <obj_property name="label">BRAM0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/tb_controller/EN0">
          <obj_property name="ElementShortName">EN0</obj_property>
          <obj_property name="ObjectShortName">EN0</obj_property>
@@ -194,6 +191,10 @@
          <obj_property name="CustomSignalColor">#808080</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_controller/addrWR_ready_counter">
+      <obj_property name="ElementShortName">addrWR_ready_counter[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addrWR_ready_counter[9:0]</obj_property>
    </wvobject>
    <wvobject fp_name="divider71" type="divider">
    </wvobject>

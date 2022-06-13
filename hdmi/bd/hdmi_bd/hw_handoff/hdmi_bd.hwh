@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jun 12 17:33:48 2022" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jun 13 18:07:16 2022" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo:part0:2.0" DEVICE="7z010" NAME="hdmi_bd" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -12,37 +12,37 @@
     <PORT DIR="I" NAME="reset" SIGIS="rst" SIGNAME="External_Ports_reset">
       <CONNECTIONS>
         <CONNECTION INSTANCE="clk_wiz_0" PORT="reset"/>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="rst"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="rst"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="2" NAME="TMDSp" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_TMDSp">
+    <PORT DIR="O" LEFT="2" NAME="TMDSp" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_TMDSp">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSp"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="TMDSp"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="2" NAME="TMDSn" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_TMDSn">
+    <PORT DIR="O" LEFT="2" NAME="TMDSn" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_TMDSn">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSn"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="TMDSn"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSp_clock" SIGIS="clk" SIGNAME="hdmiIP_0_TMDSp_clk">
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSp_clock" SIGIS="clk" SIGNAME="hdmiIP_1_TMDSp_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSp_clk"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="TMDSp_clk"/>
       </CONNECTIONS>
     </PORT>
-    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSn_clock" SIGIS="clk" SIGNAME="hdmiIP_0_TMDSn_clk">
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSn_clock" SIGIS="clk" SIGNAME="hdmiIP_1_TMDSn_clk">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSn_clk"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="TMDSn_clk"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" LEFT="3" NAME="valBtns" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_valBtns">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="valBtns"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="valBtns"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="3" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_led">
+    <PORT DIR="O" LEFT="3" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_led">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_0" PORT="led"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="led"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -640,33 +640,35 @@
         </PORT>
         <PORT CLKFREQUENCY="250000000" DIR="O" NAME="TMDSclk" SIGIS="clk" SIGNAME="clk_wiz_0_TMDSclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSclk"/>
+            <CONNECTION INSTANCE="hdmiIP_1" PORT="TMDSclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="25000000" DIR="O" NAME="pixclk" SIGIS="clk" SIGNAME="clk_wiz_0_pixclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="pixclk"/>
+            <CONNECTION INSTANCE="hdmiIP_1" PORT="pixclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="10000000" DIR="O" NAME="writeclk" SIGIS="clk" SIGNAME="clk_wiz_0_writeclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="clkWR"/>
+            <CONNECTION INSTANCE="hdmiIP_1" PORT="clkWR"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="readclk" SIGIS="clk" SIGNAME="clk_wiz_0_readclk">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="clkRD"/>
+            <CONNECTION INSTANCE="hdmiIP_1" PORT="clkRD"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="87" FULLNAME="/hdmiIP_0" HWVERSION="1.0" INSTANCE="hdmiIP_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
+    <MODULE COREREVISION="105" FULLNAME="/hdmiIP_1" HWVERSION="1.0" INSTANCE="hdmiIP_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="ADDR_WIDTH" VALUE="19"/>
-        <PARAMETER NAME="VAL_RES" VALUE="12"/>
-        <PARAMETER NAME="Component_Name" VALUE="hdmi_bd_hdmiIP_0_0"/>
+        <PARAMETER NAME="VAL_RES" VALUE="16"/>
+        <PARAMETER NAME="LOG2_WIDTH" VALUE="10"/>
+        <PARAMETER NAME="LOG2_HEIGHT" VALUE="9"/>
+        <PARAMETER NAME="Component_Name" VALUE="hdmi_bd_hdmiIP_1_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -695,35 +697,32 @@
             <CONNECTION INSTANCE="External_Ports" PORT="reset"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="TMDSp" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_TMDSp">
+        <PORT DIR="O" LEFT="2" NAME="TMDSp" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_TMDSp">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TMDSp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="2" NAME="TMDSn" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_TMDSn">
+        <PORT DIR="O" LEFT="2" NAME="TMDSn" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_TMDSn">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TMDSn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSp_clk" SIGIS="clk" SIGNAME="hdmiIP_0_TMDSp_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSp_clk" SIGIS="clk" SIGNAME="hdmiIP_1_TMDSp_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TMDSp_clock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSn_clk" SIGIS="clk" SIGNAME="hdmiIP_0_TMDSn_clk">
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSn_clk" SIGIS="clk" SIGNAME="hdmiIP_1_TMDSn_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="TMDSn_clock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="9" NAME="valIndex" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="18" NAME="addrWR" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" NAME="wd" SIGIS="undef"/>
         <PORT DIR="I" LEFT="3" NAME="valBtns" RIGHT="0" SIGIS="undef" SIGNAME="External_Ports_valBtns">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="valBtns"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_0_led">
+        <PORT DIR="O" LEFT="3" NAME="led" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_led">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="led"/>
           </CONNECTIONS>

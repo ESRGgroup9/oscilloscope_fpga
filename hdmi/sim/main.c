@@ -6,22 +6,35 @@
 
 #define VAL_MAX 65535
 #define VAL_RES 16
+
+#define WIDTH 640
+#define HEIGHT 480
+
+// #define WIDTH 8
+// #define HEIGHT 6
+
 void func(uint16_t val)
 {
-	uint32_t row = (
-		((VAL_MAX - val)<<8) +
-		((VAL_MAX - val)<<7) +
-		((VAL_MAX - val)<<6) +
-		((VAL_MAX - val)<<4) +
-		((VAL_MAX - val)<<3) +
-		((VAL_MAX - val)<<2) +
-		((VAL_MAX - val)<<1) +
-		(VAL_MAX - val)
-	) >> VAL_RES;
+	// uint32_t row = (
+	// 	((VAL_MAX - val)<<8) +
+	// 	((VAL_MAX - val)<<7) +
+	// 	((VAL_MAX - val)<<6) +
+	// 	((VAL_MAX - val)<<4) +
+	// 	((VAL_MAX - val)<<3) +
+	// 	((VAL_MAX - val)<<2) +
+	// 	((VAL_MAX - val)<<1) +
+	// 	(VAL_MAX - val)
+	// ) >> VAL_RES;
+	uint32_t sub = (VAL_MAX - val);
+	uint32_t mul = sub * (HEIGHT-1);
+	uint32_t div = mul >> VAL_RES;
 
-	uint32_t addr = (row << 9) + (row << 7);
+	// uint32_t row = ((VAL_MAX - val) * (HEIGHT-1)) >> VAL_RES;
+	// uint32_t addr = (row << 9) + (row << 7);
+	uint32_t addr = 0 + div*WIDTH;
 
-	printf("val = %5d\t index = %3d\t addr = %d to %d\n", val, row, addr, addr + 640-1);
+	// printf("val = %5d\t index = %3d\t addr = %d to %d\n", val, row, addr, addr + WIDTH-1);
+	printf("val(%5d) sub(%5d) mul(%8d) div(%3d) addr %d to %d\n", val, sub, mul, div, addr, addr + WIDTH-1);
 }
 
 int main(int argc, char *argv[])
@@ -32,7 +45,14 @@ int main(int argc, char *argv[])
 	uint16_t row;
 
 	if(argc<2) return 1;
-	func(atoi(argv[1]));
+	// func(atoi(argv[1]));
+
+	for(int i = 0; i < 16; i++)
+	{
+		printf("[%5d] ", i);
+		func(i<<12);
+	}
+	
 	return 0;
 
 	fp = fopen(OUTPUT_FILENAME, "w");
