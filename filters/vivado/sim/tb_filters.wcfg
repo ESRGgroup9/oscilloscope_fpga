@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="47756333fs"></ZoomStartTime>
-      <ZoomEndTime time="48730334fs"></ZoomEndTime>
-      <Cursor1Time time="48568000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="195601fs"></ZoomEndTime>
+      <Cursor1Time time="56000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="174"></NameColumnWidth>
+      <NameColumnWidth column_width="170"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="11" />
@@ -54,6 +54,10 @@
       <obj_property name="label">RBUF signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/tb_filters/rbuf_start">
+         <obj_property name="ElementShortName">rbuf_start</obj_property>
+         <obj_property name="ObjectShortName">rbuf_start</obj_property>
+      </wvobject>
       <wvobject type="logic" fp_name="/tb_filters/rbuf_en">
          <obj_property name="ElementShortName">rbuf_en</obj_property>
          <obj_property name="ObjectShortName">rbuf_en</obj_property>
@@ -94,6 +98,14 @@
       <wvobject type="logic" fp_name="/tb_filters/filt_done">
          <obj_property name="ElementShortName">filt_done</obj_property>
          <obj_property name="ObjectShortName">filt_done</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_filters/lpf_x_ant_ce">
+         <obj_property name="ElementShortName">lpf_x_ant_ce</obj_property>
+         <obj_property name="ObjectShortName">lpf_x_ant_ce</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/tb_filters/lpf_xcoefs_ce">
+         <obj_property name="ElementShortName">lpf_xcoefs_ce</obj_property>
+         <obj_property name="ObjectShortName">lpf_xcoefs_ce</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/tb_filters/filt_xant_addr">
          <obj_property name="ElementShortName">filt_xant_addr[4:0]</obj_property>

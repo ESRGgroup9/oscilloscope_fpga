@@ -56,6 +56,7 @@
 //----------- Begin Cut here for INSTANTIATION Template ---// INST_TAG
 bram_xant your_instance_name (
   .clka(clka),    // input wire clka
+  .ena(ena),      // input wire ena
   .wea(wea),      // input wire [0 : 0] wea
   .addra(addra),  // input wire [4 : 0] addra
   .dina(dina),    // input wire [15 : 0] dina

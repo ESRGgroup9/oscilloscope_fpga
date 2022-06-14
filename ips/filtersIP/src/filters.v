@@ -7,7 +7,8 @@ module filters(
 	val,
 
 	result,
-	done
+	done,
+    rbuf_done
 );
 
 parameter M = (22 + 1);     	// write/read depth
@@ -49,8 +50,9 @@ wire rbuf_start;            // rbuf start signal
 // outputs
 wire [XANT_ADDR_SIZE-1:0] rbuf_addr;
 wire [XADC_DATA_SIZE-1:0] rbuf_do;
+wire rbuf_en;
 wire rbuf_owe;
-wire rbuf_done;
+output wire rbuf_done;
 wire rbuf_ready;
 
 // ------------------ filters
@@ -88,6 +90,21 @@ wire [XANT_ADDR_SIZE -1:0] addr_bram_xant;
 wire [XCOEF_ADDR_SIZE-1:0] filt_xcoefs_addr;
 wire [`XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
 
+
+wire lpf_x_ant_ce;
+wire hpf_x_ant_ce;
+wire bpf_x_ant_ce;
+
+wire lpf_coefs_ce;
+wire hpf_coefs_ce;
+wire bpf_coefs_ce;
+
+wire x_ant_ce;
+wire x_coefs_ce;
+
+reg filt_start_count;
+reg rbuf_writing;
+
 // ===========================================================================
 // RBUF
 // ===========================================================================
@@ -120,6 +137,7 @@ rbuf #(
 
     rbuf_addr,
     rbuf_do,
+    rbuf_en,
     rbuf_owe,
     rbuf_done,
     rbuf_ready
@@ -141,19 +159,21 @@ mux3 #(XANT_ADDR_SIZE) filt_xant_addr_mux(
 
 // mux filter xant address and RBUF address
 mux2 #(XANT_ADDR_SIZE) xant_addr_mux(
-	(rbuf_owe) ? rbuf_addr : ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
+	// (rbuf_writing) ? rbuf_addr : ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
+    ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
 	rbuf_addr,
 
-	rbuf_owe,
+	rbuf_writing,
 	addr_bram_xant
 );
 
 bram_xant xant_bram (
-  .clka(~clk),              // input wire clka
-  .wea(rbuf_owe),           // input wire [0 : 0] wea
-  .addra(addr_bram_xant),   // input wire [4 : 0] addra
-  .dina(rbuf_do),           // input wire [15 : 0] dina
-  .douta(xant)              // output wire [15 : 0] douta
+    .clka(~clk),              // input wire clka
+    .ena(rbuf_en | x_ant_ce),      // input wire ena
+    .wea(rbuf_owe),           // input wire [0 : 0] wea
+    .addra(addr_bram_xant),   // input wire [4 : 0] addra
+    .dina(rbuf_do),           // input wire [15 : 0] dina
+    .douta(xant)              // output wire [15 : 0] douta
 );
 
 // ===========================================================================
@@ -180,11 +200,12 @@ mux2 #(`XCOEF_ADDR_SIZE_BRAM) filt_xcoefs_addr_trunc_mux(
 );
 
 bram_coefs xcoefs_bram (
-  .clka(~clk),              // input wire clka
-  .wea(1'b0),               // input wire [0 : 0] wea
-  .addra(addr_bram_xcoefs), // input wire [6 : 0] addra
-  .dina({32{1'b0}}),        // input wire [31 : 0] dina
-  .douta(xcoefs)            // output wire [31 : 0] douta
+    .clka(~clk),              // input wire clka
+    .ena(x_coefs_ce),      // input wire ena
+    .wea(1'b0),               // input wire [0 : 0] wea
+    .addra(addr_bram_xcoefs), // input wire [6 : 0] addra
+    .dina({32{1'b0}}),        // input wire [31 : 0] dina
+    .douta(xcoefs)            // output wire [31 : 0] douta
 );
 
 // ===========================================================================
@@ -192,9 +213,7 @@ bram_coefs xcoefs_bram (
 // ===========================================================================
 
 // ------------------ filter start signal generation
-reg filt_start_count;
-
-always @(posedge clk) begin //or posedge rst) begin
+always @(posedge clk) begin
     if(~rstn | ((filt_start) & (filt_start_count))) begin
         filt_start_count <= 1'b0;
         filt_start <= 1'b0;
@@ -207,15 +226,42 @@ always @(posedge clk) begin //or posedge rst) begin
     end
 end
 
+always @(posedge clk) begin
+    if(~rstn | rbuf_done) begin
+        rbuf_writing <= 1'b0;
+    end
+    else if(rbuf_start) begin
+        rbuf_writing <= 1'b1;
+    end
+end
+
 // enable selected filter
 assign lpf_start = filt_start & (filt_select == FILT_SEL_LPF);
 assign hpf_start = filt_start & (filt_select == FILT_SEL_HPF);
 assign bpf_start = filt_start & (filt_select == FILT_SEL_BPF);
 
+mux3 #(1) filt_xant_ce_mux(
+    lpf_x_ant_ce,
+    hpf_x_ant_ce,
+    bpf_x_ant_ce,
+
+    filt_select,
+    x_ant_ce
+);
+
+mux3 #(1) filt_xcoefs_ce_mux(
+    lpf_coefs_ce,
+    hpf_coefs_ce,
+    bpf_coefs_ce,
+
+    filt_select,
+    x_coefs_ce
+);
+
 // LPF - Low Pass Filter
 fir_filter_0 fir_lpf (
-  .x_ant_ce0(),                             // output wire x_ant_ce0
-  .x_coefs_ce0(),                           // output wire x_coefs_ce0
+  .x_ant_ce0(lpf_x_ant_ce),                             // output wire x_ant_ce0
+  .x_coefs_ce0(lpf_coefs_ce),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
   .ap_rst(~rstn),                             // input wire ap_rst
@@ -237,8 +283,8 @@ fir_filter_0 fir_lpf (
 
 // HPF - High Pass Filter
 fir_filter_0 fir_hpf (
-  .x_ant_ce0(),                             // output wire x_ant_ce0
-  .x_coefs_ce0(),                           // output wire x_coefs_ce0
+  .x_ant_ce0(hpf_x_ant_ce),                             // output wire x_ant_ce0
+  .x_coefs_ce0(hpf_coefs_ce),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
   .ap_rst(~rstn),                             // input wire ap_rst
@@ -260,8 +306,8 @@ fir_filter_0 fir_hpf (
 
 // BPF - Band Pass Filter
 fir_filter_0 fir_bpf (
-  .x_ant_ce0(),                             // output wire x_ant_ce0
-  .x_coefs_ce0(),                           // output wire x_coefs_ce0
+  .x_ant_ce0(bpf_coefs_ce),                             // output wire x_ant_ce0
+  .x_coefs_ce0(bpf_coefs_ce),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
   .ap_rst(~rstn),                             // input wire ap_rst
