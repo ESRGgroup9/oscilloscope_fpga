@@ -4,7 +4,7 @@
 	module configIP_v1_0_S00_AXI #
 	(
 		// Users to add parameters here
-
+        parameter integer DEBUG_PARAM = 0,
 		// User parameters ends
 		// Do not modify the parameters beyond this line
 
@@ -220,10 +220,18 @@
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
+	    if(!DEBUG_PARAM) begin
+	      slv_reg0 <= 0;
+	      slv_reg1 <= 0;
+	      slv_reg2 <= 0;
+	      slv_reg3 <= 0;
+	    end
+	    else begin
 	      slv_reg0 <= 1;
 	      slv_reg1 <= 0;
 	      slv_reg2 <= 7;
 	      slv_reg3 <= 0;
+	    end
 	    end 
 	  else begin
 	    if (slv_reg_wren)

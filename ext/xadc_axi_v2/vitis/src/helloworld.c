@@ -59,10 +59,17 @@ XAdcPs_Config* ConfigPtr;
 
 //#define AXI_XADC_ADDR 18186502144 //43C000000
 #define AXI_XADC_ADDR 			0x43C00000
-#define AXI_CONFIG_DONE_ADDR 	0x43C10000
-#define AXI_READ_XADC_ADDR 		0x43C20000
+#define AXI_CONFIG_IP_ADDR 		0x43C10000
+#define AXI_DEBUG_XADC_ADDR 	0x43C20000
+#define AXI_RESULT_XADC_ADDR 	0x43C30000
 
-#define STATE_ADDR_OFFSET 		0x00000008
+// ADDR offsets to the config IP
+#define FIL_SEL_ADDR_OFFSET 	0x00000004
+#define CONF_DONE_ADDR_OFFSET 	0x00000000
+
+// ADDR offsets to the debug IP
+#define STATE_ADDR_OFFSET 		0x0000000C
+#define RESULT_ADDR_OFFSET 		0x00000008
 #define EOC_ADDR_OFFSET 		0x00000004
 #define VAL_ADDR_OFFSET 		0x00000000
 
@@ -97,9 +104,10 @@ int main()
 
 	XAdcPs_SetSequencerMode(&XAdc, XADCPS_SEQ_MODE_CONTINPASS);
 	print("XADC setup complete.\n\r");
+
 	// Config done Reg
-	Xil_Out32(AXI_CONFIG_DONE_ADDR, 0x00000001);
-	u32 config_done = Xil_In32(AXI_CONFIG_DONE_ADDR);
+	Xil_Out32(AXI_CONFIG_IP_ADDR + CONF_DONE_ADDR_OFFSET, 0x00000001);
+	u32 config_done = Xil_In32(AXI_CONFIG_IP_ADDR + CONF_DONE_ADDR_OFFSET);
 	if(!config_done)
 	{
 		print("Config Done reg not written!");
@@ -107,15 +115,35 @@ int main()
 	}
 	print("Config Done reg written!\n\r");
 
+	// Select filter - 0 (LOW PASS); 1 (HIGH PASS); 2 (BAND PASS); 3 (NO FILTER)
+	Xil_Out32(AXI_CONFIG_IP_ADDR + FIL_SEL_ADDR_OFFSET, 0x3);
+	u32 filt = Xil_In32(AXI_CONFIG_IP_ADDR + FIL_SEL_ADDR_OFFSET);
+	if(filt != 0x3)
+	{
+		print("Filter not selected!");
+		return XST_FAILURE;
+	}
 	print("Print channel VAUX6:\n\r");
 
 	while(1)
 	{
-		u32 volt_val = Xil_In32(AXI_READ_XADC_ADDR + VAL_ADDR_OFFSET);
+		// VAL READ
+		u32 volt_val = Xil_In32(AXI_DEBUG_XADC_ADDR + VAL_ADDR_OFFSET);
 		printf("AXIM_Val(%lu) = %.3f V\n\r", volt_val, ADCVAL_TO_VOLT(volt_val));
 
+		// ADC PS
 		u32 volt_raw = XAdcPs_GetAdcData(&XAdc, XADCPS_CH_AUX_MIN + 6);
 		printf("ADCPS_Val(%lu) = %.3f V\n\r", volt_raw, ADCVAL_TO_VOLT(volt_raw));
+
+		// RESULT
+		u32 fil_result = Xil_In32(AXI_DEBUG_XADC_ADDR + RESULT_ADDR_OFFSET);
+		printf("Result(%lu) = %.3f V\n\r\n\r", fil_result, ADCVAL_TO_VOLT(fil_result));
+
+		fil_result = Xil_In32(AXI_RESULT_XADC_ADDR);
+		printf("Result(%lu) = %.3f V\n\r\n\r", fil_result, ADCVAL_TO_VOLT(fil_result));
+
+		u32 state = Xil_In32(AXI_DEBUG_XADC_ADDR + STATE_ADDR_OFFSET);
+		printf("State = %lu \n\r\n\r", state);
 
 		for(int i = 0; i < 100000000; i++)
 								;

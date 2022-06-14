@@ -6,12 +6,12 @@ function y = filtercalc(M, x_ant, x_coefs, dcValEn)
     end
 
     % convert from fixed point and add dc value if needed
-    y = floor(y * 2^-15 + dcValEn*2047);
-    
+    y = floor(y * 2^-15 + dcValEn*32767);
+
     % truncate filter output
     if(y < 0)
         y = 0;
-    elseif(y > 4095)
-        y = 4095;
+    elseif(y > 65535)
+        y = 65535;
     end
 end

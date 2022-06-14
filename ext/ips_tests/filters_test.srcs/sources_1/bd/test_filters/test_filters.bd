@@ -1,0 +1,236 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0xA0D8B5085F0156F1",
+      "device": "xc7z010clg400-1",
+      "name": "test_filters",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.2",
+      "validated": "true"
+    },
+    "design_tree": {
+      "filtersIP_0": "",
+      "clk_wiz_0": "",
+      "xlconstant_0": "",
+      "xlconstant_1": "",
+      "system_ila_0": "",
+      "proc_sys_reset_0": ""
+    },
+    "ports": {
+      "sys_clk": {
+        "type": "clk",
+        "direction": "I",
+        "parameters": {
+          "ASSOCIATED_RESET": {
+            "value": "rstn"
+          },
+          "CLK_DOMAIN": {
+            "value": "test_filters_sys_clk",
+            "value_src": "default"
+          },
+          "FREQ_HZ": {
+            "value": "125000000"
+          },
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "PHASE": {
+            "value": "0.000",
+            "value_src": "default"
+          }
+        }
+      },
+      "rstn": {
+        "type": "rst",
+        "direction": "I",
+        "parameters": {
+          "INSERT_VIP": {
+            "value": "0",
+            "value_src": "default"
+          },
+          "POLARITY": {
+            "value": "ACTIVE_LOW",
+            "value_src": "default"
+          }
+        }
+      }
+    },
+    "components": {
+      "filtersIP_0": {
+        "vlnv": "user.org:user:filtersIP:1.0",
+        "xci_name": "test_filters_filtersIP_0_0"
+      },
+      "clk_wiz_0": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "test_filters_clk_wiz_0_0",
+        "parameters": {
+          "CLKOUT1_JITTER": {
+            "value": "529.616"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "319.966"
+          },
+          "CLKOUT1_REQUESTED_OUT_FREQ": {
+            "value": "5"
+          },
+          "CLKOUT2_JITTER": {
+            "value": "313.143"
+          },
+          "CLKOUT2_PHASE_ERROR": {
+            "value": "333.440"
+          },
+          "CLKOUT2_REQUESTED_OUT_FREQ": {
+            "value": "5"
+          },
+          "CLKOUT2_USED": {
+            "value": "false"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "25.500"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "127.500"
+          },
+          "MMCM_CLKOUT1_DIVIDE": {
+            "value": "1"
+          },
+          "MMCM_DIVCLK_DIVIDE": {
+            "value": "5"
+          },
+          "NUM_OUT_CLKS": {
+            "value": "1"
+          },
+          "RESET_PORT": {
+            "value": "resetn"
+          },
+          "RESET_TYPE": {
+            "value": "ACTIVE_LOW"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "true"
+          }
+        }
+      },
+      "xlconstant_0": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "test_filters_xlconstant_0_0",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "3"
+          },
+          "CONST_WIDTH": {
+            "value": "2"
+          }
+        }
+      },
+      "xlconstant_1": {
+        "vlnv": "xilinx.com:ip:xlconstant:1.1",
+        "xci_name": "test_filters_xlconstant_0_1",
+        "parameters": {
+          "CONST_VAL": {
+            "value": "1000"
+          },
+          "CONST_WIDTH": {
+            "value": "16"
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "test_filters_system_ila_0_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "2"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE1_TYPE": {
+            "value": "0"
+          }
+        }
+      },
+      "proc_sys_reset_0": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "test_filters_proc_sys_reset_0_0"
+      }
+    },
+    "nets": {
+      "rstn_1": {
+        "ports": [
+          "rstn",
+          "clk_wiz_0/resetn",
+          "proc_sys_reset_0/ext_reset_in"
+        ]
+      },
+      "xlconstant_0_dout": {
+        "ports": [
+          "xlconstant_0/dout",
+          "filtersIP_0/filt_select"
+        ]
+      },
+      "xlconstant_1_dout": {
+        "ports": [
+          "xlconstant_1/dout",
+          "filtersIP_0/val"
+        ]
+      },
+      "clk": {
+        "ports": [
+          "sys_clk",
+          "clk_wiz_0/clk_in1",
+          "filtersIP_0/clk",
+          "system_ila_0/clk",
+          "proc_sys_reset_0/slowest_sync_clk"
+        ]
+      },
+      "result": {
+        "ports": [
+          "filtersIP_0/result",
+          "system_ila_0/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "done": {
+        "ports": [
+          "filtersIP_0/done",
+          "system_ila_0/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "clk_wiz_0_clk_out1": {
+        "ports": [
+          "clk_wiz_0/clk_out1",
+          "filtersIP_0/start"
+        ]
+      },
+      "proc_sys_reset_0_peripheral_aresetn": {
+        "ports": [
+          "proc_sys_reset_0/peripheral_aresetn",
+          "filtersIP_0/rstn"
+        ]
+      }
+    }
+  }
+}

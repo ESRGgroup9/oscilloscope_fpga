@@ -4,7 +4,7 @@
 	module configIP_v1_0 #
 	(
 		// Users to add parameters here
-
+        parameter integer DEBUG_PARAM = 0,
 		// User parameters ends
 		// Do not modify the parameters beyond this line
 
@@ -46,7 +46,8 @@
 // Instantiation of Axi Bus Interface S00_AXI
 	configIP_v1_0_S00_AXI # ( 
 		.C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
-		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH)
+		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH),
+		.DEBUG_PARAM(DEBUG_PARAM)
 	) configIP_v1_0_S00_AXI_inst (
 	    .filter_select(filter_select),	    
 	    
