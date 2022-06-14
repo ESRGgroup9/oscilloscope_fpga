@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_dsp_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_dsp" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="166667fs"></ZoomStartTime>
+      <ZoomEndTime time="1166667fs"></ZoomEndTime>
+      <Cursor1Time time="1000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="134"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wave_markers>
+      <marker label="" time="100000" />
+      <marker label="" time="600000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/tb_dsp/clkWR">
+      <obj_property name="ElementShortName">clkWR</obj_property>
+      <obj_property name="ObjectShortName">clkWR</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dsp/rst">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider25" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valBtns">
+      <obj_property name="ElementShortName">valBtns[3:0]</obj_property>
+      <obj_property name="ObjectShortName">valBtns[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/val">
+      <obj_property name="ElementShortName">val[15:0]</obj_property>
+      <obj_property name="ObjectShortName">val[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/val_r">
+      <obj_property name="ElementShortName">val_r[15:0]</obj_property>
+      <obj_property name="ObjectShortName">val_r[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider24" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valSub_r">
+      <obj_property name="ElementShortName">valSub_r[15:0]</obj_property>
+      <obj_property name="ObjectShortName">valSub_r[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valMul_r">
+      <obj_property name="ElementShortName">valMul_r[24:0]</obj_property>
+      <obj_property name="ObjectShortName">valMul_r[24:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valDiv_r">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">valDiv_r[24:0]</obj_property>
+      <obj_property name="ObjectShortName">valDiv_r[24:0]</obj_property>
+      <obj_property name="label">valIndex</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider26" type="divider">
+   </wvobject>
+   <wvobject fp_name="divider27" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/addrMul_r">
+      <obj_property name="ElementShortName">addrMul_r[27:0]</obj_property>
+      <obj_property name="ObjectShortName">addrMul_r[27:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/addrAdd_r">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">addrAdd_r[27:0]</obj_property>
+      <obj_property name="ObjectShortName">addrAdd_r[27:0]</obj_property>
+      <obj_property name="label">addrWR</obj_property>
+      <obj_property name="CustomSignalColor">#808080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider28" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/addrWR_w">
+      <obj_property name="ElementShortName">addrWR_w[18:0]</obj_property>
+      <obj_property name="ObjectShortName">addrWR_w[18:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/rowWR_w">
+      <obj_property name="ElementShortName">rowWR_w[9:0]</obj_property>
+      <obj_property name="ObjectShortName">rowWR_w[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valIndex_w">
+      <obj_property name="ElementShortName">valIndex_w[9:0]</obj_property>
+      <obj_property name="ObjectShortName">valIndex_w[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/valBtns">
+      <obj_property name="ElementShortName">valBtns[3:0]</obj_property>
+      <obj_property name="ObjectShortName">valBtns[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/led">
+      <obj_property name="ElementShortName">led[3:0]</obj_property>
+      <obj_property name="ObjectShortName">led[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_dsp/counter">
+      <obj_property name="ElementShortName">counter[2:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb_dsp/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+</wave_config>

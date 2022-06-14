@@ -34,11 +34,12 @@ end
 
 // ------------------ rbuf
 // rbuf inputs
-reg rbuf_en;
+reg rbuf_start;
 
 // rbuf outputs
 wire [`ADDR_SIZE-1:0] rbuf_addr;
 wire [`DATA_SIZE-1:0] rbuf_do;
+wire rbuf_en;
 wire rbuf_owe;
 wire rbuf_done;
 wire rbuf_ready;
@@ -63,6 +64,12 @@ wire [`ADDR_SIZE-1:0] addr_bram_xant;
 wire [6:0] addr_bram_xcoefs;
 
 wire [`DATA_SIZE-1:0] input_val;
+
+wire lpf_x_ant_ce;
+wire lpf_xcoefs_ce;
+
+reg filt_start_count;
+reg rbuf_writing;
 
 // ===========================================================================
 // input/output vectors
@@ -163,16 +170,15 @@ end
 // rbuf enable and data in control
 always @(rst or negedge filt_done) begin
     if(rst) begin
-        rbuf_en = 0;
+        rbuf_start = 0;
     end
     else begin
-        rbuf_en = 1;
-        #(`CLK_PERIOD*2) rbuf_en = 0;
+        rbuf_start = 1;
+        #(`CLK_PERIOD*2) rbuf_start = 0;
     end
 end
 
 // --------------------- control filter calc start
-reg filt_start_count;
 
 always @(posedge clk or posedge rst) begin
     if(rst | ((filt_start) & (filt_start_count))) begin
@@ -187,12 +193,20 @@ always @(posedge clk or posedge rst) begin
     end
 end
 
+always @(posedge clk or posedge rst) begin
+    if(rst | rbuf_done) begin
+        rbuf_writing <= 1'b0;
+    end
+    else if(rbuf_start) begin
+        rbuf_writing <= 1'b1;
+    end
+end
 
 // read from input buffer
 assign input_val = input_buf[i];
 
 // select xant BRAM addr from filter or rbuf
-assign addr_bram_xant = (rbuf_owe) ? rbuf_addr : (
+assign addr_bram_xant = (rbuf_writing) ? rbuf_addr : (
                         (filt_xant_addr > `M-1) ? {`ADDR_SIZE{1'b0}} : filt_xant_addr);
 
 // truncate xcoef addr if invalid
@@ -209,35 +223,38 @@ rbuf #(
 ) rbuf_mod(
     clk,
     rst,
-    rbuf_en,
+    rbuf_start,
     input_val,
 
     rbuf_addr,
     rbuf_do,
+    rbuf_en,
     rbuf_owe,
     rbuf_done,
     rbuf_ready
 );
 
 bram_xant x_ant_bram (
-  .clka(~clk),              // input wire clka
-  .wea(rbuf_owe),           // input wire [0 : 0] wea
-  .addra(addr_bram_xant),   // input wire [4 : 0] addra
-  .dina(rbuf_do),           // input wire [15 : 0] dina
-  .douta(xant)              // output wire [15 : 0] douta
+    .clka(~clk),              // input wire clka
+    .ena(rbuf_en | lpf_x_ant_ce),
+    .wea(rbuf_owe),           // input wire [0 : 0] wea
+    .addra(addr_bram_xant),   // input wire [4 : 0] addra
+    .dina(rbuf_do),           // input wire [15 : 0] dina
+    .douta(xant)              // output wire [15 : 0] douta
 );
 
 bram_coefs x_coefs_bram (
-  .clka(~clk),              // input wire clka
-  .wea(1'b0),               // input wire [0 : 0] wea
-  .addra(addr_bram_xcoefs), // input wire [6 : 0] addra
-  .dina({32{1'b0}}),        // input wire [31 : 0] dina
-  .douta(xcoefs)            // output wire [31 : 0] douta
+    .clka(~clk),              // input wire clka
+    .ena(lpf_xcoefs_ce),
+    .wea(1'b0),               // input wire [0 : 0] wea
+    .addra(addr_bram_xcoefs), // input wire [6 : 0] addra
+    .dina({32{1'b0}}),        // input wire [31 : 0] dina
+    .douta(xcoefs)            // output wire [31 : 0] douta
 );
 
 fir_filter_0 fir_lpf (
-  .x_ant_ce0(),                             // output wire x_ant_ce0
-  .x_coefs_ce0(),                           // output wire x_coefs_ce0
+  .x_ant_ce0(lpf_x_ant_ce),                             // output wire x_ant_ce0
+  .x_coefs_ce0(lpf_xcoefs_ce),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
   .ap_rst(rst),                             // input wire ap_rst

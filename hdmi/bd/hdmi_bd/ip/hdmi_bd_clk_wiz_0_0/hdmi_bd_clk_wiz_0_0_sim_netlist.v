@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Mon Jun  6 23:43:23 2022
+// Date        : Sat Jun 11 23:45:01 2022
 // Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/tomas/oscilloscope_fpga/hdmi/bd/hdmi_bd/ip/hdmi_bd_clk_wiz_0_0/hdmi_bd_clk_wiz_0_0_sim_netlist.v
@@ -16,33 +16,45 @@
 module hdmi_bd_clk_wiz_0_0
    (TMDSclk,
     pixclk,
+    writeclk,
+    readclk,
     reset,
     clk_in1);
   output TMDSclk;
   output pixclk;
+  output writeclk;
+  output readclk;
   input reset;
   input clk_in1;
 
   wire TMDSclk;
   (* IBUF_LOW_PWR *) wire clk_in1;
   wire pixclk;
+  wire readclk;
   wire reset;
+  wire writeclk;
 
   hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz inst
        (.TMDSclk(TMDSclk),
         .clk_in1(clk_in1),
         .pixclk(pixclk),
-        .reset(reset));
+        .readclk(readclk),
+        .reset(reset),
+        .writeclk(writeclk));
 endmodule
 
 (* ORIG_REF_NAME = "hdmi_bd_clk_wiz_0_0_clk_wiz" *) 
 module hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
    (TMDSclk,
     pixclk,
+    writeclk,
+    readclk,
     reset,
     clk_in1);
   output TMDSclk;
   output pixclk;
+  output writeclk;
+  output readclk;
   input reset;
   input clk_in1;
 
@@ -54,15 +66,17 @@ module hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
   wire clkfbout_hdmi_bd_clk_wiz_0_0;
   wire pixclk;
   wire pixclk_hdmi_bd_clk_wiz_0_0;
+  wire readclk;
+  wire readclk_hdmi_bd_clk_wiz_0_0;
   wire reset;
+  wire writeclk;
+  wire writeclk_hdmi_bd_clk_wiz_0_0;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED;
-  wire NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED;
@@ -94,26 +108,34 @@ module hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
        (.I(pixclk_hdmi_bd_clk_wiz_0_0),
         .O(pixclk));
   (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout3_buf
+       (.I(writeclk_hdmi_bd_clk_wiz_0_0),
+        .O(writeclk));
+  (* BOX_TYPE = "PRIMITIVE" *) 
+  BUFG clkout4_buf
+       (.I(readclk_hdmi_bd_clk_wiz_0_0),
+        .O(readclk));
+  (* BOX_TYPE = "PRIMITIVE" *) 
   MMCME2_ADV #(
     .BANDWIDTH("OPTIMIZED"),
-    .CLKFBOUT_MULT_F(24.000000),
+    .CLKFBOUT_MULT_F(8.000000),
     .CLKFBOUT_PHASE(0.000000),
     .CLKFBOUT_USE_FINE_PS("FALSE"),
     .CLKIN1_PERIOD(8.000000),
     .CLKIN2_PERIOD(0.000000),
-    .CLKOUT0_DIVIDE_F(30.000000),
+    .CLKOUT0_DIVIDE_F(4.000000),
     .CLKOUT0_DUTY_CYCLE(0.500000),
     .CLKOUT0_PHASE(0.000000),
     .CLKOUT0_USE_FINE_PS("FALSE"),
-    .CLKOUT1_DIVIDE(128),
+    .CLKOUT1_DIVIDE(40),
     .CLKOUT1_DUTY_CYCLE(0.500000),
     .CLKOUT1_PHASE(0.000000),
     .CLKOUT1_USE_FINE_PS("FALSE"),
-    .CLKOUT2_DIVIDE(1),
+    .CLKOUT2_DIVIDE(100),
     .CLKOUT2_DUTY_CYCLE(0.500000),
     .CLKOUT2_PHASE(0.000000),
     .CLKOUT2_USE_FINE_PS("FALSE"),
-    .CLKOUT3_DIVIDE(1),
+    .CLKOUT3_DIVIDE(20),
     .CLKOUT3_DUTY_CYCLE(0.500000),
     .CLKOUT3_PHASE(0.000000),
     .CLKOUT3_USE_FINE_PS("FALSE"),
@@ -131,7 +153,7 @@ module hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
     .CLKOUT6_PHASE(0.000000),
     .CLKOUT6_USE_FINE_PS("FALSE"),
     .COMPENSATION("ZHOLD"),
-    .DIVCLK_DIVIDE(5),
+    .DIVCLK_DIVIDE(1),
     .IS_CLKINSEL_INVERTED(1'b0),
     .IS_PSEN_INVERTED(1'b0),
     .IS_PSINCDEC_INVERTED(1'b0),
@@ -156,9 +178,9 @@ module hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
         .CLKOUT0B(NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED),
         .CLKOUT1(pixclk_hdmi_bd_clk_wiz_0_0),
         .CLKOUT1B(NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED),
-        .CLKOUT2(NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED),
+        .CLKOUT2(writeclk_hdmi_bd_clk_wiz_0_0),
         .CLKOUT2B(NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED),
-        .CLKOUT3(NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED),
+        .CLKOUT3(readclk_hdmi_bd_clk_wiz_0_0),
         .CLKOUT3B(NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED),
         .CLKOUT4(NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED),
         .CLKOUT5(NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED),

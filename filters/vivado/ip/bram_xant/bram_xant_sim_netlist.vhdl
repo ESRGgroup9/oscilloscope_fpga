@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Wed Jun  1 16:57:04 2022
+-- Date        : Tue Jun 14 15:49:50 2022
 -- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/tomas/oscilloscope_fpga/filters/vivado/ip/bram_xant/bram_xant_sim_netlist.vhdl
@@ -18,6 +18,7 @@ entity bram_xant_blk_mem_gen_prim_wrapper_init is
   port (
     douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -195,8 +196,8 @@ begin
       DOPADOP(0) => \DEVICE_7SERIES.NO_BMM_INFO.SP.WIDE_PRIM18.ram_n_33\,
       DOPBDOP(1) => \DEVICE_7SERIES.NO_BMM_INFO.SP.WIDE_PRIM18.ram_n_34\,
       DOPBDOP(0) => \DEVICE_7SERIES.NO_BMM_INFO.SP.WIDE_PRIM18.ram_n_35\,
-      ENARDEN => '1',
-      ENBWREN => '1',
+      ENARDEN => ena,
+      ENBWREN => ena,
       REGCEAREGCE => '0',
       REGCEB => '0',
       RSTRAMARSTRAM => '0',
@@ -218,6 +219,7 @@ entity bram_xant_blk_mem_gen_prim_width is
   port (
     douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -234,6 +236,7 @@ begin
       clka => clka,
       dina(15 downto 0) => dina(15 downto 0),
       douta(15 downto 0) => douta(15 downto 0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -245,6 +248,7 @@ entity bram_xant_blk_mem_gen_generic_cstr is
   port (
     douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -261,6 +265,7 @@ begin
       clka => clka,
       dina(15 downto 0) => dina(15 downto 0),
       douta(15 downto 0) => douta(15 downto 0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -272,6 +277,7 @@ entity bram_xant_blk_mem_gen_top is
   port (
     douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -288,6 +294,7 @@ begin
       clka => clka,
       dina(15 downto 0) => dina(15 downto 0),
       douta(15 downto 0) => douta(15 downto 0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -299,6 +306,7 @@ entity bram_xant_blk_mem_gen_v8_4_4_synth is
   port (
     douta : out STD_LOGIC_VECTOR ( 15 downto 0 );
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
     wea : in STD_LOGIC_VECTOR ( 0 to 0 )
@@ -315,6 +323,7 @@ begin
       clka => clka,
       dina(15 downto 0) => dina(15 downto 0),
       douta(15 downto 0) => douta(15 downto 0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -441,7 +450,7 @@ entity bram_xant_blk_mem_gen_v8_4_4 is
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of bram_xant_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_ENA : integer;
-  attribute C_HAS_ENA of bram_xant_blk_mem_gen_v8_4_4 : entity is 0;
+  attribute C_HAS_ENA of bram_xant_blk_mem_gen_v8_4_4 : entity is 1;
   attribute C_HAS_ENB : integer;
   attribute C_HAS_ENB of bram_xant_blk_mem_gen_v8_4_4 : entity is 0;
   attribute C_HAS_INJECTERR : integer;
@@ -623,6 +632,7 @@ inst_blk_mem_gen: entity work.bram_xant_blk_mem_gen_v8_4_4_synth
       clka => clka,
       dina(15 downto 0) => dina(15 downto 0),
       douta(15 downto 0) => douta(15 downto 0),
+      ena => ena,
       wea(0) => wea(0)
     );
 end STRUCTURE;
@@ -633,6 +643,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity bram_xant is
   port (
     clka : in STD_LOGIC;
+    ena : in STD_LOGIC;
     wea : in STD_LOGIC_VECTOR ( 0 to 0 );
     addra : in STD_LOGIC_VECTOR ( 4 downto 0 );
     dina : in STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -722,7 +733,7 @@ architecture STRUCTURE of bram_xant is
   attribute C_HAS_AXI_ID : integer;
   attribute C_HAS_AXI_ID of U0 : label is 0;
   attribute C_HAS_ENA : integer;
-  attribute C_HAS_ENA of U0 : label is 0;
+  attribute C_HAS_ENA of U0 : label is 1;
   attribute C_HAS_ENB : integer;
   attribute C_HAS_ENB of U0 : label is 0;
   attribute C_HAS_INJECTERR : integer;
@@ -824,6 +835,7 @@ architecture STRUCTURE of bram_xant is
   attribute x_interface_info of clka : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA CLK";
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of clka : signal is "XIL_INTERFACENAME BRAM_PORTA, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1";
+  attribute x_interface_info of ena : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA EN";
   attribute x_interface_info of addra : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA ADDR";
   attribute x_interface_info of dina : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DIN";
   attribute x_interface_info of douta : signal is "xilinx.com:interface:bram:1.0 BRAM_PORTA DOUT";
@@ -842,7 +854,7 @@ U0: entity work.bram_xant_blk_mem_gen_v8_4_4
       douta(15 downto 0) => douta(15 downto 0),
       doutb(15 downto 0) => NLW_U0_doutb_UNCONNECTED(15 downto 0),
       eccpipece => '0',
-      ena => '0',
+      ena => ena,
       enb => '0',
       injectdbiterr => '0',
       injectsbiterr => '0',

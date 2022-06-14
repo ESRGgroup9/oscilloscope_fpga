@@ -3,11 +3,12 @@
 module rbuf(
     clk,
     rst,
-    en,
+    start,
     di,
 
     addr,
     do,
+    en,
     owe,
     done,
     ready
@@ -20,11 +21,12 @@ parameter DATA_SIZE = 12;
 
 input wire clk;
 input wire rst;
-input wire en;
+input wire start;
 input wire [DATA_SIZE-1:0] di;
 
 output reg [ADDR_SIZE-1:0] addr;
 output wire [DATA_SIZE-1:0] do;
+output wire en;
 output wire owe;
 output wire done;
 output wire ready;
@@ -41,6 +43,7 @@ reg [ADDR_SIZE-1:0] i;
 wire shift_done_w;
 wire write_done_w;
 
+reg write_counter_r;
 // ===========================================================================
 // FSM
 // ===========================================================================
@@ -56,7 +59,7 @@ reg [1:0] state;
 reg [1:0] nstate;
 
 // state register
-always @(posedge clk) begin //or posedge rst) begin
+always @(posedge clk) begin
     if(rst)
         state <= S_IDLE;
     else begin
@@ -67,7 +70,7 @@ end
 // nextstate logic
 always @(*) begin
     case(state)
-        S_IDLE:  nstate = (en) ? S_ADD : S_IDLE;
+        S_IDLE:  nstate = (start) ? S_ADD : S_IDLE;
         S_ADD:   nstate = S_WRITE;
         S_WRITE: nstate = (write_done_w) ? S_SHIFT : S_WRITE;
         S_SHIFT: nstate = (shift_done_w) ? S_IDLE : S_SHIFT;
@@ -107,13 +110,12 @@ always@(posedge clk) begin //or posedge rst) begin
 end
 
 // output data enable
-assign owe  = (state == S_WRITE) & (addr < M);
+assign owe  = (en) & (addr < M);
 // output data
 assign do   = (state == S_WRITE) ? buff[addr] : {DATA_SIZE{1'b0}};
 
-
-always @(posedge clk) begin //or posedge rst) begin
-    if(rst | (addr > M - 2)) begin
+always @(posedge clk) begin
+    if(rst | done) begin
         addr <= {ADDR_SIZE{1'b0}};
     end
     // start writing
@@ -121,14 +123,27 @@ always @(posedge clk) begin //or posedge rst) begin
         addr <= 0;
     end
     // continue writing
-    else if (state == S_WRITE) begin
+    else if (en) begin
         addr <= addr + 1;
+    end
+end
+
+// ------------------ 
+always @(posedge clk) begin
+    if(rst | done) begin
+        write_counter_r <= 1'b0;
+    end
+    else begin
+       write_counter_r <= ~write_counter_r; 
     end
 end
 
 // ===========================================================================
 // Status flags
 // ===========================================================================
+
+// bram enable
+assign en = (state == S_WRITE) & write_counter_r;
 
 // done flag
 assign done = write_done_w;
@@ -140,6 +155,6 @@ assign ready = shift_done_w;
 assign shift_done_w = (state == S_SHIFT) & (i == 0);
 
 // write done - generate 1 clk cycle pulse
-assign write_done_w = (state == S_WRITE) & (addr == M-1);
+assign write_done_w = (en) & (addr == M-1);
 
 endmodule

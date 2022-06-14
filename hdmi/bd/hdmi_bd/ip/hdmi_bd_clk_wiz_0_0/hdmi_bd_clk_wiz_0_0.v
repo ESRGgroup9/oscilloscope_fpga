@@ -56,8 +56,10 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _TMDSclk__20.00000______0.000______50.0______428.758____335.459
-// __pixclk___4.68750______0.000______50.0______557.522____335.459
+// _TMDSclk__250.00000______0.000______50.0______104.759_____96.948
+// __pixclk__25.00000______0.000______50.0______165.419_____96.948
+// writeclk__10.00000______0.000______50.0______197.700_____96.948
+// _readclk__50.00000______0.000______50.0______143.688_____96.948
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
@@ -66,13 +68,15 @@
 
 `timescale 1ps/1ps
 
-(* CORE_GENERATION_INFO = "hdmi_bd_clk_wiz_0_0,clk_wiz_v6_0_4_0_0,{component_name=hdmi_bd_clk_wiz_0_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=2,clkin1_period=8.0,clkin2_period=10.0,use_power_down=false,use_reset=true,use_locked=false,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
+(* CORE_GENERATION_INFO = "hdmi_bd_clk_wiz_0_0,clk_wiz_v6_0_4_0_0,{component_name=hdmi_bd_clk_wiz_0_0,use_phase_alignment=true,use_min_o_jitter=false,use_max_i_jitter=false,use_dyn_phase_shift=false,use_inclk_switchover=false,use_dyn_reconfig=false,enable_axi=0,feedback_source=FDBK_AUTO,PRIMITIVE=MMCM,num_out_clk=4,clkin1_period=8.000,clkin2_period=10.000,use_power_down=false,use_reset=true,use_locked=false,use_inclk_stopped=false,feedback_type=SINGLE,CLOCK_MGR_TYPE=NA,manual_override=false}" *)
 
 module hdmi_bd_clk_wiz_0_0 
  (
   // Clock out ports
   output        TMDSclk,
   output        pixclk,
+  output        writeclk,
+  output        readclk,
   // Status and control signals
   input         reset,
  // Clock in ports
@@ -84,6 +88,8 @@ module hdmi_bd_clk_wiz_0_0
   // Clock out ports  
   .TMDSclk(TMDSclk),
   .pixclk(pixclk),
+  .writeclk(writeclk),
+  .readclk(readclk),
   // Status and control signals               
   .reset(reset), 
  // Clock in ports

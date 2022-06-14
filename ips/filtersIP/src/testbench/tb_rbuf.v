@@ -33,7 +33,7 @@ end
 `define DATA_SIZE   16          // write/read width
 
 // rbuf inputs
-reg en_r;
+reg start_r;
 reg  [`DATA_SIZE-1:0] di_r;
 
 // rbuf outputs
@@ -42,6 +42,7 @@ wire [`DATA_SIZE-1:0] do_w;
 wire owe_w;
 wire done_w;
 wire ready_w;
+wire en_w;
 
 // bram outputs
 wire [`DATA_SIZE-1:0] bram_do_w;
@@ -75,7 +76,7 @@ end
 integer i; // input vector iterator
 
 initial begin
-    en_r <= 0;
+    start_r <= 0;
     di_r <= 0;
     i <= 0;
 
@@ -84,9 +85,9 @@ end
 
 // rbuf enable and data in control
 always @(negedge rst or negedge ready_w) begin
-    #(`CLK_PERIOD*2) en_r = 1;
+    #(`CLK_PERIOD*2) start_r = 1;
     di_r = input_buf[i];
-    #(`CLK_PERIOD*2) en_r = 0;
+    #(`CLK_PERIOD*2) start_r = 0;
     i = i + 1; 
 end
 
@@ -101,11 +102,12 @@ rbuf #(
 ) dut(
     clk,
     rst,
-    en_r,
+    start_r,
     di_r,
 
     addr_w,
     do_w,
+    en_w,
     owe_w,
     done_w,
     ready_w
@@ -113,6 +115,7 @@ rbuf #(
 
 bram_xant bram (
   .clka(~clk),      // input wire clka
+  .ena(en_w),
   .wea(owe_w),        // input wire [0 : 0] wea
   .addra(addr_w),    // input wire [4 : 0] addra
   .dina(do_w),      // input wire [11 : 0] dina

@@ -44,7 +44,7 @@ wire [`XADC_DATA_SIZE-1:0] input_val;
 
 wire [`XADC_DATA_SIZE-1:0] filt_result;
 wire filt_done;
-
+wire rbuf_done;
 // ===========================================================================
 // input/output vectors
 // ===========================================================================
@@ -202,14 +202,15 @@ filters #(
 	.XCOEF_ADDR_SIZE(`XCOEF_ADDR_SIZE)
 ) dut(
 	clk,
-	rst,
+	~rst,
 
 	filt_start,
 	filt_select,
 	input_val,
 
 	filt_result,
-	filt_done
+	filt_done,
+    rbuf_done
 );
 
 endmodule

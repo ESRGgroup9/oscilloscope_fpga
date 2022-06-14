@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Mon Jun  6 23:43:23 2022
+-- Date        : Sat Jun 11 23:45:01 2022
 -- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/tomas/oscilloscope_fpga/hdmi/bd/hdmi_bd/ip/hdmi_bd_clk_wiz_0_0/hdmi_bd_clk_wiz_0_0_sim_netlist.vhdl
@@ -18,6 +18,8 @@ entity hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz is
   port (
     TMDSclk : out STD_LOGIC;
     pixclk : out STD_LOGIC;
+    writeclk : out STD_LOGIC;
+    readclk : out STD_LOGIC;
     reset : in STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
@@ -31,14 +33,14 @@ architecture STRUCTURE of hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz is
   signal clkfbout_buf_hdmi_bd_clk_wiz_0_0 : STD_LOGIC;
   signal clkfbout_hdmi_bd_clk_wiz_0_0 : STD_LOGIC;
   signal pixclk_hdmi_bd_clk_wiz_0_0 : STD_LOGIC;
+  signal readclk_hdmi_bd_clk_wiz_0_0 : STD_LOGIC;
+  signal writeclk_hdmi_bd_clk_wiz_0_0 : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKINSTOPPED_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED : STD_LOGIC;
-  signal NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED : STD_LOGIC;
   signal NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED : STD_LOGIC;
@@ -58,6 +60,8 @@ architecture STRUCTURE of hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz is
   attribute IFD_DELAY_VALUE of clkin1_ibufg : label is "AUTO";
   attribute BOX_TYPE of clkout1_buf : label is "PRIMITIVE";
   attribute BOX_TYPE of clkout2_buf : label is "PRIMITIVE";
+  attribute BOX_TYPE of clkout3_buf : label is "PRIMITIVE";
+  attribute BOX_TYPE of clkout4_buf : label is "PRIMITIVE";
   attribute BOX_TYPE of mmcm_adv_inst : label is "PRIMITIVE";
 begin
 clkf_buf: unisim.vcomponents.BUFG
@@ -83,27 +87,37 @@ clkout2_buf: unisim.vcomponents.BUFG
       I => pixclk_hdmi_bd_clk_wiz_0_0,
       O => pixclk
     );
+clkout3_buf: unisim.vcomponents.BUFG
+     port map (
+      I => writeclk_hdmi_bd_clk_wiz_0_0,
+      O => writeclk
+    );
+clkout4_buf: unisim.vcomponents.BUFG
+     port map (
+      I => readclk_hdmi_bd_clk_wiz_0_0,
+      O => readclk
+    );
 mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
     generic map(
       BANDWIDTH => "OPTIMIZED",
-      CLKFBOUT_MULT_F => 24.000000,
+      CLKFBOUT_MULT_F => 8.000000,
       CLKFBOUT_PHASE => 0.000000,
       CLKFBOUT_USE_FINE_PS => false,
       CLKIN1_PERIOD => 8.000000,
       CLKIN2_PERIOD => 0.000000,
-      CLKOUT0_DIVIDE_F => 30.000000,
+      CLKOUT0_DIVIDE_F => 4.000000,
       CLKOUT0_DUTY_CYCLE => 0.500000,
       CLKOUT0_PHASE => 0.000000,
       CLKOUT0_USE_FINE_PS => false,
-      CLKOUT1_DIVIDE => 128,
+      CLKOUT1_DIVIDE => 40,
       CLKOUT1_DUTY_CYCLE => 0.500000,
       CLKOUT1_PHASE => 0.000000,
       CLKOUT1_USE_FINE_PS => false,
-      CLKOUT2_DIVIDE => 1,
+      CLKOUT2_DIVIDE => 100,
       CLKOUT2_DUTY_CYCLE => 0.500000,
       CLKOUT2_PHASE => 0.000000,
       CLKOUT2_USE_FINE_PS => false,
-      CLKOUT3_DIVIDE => 1,
+      CLKOUT3_DIVIDE => 20,
       CLKOUT3_DUTY_CYCLE => 0.500000,
       CLKOUT3_PHASE => 0.000000,
       CLKOUT3_USE_FINE_PS => false,
@@ -121,7 +135,7 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT6_PHASE => 0.000000,
       CLKOUT6_USE_FINE_PS => false,
       COMPENSATION => "ZHOLD",
-      DIVCLK_DIVIDE => 5,
+      DIVCLK_DIVIDE => 1,
       IS_CLKINSEL_INVERTED => '0',
       IS_PSEN_INVERTED => '0',
       IS_PSINCDEC_INVERTED => '0',
@@ -147,9 +161,9 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       CLKOUT0B => NLW_mmcm_adv_inst_CLKOUT0B_UNCONNECTED,
       CLKOUT1 => pixclk_hdmi_bd_clk_wiz_0_0,
       CLKOUT1B => NLW_mmcm_adv_inst_CLKOUT1B_UNCONNECTED,
-      CLKOUT2 => NLW_mmcm_adv_inst_CLKOUT2_UNCONNECTED,
+      CLKOUT2 => writeclk_hdmi_bd_clk_wiz_0_0,
       CLKOUT2B => NLW_mmcm_adv_inst_CLKOUT2B_UNCONNECTED,
-      CLKOUT3 => NLW_mmcm_adv_inst_CLKOUT3_UNCONNECTED,
+      CLKOUT3 => readclk_hdmi_bd_clk_wiz_0_0,
       CLKOUT3B => NLW_mmcm_adv_inst_CLKOUT3B_UNCONNECTED,
       CLKOUT4 => NLW_mmcm_adv_inst_CLKOUT4_UNCONNECTED,
       CLKOUT5 => NLW_mmcm_adv_inst_CLKOUT5_UNCONNECTED,
@@ -178,6 +192,8 @@ entity hdmi_bd_clk_wiz_0_0 is
   port (
     TMDSclk : out STD_LOGIC;
     pixclk : out STD_LOGIC;
+    writeclk : out STD_LOGIC;
+    readclk : out STD_LOGIC;
     reset : in STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
@@ -192,6 +208,8 @@ inst: entity work.hdmi_bd_clk_wiz_0_0_hdmi_bd_clk_wiz_0_0_clk_wiz
       TMDSclk => TMDSclk,
       clk_in1 => clk_in1,
       pixclk => pixclk,
-      reset => reset
+      readclk => readclk,
+      reset => reset,
+      writeclk => writeclk
     );
 end STRUCTURE;
