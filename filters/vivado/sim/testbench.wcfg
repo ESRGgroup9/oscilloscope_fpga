@@ -11,12 +11,25 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
+<<<<<<< HEAD
+      <ZoomStartTime time="73666666fs"></ZoomStartTime>
+      <ZoomEndTime time="143666667fs"></ZoomEndTime>
+      <Cursor1Time time="132000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="162"></NameColumnWidth>
+=======
       <ZoomStartTime time="0fs"></ZoomStartTime>
       <ZoomEndTime time="63850001fs"></ZoomEndTime>
       <Cursor1Time time="45950000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
+<<<<<<< HEAD
       <NameColumnWidth column_width="154"></NameColumnWidth>
+=======
+      <NameColumnWidth column_width="158"></NameColumnWidth>
+>>>>>>> blockdesign
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />

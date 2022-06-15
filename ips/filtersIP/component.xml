@@ -6,28 +6,6 @@
   <spirit:version>1.0</spirit:version>
   <spirit:busInterfaces>
     <spirit:busInterface>
-      <spirit:name>rstn</spirit:name>
-      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
-      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
-      <spirit:slave/>
-      <spirit:portMaps>
-        <spirit:portMap>
-          <spirit:logicalPort>
-            <spirit:name>RST</spirit:name>
-          </spirit:logicalPort>
-          <spirit:physicalPort>
-            <spirit:name>rstn</spirit:name>
-          </spirit:physicalPort>
-        </spirit:portMap>
-      </spirit:portMaps>
-      <spirit:parameters>
-        <spirit:parameter>
-          <spirit:name>POLARITY</spirit:name>
-          <spirit:value spirit:id="BUSIFPARAM_VALUE.RSTN.POLARITY" spirit:choiceRef="choice_list_9d8b0d81">ACTIVE_LOW</spirit:value>
-        </spirit:parameter>
-      </spirit:parameters>
-    </spirit:busInterface>
-    <spirit:busInterface>
       <spirit:name>clk</spirit:name>
       <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
       <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
@@ -53,6 +31,28 @@
         </spirit:parameter>
       </spirit:parameters>
     </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>rstn</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rstn</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.RSTN.POLARITY" spirit:choiceRef="choice_list_74b5137e">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
   </spirit:busInterfaces>
   <spirit:model>
     <spirit:views>
@@ -66,15 +66,12 @@
           <spirit:localName>xilinx_anylanguagesynthesis_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagesynthesis_xilinx_com_hls_fir_filter_2_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>338792b5</spirit:value>
+            <spirit:value>517d355e</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -88,15 +85,12 @@
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_ip_blk_mem_gen_8_4__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
-          <spirit:localName>xilinx_anylanguagebehavioralsimulation_xilinx_com_hls_fir_filter_2_0__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
           <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>338792b5</spirit:value>
+            <spirit:value>3ac270c0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -110,7 +104,22 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9fe92e30</spirit:value>
+            <spirit:value>dc1bb3b0</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_testbench</spirit:name>
+        <spirit:displayName>Test Bench</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation.testbench</spirit:envIdentifier>
+        <spirit:modelName>tb_filters</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_testbench_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>fbd211c1</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -263,7 +272,7 @@
   </spirit:model>
   <spirit:choices>
     <spirit:choice>
-      <spirit:name>choice_list_9d8b0d81</spirit:name>
+      <spirit:name>choice_list_74b5137e</spirit:name>
       <spirit:enumeration>ACTIVE_HIGH</spirit:enumeration>
       <spirit:enumeration>ACTIVE_LOW</spirit:enumeration>
     </spirit:choice>
@@ -272,8 +281,8 @@
     <spirit:fileSet>
       <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
       <spirit:file>
-        <spirit:name>../../hdmi/ip/fir_filter_0/fir_filter_0.xci</spirit:name>
-        <spirit:userFileType>xci</spirit:userFileType>
+        <spirit:name>src/fir_filter_0/constraints/fir_filter_ooc.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>ip/bram_coefs/bram_coefs.xci</spirit:name>
@@ -282,6 +291,30 @@
       <spirit:file>
         <spirit:name>ip/bram_xant/bram_xant.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/synth/fir_filter_0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_add_64eOg.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_mul_16bkb.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_mul_32cud.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_sub_64dEe.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/common/mux2.v</spirit:name>
@@ -300,13 +333,17 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../filters/vivado/sim/filters_coefs.COE</spirit:name>
+        <spirit:name>src/filters_coefs.COE</spirit:name>
         <spirit:userFileType>coe</spirit:userFileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/filters.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
+<<<<<<< HEAD
         <spirit:userFileType>CHECKSUM_644ec833</spirit:userFileType>
+=======
+        <spirit:userFileType>CHECKSUM_6a78c337</spirit:userFileType>
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -320,21 +357,7 @@
       </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagesynthesis_xilinx_com_hls_fir_filter_2_0__ref_view_fileset</spirit:name>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="hls" xilinx:name="fir_filter" xilinx:version="2.0">
-            <xilinx:mode xilinx:name="create_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>../../hdmi/ip/fir_filter_0/fir_filter_0.xci</spirit:name>
-        <spirit:userFileType>xci</spirit:userFileType>
-      </spirit:file>
       <spirit:file>
         <spirit:name>ip/bram_coefs/bram_coefs.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
@@ -342,6 +365,30 @@
       <spirit:file>
         <spirit:name>ip/bram_xant/bram_xant.xci</spirit:name>
         <spirit:userFileType>xci</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/synth/fir_filter_0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_add_64eOg.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_mul_16bkb.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_mul_32cud.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>src/fir_filter_0/hdl/verilog/fir_filter_sub_64dEe.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
         <spirit:name>src/common/mux2.v</spirit:name>
@@ -360,7 +407,7 @@
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../filters/vivado/sim/filters_coefs.COE</spirit:name>
+        <spirit:name>src/filters_coefs.COE</spirit:name>
         <spirit:userFileType>coe</spirit:userFileType>
       </spirit:file>
       <spirit:file>
@@ -379,22 +426,22 @@
       </spirit:vendorExtensions>
     </spirit:fileSet>
     <spirit:fileSet>
-      <spirit:name>xilinx_anylanguagebehavioralsimulation_xilinx_com_hls_fir_filter_2_0__ref_view_fileset</spirit:name>
-      <spirit:vendorExtensions>
-        <xilinx:subCoreRef>
-          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="hls" xilinx:name="fir_filter" xilinx:version="2.0">
-            <xilinx:mode xilinx:name="create_mode"/>
-          </xilinx:componentRef>
-        </xilinx:subCoreRef>
-      </spirit:vendorExtensions>
-    </spirit:fileSet>
-    <spirit:fileSet>
       <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>xgui/filtersIP_v1_0.tcl</spirit:name>
         <spirit:fileType>tclSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_9fe92e30</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_dc1bb3b0</spirit:userFileType>
         <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_testbench_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/testbench/tb_filters.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
   </spirit:fileSets>
@@ -404,6 +451,10 @@
       <spirit:name>M</spirit:name>
       <spirit:displayName>M</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M">23</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">rbuf_v1_0</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>XADC_DATA_SIZE</spirit:name>
@@ -424,10 +475,6 @@
       <spirit:name>XCOEF_ADDR_SIZE</spirit:name>
       <spirit:displayName>Xcoef Addr Size</spirit:displayName>
       <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.XCOEF_ADDR_SIZE">5</spirit:value>
-    </spirit:parameter>
-    <spirit:parameter>
-      <spirit:name>Component_Name</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">filters_v1_0</spirit:value>
     </spirit:parameter>
   </spirit:parameters>
   <spirit:vendorExtensions>
@@ -454,7 +501,6 @@
         <xilinx:family xilinx:lifeCycle="Production">virtexuplus</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">virtexuplusHBM</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">virtexuplus58g</xilinx:family>
-        <xilinx:family xilinx:lifeCycle="Production">kintexuplus</xilinx:family>
         <xilinx:family xilinx:lifeCycle="Production">kintexu</xilinx:family>
       </xilinx:supportedFamilies>
       <xilinx:taxonomies>
@@ -463,12 +509,14 @@
       <xilinx:displayName>filtersIP</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
       <xilinx:xpmLibraries>
+        <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
+      <xilinx:coreRevision>1</xilinx:coreRevision>
       <xilinx:upgrades>
-        <xilinx:canUpgradeFrom>user.org:user:filters:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>user.org:user:rbuf:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
+<<<<<<< HEAD
       <xilinx:coreCreationDateTime>2022-06-14T16:46:52Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
@@ -583,15 +631,52 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6eef53e2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@78c1048_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@6d9e1fc2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+=======
+      <xilinx:coreCreationDateTime>2022-06-14T16:45:01Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ba45f20_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63a8c1fd_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f5d957f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34c6de19_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d83bb6c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ccf3583_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e2fe41_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47043532_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35b01e58_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d96f156_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@68b8a85b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b32dc46_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@57ebc990_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@437fa08b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@747126a7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22d00869_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f0ae172_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cb52b3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62809288_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6978949d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ab3f79f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7070a1d9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a0345dc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@557d5ae4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d896804_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3336455c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a0745bc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36019b4d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53c8f824_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e691157_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5533d050_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f95e76a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="8586bdda"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="fcce3ca1"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="fcd3e53e"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="52275dec"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="ff0cbb81"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="20650e21"/>
-      <xilinx:checksum xilinx:scope="parameters" xilinx:value="319b2453"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="e06e493e"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>
 </spirit:component>

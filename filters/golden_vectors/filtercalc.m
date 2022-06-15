@@ -7,7 +7,11 @@ function y = filtercalc(M, x_ant, x_coefs, dcValEn)
      
     % convert from fixed point and add dc value if needed
     y = floor(y * 2^-15 + dcValEn*32767);
+<<<<<<< HEAD
+
+=======
    
+>>>>>>> blockdesign
     % truncate filter output
     if(y < 0)
         y = 0;

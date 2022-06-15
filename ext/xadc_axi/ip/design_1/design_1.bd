@@ -5,8 +5,7 @@
       "device": "xc7z010clg400-1",
       "name": "design_1",
       "synth_flow_mode": "Hierarchical",
-      "tool_version": "2019.2",
-      "validated": "true"
+      "tool_version": "2019.2"
     },
     "design_tree": {
       "processing_system7_0": "",
@@ -30,67 +29,11 @@
     "interface_ports": {
       "DDR": {
         "mode": "Master",
-        "vlnv": "xilinx.com:interface:ddrx_rtl:1.0",
-        "parameters": {
-          "CAN_DEBUG": {
-            "value": "false",
-            "value_src": "default"
-          },
-          "TIMEPERIOD_PS": {
-            "value": "1250",
-            "value_src": "default"
-          },
-          "MEMORY_TYPE": {
-            "value": "COMPONENTS",
-            "value_src": "default"
-          },
-          "DATA_WIDTH": {
-            "value": "8",
-            "value_src": "default"
-          },
-          "CS_ENABLED": {
-            "value": "true",
-            "value_src": "default"
-          },
-          "DATA_MASK_ENABLED": {
-            "value": "true",
-            "value_src": "default"
-          },
-          "SLOT": {
-            "value": "Single",
-            "value_src": "default"
-          },
-          "MEM_ADDR_MAP": {
-            "value": "ROW_COLUMN_BANK",
-            "value_src": "default"
-          },
-          "BURST_LENGTH": {
-            "value": "8",
-            "value_src": "default"
-          },
-          "AXI_ARBITRATION_SCHEME": {
-            "value": "TDM",
-            "value_src": "default"
-          },
-          "CAS_LATENCY": {
-            "value": "11",
-            "value_src": "default"
-          },
-          "CAS_WRITE_LATENCY": {
-            "value": "11",
-            "value_src": "default"
-          }
-        }
+        "vlnv": "xilinx.com:interface:ddrx_rtl:1.0"
       },
       "FIXED_IO": {
         "mode": "Master",
-        "vlnv": "xilinx.com:display_processing_system7:fixedio_rtl:1.0",
-        "parameters": {
-          "CAN_DEBUG": {
-            "value": "false",
-            "value_src": "default"
-          }
-        }
+        "vlnv": "xilinx.com:display_processing_system7:fixedio_rtl:1.0"
       }
     },
     "ports": {
@@ -1865,6 +1808,11 @@
                 "offset": "0x43C20000",
                 "range": "64K"
               },
+              "SEG_config_done_0_S00_AXI_reg": {
+                "address_block": "/config_done_0/S00_AXI/S00_AXI_reg",
+                "offset": "0x43C10000",
+                "range": "64K"
+              },
               "SEG_xadc_wiz_0_Reg": {
                 "address_block": "/xadc_wiz_0/s_axi_lite/Reg",
                 "offset": "0x43C00000",
@@ -1883,6 +1831,11 @@
               "SEG_AXIM_read_xadc_0_SPS_AXI_reg": {
                 "address_block": "/AXIM_read_xadc_0/SPS_AXI/SPS_AXI_reg",
                 "offset": "0x43C20000",
+                "range": "64K"
+              },
+              "SEG_config_done_0_S00_AXI_reg": {
+                "address_block": "/config_done_0/S00_AXI/S00_AXI_reg",
+                "offset": "0x43C10000",
                 "range": "64K"
               },
               "SEG_xadc_wiz_0_Reg": {
