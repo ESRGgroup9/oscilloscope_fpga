@@ -1,5 +1,5 @@
 printFig = 0;
-writeToFile = 1;
+writeToFile = 0;
 inputRand = 0;
 genInputRand = 0;
 
