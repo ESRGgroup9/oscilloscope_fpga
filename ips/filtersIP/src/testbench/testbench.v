@@ -209,8 +209,7 @@ filters #(
 	input_val,
 
 	filt_result,
-	filt_done,
-    rbuf_done
+	filt_done
 );
 
 endmodule

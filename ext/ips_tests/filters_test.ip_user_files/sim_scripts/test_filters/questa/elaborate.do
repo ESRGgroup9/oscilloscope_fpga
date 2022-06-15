@@ -1,1 +1,0 @@
-vopt -64 +acc -l elaborate.log -L xpm -L xil_defaultlib -L blk_mem_gen_v8_4_4 -L xlconstant_v1_1_6 -L unisims_ver -L unimacro_ver -L secureip -work xil_defaultlib xil_defaultlib.test_filters xil_defaultlib.glbl -o test_filters_opt
