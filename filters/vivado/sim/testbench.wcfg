@@ -20,19 +20,19 @@
       <NameColumnWidth column_width="162"></NameColumnWidth>
 =======
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="636500001fs"></ZoomEndTime>
-      <Cursor1Time time="395367fs"></Cursor1Time>
+      <ZoomEndTime time="63850001fs"></ZoomEndTime>
+      <Cursor1Time time="45950000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
+<<<<<<< HEAD
+      <NameColumnWidth column_width="154"></NameColumnWidth>
+=======
       <NameColumnWidth column_width="158"></NameColumnWidth>
 >>>>>>> blockdesign
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
-   <wave_markers>
-      <marker label="" time="960000" />
-      <marker label="" time="24000" />
-   </wave_markers>
+   <WVObjectSize size="9" />
    <wvobject type="logic" fp_name="/testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -68,9 +68,5 @@
    <wvobject type="array" fp_name="/testbench/filt_result">
       <obj_property name="ElementShortName">filt_result[15:0]</obj_property>
       <obj_property name="ObjectShortName">filt_result[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/testbench/rbuf_done">
-      <obj_property name="ElementShortName">rbuf_done</obj_property>
-      <obj_property name="ObjectShortName">rbuf_done</obj_property>
    </wvobject>
 </wave_config>

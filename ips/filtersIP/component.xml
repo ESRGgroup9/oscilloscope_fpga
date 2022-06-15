@@ -228,6 +228,19 @@
           </spirit:wireTypeDefs>
         </spirit:wire>
       </spirit:port>
+      <spirit:port>
+        <spirit:name>rbuf_done</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
     </spirit:ports>
     <spirit:modelParameters>
       <spirit:modelParameter xsi:type="spirit:nameValueTypeType" spirit:dataType="integer">
@@ -326,7 +339,11 @@
       <spirit:file>
         <spirit:name>src/filters.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
+<<<<<<< HEAD
+        <spirit:userFileType>CHECKSUM_644ec833</spirit:userFileType>
+=======
         <spirit:userFileType>CHECKSUM_6a78c337</spirit:userFileType>
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -499,6 +516,122 @@
       <xilinx:upgrades>
         <xilinx:canUpgradeFrom>user.org:user:rbuf:1.0</xilinx:canUpgradeFrom>
       </xilinx:upgrades>
+<<<<<<< HEAD
+      <xilinx:coreCreationDateTime>2022-06-14T16:46:52Z</xilinx:coreCreationDateTime>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@347dc3ee_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ebf3800_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3bd5d792_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63c09578_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ccfbc7e_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ecc222c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@765df99d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a232086_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3891c574_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f6c12d3_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7178698a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@490654d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15f4f9af_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a2cfe4a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@193b18e8_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f3bf83f_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2041d79b_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@535edda0_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6fba8a8c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e8cf24a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e1c2696_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35b4c227_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@361f1335_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b0d1732_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22da84cb_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a5dcfc7_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6376a4d8_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1110a504_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bed480c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dbf736a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7df4c385_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78c95814_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@326ae953_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f2b7a02_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3af09aa2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4bf5393c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@744d9b72_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22def0bc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2fbbe5aa_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66e9334d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@623b7314_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36f05f3c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d8de878_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@426ee37a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ea06b2e_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c7f3f51_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4988445d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@120e48bd_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@498d0bc5_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52b9caad_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50b50c08_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29bffd26_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70fd55a3_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62f8f95f_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74fbb4dc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@200a0a33_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5aa1d1e1_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@68fdaa70_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@208bf281_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19ffee68_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ec413f8_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ed0f211_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@c9b14fe_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@144f3d5c_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@226babf8_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48ee3e19_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21cc40a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ff2b9a0_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45347405_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1bcd5df3_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a39836d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1805254b_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@140a30df_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50ee3570_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4919ff5d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@50053417_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55cdfbe6_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fad4833_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6124fcb4_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75c652ab_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b324816_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61cc044f_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d71d13a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@569c2c8b_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b80f7f8_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b29028_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@cd3d2f2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16a94644_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58b8861e_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b86f6c9_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56afdaaa_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@53befe91_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37dc3b61_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70d532ea_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@72828ef0_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f3777_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65cb303a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5dbae594_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70a5aebc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35be1259_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6eea1cf4_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7193e389_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@100a72d6_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ad26ea5_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cf97793_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6078b04_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@268ea6d6_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a317e42_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6eef53e2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78c1048_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d9e1fc2_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+=======
       <xilinx:coreCreationDateTime>2022-06-14T16:45:01Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
@@ -534,6 +667,7 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7e691157_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5533d050_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7f95e76a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/filtersIP</xilinx:tag>
+>>>>>>> 812ec2b8badfc754dfc8b3ab1ba46a15f5ae391b
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
