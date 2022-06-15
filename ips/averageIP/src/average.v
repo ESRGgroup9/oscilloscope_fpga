@@ -3,29 +3,29 @@
 module average(
 	clk,
 	rstn,
+	start,
 
 	val,
-	val_avg,
-   start
+	val_avg
 );
 
 parameter VAL_RES = 16;
 
 input wire clk;
 input wire rstn;
+input wire start;
 
 input wire [VAL_RES-1:0] val;
 output wire [VAL_RES-1:0] val_avg;
 
-wire clk_10Mhz;
-reg clk_10khz_delayed;
-wire clk_10khz_rising;
+//wire clk_10Mhz;
+//reg clk_10Mhz_delayed;
+//wire clk_10Mhz_rising;
 
-reg [13:0] counter;
-wire counter_10;
+//reg [15:0] counter;
+//wire counter_10;
 
-output reg start;
-reg start_count;
+//reg start_count;
 
 // ===========================================================================
 // internal registers
@@ -59,47 +59,71 @@ end
 
 assign val_avg = val_div_r;
 
+// SAMPLE
+//always@(posedge clk) begin
+//   if(~rstn | counter_1k)
+//      counter <= 0;
+//   else begin
+//      counter <= counter + 1;
+//   end
+//end
+
+//always @(posedge clk) begin
+//    if(~rstn | ((start) & (start_count))) begin
+//        start_count <= 1'b0;
+//        start <= 1'b0;
+//    end
+//    else if(counter_1k) begin
+//        start <= 1'b1;
+//    end
+//    else if((start) & (~start_count))begin
+//        start_count <= ~start_count;
+//    end
+//end
+
+//assign counter_1k = (counter == 50000);
+
 // counter
-always@(posedge clk)
-   clk_10khz_delayed <= clk_10Mhz;
+//always@(posedge clk)
+//   clk_10Mhz_delayed <= clk_10Mhz;
 
-assign clk_10khz_rising = clk_10Mhz & ~clk_10khz_delayed;
+//assign clk_10Mhz_rising = clk_10Mhz & ~clk_10Mhz_delayed;
 
-always@(posedge clk) begin
-   if(~rstn | counter_10)
-      counter <= 0;
-   else begin
-      counter <= counter + clk_10khz_rising;
-   end
-end
+//always@(posedge clk) begin
+//   if(~rstn | counter_1k)
+//      counter <= 0;
+//   else begin
+//      counter <= counter + clk_10Mhz_rising;
+//   end
+//end
 
-always @(posedge clk) begin
-    if(~rstn | ((start) & (start_count))) begin
-        start_count <= 1'b0;
-        start <= 1'b0;
-    end
-    else if(counter_10) begin
-        start <= 1'b1;
-    end
-    else if((start) & (~start_count))begin
-        start_count <= ~start_count;
-    end
-end
+//always @(posedge clk) begin
+//    if(~rstn | ((start) & (start_count))) begin
+//        start_count <= 1'b0;
+//        start <= 1'b0;
+//    end
+//    else if(counter_1k) begin
+//        start <= 1'b1;
+//    end
+//    else if((start) & (~start_count))begin
+//        start_count <= ~start_count;
+//    end
+//end
 
-assign counter_10 = (counter == 10000);
+//assign counter_1k = (counter == 10000);
 
 // ===========================================================================
 // 
 // ===========================================================================
 
-clk_wiz_0 clock_wiz
-   (
-    // Clock out ports
-    .clk_out1(clk_10Mhz),     // output clk_out1
-    // Status and control signals
-    .resetn(rstn), // input resetn
-   // Clock in ports
-    .clk_in1(clk));      // input clk_in1
+//clk_wiz_0 clock_wiz
+//   (
+//    // Clock out ports
+//    .clk_out1(clk_10Mhz),     // output clk_out1
+//    // Status and control signals
+//    .resetn(rstn), // input resetn
+//   // Clock in ports
+//    .clk_in1(clk));      // input clk_in1
 
 //MMCME2_BASE #(
 //      .BANDWIDTH("OPTIMIZED"),   // Jitter programming (OPTIMIZED, HIGH, LOW)
