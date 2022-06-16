@@ -1,5 +1,5 @@
 
-// file: hdmi_bd_clk_wiz_0_0.v
+// file: clk_wiz_0.v
 // 
 // (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
 // 
@@ -56,37 +56,33 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// _TMDSclk__250.00000______0.000______50.0______104.759_____96.948
-// __pixclk__25.00000______0.000______50.0______165.419_____96.948
-// writeclk__10.00000______0.000______50.0______197.700_____96.948
-// _readclk__50.00000______0.000______50.0______143.688_____96.948
+// __pixclk__25.00000______0.000______50.0______236.428____164.985
+// _TMDSclk__250.00000______0.000______50.0______136.987____164.985
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
 //----------------------------------------------------------------------------
-// __primary_________125.000____________0.010
+// __primary______________50____________0.010
 
 `timescale 1ps/1ps
 
-module hdmi_bd_clk_wiz_0_0_clk_wiz 
+module clk_wiz_0_clk_wiz 
 
  (// Clock in ports
   // Clock out ports
-  output        TMDSclk,
   output        pixclk,
-  output        writeclk,
-  output        readclk,
+  output        TMDSclk,
   // Status and control signals
-  input         reset,
-  input         clk_in1
+  input         resetn,
+  input         clk
  );
   // Input buffering
   //------------------------------------
-wire clk_in1_hdmi_bd_clk_wiz_0_0;
-wire clk_in2_hdmi_bd_clk_wiz_0_0;
+wire clk_clk_wiz_0;
+wire clk_in2_clk_wiz_0;
   IBUF clkin1_ibufg
-   (.O (clk_in1_hdmi_bd_clk_wiz_0_0),
-    .I (clk_in1));
+   (.O (clk_clk_wiz_0),
+    .I (clk));
 
 
 
@@ -98,24 +94,26 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
   //    * Unused inputs are tied off
   //    * Unused outputs are labeled unused
 
-  wire        TMDSclk_hdmi_bd_clk_wiz_0_0;
-  wire        pixclk_hdmi_bd_clk_wiz_0_0;
-  wire        writeclk_hdmi_bd_clk_wiz_0_0;
-  wire        readclk_hdmi_bd_clk_wiz_0_0;
-  wire        clk_out5_hdmi_bd_clk_wiz_0_0;
-  wire        clk_out6_hdmi_bd_clk_wiz_0_0;
-  wire        clk_out7_hdmi_bd_clk_wiz_0_0;
+  wire        pixclk_clk_wiz_0;
+  wire        TMDSclk_clk_wiz_0;
+  wire        clk_out3_clk_wiz_0;
+  wire        clk_out4_clk_wiz_0;
+  wire        clk_out5_clk_wiz_0;
+  wire        clk_out6_clk_wiz_0;
+  wire        clk_out7_clk_wiz_0;
 
   wire [15:0] do_unused;
   wire        drdy_unused;
   wire        psdone_unused;
   wire        locked_int;
-  wire        clkfbout_hdmi_bd_clk_wiz_0_0;
-  wire        clkfbout_buf_hdmi_bd_clk_wiz_0_0;
+  wire        clkfbout_clk_wiz_0;
+  wire        clkfbout_buf_clk_wiz_0;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
    wire clkout1b_unused;
+   wire clkout2_unused;
    wire clkout2b_unused;
+   wire clkout3_unused;
    wire clkout3b_unused;
    wire clkout4_unused;
   wire        clkout5_unused;
@@ -130,45 +128,37 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
     .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (8.000),
+    .CLKFBOUT_MULT_F      (20.000),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (4.000),
+    .CLKOUT0_DIVIDE_F     (40.000),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (40),
+    .CLKOUT1_DIVIDE       (4),
     .CLKOUT1_PHASE        (0.000),
     .CLKOUT1_DUTY_CYCLE   (0.500),
     .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKOUT2_DIVIDE       (100),
-    .CLKOUT2_PHASE        (0.000),
-    .CLKOUT2_DUTY_CYCLE   (0.500),
-    .CLKOUT2_USE_FINE_PS  ("FALSE"),
-    .CLKOUT3_DIVIDE       (20),
-    .CLKOUT3_PHASE        (0.000),
-    .CLKOUT3_DUTY_CYCLE   (0.500),
-    .CLKOUT3_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (8.000))
+    .CLKIN1_PERIOD        (20.000))
   mmcm_adv_inst
     // Output clocks
    (
-    .CLKFBOUT            (clkfbout_hdmi_bd_clk_wiz_0_0),
+    .CLKFBOUT            (clkfbout_clk_wiz_0),
     .CLKFBOUTB           (clkfboutb_unused),
-    .CLKOUT0             (TMDSclk_hdmi_bd_clk_wiz_0_0),
+    .CLKOUT0             (pixclk_clk_wiz_0),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (pixclk_hdmi_bd_clk_wiz_0_0),
+    .CLKOUT1             (TMDSclk_clk_wiz_0),
     .CLKOUT1B            (clkout1b_unused),
-    .CLKOUT2             (writeclk_hdmi_bd_clk_wiz_0_0),
+    .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
-    .CLKOUT3             (readclk_hdmi_bd_clk_wiz_0_0),
+    .CLKOUT3             (clkout3_unused),
     .CLKOUT3B            (clkout3b_unused),
     .CLKOUT4             (clkout4_unused),
     .CLKOUT5             (clkout5_unused),
     .CLKOUT6             (clkout6_unused),
      // Input clock control
-    .CLKFBIN             (clkfbout_buf_hdmi_bd_clk_wiz_0_0),
-    .CLKIN1              (clk_in1_hdmi_bd_clk_wiz_0_0),
+    .CLKFBIN             (clkfbout_buf_clk_wiz_0),
+    .CLKIN1              (clk_clk_wiz_0),
     .CLKIN2              (1'b0),
      // Tied to always select the primary input clock
     .CLKINSEL            (1'b1),
@@ -191,7 +181,7 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
     .CLKFBSTOPPED        (clkfbstopped_unused),
     .PWRDWN              (1'b0),
     .RST                 (reset_high));
-  assign reset_high = reset; 
+  assign reset_high = ~resetn; 
 
 // Clock Monitor clock assigning
 //--------------------------------------
@@ -199,8 +189,8 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
   //-----------------------------------
 
   BUFG clkf_buf
-   (.O (clkfbout_buf_hdmi_bd_clk_wiz_0_0),
-    .I (clkfbout_hdmi_bd_clk_wiz_0_0));
+   (.O (clkfbout_buf_clk_wiz_0),
+    .I (clkfbout_clk_wiz_0));
 
 
 
@@ -208,21 +198,13 @@ wire clk_in2_hdmi_bd_clk_wiz_0_0;
 
 
   BUFG clkout1_buf
-   (.O   (TMDSclk),
-    .I   (TMDSclk_hdmi_bd_clk_wiz_0_0));
+   (.O   (pixclk),
+    .I   (pixclk_clk_wiz_0));
 
 
   BUFG clkout2_buf
-   (.O   (pixclk),
-    .I   (pixclk_hdmi_bd_clk_wiz_0_0));
-
-  BUFG clkout3_buf
-   (.O   (writeclk),
-    .I   (writeclk_hdmi_bd_clk_wiz_0_0));
-
-  BUFG clkout4_buf
-   (.O   (readclk),
-    .I   (readclk_hdmi_bd_clk_wiz_0_0));
+   (.O   (TMDSclk),
+    .I   (TMDSclk_clk_wiz_0));
 
 
 

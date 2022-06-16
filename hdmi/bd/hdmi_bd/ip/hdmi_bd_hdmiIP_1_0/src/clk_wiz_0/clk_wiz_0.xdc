@@ -1,5 +1,5 @@
 
-# file: hdmi_bd_clk_wiz_0_0.xdc
+# file: clk_wiz_0.xdc
 # 
 # (c) Copyright 2008 - 2013 Xilinx, Inc. All rights reserved.
 # 
@@ -53,8 +53,8 @@
 # commented constraints can be used in the top level xdc 
 #----------------------------------------------------------------
 # Connect to input port when clock capable pin is selected for input
-create_clock -period 8.000 [get_ports clk_in1]
-set_input_jitter [get_clocks -of_objects [get_ports clk_in1]] 0.08
+create_clock -period 20.000 [get_ports clk]
+set_input_jitter [get_clocks -of_objects [get_ports clk]] 0.2
 
 
 set_property PHASESHIFT_MODE WAVEFORM [get_cells -hierarchical *adv*]

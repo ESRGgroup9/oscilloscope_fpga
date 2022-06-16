@@ -1,10 +1,11 @@
 module hdmiIP(
-	TMDSclk,
-	pixclk,
-	clkWR,
-	clkRD,
-	rst,
-	// val,
+//	TMDSclk,
+//	pixclk,
+//	clkWR,
+//	clkRD,
+    clk,
+	rstn,
+	val,
 	
 	// outputs
 	TMDSp,
@@ -19,9 +20,8 @@ module hdmiIP(
 
 	// addrWR,
 	// wd,
-
-	valBtns,
-	led
+	clkWR,
+	counter
 );
 
 parameter ADDR_WIDTH = 19;  	// log(width*height)/ log(2)
@@ -30,14 +30,13 @@ parameter LOG2_WIDTH 	= 10; // 1024 < 640
 parameter LOG2_HEIGHT 	= 9;  // 512 < 480
 
 // inputs
-input TMDSclk;
-input pixclk;
-input clkWR;
-input clkRD;
+//clks
+input wire clk;
 
-input rst;
+input rstn;
+wire rst;
 
-wire [VAL_RES-1:0] val;
+input wire [VAL_RES-1:0] val;
 // input wire readValEn;
 
 // outputs
@@ -78,38 +77,93 @@ wire we1;
 wire [ADDR_WIDTH-1:0] addrB0;
 wire [ADDR_WIDTH-1:0] addrB1;
 
+wire TMDSclk;
+wire pixclk;
+wire clkRD;
+
+output reg [12:0] counter;
+reg clkWrite_delayed;
+output reg clkWR;
+
+wire counter_5k;
+wire clkWrite_rising;
+wire clkWrite_falling;
+
+// reset 
+assign rst = ~rstn;
+
+// ===========================================================================
+// Clk generation
+// ===========================================================================
+clk_wiz_0 clk_wiz
+   (
+    // Clock out ports
+    .pixclk(pixclk),     // output pixclk
+    .TMDSclk(TMDSclk),     // output TMDSclk
+    // Status and control signals
+    .resetn(rstn), // input resetn
+   // Clock in ports
+    .clk(clk));      // input clk
+
+assign clkRD = clk;
+
+always@(posedge clk) begin
+    if(~rstn) begin
+        clkWR <= 1'b0;
+    end
+    else if(counter_5k) begin
+        clkWR <= ~clkWR;
+    end    
+end
+
+always@(posedge clk) begin
+    if(~rstn | clkWrite_rising | clkWrite_falling) begin
+        counter <= 0;
+    end
+    else 
+        counter <= counter + 1;
+end
+
+always@(posedge clk)
+   clkWrite_delayed <= clkWR;
+
+assign clkWrite_rising = clkWR & ~clkWrite_delayed;
+
+assign clkWrite_falling = ~clkWR & clkWrite_delayed;
+
+assign counter_5k = (counter == 5000);
+
 // ===========================================================================
 // debug
 // ===========================================================================
 
-wire  [VAL_RES-1:0] valSub_o;
-wire  [VAL_RES+LOG2_HEIGHT-1:0] valMul_o;
-wire [ADDR_WIDTH-1:0] addrWR;
-wire [9:0] valIndex_o;
+//wire  [VAL_RES-1:0] valSub_o;
+//wire  [VAL_RES+LOG2_HEIGHT-1:0] valMul_o;
+//wire [ADDR_WIDTH-1:0] addrWR;
+//wire [9:0] valIndex_o;
 
-input wire [3:0] valBtns;
-output wire [3:0] led;
+////input wire [3:0] valBtns;
+////output wire [3:0] led;
 
+//reg [9:0] valDiv_i;
+//wire [VAL_RES+9-1:0] valMul_i;
 
-reg [9:0] valDiv_i;
-wire [VAL_RES+9-1:0] valMul_i;
+////assign val 		= {valBtns, {12{1'b0}}};
+////assign valMul_i = {valBtns, {21{1'b0}}};
 
-assign val 		= {valBtns, {12{1'b0}}};
-assign valMul_i = {valBtns, {21{1'b0}}};
+//always @(posedge clkWR) begin
+//	if(rst) begin
+//		valDiv_i <= 0;
+//	end
+//	else begin
+//		valDiv_i <= valDiv_i<<5;
+//	end
+//end
 
-always @(posedge clkWR) begin
-	if(rst) begin
-		valDiv_i <= 0;
-	end
-	else begin
-		valDiv_i <= valDiv_i<<5;
-	end
-end
-
-assign led[0] = (valIndex_o == 0);   // btns = 0
-assign led[1] = (valIndex_o == 256); // btns = 8
-assign led[2] = (valIndex_o == 320); // btns = 10
-assign led[3] = (valIndex_o == 478); // btns = 15
+//assign led[0] = (valIndex_o == 0);   // btns = 0
+//assign led[1] = (valIndex_o == 256); // btns = 8
+//assign led[2] = (valIndex_o == 320); // btns = 10
+//assign led[3] = (valIndex_o == 478); // btns = 15
 
 // ===========================================================================
 // 

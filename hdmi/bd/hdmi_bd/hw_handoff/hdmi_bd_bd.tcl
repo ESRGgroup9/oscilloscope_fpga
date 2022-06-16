@@ -59,7 +59,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./hdmi/bd
+  set origin_dir ./code/oscilloscope_fpga/hdmi/bd
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -161,77 +161,27 @@ proc create_root_design { parentCell } {
   set TMDSp [ create_bd_port -dir O -from 2 -to 0 TMDSp ]
   set TMDSp_clock [ create_bd_port -dir O -type clk TMDSp_clock ]
   set clk [ create_bd_port -dir I -type clk -freq_hz 125000000 clk ]
-  set led [ create_bd_port -dir O -from 3 -to 0 led ]
-  set reset [ create_bd_port -dir I -type rst reset ]
+  set clkWR [ create_bd_port -dir O clkWR ]
+  set counter [ create_bd_port -dir O -from 12 -to 0 counter ]
+  set rstn [ create_bd_port -dir I -type rst rstn ]
   set_property -dict [ list \
-   CONFIG.POLARITY {ACTIVE_HIGH} \
- ] $reset
-  set valBtns [ create_bd_port -dir I -from 3 -to 0 valBtns ]
-
-  # Create instance: clk_wiz_0, and set properties
-  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
-  set_property -dict [ list \
-   CONFIG.CLKIN1_JITTER_PS {80.0} \
-   CONFIG.CLKOUT1_DRIVES {BUFG} \
-   CONFIG.CLKOUT1_JITTER {104.759} \
-   CONFIG.CLKOUT1_PHASE_ERROR {96.948} \
-   CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {250} \
-   CONFIG.CLKOUT2_DRIVES {BUFG} \
-   CONFIG.CLKOUT2_JITTER {165.419} \
-   CONFIG.CLKOUT2_PHASE_ERROR {96.948} \
-   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {25} \
-   CONFIG.CLKOUT2_USED {true} \
-   CONFIG.CLKOUT3_DRIVES {BUFG} \
-   CONFIG.CLKOUT3_JITTER {197.700} \
-   CONFIG.CLKOUT3_PHASE_ERROR {96.948} \
-   CONFIG.CLKOUT3_REQUESTED_OUT_FREQ {10} \
-   CONFIG.CLKOUT3_USED {true} \
-   CONFIG.CLKOUT4_DRIVES {BUFG} \
-   CONFIG.CLKOUT4_JITTER {143.688} \
-   CONFIG.CLKOUT4_PHASE_ERROR {96.948} \
-   CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {50} \
-   CONFIG.CLKOUT4_USED {true} \
-   CONFIG.CLKOUT5_DRIVES {BUFG} \
-   CONFIG.CLKOUT6_DRIVES {BUFG} \
-   CONFIG.CLKOUT7_DRIVES {BUFG} \
-   CONFIG.CLK_IN1_BOARD_INTERFACE {sys_clock} \
-   CONFIG.CLK_OUT1_PORT {TMDSclk} \
-   CONFIG.CLK_OUT2_PORT {pixclk} \
-   CONFIG.CLK_OUT3_PORT {writeclk} \
-   CONFIG.CLK_OUT4_PORT {readclk} \
-   CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
-   CONFIG.MMCM_BANDWIDTH {OPTIMIZED} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {8.000} \
-   CONFIG.MMCM_CLKIN1_PERIOD {8.000} \
-   CONFIG.MMCM_CLKIN2_PERIOD {10.000} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {4.000} \
-   CONFIG.MMCM_CLKOUT1_DIVIDE {40} \
-   CONFIG.MMCM_CLKOUT2_DIVIDE {100} \
-   CONFIG.MMCM_CLKOUT3_DIVIDE {20} \
-   CONFIG.MMCM_COMPENSATION {ZHOLD} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-   CONFIG.NUM_OUT_CLKS {4} \
-   CONFIG.PRIMITIVE {MMCM} \
-   CONFIG.PRIM_IN_FREQ {125.000} \
-   CONFIG.USE_LOCKED {false} \
- ] $clk_wiz_0
+   CONFIG.POLARITY {ACTIVE_LOW} \
+ ] $rstn
+  set val [ create_bd_port -dir I -from 15 -to 0 val ]
 
   # Create instance: hdmiIP_1, and set properties
   set hdmiIP_1 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_1 ]
 
   # Create port connections
-  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins clk_wiz_0/clk_in1]
-  connect_bd_net -net clk_wiz_0_TMDSclk [get_bd_pins clk_wiz_0/TMDSclk] [get_bd_pins hdmiIP_1/TMDSclk]
-  connect_bd_net -net clk_wiz_0_pixclk [get_bd_pins clk_wiz_0/pixclk] [get_bd_pins hdmiIP_1/pixclk]
-  connect_bd_net -net clk_wiz_0_readclk [get_bd_pins clk_wiz_0/readclk] [get_bd_pins hdmiIP_1/clkRD]
-  connect_bd_net -net clk_wiz_0_writeclk [get_bd_pins clk_wiz_0/writeclk] [get_bd_pins hdmiIP_1/clkWR]
+  connect_bd_net -net clk_1 [get_bd_ports clk] [get_bd_pins hdmiIP_1/clk]
   connect_bd_net -net hdmiIP_1_TMDSn [get_bd_ports TMDSn] [get_bd_pins hdmiIP_1/TMDSn]
   connect_bd_net -net hdmiIP_1_TMDSn_clk [get_bd_ports TMDSn_clock] [get_bd_pins hdmiIP_1/TMDSn_clk]
   connect_bd_net -net hdmiIP_1_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_1/TMDSp]
   connect_bd_net -net hdmiIP_1_TMDSp_clk [get_bd_ports TMDSp_clock] [get_bd_pins hdmiIP_1/TMDSp_clk]
-  connect_bd_net -net hdmiIP_1_led [get_bd_ports led] [get_bd_pins hdmiIP_1/led]
-  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins hdmiIP_1/rst]
-  connect_bd_net -net valBtns_0_1 [get_bd_ports valBtns] [get_bd_pins hdmiIP_1/valBtns]
+  connect_bd_net -net hdmiIP_1_clkWR [get_bd_ports clkWR] [get_bd_pins hdmiIP_1/clkWR]
+  connect_bd_net -net hdmiIP_1_counter [get_bd_ports counter] [get_bd_pins hdmiIP_1/counter]
+  connect_bd_net -net reset_1 [get_bd_ports rstn] [get_bd_pins hdmiIP_1/rstn]
+  connect_bd_net -net val_0_1 [get_bd_ports val] [get_bd_pins hdmiIP_1/val]
 
   # Create address segments
 

@@ -48,35 +48,31 @@
 
 
 // IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 105
+// IP Revision: 117
 
 `timescale 1ns/1ps
 
 (* IP_DEFINITION_SOURCE = "package_project" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module hdmi_bd_hdmiIP_1_0 (
-  TMDSclk,
-  pixclk,
-  clkWR,
-  clkRD,
-  rst,
+  clk,
+  rstn,
+  val,
   TMDSp,
   TMDSn,
   TMDSp_clk,
   TMDSn_clk,
-  valBtns,
-  led
+  clkWR,
+  counter
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF clk, FREQ_HZ 250000000, PHASE 0.0, CLK_DOMAIN /clk_wiz_0_clk_out1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF clk, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
-input wire TMDSclk;
-input wire pixclk;
-input wire clkWR;
-input wire clkRD;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst, POLARITY ACTIVE_HIGH, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst RST" *)
-input wire rst;
+input wire clk;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *)
+input wire rstn;
+input wire [15 : 0] val;
 output wire [2 : 0] TMDSp;
 output wire [2 : 0] TMDSn;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSp_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_1_0_TMDSp_clk, INSERT_VIP 0" *)
@@ -85,8 +81,8 @@ output wire TMDSp_clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSn_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_1_0_TMDSn_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TMDSn_clk CLK" *)
 output wire TMDSn_clk;
-input wire [3 : 0] valBtns;
-output wire [3 : 0] led;
+output wire clkWR;
+output wire [12 : 0] counter;
 
   hdmiIP #(
     .ADDR_WIDTH(19),
@@ -94,16 +90,14 @@ output wire [3 : 0] led;
     .LOG2_WIDTH(10),
     .LOG2_HEIGHT(9)
   ) inst (
-    .TMDSclk(TMDSclk),
-    .pixclk(pixclk),
-    .clkWR(clkWR),
-    .clkRD(clkRD),
-    .rst(rst),
+    .clk(clk),
+    .rstn(rstn),
+    .val(val),
     .TMDSp(TMDSp),
     .TMDSn(TMDSn),
     .TMDSp_clk(TMDSp_clk),
     .TMDSn_clk(TMDSn_clk),
-    .valBtns(valBtns),
-    .led(led)
+    .clkWR(clkWR),
+    .counter(counter)
   );
 endmodule

@@ -1,10 +1,10 @@
 
 `timescale 1 ns / 1 ps
 
-	module config_done_v1_0 #
+	module configIP_v1_0 #
 	(
 		// Users to add parameters here
-
+        parameter integer DEBUG_PARAM = 0,
 		// User parameters ends
 		// Do not modify the parameters beyond this line
 
@@ -15,7 +15,7 @@
 	)
 	(
 		// Users to add ports here
-
+        output wire [1:0] filter_select,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -44,10 +44,13 @@
 		input wire  s00_axi_rready
 	);
 // Instantiation of Axi Bus Interface S00_AXI
-	config_done_v1_0_S00_AXI # ( 
+	configIP_v1_0_S00_AXI # ( 
 		.C_S_AXI_DATA_WIDTH(C_S00_AXI_DATA_WIDTH),
-		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH)
-	) config_done_v1_0_S00_AXI_inst (
+		.C_S_AXI_ADDR_WIDTH(C_S00_AXI_ADDR_WIDTH),
+		.DEBUG_PARAM(DEBUG_PARAM)
+	) configIP_v1_0_S00_AXI_inst (
+	    .filter_select(filter_select),	    
+	    
 		.S_AXI_ACLK(s00_axi_aclk),
 		.S_AXI_ARESETN(s00_axi_aresetn),
 		.S_AXI_AWADDR(s00_axi_awaddr),

@@ -15,12 +15,12 @@ module sampleIP
 
 input wire clk;
 input wire rstn;
-input wire [16:0] val;
+input wire [15:0] val;
 
 output reg sample;
-output reg [16:0] sampled_val;
+output reg [15:0] sampled_val;
 
-reg [16-1:0] counter;
+reg [15:0] counter;
 reg sample_count;
 
 always@(posedge clk) begin
