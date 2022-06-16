@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Tue Jun 14 02:23:53 2022
-//Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
+//Date        : Wed Jun 15 16:30:38 2022
+//Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target hdmi_bd_wrapper.bd
 //Design      : hdmi_bd_wrapper
 //Purpose     : IP block netlist
@@ -15,26 +15,29 @@ module hdmi_bd_wrapper
     TMDSp,
     TMDSp_clock,
     clk,
-    led,
-    reset,
-    valBtns);
+    clkWR,
+    counter,
+    rstn,
+    val);
   output [2:0]TMDSn;
   output TMDSn_clock;
   output [2:0]TMDSp;
   output TMDSp_clock;
   input clk;
-  output [3:0]led;
-  input reset;
-  input [3:0]valBtns;
+  output clkWR;
+  output [12:0]counter;
+  input rstn;
+  input [15:0]val;
 
   wire [2:0]TMDSn;
   wire TMDSn_clock;
   wire [2:0]TMDSp;
   wire TMDSp_clock;
   wire clk;
-  wire [3:0]led;
-  wire reset;
-  wire [3:0]valBtns;
+  wire clkWR;
+  wire [12:0]counter;
+  wire rstn;
+  wire [15:0]val;
 
   hdmi_bd hdmi_bd_i
        (.TMDSn(TMDSn),
@@ -42,7 +45,8 @@ module hdmi_bd_wrapper
         .TMDSp(TMDSp),
         .TMDSp_clock(TMDSp_clock),
         .clk(clk),
-        .led(led),
-        .reset(reset),
-        .valBtns(valBtns));
+        .clkWR(clkWR),
+        .counter(counter),
+        .rstn(rstn),
+        .val(val));
 endmodule

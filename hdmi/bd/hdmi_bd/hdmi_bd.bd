@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x797E367106563EC3",
+      "boundary_crc": "0x4186372874807D90",
       "device": "xc7z010clg400-1",
       "name": "hdmi_bd",
       "synth_flow_mode": "Hierarchical",
@@ -9,7 +9,6 @@
       "validated": "true"
     },
     "design_tree": {
-      "clk_wiz_0": "",
       "hdmiIP_1": ""
     },
     "ports": {
@@ -34,7 +33,7 @@
           }
         }
       },
-      "reset": {
+      "rstn": {
         "type": "rst",
         "direction": "I",
         "parameters": {
@@ -43,7 +42,7 @@
             "value_src": "default"
           },
           "POLARITY": {
-            "value": "ACTIVE_HIGH"
+            "value": "ACTIVE_LOW"
           }
         }
       },
@@ -101,196 +100,27 @@
           }
         }
       },
-      "valBtns": {
+      "val": {
         "direction": "I",
-        "left": "3",
+        "left": "15",
         "right": "0"
       },
-      "led": {
+      "clkWR": {
+        "direction": "O"
+      },
+      "counter": {
         "direction": "O",
-        "left": "3",
+        "left": "12",
         "right": "0"
       }
     },
     "components": {
-      "clk_wiz_0": {
-        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
-        "xci_name": "hdmi_bd_clk_wiz_0_0",
-        "parameters": {
-          "CLKIN1_JITTER_PS": {
-            "value": "80.0"
-          },
-          "CLKOUT1_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT1_JITTER": {
-            "value": "104.759"
-          },
-          "CLKOUT1_PHASE_ERROR": {
-            "value": "96.948"
-          },
-          "CLKOUT1_REQUESTED_OUT_FREQ": {
-            "value": "250"
-          },
-          "CLKOUT2_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT2_JITTER": {
-            "value": "165.419"
-          },
-          "CLKOUT2_PHASE_ERROR": {
-            "value": "96.948"
-          },
-          "CLKOUT2_REQUESTED_OUT_FREQ": {
-            "value": "25"
-          },
-          "CLKOUT2_USED": {
-            "value": "true"
-          },
-          "CLKOUT3_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT3_JITTER": {
-            "value": "197.700"
-          },
-          "CLKOUT3_PHASE_ERROR": {
-            "value": "96.948"
-          },
-          "CLKOUT3_REQUESTED_OUT_FREQ": {
-            "value": "10"
-          },
-          "CLKOUT3_USED": {
-            "value": "true"
-          },
-          "CLKOUT4_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT4_JITTER": {
-            "value": "143.688"
-          },
-          "CLKOUT4_PHASE_ERROR": {
-            "value": "96.948"
-          },
-          "CLKOUT4_REQUESTED_OUT_FREQ": {
-            "value": "50"
-          },
-          "CLKOUT4_USED": {
-            "value": "true"
-          },
-          "CLKOUT5_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT6_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLKOUT7_DRIVES": {
-            "value": "BUFG"
-          },
-          "CLK_IN1_BOARD_INTERFACE": {
-            "value": "sys_clock"
-          },
-          "CLK_OUT1_PORT": {
-            "value": "TMDSclk"
-          },
-          "CLK_OUT2_PORT": {
-            "value": "pixclk"
-          },
-          "CLK_OUT3_PORT": {
-            "value": "writeclk"
-          },
-          "CLK_OUT4_PORT": {
-            "value": "readclk"
-          },
-          "FEEDBACK_SOURCE": {
-            "value": "FDBK_AUTO"
-          },
-          "MMCM_BANDWIDTH": {
-            "value": "OPTIMIZED"
-          },
-          "MMCM_CLKFBOUT_MULT_F": {
-            "value": "8.000"
-          },
-          "MMCM_CLKIN1_PERIOD": {
-            "value": "8.000"
-          },
-          "MMCM_CLKIN2_PERIOD": {
-            "value": "10.000"
-          },
-          "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "4.000"
-          },
-          "MMCM_CLKOUT1_DIVIDE": {
-            "value": "40"
-          },
-          "MMCM_CLKOUT2_DIVIDE": {
-            "value": "100"
-          },
-          "MMCM_CLKOUT3_DIVIDE": {
-            "value": "20"
-          },
-          "MMCM_COMPENSATION": {
-            "value": "ZHOLD"
-          },
-          "MMCM_DIVCLK_DIVIDE": {
-            "value": "1"
-          },
-          "NUM_OUT_CLKS": {
-            "value": "4"
-          },
-          "PRIMITIVE": {
-            "value": "MMCM"
-          },
-          "PRIM_IN_FREQ": {
-            "value": "125.000"
-          },
-          "USE_LOCKED": {
-            "value": "false"
-          }
-        }
-      },
       "hdmiIP_1": {
         "vlnv": "user.org:user:hdmiIP:1.0",
         "xci_name": "hdmi_bd_hdmiIP_1_0"
       }
     },
     "nets": {
-      "clk_1": {
-        "ports": [
-          "clk",
-          "clk_wiz_0/clk_in1"
-        ]
-      },
-      "reset_1": {
-        "ports": [
-          "reset",
-          "clk_wiz_0/reset",
-          "hdmiIP_1/rst"
-        ]
-      },
-      "clk_wiz_0_TMDSclk": {
-        "ports": [
-          "clk_wiz_0/TMDSclk",
-          "hdmiIP_1/TMDSclk"
-        ]
-      },
-      "clk_wiz_0_pixclk": {
-        "ports": [
-          "clk_wiz_0/pixclk",
-          "hdmiIP_1/pixclk"
-        ]
-      },
-      "clk_wiz_0_writeclk": {
-        "ports": [
-          "clk_wiz_0/writeclk",
-          "hdmiIP_1/clkWR"
-        ]
-      },
-      "valBtns_0_1": {
-        "ports": [
-          "valBtns",
-          "hdmiIP_1/valBtns"
-        ]
-      },
       "row_WR": {
         "hdl_attributes": {
           "DEBUG": {
@@ -300,12 +130,6 @@
             "value": "true"
           }
         }
-      },
-      "clk_wiz_0_readclk": {
-        "ports": [
-          "clk_wiz_0/readclk",
-          "hdmiIP_1/clkRD"
-        ]
       },
       "addrWR_1": {
         "hdl_attributes": {
@@ -381,10 +205,34 @@
           "TMDSn_clock"
         ]
       },
-      "hdmiIP_1_led": {
+      "clk_1": {
         "ports": [
-          "hdmiIP_1/led",
-          "led"
+          "clk",
+          "hdmiIP_1/clk"
+        ]
+      },
+      "reset_1": {
+        "ports": [
+          "rstn",
+          "hdmiIP_1/rstn"
+        ]
+      },
+      "val_0_1": {
+        "ports": [
+          "val",
+          "hdmiIP_1/val"
+        ]
+      },
+      "hdmiIP_1_clkWR": {
+        "ports": [
+          "hdmiIP_1/clkWR",
+          "clkWR"
+        ]
+      },
+      "hdmiIP_1_counter": {
+        "ports": [
+          "hdmiIP_1/counter",
+          "counter"
         ]
       }
     }

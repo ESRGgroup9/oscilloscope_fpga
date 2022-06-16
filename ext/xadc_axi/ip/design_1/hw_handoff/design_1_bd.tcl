@@ -59,7 +59,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./ip
+  set origin_dir ./code/oscilloscope_fpga/ext/xadc_axi/ip
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -160,6 +160,9 @@ proc create_root_design { parentCell } {
 
 
   # Create ports
+  set eoc_o_0 [ create_bd_port -dir O eoc_o_0 ]
+  set mst_exec_state_o_0 [ create_bd_port -dir O -from 1 -to 0 mst_exec_state_o_0 ]
+  set val_o_0 [ create_bd_port -dir O -from 15 -to 0 val_o_0 ]
   set vaux6n [ create_bd_port -dir I vaux6n ]
   set vaux6p [ create_bd_port -dir I vaux6p ]
 
@@ -178,7 +181,7 @@ proc create_root_design { parentCell } {
  ] $axi_interconnect_0
 
   # Create instance: config_done_0, and set properties
-  set config_done_0 [ create_bd_cell -type ip -vlnv user.org:user:config_done:1.0 config_done_0 ]
+  set config_done_0 [ create_bd_cell -type ip -vlnv user.org:user:configIP:1.0 config_done_0 ]
 
   # Create instance: proc_sys_reset_0, and set properties
   set proc_sys_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0 ]
@@ -693,6 +696,9 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
 
   # Create port connections
+  connect_bd_net -net AXIM_read_xadc_0_eoc_o [get_bd_ports eoc_o_0] [get_bd_pins AXIM_read_xadc_0/eoc_o]
+  connect_bd_net -net AXIM_read_xadc_0_mst_exec_state_o [get_bd_ports mst_exec_state_o_0] [get_bd_pins AXIM_read_xadc_0/mst_exec_state_o]
+  connect_bd_net -net AXIM_read_xadc_0_val_o [get_bd_ports val_o_0] [get_bd_pins AXIM_read_xadc_0/val_o]
   connect_bd_net -net clk_1 [get_bd_pins AXIM_read_xadc_0/madc_axi_aclk] [get_bd_pins AXIM_read_xadc_0/sps_axi_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/M01_ACLK] [get_bd_pins axi_interconnect_0/M02_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins config_done_0/s00_axi_aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins xadc_wiz_0/s_axi_aclk]
   connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins AXIM_read_xadc_0/madc_axi_aresetn] [get_bd_pins AXIM_read_xadc_0/sps_axi_aresetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/M01_ARESETN] [get_bd_pins axi_interconnect_0/M02_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins config_done_0/s00_axi_aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins xadc_wiz_0/s_axi_aresetn]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins proc_sys_reset_0/ext_reset_in] [get_bd_pins processing_system7_0/FCLK_RESET0_N]
@@ -701,8 +707,10 @@ proc create_root_design { parentCell } {
 
   # Create address segments
   assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces AXIM_read_xadc_0/MADC_AXI] [get_bd_addr_segs AXIM_read_xadc_0/SPS_AXI/SPS_AXI_reg] -force
+  assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces AXIM_read_xadc_0/MADC_AXI] [get_bd_addr_segs config_done_0/S00_AXI/S00_AXI_reg] -force
   assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces AXIM_read_xadc_0/MADC_AXI] [get_bd_addr_segs xadc_wiz_0/s_axi_lite/Reg] -force
   assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs AXIM_read_xadc_0/SPS_AXI/SPS_AXI_reg] -force
+  assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs config_done_0/S00_AXI/S00_AXI_reg] -force
   assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs xadc_wiz_0/s_axi_lite/Reg] -force
 
 
