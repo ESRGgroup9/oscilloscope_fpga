@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Tue Jun  7 15:09:13 2022
+//Date        : Fri Jun 17 12:11:50 2022
 //Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target test.bd
 //Design      : test
@@ -158,14 +158,14 @@ endmodule
 (* CORE_GENERATION_INFO = "test,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=test,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=4,numReposBlks=2,numNonXlnxBlks=2,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "test.hwdef" *) 
 module test
    (clk,
-    eoc_0,
-    mst_exec_state_0,
+    eoc,
     rstn,
+    state,
     val);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_RESET rstn, CLK_DOMAIN test_maxi_adc_aclk_0, FREQ_HZ 50000000, INSERT_VIP 0, PHASE 0.000" *) input clk;
-  output eoc_0;
-  output [1:0]mst_exec_state_0;
+  output eoc;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RST.RSTN RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RST.RSTN, INSERT_VIP 0, POLARITY ACTIVE_LOW" *) input rstn;
+  output [1:0]state;
   output [2:0]val;
 
   wire [31:0]AXIM_read_xadc_0_MAXI_ADC_ARADDR;
@@ -212,10 +212,10 @@ module test
   wire maxi_adc_aclk_0_1;
   wire maxi_adc_aresetn_0_1;
 
-  assign eoc_0 = AXIM_read_xadc_0_eoc;
+  assign eoc = AXIM_read_xadc_0_eoc;
   assign maxi_adc_aclk_0_1 = clk;
   assign maxi_adc_aresetn_0_1 = rstn;
-  assign mst_exec_state_0[1:0] = AXIM_read_xadc_0_mst_exec_state;
+  assign state[1:0] = AXIM_read_xadc_0_mst_exec_state;
   assign val[2:0] = AXIM_read_xadc_0_val;
   test_AXIM_read_xadc_0_0 AXIM_read_xadc_0
        (.eoc(AXIM_read_xadc_0_eoc),
@@ -240,7 +240,7 @@ module test
         .maxi_adc_wready(AXIM_read_xadc_0_MAXI_ADC_WREADY),
         .maxi_adc_wstrb(AXIM_read_xadc_0_MAXI_ADC_WSTRB),
         .maxi_adc_wvalid(AXIM_read_xadc_0_MAXI_ADC_WVALID),
-        .mst_exec_state(AXIM_read_xadc_0_mst_exec_state),
+        .state(AXIM_read_xadc_0_mst_exec_state),
         .val(AXIM_read_xadc_0_val));
   test_axi_interconnect_0_0 axi_interconnect_0
        (.ACLK(maxi_adc_aclk_0_1),
