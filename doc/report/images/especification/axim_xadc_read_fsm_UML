@@ -1,0 +1,14 @@
+axim_xadc_read_fsm_UML
+
+@startuml
+[*] -up-> Wait
+Wait -up-> Wait_compare : read_done
+Wait -left-> Wait : !read_done
+Wait_compare -right-> Wait : !Config_done
+
+Wait_compare --> Read_ADC : Config_done
+Read_ADC --> Read_ADC : read_done
+
+Wait : start_read = 1
+Read_ADC : start_read = 1
+@enduml

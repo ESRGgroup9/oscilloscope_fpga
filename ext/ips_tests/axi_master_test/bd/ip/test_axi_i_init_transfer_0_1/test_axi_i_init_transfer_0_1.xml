@@ -1,0 +1,677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>user.org</spirit:vendor>
+  <spirit:library>customized_ip</spirit:library>
+  <spirit:name>test_axi_i_init_transfer_0_1</spirit:name>
+  <spirit:version>1.0</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>rst</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.RST.POLARITY">ACTIVE_HIGH</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.RST.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>clk</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_RESET">rst</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_BUSIF</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.CLK.FREQ_HZ">100000000</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>PHASE</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.CLK.PHASE">0.000</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>CLK_DOMAIN</spirit:name>
+          <spirit:value spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.CLK.CLK_DOMAIN">test_axi_i_clk_0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>none</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>INSERT_VIP</spirit:name>
+          <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="BUSIFPARAM_VALUE.CLK.INSERT_VIP">0</spirit:value>
+          <spirit:vendorExtensions>
+            <xilinx:parameterInfo>
+              <xilinx:parameterUsage>simulation.rtl</xilinx:parameterUsage>
+            </xilinx:parameterInfo>
+          </spirit:vendorExtensions>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:modelName>test_init</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 01 17:48:20 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:433bb8e4</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsimulationwrapper</spirit:name>
+        <spirit:displayName>Verilog Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>test_axi_i_init_transfer_0_1</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 01 17:48:20 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:433bb8e4</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>test_init</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 01 17:48:20 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:f3c7be92</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_synthesisconstraints</spirit:name>
+        <spirit:displayName>Synthesis Constraints</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:f3c7be92</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
+        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>test_axi_i_init_transfer_0_1</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 01 17:52:20 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:f3c7be92</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_externalfiles</spirit:name>
+        <spirit:displayName>External Files</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 01 17:52:21 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:f3c7be92</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>tx_done</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>itx</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>initial_tx</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>reg</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+  </spirit:model>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/1512/src/init_test.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>sim/test_axi_i_init_transfer_0_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>../../ipshared/1512/src/init_test.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/test_axi_i_init_transfer_0_1.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_externalfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>test_axi_i_init_transfer_0_1_sim_netlist.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>test_axi_i_init_transfer_0_1_stub.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>test_axi_i_init_transfer_0_1.dcp</spirit:name>
+        <spirit:userFileType>dcp</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>test_axi_i_init_transfer_0_1_sim_netlist.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>test_axi_i_init_transfer_0_1_stub.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>init_transfer</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">test_axi_i_init_transfer_0_1</spirit:value>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:displayName>init_transfer</xilinx:displayName>
+      <xilinx:definitionSource>package_project</xilinx:definitionSource>
+      <xilinx:coreRevision>29</xilinx:coreRevision>
+      <xilinx:tags>
+        <xilinx:tag xilinx:name="nopcore"/>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@669a47b8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6fba7762_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26cc2e7c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f4301a9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17b9f2a4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d085361_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2affdfb7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48c3c579_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27b378f2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56f0a8d7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42907c15_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@348143e1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52fbd5b8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ff76ee6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10bc9456_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65626de9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1605102f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@99012c9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2aaea20c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45b801d4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@197bf2aa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5147c29_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67064ffa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@260f7d46_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b52382d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52708ab3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65b38a0b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ad3ce73_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@442ca195_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a86b47a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@531e149d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@114f06ad_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@480d6740_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fc4e183_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@358eedfc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d403e5a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43545738_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1af4178a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28b9e8a7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a63efca_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35a65c72_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17ed5872_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7bdc0f13_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6aef80e1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62e11ab7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dba3c3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@741de7c5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29a374b8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55e7173_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6544dfc0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@603323e3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5973b9e4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f55f60a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@290a29a7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a1af1ae_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b7da0a2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@29276cf6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@772577fd_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48ee6e5f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63a97ea0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fda273f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30e56687_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4cd437c5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b01bec7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6de009e2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4dd70037_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@725b51d8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7feb5067_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6dcf209f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52e5e346_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18a30b5d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@672812ac_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@388a57ec_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1623e72f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15465cc3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ef565c4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51dec92_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@28bace0e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22c8b104_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3622f2ea_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f0bf43f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7387e3cb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b42da05_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54305a5d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b20e2df_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3357cbba_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d02622b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26ffe7b7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14386fd6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16fb1a5f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d4e27cf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5feaab90_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48687f62_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27be2e02_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58999683_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c43efd0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54f16554_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70a59be2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@120afb4d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52a573b7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5467df32_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2904fb6b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@237a7fed_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9e21d01_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@490607ca_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5dd9c1c6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@789c4034_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6afb8480_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5477a92f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45d7d62a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@730b287f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@336f8129_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f0999c2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@563d36cc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@493dd347_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f678109_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4c6157d2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e0fa5a1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e4bb56_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52e5076d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78917d35_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a9a5556_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@134bbb8c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75fb0372_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9d8a776_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71f795b1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ee38ffa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2134fa24_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@536d1fa1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b5dc8af_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@56e0f159_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c111eda_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ad80dc6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e9ae820_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b4ffbfa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@47201a06_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12d22f3f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@627d1183_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c8375c2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74190e82_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3199a7cf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@379ed3b4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60659afb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@285bf587_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c5b616b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c27a549_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5291cae7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7917b0f3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@221b559_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21c7f966_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2988a41b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63e910be_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@60ea3381_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7553ecef_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@465fda1f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43504f89_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69a60111_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@499123d8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18fc287c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f5b7135_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@37382c5f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67202bc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20c4adbd_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3d3a6bde_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43f05131_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ed5250c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@513cc3a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39ddb874_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2aa3d7e5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1954503f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3271c42d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@732c00d2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@a983817_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ff4b00b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a0e1f60_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f60a1d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b8d7405_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f13d84d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13738ff4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ee99d6c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58fa52e1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62d8e03b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75769ff3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7421127c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d0af544_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8647485_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8d2f18f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55a45444_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@74b49b80_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23473a0f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11afeb33_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67540f27_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fffaaaf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4707ac6b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@162693fc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12af4572_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f3b5c06_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40baca79_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25775a22_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5957b03b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a128e02_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f0e3c66_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2a882388_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1dd5ab75_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23ab7cc5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7a48d47a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c4601d7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e700106_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@463405cc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@322394c6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@405823fc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@85467cc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@487e9402_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11c35ee6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5cf10fea_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1caa1e75_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6913381b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5243010a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@32057407_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8c93f6e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4eba9572_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@99bb45e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@f7bd5e9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e7eb49c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f95e405_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49530a91_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71ce6ff3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e14abc2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c2ebf87_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25a9540f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ca612da_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fb1666f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2cfa4f2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c218194_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77f84ebd_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@40c2cde9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42fd2e39_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ceb7e6e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67108902_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64995eec_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@540e9f02_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66c8ab99_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@86701e3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d2422c5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e7f5ec8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d0aa93b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@20560a8a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a302071_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e8920ac_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66c8dd2a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ee0a661_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52e7dd23_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5009c474_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6397c13d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7acc7974_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48a8bf43_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@782eb29d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c73839e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@182d454_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3aaa6057_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66b3a022_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3caa6216_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70528376_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c3e60f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6168b491_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d9ec182_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b0f2dee_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@358a4194_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c4569cf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@10bc9946_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@553328ec_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5174c323_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@412b917c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4232a4f3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@132119b0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@17e3f7bc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@36c97c91_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@63bd673_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@67a4ac94_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@51dae94f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ce2553e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c032a6e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@43a38fd3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@476acf72_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66a9fa0b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6594d960_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7809faa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e9a5896_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@175056f8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64bbce80_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a3d25f7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5586e981_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3019a932_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@571e3a6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@75e94306_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6364f8e0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@195557ae_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ext/axi_master_test/src</xilinx:tag>
+      </xilinx:tags>
+      <xilinx:configElementInfos>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.ASSOCIATED_RESET" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.CLK_DOMAIN" xilinx:valueSource="default_prop" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.FREQ_HZ" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.PHASE" xilinx:valuePermission="bd_and_user"/>
+        <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.RST.POLARITY" xilinx:valuePermission="bd_and_user"/>
+      </xilinx:configElementInfos>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="1d358f06"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="4e3b8da4"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="5db85bc4"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="38bfe346"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

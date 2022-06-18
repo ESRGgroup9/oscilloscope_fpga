@@ -1,0 +1,6 @@
+# project name
+proj/
+#!*.xsa
+
+.Xil/
+#ps7_*
