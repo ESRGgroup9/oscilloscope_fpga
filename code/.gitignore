@@ -1,5 +1,5 @@
 # project name
-# ./oscilloscope_fpga/
+proj/
 #!*.xsa
 
 .Xil/
