@@ -1,0 +1,6 @@
+# project name
+./oscilloscope_fpga/
+#!*.xsa
+
+.Xil/
+#ps7_*
