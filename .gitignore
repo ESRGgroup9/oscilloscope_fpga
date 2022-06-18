@@ -125,3 +125,5 @@ xvlog.*
 
 ## checkpoint files
 *.dcp
+
+/oscilloscope_fpga/oscilloscope_fpga/
