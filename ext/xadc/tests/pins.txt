@@ -1,0 +1,3 @@
+AD6 - vaux6
+vp - ja[3] -> K14
+vn - ja[7] -> J14

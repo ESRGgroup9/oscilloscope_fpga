@@ -1,0 +1,7 @@
+# project name
+filters/
+proj.sublime-*
+#!*.xsa
+
+.Xil/
+#ps7_*

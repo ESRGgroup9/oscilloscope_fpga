@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Tue Apr 26 14:03:13 2022
+// Date        : Thu Apr 28 15:25:24 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/fernandes/code/oscilloscope_fpga/ext/helloWorld/ip/design_1/ip/design_1_processing_system7_0_1/design_1_processing_system7_0_1_stub.v

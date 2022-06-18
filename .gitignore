@@ -121,6 +121,9 @@ xvlog.*
 *.hw
 *.backup.*
 *.debug
+*.sublime-*
 
 ## checkpoint files
 *.dcp
+
+/oscilloscope/code/oscilloscope_fpga/
