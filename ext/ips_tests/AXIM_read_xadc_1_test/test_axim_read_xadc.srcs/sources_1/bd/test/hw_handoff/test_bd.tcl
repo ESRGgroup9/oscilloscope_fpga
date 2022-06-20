@@ -159,9 +159,9 @@ proc create_root_design { parentCell } {
 
   # Create ports
   set clk [ create_bd_port -dir I -type clk -freq_hz 50000000 clk ]
-  set eoc_0 [ create_bd_port -dir O eoc_0 ]
-  set mst_exec_state_0 [ create_bd_port -dir O -from 1 -to 0 mst_exec_state_0 ]
+  set eoc [ create_bd_port -dir O eoc ]
   set rstn [ create_bd_port -dir I -type rst rstn ]
+  set state [ create_bd_port -dir O -from 1 -to 0 state ]
   set val [ create_bd_port -dir O -from 2 -to 0 val ]
 
   # Create instance: AXIM_read_xadc_0, and set properties
@@ -185,8 +185,8 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins my_slave_0/S00_AXI]
 
   # Create port connections
-  connect_bd_net -net AXIM_read_xadc_0_eoc [get_bd_ports eoc_0] [get_bd_pins AXIM_read_xadc_0/eoc]
-  connect_bd_net -net AXIM_read_xadc_0_mst_exec_state [get_bd_ports mst_exec_state_0] [get_bd_pins AXIM_read_xadc_0/mst_exec_state]
+  connect_bd_net -net AXIM_read_xadc_0_eoc [get_bd_ports eoc] [get_bd_pins AXIM_read_xadc_0/eoc]
+  connect_bd_net -net AXIM_read_xadc_0_mst_exec_state [get_bd_ports state] [get_bd_pins AXIM_read_xadc_0/state]
   connect_bd_net -net AXIM_read_xadc_0_val [get_bd_ports val] [get_bd_pins AXIM_read_xadc_0/val]
   connect_bd_net -net maxi_adc_aclk_0_1 [get_bd_ports clk] [get_bd_pins AXIM_read_xadc_0/maxi_adc_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins my_slave_0/s00_axi_aclk]
   connect_bd_net -net maxi_adc_aresetn_0_1 [get_bd_ports rstn] [get_bd_pins AXIM_read_xadc_0/maxi_adc_aresetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins my_slave_0/s00_axi_aresetn]

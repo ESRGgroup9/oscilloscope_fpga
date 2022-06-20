@@ -48,14 +48,14 @@
 
 
 // IP VLNV: user.org:user:AXIM_read_xadc:1
-// IP Revision: 37
+// IP Revision: 38
 
 `timescale 1ns/1ps
 
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module test_AXIM_read_xadc_0_0 (
   val,
-  mst_exec_state,
+  state,
   eoc,
   maxi_adc_aclk,
   maxi_adc_aresetn,
@@ -81,9 +81,9 @@ module test_AXIM_read_xadc_0_0 (
 );
 
 output wire [2 : 0] val;
-output wire [1 : 0] mst_exec_state;
+output wire [1 : 0] state;
 output wire eoc;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC_CLK, ASSOCIATED_BUSIF MAXI_ADC, ASSOCIATED_RESET maxi_adc_aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN test_maxi_adc_aclk_0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC_CLK, ASSOCIATED_BUSIF MAXI_ADC, ASSOCIATED_RESET maxi_adc_aresetn, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN test_maxi_adc_aclk_0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 MAXI_ADC_CLK CLK" *)
 input wire maxi_adc_aclk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC_RST, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -125,8 +125,8 @@ input wire [31 : 0] maxi_adc_rdata;
 input wire [1 : 0] maxi_adc_rresp;
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RVALID" *)
 input wire maxi_adc_rvalid;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN test_maxi_adc_aclk_0, NUM_READ_THREA\
-DS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 50000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN test_maxi_adc_aclk_0, NUM_READ_THREAD\
+S 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RREADY" *)
 output wire maxi_adc_rready;
 
@@ -142,7 +142,7 @@ output wire maxi_adc_rready;
     // and read transactions the master will perform as a part of this example memory test.
   ) inst (
     .val(val),
-    .mst_exec_state(mst_exec_state),
+    .state(state),
     .eoc(eoc),
     .maxi_adc_aclk(maxi_adc_aclk),
     .maxi_adc_aresetn(maxi_adc_aresetn),

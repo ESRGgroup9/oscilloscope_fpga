@@ -11,17 +11,21 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="104514fs"></ZoomStartTime>
-      <ZoomEndTime time="865515fs"></ZoomEndTime>
-      <Cursor1Time time="490000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="1157001fs"></ZoomEndTime>
+      <Cursor1Time time="600000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="170"></NameColumnWidth>
-      <ValueColumnWidth column_width="68"></ValueColumnWidth>
+      <NameColumnWidth column_width="160"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="2" />
+   <WVObjectSize size="7" />
+   <wvobject fp_name="divider80" type="divider">
+      <obj_property name="label">AXI CHANNELS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
    <wvobject type="protoinst" fp_name="/tb/test_i/AXIM_read_xadc_0/MAXI_ADC">
-      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
       <obj_property name="children_use_element_short_name">true</obj_property>
       <obj_property name="WaveformStyle">STYLE_ENUM_TRANSACTION</obj_property>
       <obj_property name="EnumTransactionColorTable">0=blank 1=#D399FF 2=pink</obj_property>
@@ -34,9 +38,28 @@
       <obj_property name="ElementShortName">MAXI_ADC</obj_property>
       <obj_property name="ObjectShortName">MAXI_ADC</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <obj_property name="label">MAXI_ADC</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb/eoc_0">
-      <obj_property name="ElementShortName">eoc_0</obj_property>
-      <obj_property name="ObjectShortName">eoc_0</obj_property>
+   <wvobject fp_name="divider82" type="divider">
+      <obj_property name="label">FSM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider81" type="divider">
+      <obj_property name="label">OUTPUT </obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb/val">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">val[2:0]</obj_property>
+      <obj_property name="ObjectShortName">val[2:0]</obj_property>
+      <obj_property name="label">val</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/tb/eoc">
+      <obj_property name="ElementShortName">eoc</obj_property>
+      <obj_property name="ObjectShortName">eoc</obj_property>
    </wvobject>
 </wave_config>

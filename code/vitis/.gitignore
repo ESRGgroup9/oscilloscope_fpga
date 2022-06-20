@@ -1,0 +1,15 @@
+# project name
+./oscilloscope_fpga/
+#!*.xsa
+
+.Xil/
+#ps7_*
+
+webtalk/
+.metadata/
+.sdk/
+oscilloscope_fpga/
+oscilloscope_fpga_system/
+.analytics
+design_1_wrapper/
+RemoteSystemsTempFiles/

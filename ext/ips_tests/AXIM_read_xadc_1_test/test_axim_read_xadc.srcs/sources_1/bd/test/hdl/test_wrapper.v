@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Tue Jun  7 15:09:13 2022
+//Date        : Fri Jun 17 12:11:50 2022
 //Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target test_wrapper.bd
 //Design      : test_wrapper
@@ -11,26 +11,26 @@
 
 module test_wrapper
    (clk,
-    eoc_0,
-    mst_exec_state_0,
+    eoc,
     rstn,
+    state,
     val);
   input clk;
-  output eoc_0;
-  output [1:0]mst_exec_state_0;
+  output eoc;
   input rstn;
+  output [1:0]state;
   output [2:0]val;
 
   wire clk;
-  wire eoc_0;
-  wire [1:0]mst_exec_state_0;
+  wire eoc;
   wire rstn;
+  wire [1:0]state;
   wire [2:0]val;
 
   test test_i
        (.clk(clk),
-        .eoc_0(eoc_0),
-        .mst_exec_state_0(mst_exec_state_0),
+        .eoc(eoc),
         .rstn(rstn),
+        .state(state),
         .val(val));
 endmodule

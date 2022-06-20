@@ -1,0 +1,8 @@
+my_slave_v1_0_S00_AXI.v,verilog,xil_defaultlib,../../../bd/test/ipshared/b6e9/hdl/my_slave_v1_0_S00_AXI.v,
+my_slave_v1_0.v,verilog,xil_defaultlib,../../../bd/test/ipshared/b6e9/hdl/my_slave_v1_0.v,
+test_my_slave_0_0.v,verilog,xil_defaultlib,../../../bd/test/ip/test_my_slave_0_0/sim/test_my_slave_0_0.v,
+AXIM_read_xadc_v1_MAXI_ADC.v,verilog,xil_defaultlib,../../../bd/test/ipshared/550b/hdl/AXIM_read_xadc_v1_MAXI_ADC.v,
+AXIM_read_xadc_v1.v,verilog,xil_defaultlib,../../../bd/test/ipshared/550b/hdl/AXIM_read_xadc_v1.v,
+test_AXIM_read_xadc_0_0.v,verilog,xil_defaultlib,../../../bd/test/ip/test_AXIM_read_xadc_0_0/sim/test_AXIM_read_xadc_0_0.v,
+test.v,verilog,xil_defaultlib,../../../bd/test/sim/test.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

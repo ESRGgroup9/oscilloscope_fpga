@@ -25,9 +25,10 @@ module tb;
   reg clk;
   reg rstn;
 
-  wire eoc_0;
-  wire [1:0]mst_exec_state_0;
-  wire [2:0] val;
+  wire eoc;
+  wire [1:0]state;
+  wire [2:0]val;
+
   
   initial begin
 	rstn <= 0;
@@ -45,10 +46,11 @@ module tb;
 		;
 end
  
+
   test test_i
        (.clk(clk),
-        .eoc_0(eoc_0),
-        .mst_exec_state_0(mst_exec_state_0),
+        .eoc(eoc),
         .rstn(rstn),
+        .state(state),
         .val(val));
 endmodule
