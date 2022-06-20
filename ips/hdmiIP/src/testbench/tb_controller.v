@@ -55,7 +55,7 @@ wire RD1;
 wire VDEn;
 wire hSync;
 wire vSync;
-wire [23:0] pixel;
+wire [23:0] pixel_w;
 
 wire EN0;
 wire WE0;
@@ -129,12 +129,31 @@ always @(posedge clkWR) begin
 		valBtns <= 0;
 	end
 	else begin
-		valBtns <= (valBtns == 15) ? 0 : valBtns + 1;
-		// valBtns <= 0;
+//		valBtns <= (valBtns == 15) ? 0 : valBtns + 1;
+		valBtns <= 0;
 	end
 end
 
-assign val = {valBtns, {12{1'b0}}};
+//assign val = {valBtns, {12{1'b0}}};
+assign val = 65535;
+
+integer cnt;
+wire ok;
+reg [3:0] cnt2;
+wire [23:0] pixel;
+
+initial begin
+    cnt2 <= 0;
+end
+
+always @(posedge VDEn) begin
+//    if (~ok) begin
+        cnt2 <= cnt2 + 1;
+//    end
+end
+
+assign ok = (cnt2 == 10);
+assign pixel = (cnt2 == 10 | cnt2==14) ? {24{1'b0}} : pixel_w;// && (cnt2 != 10);
 
 // ===========================================================================
 // dut
@@ -163,12 +182,16 @@ hdmiController #(
 	.VAL_RES(VAL_RES),     // val resolution
 
 	// debug------------
-	.WIDTH(8),
-	.HEIGHT(6),
+//	.WIDTH(8),
+//	.HEIGHT(6),
 
-	.OFFSCREEN_MAX_X(10),
-	.OFFSCREEN_MAX_Y(8),
+//	.OFFSCREEN_MAX_X(10),
+//	.OFFSCREEN_MAX_Y(8),
+	.WIDTH(4),
+	.HEIGHT(4),
 
+	.OFFSCREEN_MAX_X(6),
+	.OFFSCREEN_MAX_Y(6),
 	.HFP(0),
 	.HS(2),
 
@@ -187,7 +210,7 @@ hdmiController #(
 	VDEn,
 	hSync,
 	vSync,
-	pixel,
+	pixel_w,
 
 	EN0,
 	WE0,
