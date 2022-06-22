@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Wed Jun 15 16:27:22 2022
+// Date        : Mon Jun 20 23:30:59 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/fernandes/code/oscilloscope_fpga/hdmi/bd/hdmi_bd/ip/hdmi_bd_hdmiIP_1_0/hdmi_bd_hdmiIP_1_0_sim_netlist.v
@@ -23,8 +23,10 @@ module hdmi_bd_hdmiIP_1_0
     TMDSn,
     TMDSp_clk,
     TMDSn_clk,
+    addrWR,
+    wd,
     clkWR,
-    counter);
+    clkCLEAN);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF clk, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_clk, INSERT_VIP 0" *) input clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
   input [15:0]val;
@@ -32,19 +34,23 @@ module hdmi_bd_hdmiIP_1_0
   output [2:0]TMDSn;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TMDSp_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSp_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_1_0_TMDSp_clk, INSERT_VIP 0" *) output TMDSp_clk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TMDSn_clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSn_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_1_0_TMDSn_clk, INSERT_VIP 0" *) output TMDSn_clk;
+  output [18:0]addrWR;
+  output wd;
   output clkWR;
-  output [12:0]counter;
+  output clkCLEAN;
 
   (* SLEW = "SLOW" *) wire [2:0]TMDSn;
   (* SLEW = "SLOW" *) wire TMDSn_clk;
   (* SLEW = "SLOW" *) wire [2:0]TMDSp;
   (* SLEW = "SLOW" *) wire TMDSp_clk;
+  wire [18:0]addrWR;
   wire bram0_i_1_n_0;
   (* IBUF_LOW_PWR *) wire clk;
+  (* SLEW = "SLOW" *) wire clkCLEAN;
   wire clkWR;
-  wire [12:0]counter;
   wire rstn;
   wire [15:0]val;
+  wire wd;
 
   LUT1 #(
     .INIT(2'h1)) 
@@ -56,11 +62,13 @@ module hdmi_bd_hdmiIP_1_0
         .TMDSn_clk(TMDSn_clk),
         .TMDSp(TMDSp),
         .TMDSp_clk(TMDSp_clk),
+        .addrWR(addrWR),
         .clk(clk),
         .clkWR_reg_0(clkWR),
         .clka(clk),
-        .counter(counter),
+        .dina(wd),
         .lopt(bram0_i_1_n_0),
+        .pixclk(clkCLEAN),
         .rstn(rstn),
         .val(val));
 endmodule
@@ -621,14 +629,15 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
    (Q,
     \TMDS_reg[9]_0 ,
     \balance_acc_reg[0]_0 ,
-    pixclk,
+    CLK,
     D);
   output [0:0]Q;
   output [3:0]\TMDS_reg[9]_0 ;
   input \balance_acc_reg[0]_0 ;
-  input pixclk;
+  input CLK;
   input [3:0]D;
 
+  wire CLK;
   wire [3:0]D;
   wire [0:0]Q;
   wire [3:0]\TMDS_reg[9]_0 ;
@@ -638,12 +647,11 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   wire \balance_acc[2]_i_1__1_n_0 ;
   wire \balance_acc[3]_i_1__1_n_0 ;
   wire \balance_acc_reg[0]_0 ;
-  wire pixclk;
 
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(D[0]),
         .Q(\TMDS_reg[9]_0 [0]),
@@ -651,7 +659,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(D[1]),
         .Q(\TMDS_reg[9]_0 [1]),
@@ -659,7 +667,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[8] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(D[2]),
         .Q(\TMDS_reg[9]_0 [2]),
@@ -667,19 +675,19 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[9] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(D[3]),
         .Q(\TMDS_reg[9]_0 [3]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \balance_acc[0]_i_1__1 
        (.I0(Q),
         .I1(balance_acc[0]),
         .O(\balance_acc[0]_i_1__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \balance_acc[1]_i_1__1 
@@ -687,7 +695,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
         .I1(balance_acc[0]),
         .I2(Q),
         .O(\balance_acc[1]_i_1__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'h9555)) 
     \balance_acc[2]_i_1__1 
@@ -696,7 +704,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
         .I2(balance_acc[0]),
         .I3(balance_acc[1]),
         .O(\balance_acc[2]_i_1__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'h1555)) 
     \balance_acc[3]_i_1__1 
@@ -708,7 +716,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[0]_i_1__1_n_0 ),
         .Q(balance_acc[0]),
@@ -716,7 +724,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[1] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[1]_i_1__1_n_0 ),
         .Q(balance_acc[1]),
@@ -724,7 +732,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[2]_i_1__1_n_0 ),
         .Q(balance_acc[2]),
@@ -732,7 +740,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[3] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[3]_i_1__1_n_0 ),
         .Q(Q),
@@ -745,15 +753,16 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
     \TMDS_reg[9]_0 ,
     \balance_acc_reg[1]_0 ,
     \balance_acc_reg[3]_0 ,
-    pixclk,
+    CLK,
     \TMDS_reg[9]_1 );
   output [0:0]Q;
   output [3:0]\TMDS_reg[9]_0 ;
   input \balance_acc_reg[1]_0 ;
   input \balance_acc_reg[3]_0 ;
-  input pixclk;
+  input CLK;
   input [1:0]\TMDS_reg[9]_1 ;
 
+  wire CLK;
   wire [0:0]Q;
   wire \TMDS[0]_i_1__0_n_0 ;
   wire \TMDS[2]_i_1__0_n_0 ;
@@ -766,16 +775,15 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   wire \balance_acc[3]_i_1_n_0 ;
   wire \balance_acc_reg[1]_0 ;
   wire \balance_acc_reg[3]_0 ;
-  wire pixclk;
 
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \TMDS[0]_i_1__0 
        (.I0(Q),
         .I1(\balance_acc_reg[3]_0 ),
         .O(\TMDS[0]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \TMDS[2]_i_1__0 
@@ -785,7 +793,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\TMDS[0]_i_1__0_n_0 ),
         .Q(\TMDS_reg[9]_0 [0]),
@@ -793,7 +801,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\TMDS[2]_i_1__0_n_0 ),
         .Q(\TMDS_reg[9]_0 [1]),
@@ -801,7 +809,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[8] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\TMDS_reg[9]_1 [0]),
         .Q(\TMDS_reg[9]_0 [2]),
@@ -809,19 +817,19 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[9] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\TMDS_reg[9]_1 [1]),
         .Q(\TMDS_reg[9]_0 [3]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \balance_acc[0]_i_1__0 
        (.I0(Q),
         .I1(balance_acc[0]),
         .O(\balance_acc[0]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'hD728)) 
     \balance_acc[1]_i_1 
@@ -830,17 +838,17 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
         .I2(\balance_acc_reg[1]_0 ),
         .I3(balance_acc[1]),
         .O(\balance_acc[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
-    .INIT(32'h0840F7BF)) 
+    .INIT(32'h04FB807F)) 
     \balance_acc[2]_i_1 
        (.I0(balance_acc[0]),
         .I1(Q),
-        .I2(\balance_acc_reg[1]_0 ),
-        .I3(balance_acc[1]),
-        .I4(balance_acc[2]),
+        .I2(balance_acc[1]),
+        .I3(balance_acc[2]),
+        .I4(\balance_acc_reg[1]_0 ),
         .O(\balance_acc[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT5 #(
     .INIT(32'h0D0F4F0F)) 
     \balance_acc[3]_i_1 
@@ -853,7 +861,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[0]_i_1__0_n_0 ),
         .Q(balance_acc[0]),
@@ -861,7 +869,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[1] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[1]_i_1_n_0 ),
         .Q(balance_acc[1]),
@@ -869,7 +877,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[2]_i_1_n_0 ),
         .Q(balance_acc[2]),
@@ -877,7 +885,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_0
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[3] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[3]_i_1_n_0 ),
         .Q(Q),
@@ -888,11 +896,12 @@ endmodule
 module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
    (Q,
     \balance_acc_reg[0]_0 ,
-    pixclk);
+    CLK);
   output [2:0]Q;
   input \balance_acc_reg[0]_0 ;
-  input pixclk;
+  input CLK;
 
+  wire CLK;
   wire [2:0]Q;
   wire [2:0]TMDS0;
   wire [3:0]balance_acc;
@@ -901,16 +910,15 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   wire \balance_acc[2]_i_1__0_n_0 ;
   wire \balance_acc[3]_i_2__0_n_0 ;
   wire \balance_acc_reg[0]_0 ;
-  wire pixclk;
 
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \TMDS[0]_i_1__1 
        (.I0(balance_acc[3]),
         .I1(\balance_acc_reg[0]_0 ),
         .O(TMDS0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \TMDS[2]_i_1__1 
@@ -920,7 +928,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(TMDS0[0]),
         .Q(Q[0]),
@@ -928,7 +936,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(TMDS0[2]),
         .Q(Q[1]),
@@ -936,19 +944,19 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[8] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(1'b1),
         .Q(Q[2]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \balance_acc[0]_i_1 
        (.I0(balance_acc[3]),
         .I1(balance_acc[0]),
         .O(\balance_acc[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \balance_acc[1]_i_1__0 
@@ -956,7 +964,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
         .I1(balance_acc[0]),
         .I2(balance_acc[3]),
         .O(\balance_acc[1]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
     .INIT(16'h9555)) 
     \balance_acc[2]_i_1__0 
@@ -965,7 +973,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
         .I2(balance_acc[0]),
         .I3(balance_acc[1]),
         .O(\balance_acc[2]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT4 #(
     .INIT(16'h1555)) 
     \balance_acc[3]_i_2__0 
@@ -977,7 +985,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[0]_i_1_n_0 ),
         .Q(balance_acc[0]),
@@ -985,7 +993,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[1] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[1]_i_1__0_n_0 ),
         .Q(balance_acc[1]),
@@ -993,7 +1001,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[2] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[2]_i_1__0_n_0 ),
         .Q(balance_acc[2]),
@@ -1001,7 +1009,7 @@ module hdmi_bd_hdmiIP_1_0_encoder_TMDS_1
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[3] 
-       (.C(pixclk),
+       (.C(CLK),
         .CE(1'b1),
         .D(\balance_acc[3]_i_2__0_n_0 ),
         .Q(balance_acc[3]),
@@ -1010,57 +1018,59 @@ endmodule
 
 (* ORIG_REF_NAME = "hdmiController" *) 
 module hdmi_bd_hdmiIP_1_0_hdmiController
-   (ena,
-    dina,
+   (addrWR,
+    D,
     \counterX_RD_reg[7]_0 ,
+    ena,
+    dina,
     state_fsm_read_reg_0,
     addra,
     addrAdd_r_reg_0,
-    D,
     addrSel_reg_0,
-    \balance_acc_reg[3] ,
-    wea,
     addrSel_reg_1,
-    clk,
+    wea,
+    addrSel_reg_2,
     CLK,
+    clk,
+    addrSel_reg_3,
+    Q,
     douta,
     \TMDS_reg[8] ,
-    Q,
-    \TMDS_reg[2] ,
+    \TMDS_reg[9] ,
     rstn,
     val);
+  output [18:0]addrWR;
+  output [3:0]D;
+  output \counterX_RD_reg[7]_0 ;
   output ena;
   output [0:0]dina;
-  output \counterX_RD_reg[7]_0 ;
   output state_fsm_read_reg_0;
   output [18:0]addra;
   output [18:0]addrAdd_r_reg_0;
-  output [1:0]D;
-  output addrSel_reg_0;
-  output [3:0]\balance_acc_reg[3] ;
+  output [1:0]addrSel_reg_0;
+  output addrSel_reg_1;
   output [0:0]wea;
-  output [0:0]addrSel_reg_1;
-  input clk;
+  output [0:0]addrSel_reg_2;
   input CLK;
+  input clk;
+  input addrSel_reg_3;
+  input [0:0]Q;
   input [0:0]douta;
   input [0:0]\TMDS_reg[8] ;
-  input [0:0]Q;
-  input [0:0]\TMDS_reg[2] ;
+  input [0:0]\TMDS_reg[9] ;
   input rstn;
   input [15:0]val;
 
   wire [8:0]A;
   wire CEB2;
-  wire CEC;
   wire CEM;
   wire CLK;
-  wire [1:0]D;
+  wire [3:0]D;
   wire [0:0]Q;
-  wire [0:0]\TMDS_reg[2] ;
+  wire RSTC;
   wire [0:0]\TMDS_reg[8] ;
+  wire [0:0]\TMDS_reg[9] ;
   wire [18:0]addrAdd_r_reg_0;
-  wire addrAdd_r_reg_i_12_n_0;
-  wire addrAdd_r_reg_i_13_n_0;
   wire addrAdd_r_reg_i_14_n_0;
   wire addrAdd_r_reg_i_15_n_0;
   wire addrAdd_r_reg_i_16_n_0;
@@ -1075,30 +1085,19 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire addrAdd_r_reg_i_25_n_0;
   wire addrAdd_r_reg_i_26_n_0;
   wire addrAdd_r_reg_i_27_n_0;
-  wire addrAdd_r_reg_n_100;
-  wire addrAdd_r_reg_n_101;
-  wire addrAdd_r_reg_n_102;
-  wire addrAdd_r_reg_n_103;
-  wire addrAdd_r_reg_n_104;
-  wire addrAdd_r_reg_n_105;
-  wire addrAdd_r_reg_n_87;
-  wire addrAdd_r_reg_n_88;
-  wire addrAdd_r_reg_n_89;
-  wire addrAdd_r_reg_n_90;
-  wire addrAdd_r_reg_n_91;
-  wire addrAdd_r_reg_n_92;
-  wire addrAdd_r_reg_n_93;
-  wire addrAdd_r_reg_n_94;
-  wire addrAdd_r_reg_n_95;
-  wire addrAdd_r_reg_n_96;
-  wire addrAdd_r_reg_n_97;
-  wire addrAdd_r_reg_n_98;
-  wire addrAdd_r_reg_n_99;
+  wire addrAdd_r_reg_i_28_n_0;
+  wire addrAdd_r_reg_i_29_n_0;
+  wire addrAdd_r_reg_i_30_n_0;
+  wire addrAdd_r_reg_i_31_n_0;
   wire addrSel;
   wire addrSel_i_1_n_0;
-  wire addrSel_reg_0;
-  wire [0:0]addrSel_reg_1;
-  wire \addrWR_ready_counter[9]_i_3_n_0 ;
+  wire [1:0]addrSel_reg_0;
+  wire addrSel_reg_1;
+  wire [0:0]addrSel_reg_2;
+  wire addrSel_reg_3;
+  wire [18:0]addrWR;
+  wire \addrWR_ready_counter[7]_i_1_n_0 ;
+  wire \addrWR_ready_counter[9]_i_2_n_0 ;
   wire \addrWR_ready_counter_reg_n_0_[0] ;
   wire \addrWR_ready_counter_reg_n_0_[1] ;
   wire \addrWR_ready_counter_reg_n_0_[2] ;
@@ -1112,12 +1111,6 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire [18:0]addra;
   wire \balance_acc[3]_i_3__0_n_0 ;
   wire \balance_acc[3]_i_3_n_0 ;
-  wire [3:0]\balance_acc_reg[3] ;
-  wire bram0_i_24_n_0;
-  wire bram0_i_25_n_0;
-  wire bram0_i_26_n_0;
-  wire clear;
-  wire clear_0;
   wire clk;
   wire [9:0]counterX_RD;
   wire \counterX_RD[0]_i_1_n_0 ;
@@ -1131,7 +1124,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire \counterX_RD[7]_i_1_n_0 ;
   wire \counterX_RD[7]_i_2_n_0 ;
   wire \counterX_RD[8]_i_1_n_0 ;
-  wire \counterX_RD[8]_i_2_n_0 ;
+  wire \counterX_RD[9]_i_1_n_0 ;
   wire \counterX_RD[9]_i_2_n_0 ;
   wire \counterX_RD[9]_i_3_n_0 ;
   wire \counterX_RD[9]_i_4_n_0 ;
@@ -1139,11 +1132,12 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire \counterX_RD_reg[7]_0 ;
   wire [9:0]counterX_WR_reg;
   wire [8:0]counterY_RD_reg;
-  wire \counterY_WR[8]_i_1_n_0 ;
+  wire \counterY_WR[8]_i_3_n_0 ;
   wire \counterY_WR[8]_i_4_n_0 ;
   wire [8:0]counterY_WR_reg;
   wire counter_RD_i_10_n_0;
   wire counter_RD_i_11_n_0;
+  wire counter_RD_i_12_n_0;
   wire counter_RD_i_2_n_0;
   wire counter_RD_i_3_n_0;
   wire counter_RD_i_4_n_0;
@@ -1179,15 +1173,10 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire rst;
   wire rstn;
   wire sel;
+  wire sel_0;
   wire \state_fsm_main[0]_i_1_n_0 ;
-  wire \state_fsm_main[0]_i_2_n_0 ;
-  wire \state_fsm_main[0]_i_3_n_0 ;
-  wire \state_fsm_main[0]_i_4_n_0 ;
-  wire \state_fsm_main[0]_i_5_n_0 ;
   wire \state_fsm_main[1]_i_1_n_0 ;
   wire \state_fsm_main[1]_i_2_n_0 ;
-  wire \state_fsm_main[1]_i_3_n_0 ;
-  wire \state_fsm_main[1]_i_4_n_0 ;
   wire \state_fsm_main_reg_n_0_[0] ;
   wire \state_fsm_main_reg_n_0_[1] ;
   wire state_fsm_read;
@@ -1228,6 +1217,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire valMul_r_reg_n_98;
   wire valMul_r_reg_n_99;
   wire [15:0]val_r;
+  wire wd_INST_0_i_1_n_0;
   wire [0:0]wea;
   wire NLW_addrAdd_r_reg_CARRYCASCOUT_UNCONNECTED;
   wire NLW_addrAdd_r_reg_MULTSIGNOUT_UNCONNECTED;
@@ -1263,59 +1253,59 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   wire [47:25]NLW_valMul_r_reg_P_UNCONNECTED;
   wire [47:0]NLW_valMul_r_reg_PCOUT_UNCONNECTED;
 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h5D)) 
     \TMDS[0]_i_1 
-       (.I0(\balance_acc_reg[3] [2]),
-        .I1(\TMDS_reg[2] ),
+       (.I0(D[2]),
+        .I1(Q),
         .I2(\counterX_RD_reg[7]_0 ),
-        .O(\balance_acc_reg[3] [0]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+        .O(D[0]));
   LUT3 #(
     .INIT(8'hA8)) 
     \TMDS[2]_i_1 
-       (.I0(\balance_acc_reg[3] [2]),
-        .I1(\counterX_RD_reg[7]_0 ),
-        .I2(\TMDS_reg[2] ),
-        .O(\balance_acc_reg[3] [1]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
-  LUT4 #(
-    .INIT(16'hBABF)) 
-    \TMDS[8]_i_1 
-       (.I0(\counterX_RD_reg[7]_0 ),
-        .I1(douta),
-        .I2(addrSel),
-        .I3(\TMDS_reg[8] ),
-        .O(D[0]));
+       (.I0(D[2]),
+        .I1(Q),
+        .I2(\counterX_RD_reg[7]_0 ),
+        .O(D[1]));
   LUT6 #(
     .INIT(64'hFFDFDFDFDFDFDFFF)) 
-    \TMDS[8]_i_1__0 
+    \TMDS[8]_i_1 
        (.I0(counterX_RD[9]),
         .I1(counterX_RD[8]),
         .I2(counterX_RD[7]),
         .I3(counterX_RD[4]),
         .I4(counterX_RD[6]),
         .I5(counterX_RD[5]),
-        .O(\balance_acc_reg[3] [2]));
+        .O(D[2]));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT4 #(
+    .INIT(16'hBABF)) 
+    \TMDS[8]_i_1__0 
+       (.I0(\counterX_RD_reg[7]_0 ),
+        .I1(\TMDS_reg[8] ),
+        .I2(addrSel),
+        .I3(douta),
+        .O(addrSel_reg_0[0]));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT4 #(
+    .INIT(16'h6660)) 
+    \TMDS[9]_i_1 
+       (.I0(D[2]),
+        .I1(\state_fsm_main[1]_i_2_n_0 ),
+        .I2(Q),
+        .I3(\counterX_RD_reg[7]_0 ),
+        .O(D[3]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'hFF1DFFE2)) 
-    \TMDS[9]_i_1 
-       (.I0(\TMDS_reg[8] ),
-        .I1(addrSel),
-        .I2(douta),
-        .I3(\counterX_RD_reg[7]_0 ),
-        .I4(Q),
-        .O(D[1]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
-    .INIT(16'h6660)) 
     \TMDS[9]_i_1__0 
-       (.I0(\balance_acc_reg[3] [2]),
-        .I1(\state_fsm_main[1]_i_2_n_0 ),
-        .I2(\counterX_RD_reg[7]_0 ),
-        .I3(\TMDS_reg[2] ),
-        .O(\balance_acc_reg[3] [3]));
+       (.I0(douta),
+        .I1(addrSel),
+        .I2(\TMDS_reg[8] ),
+        .I3(\counterX_RD_reg[7]_0 ),
+        .I4(\TMDS_reg[9] ),
+        .O(addrSel_reg_0[1]));
   DSP48E1 #(
     .ACASCREG(0),
     .ADREG(1),
@@ -1350,7 +1340,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .B({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .BCIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .BCOUT(NLW_addrAdd_r_reg_BCOUT_UNCONNECTED[17:0]),
-        .C({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,addrAdd_r_reg_i_12_n_0,addrAdd_r_reg_i_13_n_0,addrAdd_r_reg_i_14_n_0,addrAdd_r_reg_i_15_n_0,addrAdd_r_reg_i_16_n_0,addrAdd_r_reg_i_17_n_0,addrAdd_r_reg_i_18_n_0,addrAdd_r_reg_i_19_n_0,addrAdd_r_reg_i_20_n_0,addrAdd_r_reg_i_21_n_0}),
+        .C({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,addrAdd_r_reg_i_14_n_0,addrAdd_r_reg_i_15_n_0,addrAdd_r_reg_i_16_n_0,addrAdd_r_reg_i_17_n_0,addrAdd_r_reg_i_18_n_0,addrAdd_r_reg_i_19_n_0,addrAdd_r_reg_i_20_n_0,addrAdd_r_reg_i_21_n_0,addrAdd_r_reg_i_22_n_0,addrAdd_r_reg_i_23_n_0}),
         .CARRYCASCIN(1'b0),
         .CARRYCASCOUT(NLW_addrAdd_r_reg_CARRYCASCOUT_UNCONNECTED),
         .CARRYIN(1'b0),
@@ -1362,7 +1352,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .CEALUMODE(1'b0),
         .CEB1(1'b0),
         .CEB2(1'b0),
-        .CEC(CEC),
+        .CEC(sel),
         .CECARRYIN(1'b0),
         .CECTRL(1'b0),
         .CED(1'b0),
@@ -1376,7 +1366,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .MULTSIGNOUT(NLW_addrAdd_r_reg_MULTSIGNOUT_UNCONNECTED),
         .OPMODE({1'b0,1'b1,1'b1,1'b0,1'b1,1'b0,1'b1}),
         .OVERFLOW(NLW_addrAdd_r_reg_OVERFLOW_UNCONNECTED),
-        .P({NLW_addrAdd_r_reg_P_UNCONNECTED[47:19],addrAdd_r_reg_n_87,addrAdd_r_reg_n_88,addrAdd_r_reg_n_89,addrAdd_r_reg_n_90,addrAdd_r_reg_n_91,addrAdd_r_reg_n_92,addrAdd_r_reg_n_93,addrAdd_r_reg_n_94,addrAdd_r_reg_n_95,addrAdd_r_reg_n_96,addrAdd_r_reg_n_97,addrAdd_r_reg_n_98,addrAdd_r_reg_n_99,addrAdd_r_reg_n_100,addrAdd_r_reg_n_101,addrAdd_r_reg_n_102,addrAdd_r_reg_n_103,addrAdd_r_reg_n_104,addrAdd_r_reg_n_105}),
+        .P({NLW_addrAdd_r_reg_P_UNCONNECTED[47:19],addrWR}),
         .PATTERNBDETECT(NLW_addrAdd_r_reg_PATTERNBDETECT_UNCONNECTED),
         .PATTERNDETECT(NLW_addrAdd_r_reg_PATTERNDETECT_UNCONNECTED),
         .PCIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
@@ -1385,7 +1375,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .RSTALLCARRYIN(1'b0),
         .RSTALUMODE(1'b0),
         .RSTB(1'b0),
-        .RSTC(clear),
+        .RSTC(RSTC),
         .RSTCTRL(1'b0),
         .RSTD(1'b0),
         .RSTINMODE(1'b0),
@@ -1393,212 +1383,18 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .RSTP(rst),
         .UNDERFLOW(NLW_addrAdd_r_reg_UNDERFLOW_UNCONNECTED));
   LUT6 #(
-    .INIT(64'h00EF000F00EF004F)) 
+    .INIT(64'h1515111515141115)) 
     addrAdd_r_reg_i_1
-       (.I0(bram0_i_25_n_0),
-        .I1(addrAdd_r_reg_i_22_n_0),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(\state_fsm_main_reg_n_0_[1] ),
-        .I4(addrAdd_r_reg_i_23_n_0),
-        .I5(addrAdd_r_reg_i_24_n_0),
-        .O(CEC));
+       (.I0(addrAdd_r_reg_i_24_n_0),
+        .I1(\addrWR_ready_counter_reg_n_0_[9] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[7] ),
+        .I4(wd_INST_0_i_1_n_0),
+        .I5(addrAdd_r_reg_i_25_n_0),
+        .O(sel));
   LUT4 #(
     .INIT(16'hBA8A)) 
     addrAdd_r_reg_i_10
-       (.I0(counterY_WR_reg[1]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[1]),
-        .O(A[1]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_11
-       (.I0(counterY_WR_reg[0]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[0]),
-        .O(A[0]));
-  LUT5 #(
-    .INIT(32'hA6AAAAAA)) 
-    addrAdd_r_reg_i_12
-       (.I0(counterX_WR_reg[9]),
-        .I1(counterX_WR_reg[7]),
-        .I2(addrAdd_r_reg_i_27_n_0),
-        .I3(counterX_WR_reg[6]),
-        .I4(counterX_WR_reg[8]),
-        .O(addrAdd_r_reg_i_12_n_0));
-  LUT4 #(
-    .INIT(16'hA6AA)) 
-    addrAdd_r_reg_i_13
-       (.I0(counterX_WR_reg[8]),
-        .I1(counterX_WR_reg[6]),
-        .I2(addrAdd_r_reg_i_27_n_0),
-        .I3(counterX_WR_reg[7]),
-        .O(addrAdd_r_reg_i_13_n_0));
-  LUT3 #(
-    .INIT(8'h9A)) 
-    addrAdd_r_reg_i_14
-       (.I0(counterX_WR_reg[7]),
-        .I1(addrAdd_r_reg_i_27_n_0),
-        .I2(counterX_WR_reg[6]),
-        .O(addrAdd_r_reg_i_14_n_0));
-  LUT2 #(
-    .INIT(4'h9)) 
-    addrAdd_r_reg_i_15
-       (.I0(counterX_WR_reg[6]),
-        .I1(addrAdd_r_reg_i_27_n_0),
-        .O(addrAdd_r_reg_i_15_n_0));
-  LUT6 #(
-    .INIT(64'h6AAAAAAAAAAAAAAA)) 
-    addrAdd_r_reg_i_16
-       (.I0(counterX_WR_reg[5]),
-        .I1(counterX_WR_reg[2]),
-        .I2(counterX_WR_reg[1]),
-        .I3(counterX_WR_reg[0]),
-        .I4(counterX_WR_reg[4]),
-        .I5(counterX_WR_reg[3]),
-        .O(addrAdd_r_reg_i_16_n_0));
-  LUT5 #(
-    .INIT(32'h6AAAAAAA)) 
-    addrAdd_r_reg_i_17
-       (.I0(counterX_WR_reg[4]),
-        .I1(counterX_WR_reg[0]),
-        .I2(counterX_WR_reg[1]),
-        .I3(counterX_WR_reg[2]),
-        .I4(counterX_WR_reg[3]),
-        .O(addrAdd_r_reg_i_17_n_0));
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    addrAdd_r_reg_i_18
-       (.I0(counterX_WR_reg[0]),
-        .I1(counterX_WR_reg[1]),
-        .I2(counterX_WR_reg[2]),
-        .I3(counterX_WR_reg[3]),
-        .O(addrAdd_r_reg_i_18_n_0));
-  LUT3 #(
-    .INIT(8'h6A)) 
-    addrAdd_r_reg_i_19
-       (.I0(counterX_WR_reg[2]),
-        .I1(counterX_WR_reg[1]),
-        .I2(counterX_WR_reg[0]),
-        .O(addrAdd_r_reg_i_19_n_0));
-  LUT6 #(
-    .INIT(64'hFFF4FFFFFFF4FFF4)) 
-    addrAdd_r_reg_i_2
-       (.I0(addrAdd_r_reg_i_25_n_0),
-        .I1(CEC),
-        .I2(addrAdd_r_reg_i_26_n_0),
-        .I3(\state_fsm_main[1]_i_3_n_0 ),
-        .I4(\state_fsm_main[0]_i_2_n_0 ),
-        .I5(bram0_i_24_n_0),
-        .O(clear));
-  LUT2 #(
-    .INIT(4'h6)) 
-    addrAdd_r_reg_i_20
-       (.I0(counterX_WR_reg[1]),
-        .I1(counterX_WR_reg[0]),
-        .O(addrAdd_r_reg_i_20_n_0));
-  LUT1 #(
-    .INIT(2'h1)) 
-    addrAdd_r_reg_i_21
-       (.I0(counterX_WR_reg[0]),
-        .O(addrAdd_r_reg_i_21_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFEFEFFFEFEFE)) 
-    addrAdd_r_reg_i_22
-       (.I0(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I4(\addrWR_ready_counter_reg_n_0_[2] ),
-        .I5(\addrWR_ready_counter_reg_n_0_[1] ),
-        .O(addrAdd_r_reg_i_22_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'h1F)) 
-    addrAdd_r_reg_i_23
-       (.I0(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[9] ),
-        .O(addrAdd_r_reg_i_23_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'hEA)) 
-    addrAdd_r_reg_i_24
-       (.I0(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[1] ),
-        .O(addrAdd_r_reg_i_24_n_0));
-  LUT5 #(
-    .INIT(32'hFFEFFFFF)) 
-    addrAdd_r_reg_i_25
-       (.I0(addrAdd_r_reg_i_27_n_0),
-        .I1(counterX_WR_reg[8]),
-        .I2(counterX_WR_reg[6]),
-        .I3(counterX_WR_reg[7]),
-        .I4(counterX_WR_reg[9]),
-        .O(addrAdd_r_reg_i_25_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT3 #(
-    .INIT(8'h4F)) 
-    addrAdd_r_reg_i_26
-       (.I0(\state_fsm_main_reg_n_0_[0] ),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(rstn),
-        .O(addrAdd_r_reg_i_26_n_0));
-  LUT6 #(
-    .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    addrAdd_r_reg_i_27
-       (.I0(counterX_WR_reg[3]),
-        .I1(counterX_WR_reg[4]),
-        .I2(counterX_WR_reg[0]),
-        .I3(counterX_WR_reg[1]),
-        .I4(counterX_WR_reg[2]),
-        .I5(counterX_WR_reg[5]),
-        .O(addrAdd_r_reg_i_27_n_0));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_3
-       (.I0(counterY_WR_reg[8]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[8]),
-        .O(A[8]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_4
-       (.I0(counterY_WR_reg[7]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[7]),
-        .O(A[7]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_5
-       (.I0(counterY_WR_reg[6]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[6]),
-        .O(A[6]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_6
-       (.I0(counterY_WR_reg[5]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[5]),
-        .O(A[5]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_7
-       (.I0(counterY_WR_reg[4]),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(valDiv_r[4]),
-        .O(A[4]));
-  LUT4 #(
-    .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_8
        (.I0(counterY_WR_reg[3]),
         .I1(\state_fsm_main_reg_n_0_[1] ),
         .I2(\state_fsm_main_reg_n_0_[0] ),
@@ -1606,12 +1402,242 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .O(A[3]));
   LUT4 #(
     .INIT(16'hBA8A)) 
-    addrAdd_r_reg_i_9
+    addrAdd_r_reg_i_11
        (.I0(counterY_WR_reg[2]),
         .I1(\state_fsm_main_reg_n_0_[1] ),
         .I2(\state_fsm_main_reg_n_0_[0] ),
         .I3(valDiv_r[2]),
         .O(A[2]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_12
+       (.I0(counterY_WR_reg[1]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[1]),
+        .O(A[1]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_13
+       (.I0(counterY_WR_reg[0]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[0]),
+        .O(A[0]));
+  LUT6 #(
+    .INIT(64'h78F0F070F0F0F0F0)) 
+    addrAdd_r_reg_i_14
+       (.I0(counterX_WR_reg[5]),
+        .I1(counterX_WR_reg[6]),
+        .I2(counterX_WR_reg[9]),
+        .I3(counterX_WR_reg[8]),
+        .I4(counterX_WR_reg[7]),
+        .I5(addrAdd_r_reg_i_29_n_0),
+        .O(addrAdd_r_reg_i_14_n_0));
+  LUT5 #(
+    .INIT(32'h6AAAAAAA)) 
+    addrAdd_r_reg_i_15
+       (.I0(counterX_WR_reg[8]),
+        .I1(counterX_WR_reg[6]),
+        .I2(addrAdd_r_reg_i_29_n_0),
+        .I3(counterX_WR_reg[5]),
+        .I4(counterX_WR_reg[7]),
+        .O(addrAdd_r_reg_i_15_n_0));
+  LUT6 #(
+    .INIT(64'h0FFFFFFFD0000000)) 
+    addrAdd_r_reg_i_16
+       (.I0(counterX_WR_reg[9]),
+        .I1(counterX_WR_reg[8]),
+        .I2(counterX_WR_reg[6]),
+        .I3(addrAdd_r_reg_i_29_n_0),
+        .I4(counterX_WR_reg[5]),
+        .I5(counterX_WR_reg[7]),
+        .O(addrAdd_r_reg_i_16_n_0));
+  LUT3 #(
+    .INIT(8'h6A)) 
+    addrAdd_r_reg_i_17
+       (.I0(counterX_WR_reg[6]),
+        .I1(addrAdd_r_reg_i_29_n_0),
+        .I2(counterX_WR_reg[5]),
+        .O(addrAdd_r_reg_i_17_n_0));
+  LUT6 #(
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
+    addrAdd_r_reg_i_18
+       (.I0(counterX_WR_reg[5]),
+        .I1(counterX_WR_reg[3]),
+        .I2(counterX_WR_reg[4]),
+        .I3(counterX_WR_reg[0]),
+        .I4(counterX_WR_reg[1]),
+        .I5(counterX_WR_reg[2]),
+        .O(addrAdd_r_reg_i_18_n_0));
+  LUT5 #(
+    .INIT(32'h6CCCCCCC)) 
+    addrAdd_r_reg_i_19
+       (.I0(counterX_WR_reg[3]),
+        .I1(counterX_WR_reg[4]),
+        .I2(counterX_WR_reg[0]),
+        .I3(counterX_WR_reg[1]),
+        .I4(counterX_WR_reg[2]),
+        .O(addrAdd_r_reg_i_19_n_0));
+  LUT2 #(
+    .INIT(4'hB)) 
+    addrAdd_r_reg_i_2
+       (.I0(\state_fsm_main_reg_n_0_[0] ),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .O(CEM));
+  LUT4 #(
+    .INIT(16'h6AAA)) 
+    addrAdd_r_reg_i_20
+       (.I0(counterX_WR_reg[3]),
+        .I1(counterX_WR_reg[0]),
+        .I2(counterX_WR_reg[1]),
+        .I3(counterX_WR_reg[2]),
+        .O(addrAdd_r_reg_i_20_n_0));
+  LUT3 #(
+    .INIT(8'h6A)) 
+    addrAdd_r_reg_i_21
+       (.I0(counterX_WR_reg[2]),
+        .I1(counterX_WR_reg[1]),
+        .I2(counterX_WR_reg[0]),
+        .O(addrAdd_r_reg_i_21_n_0));
+  LUT2 #(
+    .INIT(4'h6)) 
+    addrAdd_r_reg_i_22
+       (.I0(counterX_WR_reg[1]),
+        .I1(counterX_WR_reg[0]),
+        .O(addrAdd_r_reg_i_22_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    addrAdd_r_reg_i_23
+       (.I0(counterX_WR_reg[0]),
+        .O(addrAdd_r_reg_i_23_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT3 #(
+    .INIT(8'hBA)) 
+    addrAdd_r_reg_i_24
+       (.I0(\state_fsm_main_reg_n_0_[1] ),
+        .I1(addrSel_reg_3),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .O(addrAdd_r_reg_i_24_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
+    addrAdd_r_reg_i_25
+       (.I0(\addrWR_ready_counter_reg_n_0_[0] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
+        .O(addrAdd_r_reg_i_25_n_0));
+  LUT6 #(
+    .INIT(64'h0200000000000000)) 
+    addrAdd_r_reg_i_26
+       (.I0(addrAdd_r_reg_i_29_n_0),
+        .I1(counterX_WR_reg[7]),
+        .I2(counterX_WR_reg[8]),
+        .I3(counterX_WR_reg[9]),
+        .I4(counterX_WR_reg[6]),
+        .I5(counterX_WR_reg[5]),
+        .O(addrAdd_r_reg_i_26_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'hDFFFFFFF)) 
+    addrAdd_r_reg_i_27
+       (.I0(\counterY_WR[8]_i_4_n_0 ),
+        .I1(counterY_WR_reg[5]),
+        .I2(counterY_WR_reg[6]),
+        .I3(counterY_WR_reg[7]),
+        .I4(counterY_WR_reg[8]),
+        .O(addrAdd_r_reg_i_27_n_0));
+  LUT6 #(
+    .INIT(64'h0000000000200000)) 
+    addrAdd_r_reg_i_28
+       (.I0(addrAdd_r_reg_i_30_n_0),
+        .I1(addrAdd_r_reg_i_31_n_0),
+        .I2(\addrWR_ready_counter_reg_n_0_[9] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[7] ),
+        .I5(\addrWR_ready_counter_reg_n_0_[1] ),
+        .O(addrAdd_r_reg_i_28_n_0));
+  LUT5 #(
+    .INIT(32'h80000000)) 
+    addrAdd_r_reg_i_29
+       (.I0(counterX_WR_reg[2]),
+        .I1(counterX_WR_reg[1]),
+        .I2(counterX_WR_reg[0]),
+        .I3(counterX_WR_reg[4]),
+        .I4(counterX_WR_reg[3]),
+        .O(addrAdd_r_reg_i_29_n_0));
+  LUT6 #(
+    .INIT(64'hF2FFF0FFFFFFF2FF)) 
+    addrAdd_r_reg_i_3
+       (.I0(addrAdd_r_reg_i_26_n_0),
+        .I1(addrAdd_r_reg_i_27_n_0),
+        .I2(addrAdd_r_reg_i_28_n_0),
+        .I3(rstn),
+        .I4(\state_fsm_main_reg_n_0_[1] ),
+        .I5(\state_fsm_main_reg_n_0_[0] ),
+        .O(RSTC));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT4 #(
+    .INIT(16'h0001)) 
+    addrAdd_r_reg_i_30
+       (.I0(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[5] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[4] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[3] ),
+        .O(addrAdd_r_reg_i_30_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT4 #(
+    .INIT(16'hDFFF)) 
+    addrAdd_r_reg_i_31
+       (.I0(\state_fsm_main_reg_n_0_[0] ),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
+        .O(addrAdd_r_reg_i_31_n_0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    addrAdd_r_reg_i_4
+       (.I0(rstn),
+        .O(rst));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_5
+       (.I0(counterY_WR_reg[8]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[8]),
+        .O(A[8]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_6
+       (.I0(counterY_WR_reg[7]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[7]),
+        .O(A[7]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_7
+       (.I0(counterY_WR_reg[6]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[6]),
+        .O(A[6]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_8
+       (.I0(counterY_WR_reg[5]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[5]),
+        .O(A[5]));
+  LUT4 #(
+    .INIT(16'hBA8A)) 
+    addrAdd_r_reg_i_9
+       (.I0(counterY_WR_reg[4]),
+        .I1(\state_fsm_main_reg_n_0_[1] ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(valDiv_r[4]),
+        .O(A[4]));
   LUT5 #(
     .INIT(32'hA6AA0000)) 
     addrSel_i_1
@@ -1622,25 +1648,24 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I4(rstn),
         .O(addrSel_i_1_n_0));
   FDRE addrSel_reg
-       (.C(CLK),
+       (.C(addrSel_reg_3),
         .CE(1'b1),
         .D(addrSel_i_1_n_0),
         .Q(addrSel),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \addrWR_ready_counter[0]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \addrWR_ready_counter[1]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[0] ),
         .I1(\addrWR_ready_counter_reg_n_0_[1] ),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \addrWR_ready_counter[2]_i_1 
@@ -1648,22 +1673,22 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I1(\addrWR_ready_counter_reg_n_0_[1] ),
         .I2(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \addrWR_ready_counter[3]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[3] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[1] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[1] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[3]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h7FFF8000)) 
     \addrWR_ready_counter[4]_i_1 
-       (.I0(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
+       (.I0(\addrWR_ready_counter_reg_n_0_[0] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[1] ),
         .I3(\addrWR_ready_counter_reg_n_0_[3] ),
         .I4(\addrWR_ready_counter_reg_n_0_[4] ),
         .O(p_0_in[4]));
@@ -1671,18 +1696,18 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \addrWR_ready_counter[5]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[5] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[0] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[1] ),
         .I4(\addrWR_ready_counter_reg_n_0_[3] ),
         .I5(\addrWR_ready_counter_reg_n_0_[4] ),
         .O(p_0_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \addrWR_ready_counter[6]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[6] ),
-        .I1(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I1(\addrWR_ready_counter[9]_i_2_n_0 ),
         .I2(\addrWR_ready_counter_reg_n_0_[5] ),
         .O(p_0_in[6]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -1691,108 +1716,99 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
     \addrWR_ready_counter[7]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[7] ),
         .I1(\addrWR_ready_counter_reg_n_0_[5] ),
-        .I2(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I2(\addrWR_ready_counter[9]_i_2_n_0 ),
         .I3(\addrWR_ready_counter_reg_n_0_[6] ),
-        .O(p_0_in[7]));
+        .O(\addrWR_ready_counter[7]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \addrWR_ready_counter[8]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[8] ),
         .I1(\addrWR_ready_counter_reg_n_0_[6] ),
-        .I2(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I2(\addrWR_ready_counter[9]_i_2_n_0 ),
         .I3(\addrWR_ready_counter_reg_n_0_[5] ),
         .I4(\addrWR_ready_counter_reg_n_0_[7] ),
         .O(p_0_in[8]));
-  LUT5 #(
-    .INIT(32'hDFCFFFDF)) 
-    \addrWR_ready_counter[9]_i_1 
-       (.I0(\state_fsm_main[0]_i_2_n_0 ),
-        .I1(\state_fsm_main[1]_i_3_n_0 ),
-        .I2(rstn),
-        .I3(\state_fsm_main_reg_n_0_[1] ),
-        .I4(\state_fsm_main_reg_n_0_[0] ),
-        .O(clear_0));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
-    \addrWR_ready_counter[9]_i_2 
+    \addrWR_ready_counter[9]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[9] ),
         .I1(\addrWR_ready_counter_reg_n_0_[7] ),
         .I2(\addrWR_ready_counter_reg_n_0_[5] ),
-        .I3(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I3(\addrWR_ready_counter[9]_i_2_n_0 ),
         .I4(\addrWR_ready_counter_reg_n_0_[6] ),
         .I5(\addrWR_ready_counter_reg_n_0_[8] ),
         .O(p_0_in[9]));
   (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
-    \addrWR_ready_counter[9]_i_3 
+    \addrWR_ready_counter[9]_i_2 
        (.I0(\addrWR_ready_counter_reg_n_0_[4] ),
         .I1(\addrWR_ready_counter_reg_n_0_[3] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I4(\addrWR_ready_counter_reg_n_0_[1] ),
-        .O(\addrWR_ready_counter[9]_i_3_n_0 ));
+        .I2(\addrWR_ready_counter_reg_n_0_[1] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[0] ),
+        .O(\addrWR_ready_counter[9]_i_2_n_0 ));
   FDRE \addrWR_ready_counter_reg[0] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[0]),
         .Q(\addrWR_ready_counter_reg_n_0_[0] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[1] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[1]),
         .Q(\addrWR_ready_counter_reg_n_0_[1] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[2] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[2]),
         .Q(\addrWR_ready_counter_reg_n_0_[2] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[3] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[3]),
         .Q(\addrWR_ready_counter_reg_n_0_[3] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[4] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[4]),
         .Q(\addrWR_ready_counter_reg_n_0_[4] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[5] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[5]),
         .Q(\addrWR_ready_counter_reg_n_0_[5] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[6] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[6]),
         .Q(\addrWR_ready_counter_reg_n_0_[6] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[7] 
        (.C(CLK),
         .CE(1'b1),
-        .D(p_0_in[7]),
+        .D(\addrWR_ready_counter[7]_i_1_n_0 ),
         .Q(\addrWR_ready_counter_reg_n_0_[7] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[8] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[8]),
         .Q(\addrWR_ready_counter_reg_n_0_[8] ),
-        .R(clear_0));
+        .R(RSTC));
   FDRE \addrWR_ready_counter_reg[9] 
        (.C(CLK),
         .CE(1'b1),
         .D(p_0_in[9]),
         .Q(\addrWR_ready_counter_reg_n_0_[9] ),
-        .R(clear_0));
+        .R(RSTC));
   LUT4 #(
     .INIT(16'hFEAA)) 
     \balance_acc[3]_i_1__0 
@@ -1804,12 +1820,12 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT5 #(
     .INIT(32'h000000E2)) 
     \balance_acc[3]_i_2 
-       (.I0(\TMDS_reg[8] ),
+       (.I0(douta),
         .I1(addrSel),
-        .I2(douta),
+        .I2(\TMDS_reg[8] ),
         .I3(\balance_acc[3]_i_3_n_0 ),
         .I4(\balance_acc[3]_i_3__0_n_0 ),
-        .O(addrSel_reg_0));
+        .O(addrSel_reg_1));
   LUT3 #(
     .INIT(8'hA8)) 
     \balance_acc[3]_i_3 
@@ -1831,7 +1847,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_93),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_93),
+        .I3(addrWR[12]),
         .O(addra[12]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1839,7 +1855,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_94),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_94),
+        .I3(addrWR[11]),
         .O(addra[11]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1847,7 +1863,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_95),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_95),
+        .I3(addrWR[10]),
         .O(addra[10]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1855,7 +1871,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_96),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_96),
+        .I3(addrWR[9]),
         .O(addra[9]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1863,7 +1879,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_97),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_97),
+        .I3(addrWR[8]),
         .O(addra[8]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1871,7 +1887,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_98),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_98),
+        .I3(addrWR[7]),
         .O(addra[7]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1879,7 +1895,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_99),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_99),
+        .I3(addrWR[6]),
         .O(addra[6]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1887,7 +1903,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_100),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_100),
+        .I3(addrWR[5]),
         .O(addra[5]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1895,7 +1911,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_101),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_101),
+        .I3(addrWR[4]),
         .O(addra[4]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1903,7 +1919,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_102),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_102),
+        .I3(addrWR[3]),
         .O(addra[3]));
   LUT6 #(
     .INIT(64'h1F101F101F101F1F)) 
@@ -1921,7 +1937,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_103),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_103),
+        .I3(addrWR[2]),
         .O(addra[2]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1929,7 +1945,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_104),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_104),
+        .I3(addrWR[1]),
         .O(addra[1]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -1937,73 +1953,40 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_105),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_105),
+        .I3(addrWR[0]),
         .O(addra[0]));
-  LUT6 #(
-    .INIT(64'h0055015500555554)) 
-    bram0_i_23
-       (.I0(bram0_i_24_n_0),
-        .I1(bram0_i_25_n_0),
-        .I2(bram0_i_26_n_0),
-        .I3(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I4(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I5(\addrWR_ready_counter_reg_n_0_[7] ),
-        .O(dina));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT2 #(
-    .INIT(4'hB)) 
-    bram0_i_24
-       (.I0(\state_fsm_main_reg_n_0_[1] ),
-        .I1(\state_fsm_main_reg_n_0_[0] ),
-        .O(bram0_i_24_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
-    bram0_i_25
-       (.I0(\addrWR_ready_counter_reg_n_0_[4] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[3] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[6] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[5] ),
-        .O(bram0_i_25_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT2 #(
-    .INIT(4'h8)) 
-    bram0_i_26
-       (.I0(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
-        .O(bram0_i_26_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     bram0_i_3
        (.I0(addrSel),
         .I1(\state_fsm_main_reg_n_0_[1] ),
         .O(wea));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'h2F20)) 
     bram0_i_4
        (.I0(counter_RD_n_87),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_87),
+        .I3(addrWR[18]),
         .O(addra[18]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h2F20)) 
     bram0_i_5
        (.I0(counter_RD_n_88),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_88),
+        .I3(addrWR[17]),
         .O(addra[17]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h2F20)) 
     bram0_i_6
        (.I0(counter_RD_n_89),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_89),
+        .I3(addrWR[16]),
         .O(addra[16]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -2011,7 +1994,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_90),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_90),
+        .I3(addrWR[15]),
         .O(addra[15]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -2019,7 +2002,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_91),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_91),
+        .I3(addrWR[14]),
         .O(addra[14]));
   LUT4 #(
     .INIT(16'h2F20)) 
@@ -2027,7 +2010,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counter_RD_n_92),
         .I1(\counterX_RD_reg[7]_0 ),
         .I2(addrSel),
-        .I3(addrAdd_r_reg_n_92),
+        .I3(addrWR[13]),
         .O(addra[13]));
   LUT6 #(
     .INIT(64'hAB00AB00AB00ABFF)) 
@@ -2042,7 +2025,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_10
-       (.I0(addrAdd_r_reg_n_94),
+       (.I0(addrWR[11]),
         .I1(addrSel),
         .I2(counter_RD_n_94),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2050,7 +2033,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_11
-       (.I0(addrAdd_r_reg_n_95),
+       (.I0(addrWR[10]),
         .I1(addrSel),
         .I2(counter_RD_n_95),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2058,7 +2041,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_12
-       (.I0(addrAdd_r_reg_n_96),
+       (.I0(addrWR[9]),
         .I1(addrSel),
         .I2(counter_RD_n_96),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2066,7 +2049,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_13
-       (.I0(addrAdd_r_reg_n_97),
+       (.I0(addrWR[8]),
         .I1(addrSel),
         .I2(counter_RD_n_97),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2074,7 +2057,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_14
-       (.I0(addrAdd_r_reg_n_98),
+       (.I0(addrWR[7]),
         .I1(addrSel),
         .I2(counter_RD_n_98),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2082,7 +2065,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_15
-       (.I0(addrAdd_r_reg_n_99),
+       (.I0(addrWR[6]),
         .I1(addrSel),
         .I2(counter_RD_n_99),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2090,7 +2073,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_16
-       (.I0(addrAdd_r_reg_n_100),
+       (.I0(addrWR[5]),
         .I1(addrSel),
         .I2(counter_RD_n_100),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2098,7 +2081,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_17
-       (.I0(addrAdd_r_reg_n_101),
+       (.I0(addrWR[4]),
         .I1(addrSel),
         .I2(counter_RD_n_101),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2106,7 +2089,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_18
-       (.I0(addrAdd_r_reg_n_102),
+       (.I0(addrWR[3]),
         .I1(addrSel),
         .I2(counter_RD_n_102),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2114,7 +2097,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_19
-       (.I0(addrAdd_r_reg_n_103),
+       (.I0(addrWR[2]),
         .I1(addrSel),
         .I2(counter_RD_n_103),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2124,11 +2107,11 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
     bram1_i_2
        (.I0(addrSel),
         .I1(\state_fsm_main_reg_n_0_[1] ),
-        .O(addrSel_reg_1));
+        .O(addrSel_reg_2));
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_20
-       (.I0(addrAdd_r_reg_n_104),
+       (.I0(addrWR[1]),
         .I1(addrSel),
         .I2(counter_RD_n_104),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2136,34 +2119,34 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_21
-       (.I0(addrAdd_r_reg_n_105),
+       (.I0(addrWR[0]),
         .I1(addrSel),
         .I2(counter_RD_n_105),
         .I3(\counterX_RD_reg[7]_0 ),
         .O(addrAdd_r_reg_0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_3
-       (.I0(addrAdd_r_reg_n_87),
+       (.I0(addrWR[18]),
         .I1(addrSel),
         .I2(counter_RD_n_87),
         .I3(\counterX_RD_reg[7]_0 ),
         .O(addrAdd_r_reg_0[18]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_4
-       (.I0(addrAdd_r_reg_n_88),
+       (.I0(addrWR[17]),
         .I1(addrSel),
         .I2(counter_RD_n_88),
         .I3(\counterX_RD_reg[7]_0 ),
         .O(addrAdd_r_reg_0[17]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_5
-       (.I0(addrAdd_r_reg_n_89),
+       (.I0(addrWR[16]),
         .I1(addrSel),
         .I2(counter_RD_n_89),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2171,7 +2154,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_6
-       (.I0(addrAdd_r_reg_n_90),
+       (.I0(addrWR[15]),
         .I1(addrSel),
         .I2(counter_RD_n_90),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2179,7 +2162,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_7
-       (.I0(addrAdd_r_reg_n_91),
+       (.I0(addrWR[14]),
         .I1(addrSel),
         .I2(counter_RD_n_91),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2187,7 +2170,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_8
-       (.I0(addrAdd_r_reg_n_92),
+       (.I0(addrWR[13]),
         .I1(addrSel),
         .I2(counter_RD_n_92),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2195,7 +2178,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   LUT4 #(
     .INIT(16'h88B8)) 
     bram1_i_9
-       (.I0(addrAdd_r_reg_n_93),
+       (.I0(addrWR[12]),
         .I1(addrSel),
         .I2(counter_RD_n_93),
         .I3(\counterX_RD_reg[7]_0 ),
@@ -2236,14 +2219,14 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I4(counterX_RD[1]),
         .O(\counterX_RD[4]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h9999989999999999)) 
+    .INIT(64'hAAAAAAAA55555155)) 
     \counterX_RD[5]_i_1 
        (.I0(counterX_RD[5]),
-        .I1(\counterX_RD[5]_i_2_n_0 ),
+        .I1(counterX_RD[9]),
         .I2(counterX_RD[6]),
         .I3(counterX_RD[8]),
         .I4(counterX_RD[7]),
-        .I5(counterX_RD[9]),
+        .I5(\counterX_RD[5]_i_2_n_0 ),
         .O(\counterX_RD[5]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
@@ -2282,63 +2265,55 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I3(counterX_RD[1]),
         .O(\counterX_RD[7]_i_2_n_0 ));
   LUT4 #(
-    .INIT(16'h0770)) 
+    .INIT(16'h6066)) 
     \counterX_RD[8]_i_1 
-       (.I0(\counterX_RD[9]_i_4_n_0 ),
-        .I1(counterX_RD[9]),
-        .I2(\counterX_RD[8]_i_2_n_0 ),
-        .I3(counterX_RD[8]),
+       (.I0(\counterX_RD[9]_i_2_n_0 ),
+        .I1(counterX_RD[8]),
+        .I2(\counterX_RD[9]_i_3_n_0 ),
+        .I3(counterX_RD[9]),
         .O(\counterX_RD[8]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'h7088)) 
+    \counterX_RD[9]_i_1 
+       (.I0(counterX_RD[8]),
+        .I1(\counterX_RD[9]_i_2_n_0 ),
+        .I2(\counterX_RD[9]_i_3_n_0 ),
+        .I3(counterX_RD[9]),
+        .O(\counterX_RD[9]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h40000000)) 
-    \counterX_RD[8]_i_2 
+    \counterX_RD[9]_i_2 
        (.I0(\counterX_RD[7]_i_2_n_0 ),
         .I1(counterX_RD[6]),
         .I2(counterX_RD[5]),
         .I3(counterX_RD[4]),
         .I4(counterX_RD[7]),
-        .O(\counterX_RD[8]_i_2_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \counterX_RD[9]_i_1 
-       (.I0(rstn),
-        .O(rst));
-  LUT3 #(
-    .INIT(8'h26)) 
-    \counterX_RD[9]_i_2 
-       (.I0(\counterX_RD[9]_i_3_n_0 ),
-        .I1(counterX_RD[9]),
-        .I2(\counterX_RD[9]_i_4_n_0 ),
         .O(\counterX_RD[9]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h0000800000000000)) 
+    .INIT(64'hFDFFFFFFFFFFFFFF)) 
     \counterX_RD[9]_i_3 
-       (.I0(counterX_RD[7]),
-        .I1(counterX_RD[4]),
-        .I2(counterX_RD[5]),
-        .I3(counterX_RD[6]),
-        .I4(\counterX_RD[7]_i_2_n_0 ),
-        .I5(counterX_RD[8]),
-        .O(\counterX_RD[9]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000800000)) 
-    \counterX_RD[9]_i_4 
        (.I0(counterX_RD[3]),
-        .I1(counterX_RD[2]),
-        .I2(counterX_RD[4]),
-        .I3(counterX_RD[5]),
+        .I1(\counterX_RD[9]_i_4_n_0 ),
+        .I2(\counterX_RD[9]_i_5_n_0 ),
+        .I3(counterX_RD[0]),
         .I4(counterX_RD[1]),
-        .I5(\counterX_RD[9]_i_5_n_0 ),
+        .I5(counterX_RD[2]),
+        .O(\counterX_RD[9]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT3 #(
+    .INIT(8'hFB)) 
+    \counterX_RD[9]_i_4 
+       (.I0(counterX_RD[6]),
+        .I1(counterX_RD[8]),
+        .I2(counterX_RD[7]),
         .O(\counterX_RD[9]_i_4_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFF70FFFF)) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
     \counterX_RD[9]_i_5 
-       (.I0(counterX_RD[1]),
-        .I1(counterX_RD[0]),
-        .I2(counterX_RD[2]),
-        .I3(counterX_RD[7]),
-        .I4(counterX_RD[8]),
-        .I5(counterX_RD[6]),
+       (.I0(counterX_RD[5]),
+        .I1(counterX_RD[4]),
         .O(\counterX_RD[9]_i_5_n_0 ));
   FDRE \counterX_RD_reg[0] 
        (.C(clk),
@@ -2397,69 +2372,69 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
   FDRE \counterX_RD_reg[9] 
        (.C(clk),
         .CE(state_fsm_read),
-        .D(\counterX_RD[9]_i_2_n_0 ),
+        .D(\counterX_RD[9]_i_1_n_0 ),
         .Q(counterX_RD[9]),
         .R(rst));
   FDRE \counterX_WR_reg[0] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_21_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_23_n_0),
         .Q(counterX_WR_reg[0]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[1] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_20_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_22_n_0),
         .Q(counterX_WR_reg[1]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[2] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_19_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_21_n_0),
         .Q(counterX_WR_reg[2]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[3] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_18_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_20_n_0),
         .Q(counterX_WR_reg[3]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[4] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_17_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_19_n_0),
         .Q(counterX_WR_reg[4]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[5] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_16_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_18_n_0),
         .Q(counterX_WR_reg[5]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[6] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_15_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_17_n_0),
         .Q(counterX_WR_reg[6]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[7] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_14_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_16_n_0),
         .Q(counterX_WR_reg[7]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[8] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_13_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_15_n_0),
         .Q(counterX_WR_reg[8]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterX_WR_reg[9] 
        (.C(CLK),
-        .CE(CEC),
-        .D(addrAdd_r_reg_i_12_n_0),
+        .CE(sel),
+        .D(addrAdd_r_reg_i_14_n_0),
         .Q(counterX_WR_reg[9]),
-        .R(clear));
+        .R(RSTC));
   FDRE \counterY_RD_reg[0] 
        (.C(clk),
         .CE(CEB2),
@@ -2514,13 +2489,13 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .D(counter_RD_i_2_n_0),
         .Q(counterY_RD_reg[8]),
         .R(rst));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \counterY_WR[0]_i_1 
        (.I0(counterY_WR_reg[0]),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \counterY_WR[1]_i_1 
@@ -2554,63 +2529,65 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I3(counterY_WR_reg[0]),
         .I4(counterY_WR_reg[2]),
         .O(p_0_in__0[4]));
-  LUT6 #(
-    .INIT(64'h6AAAAAAAAAAAAAAA)) 
-    \counterY_WR[5]_i_1 
-       (.I0(counterY_WR_reg[5]),
-        .I1(counterY_WR_reg[3]),
-        .I2(counterY_WR_reg[4]),
-        .I3(counterY_WR_reg[1]),
-        .I4(counterY_WR_reg[0]),
-        .I5(counterY_WR_reg[2]),
-        .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT3 #(
-    .INIT(8'h6A)) 
-    \counterY_WR[6]_i_1 
-       (.I0(counterY_WR_reg[6]),
-        .I1(\counterY_WR[8]_i_4_n_0 ),
-        .I2(counterY_WR_reg[5]),
-        .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
-  LUT4 #(
-    .INIT(16'h6AAA)) 
-    \counterY_WR[7]_i_1 
-       (.I0(counterY_WR_reg[7]),
-        .I1(counterY_WR_reg[5]),
-        .I2(\counterY_WR[8]_i_4_n_0 ),
-        .I3(counterY_WR_reg[6]),
-        .O(p_0_in__0[7]));
-  LUT6 #(
-    .INIT(64'hFF4FFFFFFF4FFFDF)) 
-    \counterY_WR[8]_i_1 
-       (.I0(\state_fsm_main_reg_n_0_[0] ),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(rstn),
-        .I3(\state_fsm_main[1]_i_3_n_0 ),
-        .I4(\state_fsm_main[0]_i_2_n_0 ),
-        .I5(CEC),
-        .O(\counterY_WR[8]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000800)) 
-    \counterY_WR[8]_i_2 
-       (.I0(CEC),
-        .I1(counterX_WR_reg[9]),
-        .I2(counterX_WR_reg[7]),
-        .I3(counterX_WR_reg[6]),
-        .I4(counterX_WR_reg[8]),
-        .I5(addrAdd_r_reg_i_27_n_0),
-        .O(sel));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
-    .INIT(32'h6AAAAAAA)) 
-    \counterY_WR[8]_i_3 
+    .INIT(32'h00FF7F00)) 
+    \counterY_WR[5]_i_1 
+       (.I0(counterY_WR_reg[8]),
+        .I1(counterY_WR_reg[7]),
+        .I2(counterY_WR_reg[6]),
+        .I3(\counterY_WR[8]_i_4_n_0 ),
+        .I4(counterY_WR_reg[5]),
+        .O(p_0_in__0[5]));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h07FFF000)) 
+    \counterY_WR[6]_i_1 
+       (.I0(counterY_WR_reg[8]),
+        .I1(counterY_WR_reg[7]),
+        .I2(counterY_WR_reg[5]),
+        .I3(\counterY_WR[8]_i_4_n_0 ),
+        .I4(counterY_WR_reg[6]),
+        .O(p_0_in__0[6]));
+  LUT5 #(
+    .INIT(32'h3F7FC000)) 
+    \counterY_WR[7]_i_1 
        (.I0(counterY_WR_reg[8]),
         .I1(counterY_WR_reg[6]),
         .I2(\counterY_WR[8]_i_4_n_0 ),
         .I3(counterY_WR_reg[5]),
         .I4(counterY_WR_reg[7]),
+        .O(p_0_in__0[7]));
+  LUT6 #(
+    .INIT(64'h0000080000000000)) 
+    \counterY_WR[8]_i_1 
+       (.I0(sel),
+        .I1(counterX_WR_reg[6]),
+        .I2(counterX_WR_reg[8]),
+        .I3(counterX_WR_reg[9]),
+        .I4(counterX_WR_reg[7]),
+        .I5(\counterY_WR[8]_i_3_n_0 ),
+        .O(sel_0));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT5 #(
+    .INIT(32'h3FFF8000)) 
+    \counterY_WR[8]_i_2 
+       (.I0(counterY_WR_reg[5]),
+        .I1(\counterY_WR[8]_i_4_n_0 ),
+        .I2(counterY_WR_reg[6]),
+        .I3(counterY_WR_reg[7]),
+        .I4(counterY_WR_reg[8]),
         .O(p_0_in__0[8]));
+  LUT6 #(
+    .INIT(64'h8000000000000000)) 
+    \counterY_WR[8]_i_3 
+       (.I0(counterX_WR_reg[5]),
+        .I1(counterX_WR_reg[3]),
+        .I2(counterX_WR_reg[4]),
+        .I3(counterX_WR_reg[0]),
+        .I4(counterX_WR_reg[1]),
+        .I5(counterX_WR_reg[2]),
+        .O(\counterY_WR[8]_i_3_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
@@ -2623,58 +2600,58 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .O(\counterY_WR[8]_i_4_n_0 ));
   FDRE \counterY_WR_reg[0] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[0]),
         .Q(counterY_WR_reg[0]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[1] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[1]),
         .Q(counterY_WR_reg[1]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[2] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[2]),
         .Q(counterY_WR_reg[2]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[3] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[3]),
         .Q(counterY_WR_reg[3]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[4] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[4]),
         .Q(counterY_WR_reg[4]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[5] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[5]),
         .Q(counterY_WR_reg[5]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[6] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[6]),
         .Q(counterY_WR_reg[6]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[7] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[7]),
         .Q(counterY_WR_reg[7]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   FDRE \counterY_WR_reg[8] 
        (.C(CLK),
-        .CE(sel),
+        .CE(sel_0),
         .D(p_0_in__0[8]),
         .Q(counterY_WR_reg[8]),
-        .R(\counterY_WR[8]_i_1_n_0 ));
+        .R(RSTC));
   (* METHODOLOGY_DRC_VIOS = "{SYNTH-11 {cell *THIS*}}" *) 
   DSP48E1 #(
     .ACASCREG(1),
@@ -2710,7 +2687,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .B({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .BCIN({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .BCOUT(NLW_counter_RD_BCOUT_UNCONNECTED[17:0]),
-        .C({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,\counterX_RD[9]_i_2_n_0 ,\counterX_RD[8]_i_1_n_0 ,\counterX_RD[7]_i_1_n_0 ,\counterX_RD[6]_i_1_n_0 ,\counterX_RD[5]_i_1_n_0 ,\counterX_RD[4]_i_1_n_0 ,\counterX_RD[3]_i_1_n_0 ,\counterX_RD[2]_i_1_n_0 ,\counterX_RD[1]_i_1_n_0 ,\counterX_RD[0]_i_1_n_0 }),
+        .C({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,\counterX_RD[9]_i_1_n_0 ,\counterX_RD[8]_i_1_n_0 ,\counterX_RD[7]_i_1_n_0 ,\counterX_RD[6]_i_1_n_0 ,\counterX_RD[5]_i_1_n_0 ,\counterX_RD[4]_i_1_n_0 ,\counterX_RD[3]_i_1_n_0 ,\counterX_RD[2]_i_1_n_0 ,\counterX_RD[1]_i_1_n_0 ,\counterX_RD[0]_i_1_n_0 }),
         .CARRYCASCIN(1'b0),
         .CARRYCASCOUT(NLW_counter_RD_CARRYCASCOUT_UNCONNECTED),
         .CARRYIN(1'b0),
@@ -2752,41 +2729,52 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .RSTM(1'b0),
         .RSTP(1'b0),
         .UNDERFLOW(NLW_counter_RD_UNDERFLOW_UNCONNECTED));
-  LUT3 #(
-    .INIT(8'h80)) 
+  LUT5 #(
+    .INIT(32'h00000040)) 
     counter_RD_i_1
-       (.I0(state_fsm_read),
-        .I1(\counterX_RD[9]_i_4_n_0 ),
-        .I2(counterX_RD[9]),
+       (.I0(\counterX_RD[7]_i_2_n_0 ),
+        .I1(state_fsm_read),
+        .I2(counterX_RD[4]),
+        .I3(counterX_RD[5]),
+        .I4(counter_RD_i_11_n_0),
         .O(CEB2));
   LUT1 #(
     .INIT(2'h1)) 
     counter_RD_i_10
        (.I0(counterY_RD_reg[0]),
         .O(counter_RD_i_10_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  LUT4 #(
+    .INIT(16'hFBFF)) 
+    counter_RD_i_11
+       (.I0(counterX_RD[7]),
+        .I1(counterX_RD[8]),
+        .I2(counterX_RD[6]),
+        .I3(counterX_RD[9]),
+        .O(counter_RD_i_11_n_0));
   LUT5 #(
     .INIT(32'h80000000)) 
-    counter_RD_i_11
+    counter_RD_i_12
        (.I0(counterY_RD_reg[4]),
         .I1(counterY_RD_reg[3]),
         .I2(counterY_RD_reg[1]),
         .I3(counterY_RD_reg[0]),
         .I4(counterY_RD_reg[2]),
-        .O(counter_RD_i_11_n_0));
+        .O(counter_RD_i_12_n_0));
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     counter_RD_i_2
        (.I0(counterY_RD_reg[8]),
         .I1(counterY_RD_reg[5]),
         .I2(counterY_RD_reg[6]),
-        .I3(counter_RD_i_11_n_0),
+        .I3(counter_RD_i_12_n_0),
         .I4(counterY_RD_reg[7]),
         .O(counter_RD_i_2_n_0));
   LUT4 #(
     .INIT(16'h6AAA)) 
     counter_RD_i_3
        (.I0(counterY_RD_reg[7]),
-        .I1(counter_RD_i_11_n_0),
+        .I1(counter_RD_i_12_n_0),
         .I2(counterY_RD_reg[6]),
         .I3(counterY_RD_reg[5]),
         .O(counter_RD_i_3_n_0));
@@ -2794,7 +2782,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
     .INIT(8'h6A)) 
     counter_RD_i_4
        (.I0(counterY_RD_reg[6]),
-        .I1(counter_RD_i_11_n_0),
+        .I1(counter_RD_i_12_n_0),
         .I2(counterY_RD_reg[5]),
         .O(counter_RD_i_4_n_0));
   LUT6 #(
@@ -2837,59 +2825,23 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
        (.I0(counterY_RD_reg[0]),
         .I1(counterY_RD_reg[1]),
         .O(counter_RD_i_9_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'h11450000)) 
+  LUT6 #(
+    .INIT(64'h1111445400000000)) 
     \state_fsm_main[0]_i_1 
        (.I0(\state_fsm_main_reg_n_0_[1] ),
         .I1(\state_fsm_main_reg_n_0_[0] ),
-        .I2(\state_fsm_main[0]_i_2_n_0 ),
-        .I3(\state_fsm_main[1]_i_3_n_0 ),
-        .I4(rstn),
+        .I2(addrAdd_r_reg_i_26_n_0),
+        .I3(addrAdd_r_reg_i_27_n_0),
+        .I4(addrAdd_r_reg_i_28_n_0),
+        .I5(rstn),
         .O(\state_fsm_main[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hEFFFFFFFFFFFFFFF)) 
-    \state_fsm_main[0]_i_2 
-       (.I0(\state_fsm_main[0]_i_3_n_0 ),
-        .I1(\state_fsm_main[0]_i_4_n_0 ),
-        .I2(counterX_WR_reg[4]),
-        .I3(counterX_WR_reg[3]),
-        .I4(\state_fsm_main[0]_i_5_n_0 ),
-        .I5(\counterY_WR[8]_i_4_n_0 ),
-        .O(\state_fsm_main[0]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hFFFFFF7F)) 
-    \state_fsm_main[0]_i_3 
-       (.I0(counterX_WR_reg[5]),
-        .I1(counterX_WR_reg[6]),
-        .I2(counterX_WR_reg[9]),
-        .I3(counterX_WR_reg[8]),
-        .I4(counterX_WR_reg[7]),
-        .O(\state_fsm_main[0]_i_3_n_0 ));
-  LUT3 #(
-    .INIT(8'h7F)) 
-    \state_fsm_main[0]_i_4 
-       (.I0(counterX_WR_reg[0]),
-        .I1(counterX_WR_reg[1]),
-        .I2(counterX_WR_reg[2]),
-        .O(\state_fsm_main[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
-  LUT4 #(
-    .INIT(16'h0080)) 
-    \state_fsm_main[0]_i_5 
-       (.I0(counterY_WR_reg[8]),
-        .I1(counterY_WR_reg[6]),
-        .I2(counterY_WR_reg[7]),
-        .I3(counterY_WR_reg[5]),
-        .O(\state_fsm_main[0]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'hFF040000)) 
     \state_fsm_main[1]_i_1 
        (.I0(\state_fsm_main_reg_n_0_[0] ),
         .I1(\state_fsm_main_reg_n_0_[1] ),
         .I2(\state_fsm_main[1]_i_2_n_0 ),
-        .I3(\state_fsm_main[1]_i_3_n_0 ),
+        .I3(addrAdd_r_reg_i_28_n_0),
         .I4(rstn),
         .O(\state_fsm_main[1]_i_1_n_0 ));
   LUT5 #(
@@ -2901,25 +2853,6 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .I3(counterY_RD_reg[2]),
         .I4(counterY_RD_reg[3]),
         .O(\state_fsm_main[1]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h0001000000000000)) 
-    \state_fsm_main[1]_i_3 
-       (.I0(bram0_i_25_n_0),
-        .I1(\state_fsm_main[1]_i_4_n_0 ),
-        .I2(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I4(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I5(\addrWR_ready_counter_reg_n_0_[7] ),
-        .O(\state_fsm_main[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'hDFFF)) 
-    \state_fsm_main[1]_i_4 
-       (.I0(\state_fsm_main_reg_n_0_[0] ),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[2] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
-        .O(\state_fsm_main[1]_i_4_n_0 ));
   FDRE \state_fsm_main_reg[0] 
        (.C(CLK),
         .CE(1'b1),
@@ -3100,12 +3033,6 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
     valMul_r_reg_i_9
        (.I0(val_r[7]),
         .O(valMul_r_reg_i_9_n_0));
-  LUT2 #(
-    .INIT(4'hB)) 
-    \val_r[15]_i_1 
-       (.I0(\state_fsm_main_reg_n_0_[0] ),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .O(CEM));
   FDRE \val_r_reg[0] 
        (.C(CLK),
         .CE(CEM),
@@ -3202,27 +3129,51 @@ module hdmi_bd_hdmiIP_1_0_hdmiController
         .D(val[9]),
         .Q(val_r[9]),
         .R(rst));
+  LUT6 #(
+    .INIT(64'h0000404444444404)) 
+    wd_INST_0
+       (.I0(\state_fsm_main_reg_n_0_[1] ),
+        .I1(\state_fsm_main_reg_n_0_[0] ),
+        .I2(wd_INST_0_i_1_n_0),
+        .I3(\addrWR_ready_counter_reg_n_0_[7] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I5(\addrWR_ready_counter_reg_n_0_[9] ),
+        .O(dina));
+  LUT6 #(
+    .INIT(64'h0000000100010001)) 
+    wd_INST_0_i_1
+       (.I0(\addrWR_ready_counter_reg_n_0_[3] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[4] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[5] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I5(\addrWR_ready_counter_reg_n_0_[1] ),
+        .O(wd_INST_0_i_1_n_0));
 endmodule
 
 (* ORIG_REF_NAME = "hdmiIP" *) 
 module hdmi_bd_hdmiIP_1_0_hdmiIP
-   (TMDSp,
+   (pixclk,
+    dina,
+    TMDSp,
     TMDSn,
     TMDSp_clk,
     TMDSn_clk,
+    addrWR,
     clkWR_reg_0,
-    counter,
     rstn,
     clk,
     clka,
     val,
     lopt);
+  output pixclk;
+  output [0:0]dina;
   output [2:0]TMDSp;
   output [2:0]TMDSn;
   output TMDSp_clk;
   output TMDSn_clk;
+  output [18:0]addrWR;
   output clkWR_reg_0;
-  output [12:0]counter;
   input rstn;
   input clk;
   input clka;
@@ -3236,6 +3187,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   wire TMDSp_clk;
   wire [18:0]addrB0;
   wire [18:0]addrB1;
+  wire [18:0]addrWR;
   wire clk;
   wire clkWR_i_1_n_0;
   wire clkWR_i_2_n_0;
@@ -3244,42 +3196,43 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   wire clkWR_reg_0;
   wire clkWrite_delayed;
   wire clka;
-  wire controller_n_2;
-  wire controller_n_42;
-  wire controller_n_43;
-  wire controller_n_44;
-  wire controller_n_45;
-  wire controller_n_46;
-  wire controller_n_47;
-  wire controller_n_48;
-  wire [12:0]counter;
-  wire \counter[12]_i_1_n_0 ;
-  wire \counter[3]_i_2_n_0 ;
-  wire \counter_reg[11]_i_1_n_0 ;
-  wire \counter_reg[11]_i_1_n_1 ;
-  wire \counter_reg[11]_i_1_n_2 ;
-  wire \counter_reg[11]_i_1_n_3 ;
-  wire \counter_reg[11]_i_1_n_4 ;
-  wire \counter_reg[11]_i_1_n_5 ;
-  wire \counter_reg[11]_i_1_n_6 ;
-  wire \counter_reg[11]_i_1_n_7 ;
-  wire \counter_reg[12]_i_2_n_7 ;
-  wire \counter_reg[3]_i_1_n_0 ;
-  wire \counter_reg[3]_i_1_n_1 ;
-  wire \counter_reg[3]_i_1_n_2 ;
-  wire \counter_reg[3]_i_1_n_3 ;
-  wire \counter_reg[3]_i_1_n_4 ;
-  wire \counter_reg[3]_i_1_n_5 ;
-  wire \counter_reg[3]_i_1_n_6 ;
-  wire \counter_reg[3]_i_1_n_7 ;
-  wire \counter_reg[7]_i_1_n_0 ;
-  wire \counter_reg[7]_i_1_n_1 ;
-  wire \counter_reg[7]_i_1_n_2 ;
-  wire \counter_reg[7]_i_1_n_3 ;
-  wire \counter_reg[7]_i_1_n_4 ;
-  wire \counter_reg[7]_i_1_n_5 ;
-  wire \counter_reg[7]_i_1_n_6 ;
-  wire \counter_reg[7]_i_1_n_7 ;
+  wire controller_n_19;
+  wire controller_n_20;
+  wire controller_n_21;
+  wire controller_n_22;
+  wire controller_n_23;
+  wire controller_n_65;
+  wire controller_n_66;
+  wire controller_n_67;
+  wire \counter[0]_i_1_n_0 ;
+  wire \counter[0]_i_3_n_0 ;
+  wire [12:0]counter_reg;
+  wire \counter_reg[0]_i_2_n_0 ;
+  wire \counter_reg[0]_i_2_n_1 ;
+  wire \counter_reg[0]_i_2_n_2 ;
+  wire \counter_reg[0]_i_2_n_3 ;
+  wire \counter_reg[0]_i_2_n_4 ;
+  wire \counter_reg[0]_i_2_n_5 ;
+  wire \counter_reg[0]_i_2_n_6 ;
+  wire \counter_reg[0]_i_2_n_7 ;
+  wire \counter_reg[12]_i_1_n_7 ;
+  wire \counter_reg[4]_i_1_n_0 ;
+  wire \counter_reg[4]_i_1_n_1 ;
+  wire \counter_reg[4]_i_1_n_2 ;
+  wire \counter_reg[4]_i_1_n_3 ;
+  wire \counter_reg[4]_i_1_n_4 ;
+  wire \counter_reg[4]_i_1_n_5 ;
+  wire \counter_reg[4]_i_1_n_6 ;
+  wire \counter_reg[4]_i_1_n_7 ;
+  wire \counter_reg[8]_i_1_n_0 ;
+  wire \counter_reg[8]_i_1_n_1 ;
+  wire \counter_reg[8]_i_1_n_2 ;
+  wire \counter_reg[8]_i_1_n_3 ;
+  wire \counter_reg[8]_i_1_n_4 ;
+  wire \counter_reg[8]_i_1_n_5 ;
+  wire \counter_reg[8]_i_1_n_6 ;
+  wire \counter_reg[8]_i_1_n_7 ;
+  wire [0:0]dina;
   wire en0;
   wire en1;
   wire [3:3]\encode_B/balance_acc ;
@@ -3290,11 +3243,10 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   wire rd1;
   wire rstn;
   wire [15:0]val;
-  wire wd;
   wire we0;
   wire we1;
-  wire [3:0]\NLW_counter_reg[12]_i_2_CO_UNCONNECTED ;
-  wire [3:1]\NLW_counter_reg[12]_i_2_O_UNCONNECTED ;
+  wire [3:0]\NLW_counter_reg[12]_i_1_CO_UNCONNECTED ;
+  wire [3:1]\NLW_counter_reg[12]_i_1_O_UNCONNECTED ;
 
   (* CHECK_LICENSE_TYPE = "bram,blk_mem_gen_v8_4_4,{}" *) 
   (* downgradeipidentifiedwarnings = "yes" *) 
@@ -3302,7 +3254,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   hdmi_bd_hdmiIP_1_0_bram__1 bram0
        (.addra(addrB0),
         .clka(clka),
-        .dina(wd),
+        .dina(dina),
         .douta(rd0),
         .ena(en0),
         .lopt(lopt),
@@ -3313,7 +3265,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   hdmi_bd_hdmiIP_1_0_bram bram1
        (.addra(addrB1),
         .clka(clka),
-        .dina(wd),
+        .dina(dina),
         .douta(rd1),
         .ena(en1),
         .lopt(lopt),
@@ -3330,27 +3282,27 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
   LUT6 #(
     .INIT(64'h0000000400000000)) 
     clkWR_i_2
-       (.I0(counter[4]),
-        .I1(counter[3]),
-        .I2(counter[1]),
-        .I3(counter[5]),
-        .I4(counter[10]),
-        .I5(counter[8]),
+       (.I0(counter_reg[4]),
+        .I1(counter_reg[3]),
+        .I2(counter_reg[1]),
+        .I3(counter_reg[5]),
+        .I4(counter_reg[10]),
+        .I5(counter_reg[8]),
         .O(clkWR_i_2_n_0));
   LUT4 #(
     .INIT(16'hFFEF)) 
     clkWR_i_3
-       (.I0(counter[6]),
-        .I1(counter[0]),
-        .I2(counter[9]),
-        .I3(counter[2]),
+       (.I0(counter_reg[6]),
+        .I1(counter_reg[0]),
+        .I2(counter_reg[9]),
+        .I3(counter_reg[2]),
         .O(clkWR_i_3_n_0));
   LUT3 #(
     .INIT(8'hDF)) 
     clkWR_i_4
-       (.I0(counter[7]),
-        .I1(counter[11]),
-        .I2(counter[12]),
+       (.I0(counter_reg[7]),
+        .I1(counter_reg[11]),
+        .I2(counter_reg[12]),
         .O(clkWR_i_4_n_0));
   FDRE clkWR_reg
        (.C(clk),
@@ -3370,20 +3322,22 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
         .pixclk(pixclk),
         .resetn(rstn));
   hdmi_bd_hdmiIP_1_0_hdmiController controller
-       (.CLK(clkWR_reg_0),
-        .D({controller_n_42,controller_n_43}),
-        .Q(\encode_G/balance_acc ),
-        .\TMDS_reg[2] (\encode_B/balance_acc ),
-        .\TMDS_reg[8] (rd1),
+       (.CLK(pixclk),
+        .D({controller_n_19,controller_n_20,controller_n_21,controller_n_22}),
+        .Q(\encode_B/balance_acc ),
+        .\TMDS_reg[8] (rd0),
+        .\TMDS_reg[9] (\encode_G/balance_acc ),
         .addrAdd_r_reg_0(addrB1),
-        .addrSel_reg_0(controller_n_44),
-        .addrSel_reg_1(we1),
+        .addrSel_reg_0({controller_n_65,controller_n_66}),
+        .addrSel_reg_1(controller_n_67),
+        .addrSel_reg_2(we1),
+        .addrSel_reg_3(clkWR_reg_0),
+        .addrWR(addrWR),
         .addra(addrB0),
-        .\balance_acc_reg[3] ({controller_n_45,controller_n_46,controller_n_47,controller_n_48}),
         .clk(clk),
-        .\counterX_RD_reg[7]_0 (controller_n_2),
-        .dina(wd),
-        .douta(rd0),
+        .\counterX_RD_reg[7]_0 (controller_n_23),
+        .dina(dina),
+        .douta(rd1),
         .ena(en1),
         .rstn(rstn),
         .state_fsm_read_reg_0(en0),
@@ -3391,135 +3345,135 @@ module hdmi_bd_hdmiIP_1_0_hdmiIP
         .wea(we0));
   LUT3 #(
     .INIT(8'h6F)) 
-    \counter[12]_i_1 
+    \counter[0]_i_1 
        (.I0(clkWrite_delayed),
         .I1(clkWR_reg_0),
         .I2(rstn),
-        .O(\counter[12]_i_1_n_0 ));
+        .O(\counter[0]_i_1_n_0 ));
   LUT1 #(
     .INIT(2'h1)) 
-    \counter[3]_i_2 
-       (.I0(counter[0]),
-        .O(\counter[3]_i_2_n_0 ));
+    \counter[0]_i_3 
+       (.I0(counter_reg[0]),
+        .O(\counter[0]_i_3_n_0 ));
   FDRE \counter_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[3]_i_1_n_7 ),
-        .Q(counter[0]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[0]_i_2_n_7 ),
+        .Q(counter_reg[0]),
+        .R(\counter[0]_i_1_n_0 ));
+  CARRY4 \counter_reg[0]_i_2 
+       (.CI(1'b0),
+        .CO({\counter_reg[0]_i_2_n_0 ,\counter_reg[0]_i_2_n_1 ,\counter_reg[0]_i_2_n_2 ,\counter_reg[0]_i_2_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b1}),
+        .O({\counter_reg[0]_i_2_n_4 ,\counter_reg[0]_i_2_n_5 ,\counter_reg[0]_i_2_n_6 ,\counter_reg[0]_i_2_n_7 }),
+        .S({counter_reg[3:1],\counter[0]_i_3_n_0 }));
   FDRE \counter_reg[10] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[11]_i_1_n_5 ),
-        .Q(counter[10]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[8]_i_1_n_5 ),
+        .Q(counter_reg[10]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[11] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[11]_i_1_n_4 ),
-        .Q(counter[11]),
-        .R(\counter[12]_i_1_n_0 ));
-  CARRY4 \counter_reg[11]_i_1 
-       (.CI(\counter_reg[7]_i_1_n_0 ),
-        .CO({\counter_reg[11]_i_1_n_0 ,\counter_reg[11]_i_1_n_1 ,\counter_reg[11]_i_1_n_2 ,\counter_reg[11]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\counter_reg[11]_i_1_n_4 ,\counter_reg[11]_i_1_n_5 ,\counter_reg[11]_i_1_n_6 ,\counter_reg[11]_i_1_n_7 }),
-        .S(counter[11:8]));
+        .D(\counter_reg[8]_i_1_n_4 ),
+        .Q(counter_reg[11]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[12] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[12]_i_2_n_7 ),
-        .Q(counter[12]),
-        .R(\counter[12]_i_1_n_0 ));
-  CARRY4 \counter_reg[12]_i_2 
-       (.CI(\counter_reg[11]_i_1_n_0 ),
-        .CO(\NLW_counter_reg[12]_i_2_CO_UNCONNECTED [3:0]),
+        .D(\counter_reg[12]_i_1_n_7 ),
+        .Q(counter_reg[12]),
+        .R(\counter[0]_i_1_n_0 ));
+  CARRY4 \counter_reg[12]_i_1 
+       (.CI(\counter_reg[8]_i_1_n_0 ),
+        .CO(\NLW_counter_reg[12]_i_1_CO_UNCONNECTED [3:0]),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_counter_reg[12]_i_2_O_UNCONNECTED [3:1],\counter_reg[12]_i_2_n_7 }),
-        .S({1'b0,1'b0,1'b0,counter[12]}));
+        .O({\NLW_counter_reg[12]_i_1_O_UNCONNECTED [3:1],\counter_reg[12]_i_1_n_7 }),
+        .S({1'b0,1'b0,1'b0,counter_reg[12]}));
   FDRE \counter_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[3]_i_1_n_6 ),
-        .Q(counter[1]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[0]_i_2_n_6 ),
+        .Q(counter_reg[1]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[3]_i_1_n_5 ),
-        .Q(counter[2]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[0]_i_2_n_5 ),
+        .Q(counter_reg[2]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[3]_i_1_n_4 ),
-        .Q(counter[3]),
-        .R(\counter[12]_i_1_n_0 ));
-  CARRY4 \counter_reg[3]_i_1 
-       (.CI(1'b0),
-        .CO({\counter_reg[3]_i_1_n_0 ,\counter_reg[3]_i_1_n_1 ,\counter_reg[3]_i_1_n_2 ,\counter_reg[3]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b1}),
-        .O({\counter_reg[3]_i_1_n_4 ,\counter_reg[3]_i_1_n_5 ,\counter_reg[3]_i_1_n_6 ,\counter_reg[3]_i_1_n_7 }),
-        .S({counter[3:1],\counter[3]_i_2_n_0 }));
+        .D(\counter_reg[0]_i_2_n_4 ),
+        .Q(counter_reg[3]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[4] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[7]_i_1_n_7 ),
-        .Q(counter[4]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[4]_i_1_n_7 ),
+        .Q(counter_reg[4]),
+        .R(\counter[0]_i_1_n_0 ));
+  CARRY4 \counter_reg[4]_i_1 
+       (.CI(\counter_reg[0]_i_2_n_0 ),
+        .CO({\counter_reg[4]_i_1_n_0 ,\counter_reg[4]_i_1_n_1 ,\counter_reg[4]_i_1_n_2 ,\counter_reg[4]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\counter_reg[4]_i_1_n_4 ,\counter_reg[4]_i_1_n_5 ,\counter_reg[4]_i_1_n_6 ,\counter_reg[4]_i_1_n_7 }),
+        .S(counter_reg[7:4]));
   FDRE \counter_reg[5] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[7]_i_1_n_6 ),
-        .Q(counter[5]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[4]_i_1_n_6 ),
+        .Q(counter_reg[5]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[6] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[7]_i_1_n_5 ),
-        .Q(counter[6]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[4]_i_1_n_5 ),
+        .Q(counter_reg[6]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[7] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[7]_i_1_n_4 ),
-        .Q(counter[7]),
-        .R(\counter[12]_i_1_n_0 ));
-  CARRY4 \counter_reg[7]_i_1 
-       (.CI(\counter_reg[3]_i_1_n_0 ),
-        .CO({\counter_reg[7]_i_1_n_0 ,\counter_reg[7]_i_1_n_1 ,\counter_reg[7]_i_1_n_2 ,\counter_reg[7]_i_1_n_3 }),
-        .CYINIT(1'b0),
-        .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\counter_reg[7]_i_1_n_4 ,\counter_reg[7]_i_1_n_5 ,\counter_reg[7]_i_1_n_6 ,\counter_reg[7]_i_1_n_7 }),
-        .S(counter[7:4]));
+        .D(\counter_reg[4]_i_1_n_4 ),
+        .Q(counter_reg[7]),
+        .R(\counter[0]_i_1_n_0 ));
   FDRE \counter_reg[8] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[11]_i_1_n_7 ),
-        .Q(counter[8]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[8]_i_1_n_7 ),
+        .Q(counter_reg[8]),
+        .R(\counter[0]_i_1_n_0 ));
+  CARRY4 \counter_reg[8]_i_1 
+       (.CI(\counter_reg[4]_i_1_n_0 ),
+        .CO({\counter_reg[8]_i_1_n_0 ,\counter_reg[8]_i_1_n_1 ,\counter_reg[8]_i_1_n_2 ,\counter_reg[8]_i_1_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\counter_reg[8]_i_1_n_4 ,\counter_reg[8]_i_1_n_5 ,\counter_reg[8]_i_1_n_6 ,\counter_reg[8]_i_1_n_7 }),
+        .S(counter_reg[11:8]));
   FDRE \counter_reg[9] 
        (.C(clk),
         .CE(1'b1),
-        .D(\counter_reg[11]_i_1_n_6 ),
-        .Q(counter[9]),
-        .R(\counter[12]_i_1_n_0 ));
+        .D(\counter_reg[8]_i_1_n_6 ),
+        .Q(counter_reg[9]),
+        .R(\counter[0]_i_1_n_0 ));
   hdmi_bd_hdmiIP_1_0_hdmiInterface interface
-       (.D({controller_n_45,controller_n_46,controller_n_47,controller_n_48}),
+       (.CLK(pixclk),
+        .D({controller_n_19,controller_n_20,controller_n_21,controller_n_22}),
         .Q(\encode_G/balance_acc ),
-        .\TMDS_reg[9] ({controller_n_42,controller_n_43}),
+        .\TMDS_reg[9] ({controller_n_65,controller_n_66}),
         .TMDSclk(TMDSclk),
         .TMDSn(TMDSn),
         .TMDSn_clk(TMDSn_clk),
         .TMDSp(TMDSp),
         .TMDSp_clk(TMDSp_clk),
-        .\balance_acc_reg[0] (controller_n_2),
-        .\balance_acc_reg[1] (controller_n_44),
-        .\balance_acc_reg[3] (\encode_B/balance_acc ),
-        .pixclk(pixclk));
+        .\balance_acc_reg[0] (controller_n_23),
+        .\balance_acc_reg[1] (controller_n_67),
+        .\balance_acc_reg[3] (\encode_B/balance_acc ));
 endmodule
 
 (* ORIG_REF_NAME = "hdmiInterface" *) 
@@ -3530,7 +3484,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
     TMDSn_clk,
     Q,
     \balance_acc_reg[3] ,
-    pixclk,
+    CLK,
     TMDSclk,
     \balance_acc_reg[1] ,
     \balance_acc_reg[0] ,
@@ -3542,13 +3496,14 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
   output TMDSn_clk;
   output [0:0]Q;
   output [0:0]\balance_acc_reg[3] ;
-  input pixclk;
+  input CLK;
   input TMDSclk;
   input \balance_acc_reg[1] ;
   input \balance_acc_reg[0] ;
   input [3:0]D;
   input [1:0]\TMDS_reg[9] ;
 
+  wire CLK;
   wire [3:0]D;
   wire [0:0]Q;
   wire [8:0]TMDS;
@@ -3636,7 +3591,6 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
   wire encode_G_n_2;
   wire encode_G_n_3;
   wire encode_G_n_4;
-  wire pixclk;
 
   (* BOX_TYPE = "PRIMITIVE" *) 
   (* CAPACITANCE = "DONT_CARE" *) 
@@ -3653,7 +3607,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
   OBUFDS #(
     .IOSTANDARD("DEFAULT")) 
     OBUFDS_clock
-       (.I(pixclk),
+       (.I(CLK),
         .O(TMDSp_clk),
         .OB(TMDSn_clk));
   (* BOX_TYPE = "PRIMITIVE" *) 
@@ -3674,20 +3628,20 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
        (.I(\TMDS_shift_red_reg_n_0_[0] ),
         .O(TMDSp[2]),
         .OB(TMDSn[2]));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \TMDS_mod10[0]_i_1 
        (.I0(TMDS_mod10[0]),
         .O(\TMDS_mod10[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \TMDS_mod10[1]_i_1 
        (.I0(TMDS_mod10[0]),
         .I1(TMDS_mod10[1]),
         .O(\TMDS_mod10[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \TMDS_mod10[2]_i_1 
@@ -3703,7 +3657,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I2(TMDS_mod10[3]),
         .I3(TMDS_mod10[0]),
         .O(\TMDS_mod10[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \TMDS_mod10[3]_i_2 
@@ -3744,7 +3698,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .D(\TMDS_mod10[3]_i_2_n_0 ),
         .Q(TMDS_mod10[3]),
         .R(\TMDS_mod10[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[0]_i_1 
@@ -3752,7 +3706,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[1] ),
         .O(\TMDS_shift_blue[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[1]_i_1 
@@ -3760,7 +3714,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[2] ),
         .O(\TMDS_shift_blue[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[2]_i_1 
@@ -3768,7 +3722,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[3] ),
         .O(\TMDS_shift_blue[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[3]_i_1 
@@ -3776,7 +3730,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[4] ),
         .O(\TMDS_shift_blue[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[4]_i_1 
@@ -3784,7 +3738,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[5] ),
         .O(\TMDS_shift_blue[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[5]_i_1 
@@ -3792,7 +3746,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[6] ),
         .O(\TMDS_shift_blue[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[6]_i_1 
@@ -3800,7 +3754,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[7] ),
         .O(\TMDS_shift_blue[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[7]_i_1 
@@ -3808,7 +3762,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[8] ),
         .O(\TMDS_shift_blue[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[8]_i_1 
@@ -3816,7 +3770,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[9] ),
         .O(\TMDS_shift_blue[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_blue[9]_i_1 
@@ -3903,7 +3857,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .D(\TMDS_shift_blue[9]_i_1_n_0 ),
         .Q(\TMDS_shift_blue_reg_n_0_[9] ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[0]_i_1 
@@ -3911,7 +3865,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[1] ),
         .O(\TMDS_shift_green[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[1]_i_1 
@@ -3919,7 +3873,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[2] ),
         .O(\TMDS_shift_green[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[2]_i_1 
@@ -3927,7 +3881,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[3] ),
         .O(\TMDS_shift_green[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[3]_i_1 
@@ -3935,7 +3889,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[4] ),
         .O(\TMDS_shift_green[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[4]_i_1 
@@ -3943,7 +3897,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[5] ),
         .O(\TMDS_shift_green[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[5]_i_1 
@@ -3951,7 +3905,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[6] ),
         .O(\TMDS_shift_green[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[6]_i_1 
@@ -3959,7 +3913,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[7] ),
         .O(\TMDS_shift_green[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[7]_i_1 
@@ -3967,7 +3921,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[8] ),
         .O(\TMDS_shift_green[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[8]_i_1 
@@ -3975,7 +3929,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[9] ),
         .O(\TMDS_shift_green[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_green[9]_i_1 
@@ -4070,7 +4024,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .D(\TMDS_mod10[3]_i_1_n_0 ),
         .Q(TMDS_shift_load),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[0]_i_1 
@@ -4078,7 +4032,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[1] ),
         .O(\TMDS_shift_red[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[1]_i_1 
@@ -4086,7 +4040,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[2] ),
         .O(\TMDS_shift_red[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[2]_i_1 
@@ -4094,7 +4048,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[3] ),
         .O(\TMDS_shift_red[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[3]_i_1 
@@ -4102,7 +4056,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[4] ),
         .O(\TMDS_shift_red[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[4]_i_1 
@@ -4110,7 +4064,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[5] ),
         .O(\TMDS_shift_red[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[5]_i_1 
@@ -4118,7 +4072,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[6] ),
         .O(\TMDS_shift_red[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[6]_i_1 
@@ -4126,7 +4080,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[7] ),
         .O(\TMDS_shift_red[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[7]_i_1 
@@ -4134,7 +4088,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[8] ),
         .O(\TMDS_shift_red[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[8]_i_1 
@@ -4142,7 +4096,7 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[9] ),
         .O(\TMDS_shift_red[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_red[9]_i_1 
@@ -4230,22 +4184,22 @@ module hdmi_bd_hdmiIP_1_0_hdmiInterface
         .Q(\TMDS_shift_red_reg_n_0_[9] ),
         .R(1'b0));
   hdmi_bd_hdmiIP_1_0_encoder_TMDS encode_B
-       (.D(D),
+       (.CLK(CLK),
+        .D(D),
         .Q(\balance_acc_reg[3] ),
         .\TMDS_reg[9]_0 ({encode_B_n_1,encode_B_n_2,encode_B_n_3,encode_B_n_4}),
-        .\balance_acc_reg[0]_0 (\balance_acc_reg[0] ),
-        .pixclk(pixclk));
+        .\balance_acc_reg[0]_0 (\balance_acc_reg[0] ));
   hdmi_bd_hdmiIP_1_0_encoder_TMDS_0 encode_G
-       (.Q(Q),
+       (.CLK(CLK),
+        .Q(Q),
         .\TMDS_reg[9]_0 ({encode_G_n_1,encode_G_n_2,encode_G_n_3,encode_G_n_4}),
         .\TMDS_reg[9]_1 (\TMDS_reg[9] ),
         .\balance_acc_reg[1]_0 (\balance_acc_reg[1] ),
-        .\balance_acc_reg[3]_0 (\balance_acc_reg[0] ),
-        .pixclk(pixclk));
+        .\balance_acc_reg[3]_0 (\balance_acc_reg[0] ));
   hdmi_bd_hdmiIP_1_0_encoder_TMDS_1 encode_R
-       (.Q({TMDS[8],TMDS[2],TMDS[0]}),
-        .\balance_acc_reg[0]_0 (\balance_acc_reg[0] ),
-        .pixclk(pixclk));
+       (.CLK(CLK),
+        .Q({TMDS[8],TMDS[2],TMDS[0]}),
+        .\balance_acc_reg[0]_0 (\balance_acc_reg[0] ));
 endmodule
 
 (* ORIG_REF_NAME = "bindec" *) 

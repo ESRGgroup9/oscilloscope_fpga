@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x4186372874807D90",
+      "boundary_crc": "0xD8A37EF37BE053E6",
       "device": "xc7z010clg400-1",
       "name": "hdmi_bd",
       "synth_flow_mode": "Hierarchical",
@@ -105,13 +105,19 @@
         "left": "15",
         "right": "0"
       },
-      "clkWR": {
+      "addrWR_0": {
+        "direction": "O",
+        "left": "18",
+        "right": "0"
+      },
+      "clkCLEAN_0": {
         "direction": "O"
       },
-      "counter": {
-        "direction": "O",
-        "left": "12",
-        "right": "0"
+      "clkWR_0": {
+        "direction": "O"
+      },
+      "wd_0": {
+        "direction": "O"
       }
     },
     "components": {
@@ -223,16 +229,28 @@
           "hdmiIP_1/val"
         ]
       },
+      "hdmiIP_1_addrWR": {
+        "ports": [
+          "hdmiIP_1/addrWR",
+          "addrWR_0"
+        ]
+      },
+      "hdmiIP_1_clkCLEAN": {
+        "ports": [
+          "hdmiIP_1/clkCLEAN",
+          "clkCLEAN_0"
+        ]
+      },
       "hdmiIP_1_clkWR": {
         "ports": [
           "hdmiIP_1/clkWR",
-          "clkWR"
+          "clkWR_0"
         ]
       },
-      "hdmiIP_1_counter": {
+      "hdmiIP_1_wd": {
         "ports": [
-          "hdmiIP_1/counter",
-          "counter"
+          "hdmiIP_1/wd",
+          "wd_0"
         ]
       }
     }

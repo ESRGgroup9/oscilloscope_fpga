@@ -96,7 +96,7 @@ wire clk_in2_clk_wiz_0;
 
   wire        pixclk_clk_wiz_0;
   wire        TMDSclk_clk_wiz_0;
-  wire        clkWR_clk_wiz_0;
+  wire        clkCLEAN_clk_wiz_0;
   wire        clk_out4_clk_wiz_0;
   wire        clk_out5_clk_wiz_0;
   wire        clk_out6_clk_wiz_0;

@@ -59,7 +59,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./code/oscilloscope_fpga/hdmi/bd
+  set origin_dir ./bd
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -160,14 +160,16 @@ proc create_root_design { parentCell } {
   set TMDSn_clock [ create_bd_port -dir O -type clk TMDSn_clock ]
   set TMDSp [ create_bd_port -dir O -from 2 -to 0 TMDSp ]
   set TMDSp_clock [ create_bd_port -dir O -type clk TMDSp_clock ]
+  set addrWR_0 [ create_bd_port -dir O -from 18 -to 0 addrWR_0 ]
   set clk [ create_bd_port -dir I -type clk -freq_hz 125000000 clk ]
-  set clkWR [ create_bd_port -dir O clkWR ]
-  set counter [ create_bd_port -dir O -from 12 -to 0 counter ]
+  set clkCLEAN_0 [ create_bd_port -dir O clkCLEAN_0 ]
+  set clkWR_0 [ create_bd_port -dir O clkWR_0 ]
   set rstn [ create_bd_port -dir I -type rst rstn ]
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_LOW} \
  ] $rstn
   set val [ create_bd_port -dir I -from 15 -to 0 val ]
+  set wd_0 [ create_bd_port -dir O wd_0 ]
 
   # Create instance: hdmiIP_1, and set properties
   set hdmiIP_1 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_1 ]
@@ -178,8 +180,10 @@ proc create_root_design { parentCell } {
   connect_bd_net -net hdmiIP_1_TMDSn_clk [get_bd_ports TMDSn_clock] [get_bd_pins hdmiIP_1/TMDSn_clk]
   connect_bd_net -net hdmiIP_1_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_1/TMDSp]
   connect_bd_net -net hdmiIP_1_TMDSp_clk [get_bd_ports TMDSp_clock] [get_bd_pins hdmiIP_1/TMDSp_clk]
-  connect_bd_net -net hdmiIP_1_clkWR [get_bd_ports clkWR] [get_bd_pins hdmiIP_1/clkWR]
-  connect_bd_net -net hdmiIP_1_counter [get_bd_ports counter] [get_bd_pins hdmiIP_1/counter]
+  connect_bd_net -net hdmiIP_1_addrWR [get_bd_ports addrWR_0] [get_bd_pins hdmiIP_1/addrWR]
+  connect_bd_net -net hdmiIP_1_clkCLEAN [get_bd_ports clkCLEAN_0] [get_bd_pins hdmiIP_1/clkCLEAN]
+  connect_bd_net -net hdmiIP_1_clkWR [get_bd_ports clkWR_0] [get_bd_pins hdmiIP_1/clkWR]
+  connect_bd_net -net hdmiIP_1_wd [get_bd_ports wd_0] [get_bd_pins hdmiIP_1/wd]
   connect_bd_net -net reset_1 [get_bd_ports rstn] [get_bd_pins hdmiIP_1/rstn]
   connect_bd_net -net val_0_1 [get_bd_ports val] [get_bd_pins hdmiIP_1/val]
 

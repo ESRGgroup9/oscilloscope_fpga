@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Fri Jun 17 13:50:13 2022
+// Date        : Mon Jun 20 15:51:24 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi_v2/xadc_axi/xadc_axi.srcs/sources_1/bd/design_1/ip/design_1_xbar_2/design_1_xbar_2_stub.v
+//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_xbar_2/design_1_xbar_2_stub.v
 // Design      : design_1_xbar_2
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
