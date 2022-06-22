@@ -57,7 +57,7 @@ wire rbuf_done;
 // ===========================================================================
 // input/output vectors
 // ===========================================================================
-parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/220input.txt";
+parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/20input.txt";
 reg[8*128:0] OUTPUT_GOLDEN_FILENAME;
 reg[8*128:0] OUTPUT_FILENAME;
 
@@ -160,7 +160,7 @@ assign input_val = input_buf[i];
 
 initial begin
 	$display("\nTesting LPF:");
-    filt_select <= FILT_SEL_HPF;
+    filt_select <= FILT_SEL_LPF;
 end
 
 // filter enable
@@ -179,7 +179,7 @@ end
 // dut
 // ===========================================================================
 wire filt_start_o;
-wire [XANT_ADDR_SIZE:0] xant_addr;
+wire [XANT_ADDR_SIZE-1:0] xant_addr;
 wire [XANT_ADDR_SIZE-1:0] xant_base_addr;
 wire [1:0] state_fsm_xant;
 wire [XADC_DATA_SIZE -1:0] xant;
@@ -206,7 +206,7 @@ filters #(
     // debug
     // state_fsm_xant,
     filt_start_o,
-    // xant_addr,
+    xant_addr,
     // xant_base_addr,
     xant,
     addr_bram_xcoefs,

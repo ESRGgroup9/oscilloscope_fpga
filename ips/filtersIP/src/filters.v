@@ -11,6 +11,7 @@ module filters(
 
 	// debug
 	filt_start,
+	addr_bram_xant,
 	xant,
 	addr_bram_xcoefs,
 	xcoefs
@@ -90,7 +91,7 @@ wire [XCOEF_ADDR_SIZE-1:0] bpf_xcoefs_addr;
 
 // ------------------ aux registers
 wire [XANT_ADDR_SIZE -1:0] filt_xant_addr;
-wire [XANT_ADDR_SIZE -1:0] addr_bram_xant;
+output wire [XANT_ADDR_SIZE -1:0] addr_bram_xant;
 
 wire [XCOEF_ADDR_SIZE-1:0] filt_xcoefs_addr;
 output wire [XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;

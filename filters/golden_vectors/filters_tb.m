@@ -83,7 +83,7 @@ function filters_tb(inputRand, Fc, filter, printFig, writeToFile)
     fprintf("Filter     : %s\n", filter);
     fprintf("Order      : %d\n", M);
     fprintf("Input freq : %d Hz\n", Fc);
-    fprintf("Attenuation: %.2f dB\n", 10*log(max(out)/max(x)));
+    fprintf("Attenuation: %.2f dB\n\n", 10*log(max(out)/max(x)));
     
     % Plot the signal versus time
     if(printFig)

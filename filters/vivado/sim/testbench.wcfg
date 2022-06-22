@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="79146000fs"></ZoomStartTime>
-      <ZoomEndTime time="81198001fs"></ZoomEndTime>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="2777117fs"></ZoomEndTime>
       <Cursor1Time time="79496000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="122"></NameColumnWidth>
+      <NameColumnWidth column_width="118"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="16" />
    <wvobject type="logic" fp_name="/testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -55,9 +55,23 @@
       <obj_property name="ObjectShortName">xcoefs[31:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
+   <wvobject fp_name="divider33" type="divider">
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/xcoefs">
+      <obj_property name="ElementShortName">xcoefs[31:0]</obj_property>
+      <obj_property name="ObjectShortName">xcoefs[31:0]</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/testbench/addr_bram_xcoefs">
       <obj_property name="ElementShortName">addr_bram_xcoefs[9:0]</obj_property>
       <obj_property name="ObjectShortName">addr_bram_xcoefs[9:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/xant">
+      <obj_property name="ElementShortName">xant[15:0]</obj_property>
+      <obj_property name="ObjectShortName">xant[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/xant_addr">
+      <obj_property name="ElementShortName">xant_addr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">xant_addr[7:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/testbench/filt_start_o">
       <obj_property name="ElementShortName">filt_start_o</obj_property>
