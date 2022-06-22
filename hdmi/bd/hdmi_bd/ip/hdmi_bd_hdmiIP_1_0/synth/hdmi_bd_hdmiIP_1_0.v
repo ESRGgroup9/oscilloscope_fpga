@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 117
+// IP Revision: 127
 
 (* X_CORE_INFO = "hdmiIP,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "hdmi_bd_hdmiIP_1_0,hdmiIP,{}" *)
@@ -62,8 +62,10 @@ module hdmi_bd_hdmiIP_1_0 (
   TMDSn,
   TMDSp_clk,
   TMDSn_clk,
+  addrWR,
+  wd,
   clkWR,
-  counter
+  clkCLEAN
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_BUSIF clk, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_clk, INSERT_VIP 0" *)
@@ -81,8 +83,10 @@ output wire TMDSp_clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME TMDSn_clk, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN hdmi_bd_hdmiIP_1_0_TMDSn_clk, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 TMDSn_clk CLK" *)
 output wire TMDSn_clk;
+output wire [18 : 0] addrWR;
+output wire wd;
 output wire clkWR;
-output wire [12 : 0] counter;
+output wire clkCLEAN;
 
   hdmiIP #(
     .ADDR_WIDTH(19),
@@ -97,7 +101,9 @@ output wire [12 : 0] counter;
     .TMDSn(TMDSn),
     .TMDSp_clk(TMDSp_clk),
     .TMDSn_clk(TMDSn_clk),
+    .addrWR(addrWR),
+    .wd(wd),
     .clkWR(clkWR),
-    .counter(counter)
+    .clkCLEAN(clkCLEAN)
   );
 endmodule

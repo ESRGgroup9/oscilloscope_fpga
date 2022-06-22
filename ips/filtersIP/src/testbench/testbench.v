@@ -48,15 +48,15 @@ wire rbuf_done;
 // ===========================================================================
 // input/output vectors
 // ===========================================================================
-parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/100input.txt";
+parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/20input.txt";
 reg[8*128:0] OUTPUT_GOLDEN_FILENAME;
 reg[8*128:0] OUTPUT_FILENAME;
 
 always @(*) begin
 	case(filt_select)
 		FILT_SEL_LPF: begin
-			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/LPF/LPF_100out_golden.txt";
-			OUTPUT_FILENAME = "../../../../../sim/LPF/LPF_100sim_output.txt";
+			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/LPF/LPF_20out_golden.txt";
+			OUTPUT_FILENAME = "../../../../../sim/LPF/LPF_20sim_output.txt";
 		end
 		FILT_SEL_HPF: begin
 			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/HPF/HPF_100out_golden.txt";
@@ -151,7 +151,7 @@ assign input_val = input_buf[i];
 
 initial begin
 	$display("\nTesting LPF:");
-    filt_select <= FILT_SEL_HPF;
+    filt_select <= FILT_SEL_LPF;
 end
 
 // integer num_test;
@@ -171,23 +171,23 @@ end
 //    end
 //end
 
-initial filt_start <= 0;
+//initial filt_start <= 0;
 
-always begin
-    #24 filt_start <= 1;
-    #16 filt_start <= 0;
-end
+//always begin
+//    #24 filt_start <= 1;
+//    #16 filt_start <= 0;
+//end
  
 // filter enable
-//always @(rst or negedge filt_done) begin
-//    if(rst) begin
-//        filt_start = 0;
-//    end
-//    else begin
-//        filt_start = 1;
-//        #(`CLK_PERIOD*2) filt_start = 0;
-//    end
-//end
+always @(rst or negedge filt_done) begin
+    if(rst) begin
+        filt_start = 0;
+    end
+    else begin
+        filt_start = 1;
+        #(`CLK_PERIOD*2) filt_start = 0;
+    end
+end
 
 
 // ===========================================================================

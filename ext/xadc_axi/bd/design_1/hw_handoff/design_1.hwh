@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun 17 15:29:53 2022" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 22 13:14:19 2022" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo-z7-10:part0:1.1" DEVICE="7z010" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -37,6 +37,36 @@
     <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDSp_clk" SIGIS="clk" SIGNAME="hdmiIP_0_TMDSp_clk">
       <CONNECTIONS>
         <CONNECTION INSTANCE="hdmiIP_0" PORT="TMDSp_clk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" LEFT="53" NAME="FIXED_IO_0_mio" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_MIO">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="MIO"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" NAME="FIXED_IO_0_ddr_vrn" SIGIS="undef" SIGNAME="processing_system7_0_DDR_VRN">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_VRN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" NAME="FIXED_IO_0_ddr_vrp" SIGIS="undef" SIGNAME="processing_system7_0_DDR_VRP">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_VRP"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" NAME="FIXED_IO_0_ps_srstb" SIGIS="undef" SIGNAME="processing_system7_0_PS_SRSTB">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_SRSTB"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" NAME="FIXED_IO_0_ps_clk" SIGIS="undef" SIGNAME="processing_system7_0_PS_CLK">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_CLK"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="IO" NAME="FIXED_IO_0_ps_porb" SIGIS="undef" SIGNAME="processing_system7_0_PS_PORB">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_PORB"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="IO" NAME="DDR_0_cas_n" SIGIS="undef" SIGNAME="processing_system7_0_DDR_CAS_n">
@@ -114,36 +144,6 @@
         <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_DQS"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="IO" LEFT="53" NAME="FIXED_IO_0_mio" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_MIO">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="MIO"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="FIXED_IO_0_ddr_vrn" SIGIS="undef" SIGNAME="processing_system7_0_DDR_VRN">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_VRN"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="FIXED_IO_0_ddr_vrp" SIGIS="undef" SIGNAME="processing_system7_0_DDR_VRP">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="DDR_VRP"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="FIXED_IO_0_ps_srstb" SIGIS="undef" SIGNAME="processing_system7_0_PS_SRSTB">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_SRSTB"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="FIXED_IO_0_ps_clk" SIGIS="undef" SIGNAME="processing_system7_0_PS_CLK">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_CLK"/>
-      </CONNECTIONS>
-    </PORT>
-    <PORT DIR="IO" NAME="FIXED_IO_0_ps_porb" SIGIS="undef" SIGNAME="processing_system7_0_PS_PORB">
-      <CONNECTIONS>
-        <CONNECTION INSTANCE="processing_system7_0" PORT="PS_PORB"/>
-      </CONNECTIONS>
-    </PORT>
   </EXTERNALPORTS>
 
   <EXTERNALINTERFACES>
@@ -205,7 +205,7 @@
         <PARAMETER NAME="C_MAXI_ADC_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_MAXI_ADC_TRANSACTIONS_NUM" VALUE="1"/>
         <PARAMETER NAME="DEBUG_PARAM" VALUE="0"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_AXIM_read_xadc_0_5"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_AXIM_read_xadc_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
@@ -219,6 +219,7 @@
         <PORT DIR="O" NAME="eoc" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_eoc">
           <CONNECTIONS>
             <CONNECTION INSTANCE="debugIP" PORT="eoc"/>
+            <CONNECTION INSTANCE="average_0" PORT="start"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="5e+07" DIR="I" NAME="maxi_adc_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
@@ -395,7 +396,7 @@
         <PERIPHERAL INSTANCE="debugIP"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE COREREVISION="12" FULLNAME="/average_0" HWVERSION="1.0" INSTANCE="average_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="average" VLNV="user.org:user:average:1.0">
+    <MODULE COREREVISION="13" FULLNAME="/average_0" HWVERSION="1.0" INSTANCE="average_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="average" VLNV="user.org:user:average:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="VAL_RES" VALUE="16"/>
@@ -413,9 +414,9 @@
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="start" SIGIS="undef" SIGNAME="sampleIP_0_sample">
+        <PORT DIR="I" NAME="start" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_eoc">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="sampleIP_0" PORT="sample"/>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="eoc"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="15" NAME="val" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_val">
@@ -814,101 +815,6 @@
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M02_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M02_AXI_awvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M02_AXI_awready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M02_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M02_AXI_wvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M02_AXI_wready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M02_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M02_AXI_bvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M02_AXI_bready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M02_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M02_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M02_AXI_arvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M02_AXI_arready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M02_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M02_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M02_AXI_rvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M02_AXI_rready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="11" NAME="S01_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_S01_AXI_awid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_AWID"/>
@@ -1099,6 +1005,101 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_RREADY"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_arvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_arready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_rvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_rready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rready"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M00_AXI_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="configIP" PORT="s00_axi_awaddr"/>
@@ -1194,6 +1195,101 @@
             <CONNECTION INSTANCE="configIP" PORT="s00_axi_rready"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M02_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M02_AXI_awvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M02_AXI_awready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M02_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M02_AXI_wvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M02_AXI_wready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M02_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M02_AXI_bvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M02_AXI_bready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M02_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M02_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M02_AXI_arvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M02_AXI_arready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M02_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M02_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M02_AXI_rvalid" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M02_AXI_rready" SIGIS="undef" SIGNAME="axi_interconnect_0_M02_AXI_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="debugIP" PORT="s00_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
         <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M01_AXI_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xadc_wiz_0" PORT="s_axi_awaddr"/>
@@ -1279,101 +1375,6 @@
         <PORT DIR="O" LEFT="0" NAME="M01_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M01_AXI_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="xadc_wiz_0" PORT="s_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_arvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_arready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="S00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_rvalid" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_rready" SIGIS="undef" SIGNAME="AXIM_read_xadc_0_maxi_adc_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_rready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -1708,7 +1709,7 @@
       <PARAMETERS>
         <PARAMETER NAME="C_S00_AXI_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S00_AXI_ADDR_WIDTH" VALUE="5"/>
-        <PARAMETER NAME="Component_Name" VALUE="design_1_sniff_axim_xadc_read_0_0"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_debugIP_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S00_AXI_BASEADDR" VALUE="0x43C20000"/>
         <PARAMETER NAME="C_S00_AXI_HIGHADDR" VALUE="0x43C2FFFF"/>
@@ -1942,7 +1943,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="118" FULLNAME="/hdmiIP_0" HWVERSION="1.0" INSTANCE="hdmiIP_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
+    <MODULE COREREVISION="136" FULLNAME="/hdmiIP_0" HWVERSION="1.0" INSTANCE="hdmiIP_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="ADDR_WIDTH" VALUE="19"/>
@@ -3143,11 +3144,11 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
             <CONNECTION INSTANCE="debugIP" PORT="s00_axi_aclk"/>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_aclk"/>
+            <CONNECTION INSTANCE="configIP" PORT="s00_axi_aclk"/>
+            <CONNECTION INSTANCE="hdmiIP_0" PORT="clk"/>
             <CONNECTION INSTANCE="average_0" PORT="clk"/>
             <CONNECTION INSTANCE="sampleIP_0" PORT="clk"/>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_aclk"/>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="clk"/>
-            <CONNECTION INSTANCE="configIP" PORT="s00_axi_aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="1e+08" DIR="O" NAME="FCLK_CLK1" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK1">
@@ -3451,17 +3452,17 @@
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="ARESETN"/>
             <CONNECTION INSTANCE="filtersIP_0" PORT="rstn"/>
             <CONNECTION INSTANCE="debugIP" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_aresetn"/>
+            <CONNECTION INSTANCE="configIP" PORT="s00_axi_aresetn"/>
+            <CONNECTION INSTANCE="hdmiIP_0" PORT="rstn"/>
             <CONNECTION INSTANCE="average_0" PORT="rstn"/>
             <CONNECTION INSTANCE="sampleIP_0" PORT="rstn"/>
-            <CONNECTION INSTANCE="AXIM_read_xadc_0" PORT="maxi_adc_aresetn"/>
-            <CONNECTION INSTANCE="hdmiIP_0" PORT="rstn"/>
-            <CONNECTION INSTANCE="configIP" PORT="s00_axi_aresetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE COREREVISION="11" FULLNAME="/sampleIP_0" HWVERSION="1.0" INSTANCE="sampleIP_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="sampleIP" VLNV="user.org:user:sampleIP:1.0">
+    <MODULE COREREVISION="12" FULLNAME="/sampleIP_0" HWVERSION="1.0" INSTANCE="sampleIP_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="sampleIP" VLNV="user.org:user:sampleIP:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="Component_Name" VALUE="design_1_sampleIP_0_0"/>
@@ -3486,7 +3487,6 @@
         <PORT DIR="O" NAME="sample" SIGIS="undef" SIGNAME="sampleIP_0_sample">
           <CONNECTIONS>
             <CONNECTION INSTANCE="filtersIP_0" PORT="start"/>
-            <CONNECTION INSTANCE="average_0" PORT="start"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="15" NAME="sampled_val" RIGHT="0" SIGIS="undef" SIGNAME="sampleIP_0_sampled_val">

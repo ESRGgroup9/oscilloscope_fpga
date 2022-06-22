@@ -57,13 +57,13 @@ int main ()
 	filter_tb("BPF", bpf_coefs, 120, randInput, 1);
 	filter_tb("BPF", bpf_coefs, 220, randInput, 1);
 
-	// --------------------------------------
-	printf("\nTesting with random inputs:\n");
-
-	randInput = 1;
-	filter_tb("LPF", lpf_coefs, 20, randInput, 0);
-	filter_tb("HPF", hpf_coefs, 20, randInput, 1);
-	filter_tb("BPF", bpf_coefs, 20, randInput, 1);
+//	// --------------------------------------
+//	printf("\nTesting with random inputs:\n");
+//
+//	randInput = 1;
+//	filter_tb("LPF", lpf_coefs, 20, randInput, 0);
+//	filter_tb("HPF", hpf_coefs, 20, randInput, 1);
+//	filter_tb("BPF", bpf_coefs, 20, randInput, 1);
 
 	printf("**************************** End C Simulation ****************************\n");
 	return 0;

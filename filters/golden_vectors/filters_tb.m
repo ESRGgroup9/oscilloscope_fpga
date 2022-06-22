@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 function filters_tb(inputRand, Fc, filter, printFig, writeToFile)
-=======
-function filters_tb(genInputRand, inputRand, Fc, filter, printFig, writeToFile)
->>>>>>> blockdesign
+
 % Fc = 20;
 % filter = "LPF";
 % printFig = 0;
@@ -54,11 +51,7 @@ function filters_tb(genInputRand, inputRand, Fc, filter, printFig, writeToFile)
     if(inputRand)
         %%Random input values
 %         x=floor(adcRes.*rand(size(t),1));
-<<<<<<< HEAD
         x=floor(adcRes.*rand(50,1));
-=======
-        x = floor(adcRes .* rand(50,1));
->>>>>>> blockdesign
     else
         %%Sine wave:
         x = round((sin(2*pi*Fc*t)* adcRes/2 + adcRes/2));
@@ -82,11 +75,7 @@ function filters_tb(genInputRand, inputRand, Fc, filter, printFig, writeToFile)
     % write results
     % -------------------------------------------------------------------------
 %     fprintf("coefs: %s\n", regexprep(num2str(xcoefs),'\s+',','));
-<<<<<<< HEAD
-    % fprintf("input: %s\n", x);
-=======
 %     fprintf("input: %g\n", x);
->>>>>>> blockdesign
 %     fprintf("outpt: %s\n", regexprep(num2str(out),'\s+',','));
 
     fprintf("Filter     : %s\n", filter);

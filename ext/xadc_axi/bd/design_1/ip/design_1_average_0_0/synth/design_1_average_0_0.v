@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:average:1.0
-// IP Revision: 12
+// IP Revision: 13
 
 (* X_CORE_INFO = "average,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_average_0_0,average,{}" *)
