@@ -57,15 +57,15 @@ wire rbuf_done;
 // ===========================================================================
 // input/output vectors
 // ===========================================================================
-parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/20input.txt";
+parameter INPUT_FILENAME = "../../../../../../golden_vectors/input/100input.txt";
 reg[8*128:0] OUTPUT_GOLDEN_FILENAME;
 reg[8*128:0] OUTPUT_FILENAME;
 
 always @(*) begin
 	case(filt_select)
 		FILT_SEL_LPF: begin
-			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/LPF/LPF_20out_golden.txt";
-			OUTPUT_FILENAME = "../../../../../sim/LPF/LPF_20sim_output.txt";
+			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/LPF/LPF_100out_golden.txt";
+			OUTPUT_FILENAME = "../../../../../sim/LPF/LPF_100sim_output.txt";
 		end
 		FILT_SEL_HPF: begin
 			OUTPUT_GOLDEN_FILENAME = "../../../../../../golden_vectors/HPF/HPF_20out_golden.txt";
@@ -179,7 +179,7 @@ end
 // dut
 // ===========================================================================
 wire filt_start_o;
-wire [XANT_ADDR_SIZE-1:0] xant_addr;
+wire [XANT_ADDR_SIZE:0] xant_addr;
 wire [XANT_ADDR_SIZE-1:0] xant_base_addr;
 wire [1:0] state_fsm_xant;
 wire [XADC_DATA_SIZE -1:0] xant;
@@ -206,7 +206,7 @@ filters #(
     // debug
     // state_fsm_xant,
     filt_start_o,
-    xant_addr,
+    // xant_addr,
     // xant_base_addr,
     xant,
     addr_bram_xcoefs,

@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
 // Date        : Wed Jun 22 11:33:08 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_average_0_0/design_1_average_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_average_0_0 -prefix
+//               design_1_average_0_0_ design_1_average_0_0_sim_netlist.v
 // Design      : design_1_average_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,36 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_average_0_0,average,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "package_project" *) 
-(* X_CORE_INFO = "average,Vivado 2019.2" *) 
-(* NotValidForBitStream *)
-module design_1_average_0_0
-   (clk,
-    rstn,
-    start,
-    val,
-    val_avg);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
-  input start;
-  input [15:0]val;
-  output [15:0]val_avg;
-
-  wire clk;
-  wire rstn;
-  wire start;
-  wire [15:0]val;
-  wire [15:0]val_avg;
-
-  design_1_average_0_0_average inst
-       (.clk(clk),
-        .rstn(rstn),
-        .start(start),
-        .val(val),
-        .val_avg(val_avg));
-endmodule
-
-(* ORIG_REF_NAME = "average" *) 
 module design_1_average_0_0_average
    (val_avg,
     val,
@@ -426,6 +396,35 @@ module design_1_average_0_0_average
         .D(val_sum_w[9]),
         .Q(val_div_w[8]),
         .R(p_0_in));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "design_1_average_0_0,average,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "package_project" *) 
+(* X_CORE_INFO = "average,Vivado 2019.2" *) 
+(* NotValidForBitStream *)
+module design_1_average_0_0
+   (clk,
+    rstn,
+    start,
+    val,
+    val_avg);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
+  input start;
+  input [15:0]val;
+  output [15:0]val_avg;
+
+  wire clk;
+  wire rstn;
+  wire start;
+  wire [15:0]val;
+  wire [15:0]val_avg;
+
+  design_1_average_0_0_average inst
+       (.clk(clk),
+        .rstn(rstn),
+        .start(start),
+        .val(val),
+        .val_avg(val_avg));
 endmodule
 `ifndef GLBL
 `define GLBL

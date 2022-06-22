@@ -6,7 +6,7 @@ reg clk;
 reg rstn;
 reg [16:0]val;
 
-wire [16:0] sampled_val;
+wire [15:0] sampled_val;
 wire sample;
 
 always begin

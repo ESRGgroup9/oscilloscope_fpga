@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Wed Jun 22 11:22:01 2022
+// Date        : Wed Jun 22 14:04:25 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_hdmiIP_0_0/design_1_hdmiIP_0_0_sim_netlist.v
@@ -612,30 +612,24 @@ endmodule
 module design_1_hdmiIP_0_0_encoder_TMDS
    (Q,
     \TMDS_reg[9]_0 ,
-    \balance_acc_reg[3]_0 ,
-    \balance_acc_reg[3]_1 ,
     \balance_acc_reg[0]_0 ,
     pixclk,
-    \TMDS_reg[9]_1 );
+    D);
   output [0:0]Q;
-  output [4:0]\TMDS_reg[9]_0 ;
-  input \balance_acc_reg[3]_0 ;
-  input \balance_acc_reg[3]_1 ;
+  output [3:0]\TMDS_reg[9]_0 ;
   input \balance_acc_reg[0]_0 ;
   input pixclk;
-  input [4:0]\TMDS_reg[9]_1 ;
+  input [3:0]D;
 
+  wire [3:0]D;
   wire [0:0]Q;
-  wire [4:0]\TMDS_reg[9]_0 ;
-  wire [4:0]\TMDS_reg[9]_1 ;
+  wire [3:0]\TMDS_reg[9]_0 ;
   wire [2:0]balance_acc;
-  wire \balance_acc[0]_i_1__1_n_0 ;
+  wire \balance_acc[0]_i_1__0_n_0 ;
   wire \balance_acc[1]_i_1__1_n_0 ;
   wire \balance_acc[2]_i_1__1_n_0 ;
   wire \balance_acc[3]_i_1__1_n_0 ;
   wire \balance_acc_reg[0]_0 ;
-  wire \balance_acc_reg[3]_0 ;
-  wire \balance_acc_reg[3]_1 ;
   wire pixclk;
 
   FDRE #(
@@ -643,7 +637,7 @@ module design_1_hdmiIP_0_0_encoder_TMDS
     \TMDS_reg[0] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS_reg[9]_1 [0]),
+        .D(D[0]),
         .Q(\TMDS_reg[9]_0 [0]),
         .R(1'b0));
   FDRE #(
@@ -651,76 +645,64 @@ module design_1_hdmiIP_0_0_encoder_TMDS
     \TMDS_reg[2] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS_reg[9]_1 [1]),
+        .D(D[1]),
         .Q(\TMDS_reg[9]_0 [1]),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b0)) 
-    \TMDS_reg[5] 
-       (.C(pixclk),
-        .CE(1'b1),
-        .D(\TMDS_reg[9]_1 [2]),
-        .Q(\TMDS_reg[9]_0 [2]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[8] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS_reg[9]_1 [3]),
-        .Q(\TMDS_reg[9]_0 [3]),
+        .D(D[2]),
+        .Q(\TMDS_reg[9]_0 [2]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[9] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS_reg[9]_1 [4]),
-        .Q(\TMDS_reg[9]_0 [4]),
+        .D(D[3]),
+        .Q(\TMDS_reg[9]_0 [3]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h6)) 
-    \balance_acc[0]_i_1__1 
+    \balance_acc[0]_i_1__0 
        (.I0(Q),
         .I1(balance_acc[0]),
-        .O(\balance_acc[0]_i_1__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
-  LUT5 #(
-    .INIT(32'h559AAA9A)) 
+        .O(\balance_acc[0]_i_1__0_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  LUT3 #(
+    .INIT(8'h6A)) 
     \balance_acc[1]_i_1__1 
        (.I0(balance_acc[1]),
-        .I1(\balance_acc_reg[3]_0 ),
-        .I2(\balance_acc_reg[3]_1 ),
-        .I3(Q),
-        .I4(balance_acc[0]),
-        .O(\balance_acc[1]_i_1__1_n_0 ));
-  LUT6 #(
-    .INIT(64'h807C80807F837F7F)) 
-    \balance_acc[2]_i_1__1 
-       (.I0(balance_acc[0]),
-        .I1(balance_acc[1]),
+        .I1(balance_acc[0]),
         .I2(Q),
-        .I3(\balance_acc_reg[3]_0 ),
-        .I4(\balance_acc_reg[3]_1 ),
-        .I5(balance_acc[2]),
+        .O(\balance_acc[1]_i_1__1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT4 #(
+    .INIT(16'h9555)) 
+    \balance_acc[2]_i_1__1 
+       (.I0(balance_acc[2]),
+        .I1(Q),
+        .I2(balance_acc[0]),
+        .I3(balance_acc[1]),
         .O(\balance_acc[2]_i_1__1_n_0 ));
-  LUT6 #(
-    .INIT(64'h04515D555D515D55)) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  LUT4 #(
+    .INIT(16'h1555)) 
     \balance_acc[3]_i_1__1 
        (.I0(balance_acc[2]),
-        .I1(\balance_acc_reg[3]_1 ),
-        .I2(\balance_acc_reg[3]_0 ),
-        .I3(Q),
-        .I4(balance_acc[1]),
-        .I5(balance_acc[0]),
+        .I1(Q),
+        .I2(balance_acc[0]),
+        .I3(balance_acc[1]),
         .O(\balance_acc[3]_i_1__1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\balance_acc[0]_i_1__1_n_0 ),
+        .D(\balance_acc[0]_i_1__0_n_0 ),
         .Q(balance_acc[0]),
         .R(\balance_acc_reg[0]_0 ));
   FDRE #(
@@ -754,36 +736,39 @@ module design_1_hdmiIP_0_0_encoder_TMDS_0
    (Q,
     \TMDS_reg[9]_0 ,
     \TMDS_reg[2]_0 ,
-    \TMDS_reg[8]_0 ,
+    \balance_acc_reg[1]_0 ,
     \TMDS_reg[9]_1 ,
     douta,
     addrSel,
     \TMDS_reg[9]_2 ,
-    pixclk);
+    pixclk,
+    \TMDS_reg[8]_0 );
   output [1:0]Q;
   output \TMDS_reg[9]_0 ;
   output \TMDS_reg[2]_0 ;
-  input \TMDS_reg[8]_0 ;
+  input \balance_acc_reg[1]_0 ;
   input \TMDS_reg[9]_1 ;
   input [0:0]douta;
   input addrSel;
   input [0:0]\TMDS_reg[9]_2 ;
   input pixclk;
+  input [0:0]\TMDS_reg[8]_0 ;
 
   wire [1:0]Q;
   wire \TMDS[0]_i_1__0_n_0 ;
-  wire \TMDS[9]_i_1__1_n_0 ;
+  wire \TMDS[9]_i_1__0_n_0 ;
   wire \TMDS_reg[2]_0 ;
-  wire \TMDS_reg[8]_0 ;
+  wire [0:0]\TMDS_reg[8]_0 ;
   wire \TMDS_reg[9]_0 ;
   wire \TMDS_reg[9]_1 ;
   wire [0:0]\TMDS_reg[9]_2 ;
   wire addrSel;
   wire [3:0]balance_acc;
-  wire \balance_acc[0]_i_1__0_n_0 ;
+  wire \balance_acc[0]_i_1_n_0 ;
   wire \balance_acc[1]_i_1_n_0 ;
   wire \balance_acc[2]_i_1_n_0 ;
   wire \balance_acc[3]_i_1_n_0 ;
+  wire \balance_acc_reg[1]_0 ;
   wire [0:0]douta;
   wire pixclk;
 
@@ -795,12 +780,12 @@ module design_1_hdmiIP_0_0_encoder_TMDS_0
         .O(\TMDS[0]_i_1__0_n_0 ));
   LUT4 #(
     .INIT(16'h656A)) 
-    \TMDS[9]_i_1__1 
+    \TMDS[9]_i_1__0 
        (.I0(balance_acc[3]),
         .I1(douta),
         .I2(addrSel),
         .I3(\TMDS_reg[9]_2 ),
-        .O(\TMDS[9]_i_1__1_n_0 ));
+        .O(\TMDS[9]_i_1__0_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[0] 
@@ -830,51 +815,51 @@ module design_1_hdmiIP_0_0_encoder_TMDS_0
     \TMDS_reg[9] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS[9]_i_1__1_n_0 ),
+        .D(\TMDS[9]_i_1__0_n_0 ),
         .Q(\TMDS_reg[9]_0 ),
         .S(\TMDS_reg[9]_1 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT2 #(
     .INIT(4'h6)) 
-    \balance_acc[0]_i_1__0 
+    \balance_acc[0]_i_1 
        (.I0(balance_acc[3]),
         .I1(balance_acc[0]),
-        .O(\balance_acc[0]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+        .O(\balance_acc[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT4 #(
-    .INIT(16'h7D82)) 
+    .INIT(16'hD728)) 
     \balance_acc[1]_i_1 
        (.I0(balance_acc[3]),
         .I1(balance_acc[0]),
-        .I2(\TMDS_reg[8]_0 ),
+        .I2(\balance_acc_reg[1]_0 ),
         .I3(balance_acc[1]),
         .O(\balance_acc[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT5 #(
-    .INIT(32'h80047FFB)) 
+    .INIT(32'h0840F7BF)) 
     \balance_acc[2]_i_1 
        (.I0(balance_acc[0]),
         .I1(balance_acc[3]),
-        .I2(\TMDS_reg[8]_0 ),
+        .I2(\balance_acc_reg[1]_0 ),
         .I3(balance_acc[1]),
         .I4(balance_acc[2]),
         .O(\balance_acc[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT5 #(
-    .INIT(32'h15555755)) 
+    .INIT(32'h0020F7FF)) 
     \balance_acc[3]_i_1 
-       (.I0(balance_acc[2]),
-        .I1(\TMDS_reg[8]_0 ),
-        .I2(balance_acc[1]),
-        .I3(balance_acc[3]),
-        .I4(balance_acc[0]),
+       (.I0(balance_acc[3]),
+        .I1(balance_acc[0]),
+        .I2(\balance_acc_reg[1]_0 ),
+        .I3(balance_acc[1]),
+        .I4(balance_acc[2]),
         .O(\balance_acc[3]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\balance_acc[0]_i_1__0_n_0 ),
+        .D(\balance_acc[0]_i_1_n_0 ),
         .Q(balance_acc[0]),
         .R(\TMDS_reg[9]_1 ));
   FDRE #(
@@ -906,131 +891,195 @@ endmodule
 (* ORIG_REF_NAME = "encoder_TMDS" *) 
 module design_1_hdmiIP_0_0_encoder_TMDS_1
    (Q,
-    TMDS,
-    \TMDS_reg[9]_0 ,
     \balance_acc_reg[3]_0 ,
-    \balance_acc_reg[3]_1 ,
+    \balance_acc_reg[1]_0 ,
+    TMDS,
+    \balance_acc_reg[1]_1 ,
+    \balance_acc_reg[0]_0 ,
+    \balance_acc_reg[2]_0 ,
+    \balance_acc_reg[0]_1 ,
+    \TMDS_reg[8]_0 ,
     pixclk,
-    D,
-    \TMDS_reg[9]_1 ,
-    \TMDS_reg[8]_0 );
+    \TMDS_reg[7]_0 ,
+    \TMDS_reg[8]_1 );
   output [0:0]Q;
-  output [4:0]TMDS;
-  input \TMDS_reg[9]_0 ;
-  input \balance_acc_reg[3]_0 ;
-  input \balance_acc_reg[3]_1 ;
-  input pixclk;
-  input [0:0]D;
-  input \TMDS_reg[9]_1 ;
+  output \balance_acc_reg[3]_0 ;
+  output \balance_acc_reg[1]_0 ;
+  output [6:0]TMDS;
+  input \balance_acc_reg[1]_1 ;
+  input \balance_acc_reg[0]_0 ;
+  input \balance_acc_reg[2]_0 ;
+  input \balance_acc_reg[0]_1 ;
   input \TMDS_reg[8]_0 ;
+  input pixclk;
+  input [5:0]\TMDS_reg[7]_0 ;
+  input \TMDS_reg[8]_1 ;
 
-  wire [0:0]D;
   wire [0:0]Q;
-  wire [4:0]TMDS;
-  wire [0:0]TMDS0;
+  wire [6:0]TMDS;
+  wire [5:0]\TMDS_reg[7]_0 ;
   wire \TMDS_reg[8]_0 ;
-  wire \TMDS_reg[9]_0 ;
-  wire \TMDS_reg[9]_1 ;
+  wire \TMDS_reg[8]_1 ;
   wire [2:0]balance_acc;
-  wire \balance_acc[0]_i_1_n_0 ;
+  wire \balance_acc[0]_i_1__1_n_0 ;
   wire \balance_acc[1]_i_1__0_n_0 ;
+  wire \balance_acc[1]_i_2_n_0 ;
   wire \balance_acc[2]_i_1__0_n_0 ;
-  wire \balance_acc[3]_i_2_n_0 ;
+  wire \balance_acc[3]_i_2__0_n_0 ;
+  wire \balance_acc[3]_i_4_n_0 ;
+  wire \balance_acc[3]_i_6_n_0 ;
+  wire \balance_acc_reg[0]_0 ;
+  wire \balance_acc_reg[0]_1 ;
+  wire \balance_acc_reg[1]_0 ;
+  wire \balance_acc_reg[1]_1 ;
+  wire \balance_acc_reg[2]_0 ;
   wire \balance_acc_reg[3]_0 ;
-  wire \balance_acc_reg[3]_1 ;
   wire pixclk;
 
-  LUT2 #(
-    .INIT(4'h2)) 
-    \TMDS[0]_i_1__1 
-       (.I0(Q),
-        .I1(\TMDS_reg[9]_0 ),
-        .O(TMDS0));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT3 #(
+    .INIT(8'h01)) 
+    \TMDS[4]_i_2 
+       (.I0(balance_acc[1]),
+        .I1(balance_acc[2]),
+        .I2(balance_acc[0]),
+        .O(\balance_acc_reg[1]_0 ));
+  LUT6 #(
+    .INIT(64'h1111111111111110)) 
+    \TMDS[7]_i_2 
+       (.I0(\balance_acc_reg[0]_0 ),
+        .I1(Q),
+        .I2(\balance_acc_reg[0]_1 ),
+        .I3(balance_acc[1]),
+        .I4(balance_acc[2]),
+        .I5(balance_acc[0]),
+        .O(\balance_acc_reg[3]_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[0] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(TMDS0),
+        .D(\TMDS_reg[7]_0 [0]),
         .Q(TMDS[0]),
         .R(1'b0));
-  FDSE #(
+  FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[2] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(Q),
+        .D(\TMDS_reg[7]_0 [1]),
         .Q(TMDS[1]),
-        .S(\TMDS_reg[9]_0 ));
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \TMDS_reg[3] 
+       (.C(pixclk),
+        .CE(1'b1),
+        .D(\TMDS_reg[7]_0 [2]),
+        .Q(TMDS[2]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \TMDS_reg[4] 
+       (.C(pixclk),
+        .CE(1'b1),
+        .D(\TMDS_reg[7]_0 [3]),
+        .Q(TMDS[3]),
+        .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
     \TMDS_reg[5] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(D),
-        .Q(TMDS[2]),
+        .D(\TMDS_reg[7]_0 [4]),
+        .Q(TMDS[4]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b0)) 
+    \TMDS_reg[7] 
+       (.C(pixclk),
+        .CE(1'b1),
+        .D(\TMDS_reg[7]_0 [5]),
+        .Q(TMDS[5]),
         .R(1'b0));
   FDSE #(
     .INIT(1'b0)) 
     \TMDS_reg[8] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\TMDS_reg[8]_0 ),
-        .Q(TMDS[3]),
-        .S(\TMDS_reg[9]_0 ));
-  FDSE #(
-    .INIT(1'b0)) 
-    \TMDS_reg[9] 
-       (.C(pixclk),
-        .CE(1'b1),
-        .D(\TMDS_reg[9]_1 ),
-        .Q(TMDS[4]),
-        .S(\TMDS_reg[9]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT2 #(
-    .INIT(4'h6)) 
-    \balance_acc[0]_i_1 
-       (.I0(Q),
-        .I1(balance_acc[0]),
-        .O(\balance_acc[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
-  LUT5 #(
-    .INIT(32'h3CC3A5F0)) 
-    \balance_acc[1]_i_1__0 
-       (.I0(\balance_acc_reg[3]_0 ),
-        .I1(balance_acc[0]),
-        .I2(balance_acc[1]),
-        .I3(\balance_acc_reg[3]_1 ),
+        .D(\TMDS_reg[8]_1 ),
+        .Q(TMDS[6]),
+        .S(\TMDS_reg[8]_0 ));
+  LUT6 #(
+    .INIT(64'hFF0FFFF000F0000E)) 
+    \balance_acc[0]_i_1__1 
+       (.I0(balance_acc[1]),
+        .I1(balance_acc[2]),
+        .I2(\balance_acc_reg[0]_1 ),
+        .I3(\balance_acc_reg[0]_0 ),
         .I4(Q),
+        .I5(balance_acc[0]),
+        .O(\balance_acc[0]_i_1__1_n_0 ));
+  LUT3 #(
+    .INIT(8'h69)) 
+    \balance_acc[1]_i_1__0 
+       (.I0(\balance_acc[1]_i_2_n_0 ),
+        .I1(\balance_acc_reg[1]_1 ),
+        .I2(balance_acc[1]),
         .O(\balance_acc[1]_i_1__0_n_0 ));
   LUT6 #(
-    .INIT(64'h870078FF0C44F3BB)) 
+    .INIT(64'h000000F000F000FE)) 
+    \balance_acc[1]_i_2 
+       (.I0(balance_acc[1]),
+        .I1(balance_acc[2]),
+        .I2(\balance_acc_reg[0]_1 ),
+        .I3(\balance_acc_reg[0]_0 ),
+        .I4(Q),
+        .I5(balance_acc[0]),
+        .O(\balance_acc[1]_i_2_n_0 ));
+  LUT3 #(
+    .INIT(8'h69)) 
     \balance_acc[2]_i_1__0 
-       (.I0(balance_acc[0]),
-        .I1(Q),
-        .I2(\balance_acc_reg[3]_0 ),
-        .I3(\balance_acc_reg[3]_1 ),
-        .I4(balance_acc[2]),
-        .I5(balance_acc[1]),
+       (.I0(\balance_acc_reg[2]_0 ),
+        .I1(balance_acc[2]),
+        .I2(\balance_acc[3]_i_4_n_0 ),
         .O(\balance_acc[2]_i_1__0_n_0 ));
   LUT6 #(
-    .INIT(64'h060F4F0F4E0F4FCF)) 
-    \balance_acc[3]_i_2 
-       (.I0(\balance_acc_reg[3]_0 ),
+    .INIT(64'h96953C3FC3C09695)) 
+    \balance_acc[3]_i_2__0 
+       (.I0(\balance_acc[3]_i_4_n_0 ),
         .I1(Q),
-        .I2(balance_acc[2]),
-        .I3(\balance_acc_reg[3]_1 ),
+        .I2(\balance_acc_reg[0]_0 ),
+        .I3(\balance_acc[3]_i_6_n_0 ),
+        .I4(balance_acc[2]),
+        .I5(\balance_acc_reg[2]_0 ),
+        .O(\balance_acc[3]_i_2__0_n_0 ));
+  LUT5 #(
+    .INIT(32'hFF8EFF00)) 
+    \balance_acc[3]_i_4 
+       (.I0(balance_acc[0]),
+        .I1(Q),
+        .I2(\balance_acc_reg[0]_1 ),
+        .I3(\balance_acc_reg[0]_0 ),
         .I4(balance_acc[1]),
-        .I5(balance_acc[0]),
-        .O(\balance_acc[3]_i_2_n_0 ));
+        .O(\balance_acc[3]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  LUT4 #(
+    .INIT(16'h0001)) 
+    \balance_acc[3]_i_6 
+       (.I0(balance_acc[0]),
+        .I1(balance_acc[2]),
+        .I2(balance_acc[1]),
+        .I3(\balance_acc_reg[0]_1 ),
+        .O(\balance_acc[3]_i_6_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[0] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\balance_acc[0]_i_1_n_0 ),
+        .D(\balance_acc[0]_i_1__1_n_0 ),
         .Q(balance_acc[0]),
-        .R(\TMDS_reg[9]_0 ));
+        .R(\TMDS_reg[8]_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[1] 
@@ -1038,7 +1087,7 @@ module design_1_hdmiIP_0_0_encoder_TMDS_1
         .CE(1'b1),
         .D(\balance_acc[1]_i_1__0_n_0 ),
         .Q(balance_acc[1]),
-        .R(\TMDS_reg[9]_0 ));
+        .R(\TMDS_reg[8]_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[2] 
@@ -1046,15 +1095,15 @@ module design_1_hdmiIP_0_0_encoder_TMDS_1
         .CE(1'b1),
         .D(\balance_acc[2]_i_1__0_n_0 ),
         .Q(balance_acc[2]),
-        .R(\TMDS_reg[9]_0 ));
+        .R(\TMDS_reg[8]_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \balance_acc_reg[3] 
        (.C(pixclk),
         .CE(1'b1),
-        .D(\balance_acc[3]_i_2_n_0 ),
+        .D(\balance_acc[3]_i_2__0_n_0 ),
         .Q(Q),
-        .R(\TMDS_reg[9]_0 ));
+        .R(\TMDS_reg[8]_0 ));
 endmodule
 
 (* ORIG_REF_NAME = "hdmiController" *) 
@@ -1067,21 +1116,25 @@ module design_1_hdmiIP_0_0_hdmiController
     state_fsm_read_reg_0,
     addra,
     counter_RD_0,
-    \counterX_RD_reg[9]_0 ,
     D,
-    \counterDiv_X_reg[3]_0 ,
-    \counterY_RD_reg[4]_0 ,
-    \balance_acc_reg[3] ,
-    \counterY_RD_reg[4]_1 ,
-    wea,
     addrSel_reg_0,
+    \balance_acc_reg[3] ,
+    \counterDiv_X_reg[4]_0 ,
     \balance_acc_reg[3]_0 ,
+    \counterY_RD_reg[7]_0 ,
+    \counterDiv_X_reg[4]_1 ,
+    \counterY_RD_reg[6]_0 ,
+    \counterDiv_X_reg[4]_2 ,
+    wea,
+    addrSel_reg_1,
     clk,
     CLK,
     douta,
     \TMDS_reg[8] ,
     Q,
-    \TMDS_reg[5] ,
+    \TMDS_reg[0] ,
+    \TMDS_reg[3] ,
+    \TMDS_reg[3]_0 ,
     rstn,
     val);
   output [0:0]SR;
@@ -1092,21 +1145,25 @@ module design_1_hdmiIP_0_0_hdmiController
   output state_fsm_read_reg_0;
   output [18:0]addra;
   output [18:0]counter_RD_0;
-  output \counterX_RD_reg[9]_0 ;
-  output [4:0]D;
-  output \counterDiv_X_reg[3]_0 ;
-  output \counterY_RD_reg[4]_0 ;
-  output [0:0]\balance_acc_reg[3] ;
-  output \counterY_RD_reg[4]_1 ;
-  output [0:0]wea;
-  output [0:0]addrSel_reg_0;
+  output [0:0]D;
+  output addrSel_reg_0;
+  output [3:0]\balance_acc_reg[3] ;
+  output [5:0]\counterDiv_X_reg[4]_0 ;
   output \balance_acc_reg[3]_0 ;
+  output \counterY_RD_reg[7]_0 ;
+  output \counterDiv_X_reg[4]_1 ;
+  output \counterY_RD_reg[6]_0 ;
+  output \counterDiv_X_reg[4]_2 ;
+  output [0:0]wea;
+  output [0:0]addrSel_reg_1;
   input clk;
   input CLK;
   input [0:0]douta;
   input [0:0]\TMDS_reg[8] ;
   input [0:0]Q;
-  input [0:0]\TMDS_reg[5] ;
+  input \TMDS_reg[0] ;
+  input [0:0]\TMDS_reg[3] ;
+  input \TMDS_reg[3]_0 ;
   input rstn;
   input [15:0]val;
 
@@ -1114,13 +1171,13 @@ module design_1_hdmiIP_0_0_hdmiController
   wire CEB2;
   wire CEC;
   wire CLK;
-  wire [4:0]D;
+  wire [0:0]D;
   wire [0:0]Q;
   wire [0:0]SR;
-  wire \TMDS[8]_i_2_n_0 ;
-  wire \TMDS[8]_i_3_n_0 ;
   wire \TMDS[9]_i_2_n_0 ;
-  wire [0:0]\TMDS_reg[5] ;
+  wire \TMDS_reg[0] ;
+  wire [0:0]\TMDS_reg[3] ;
+  wire \TMDS_reg[3]_0 ;
   wire [0:0]\TMDS_reg[8] ;
   wire addrAddClean_r_reg_i_10_n_0;
   wire addrAddClean_r_reg_i_11_n_0;
@@ -1145,6 +1202,9 @@ module design_1_hdmiIP_0_0_hdmiController
   wire addrAddClean_r_reg_i_29_n_0;
   wire addrAddClean_r_reg_i_2_n_0;
   wire addrAddClean_r_reg_i_30_n_0;
+  wire addrAddClean_r_reg_i_31_n_0;
+  wire addrAddClean_r_reg_i_32_n_0;
+  wire addrAddClean_r_reg_i_33_n_0;
   wire addrAddClean_r_reg_i_4_n_0;
   wire addrAddClean_r_reg_i_6_n_0;
   wire addrAddClean_r_reg_i_7_n_0;
@@ -1177,7 +1237,6 @@ module design_1_hdmiIP_0_0_hdmiController
   wire addrAdd_r_reg_i_15_n_0;
   wire addrAdd_r_reg_i_16_n_0;
   wire addrAdd_r_reg_i_17_n_0;
-  wire addrAdd_r_reg_i_18_n_0;
   wire addrAdd_r_reg_i_2_n_0;
   wire addrAdd_r_reg_i_3_n_0;
   wire addrAdd_r_reg_i_4_n_0;
@@ -1218,7 +1277,8 @@ module design_1_hdmiIP_0_0_hdmiController
   wire \addrCLEAN_ready_counter_reg_n_0_[9] ;
   wire addrSel;
   wire addrSel_i_1_n_0;
-  wire [0:0]addrSel_reg_0;
+  wire addrSel_reg_0;
+  wire [0:0]addrSel_reg_1;
   wire \addrWR_ready_counter[9]_i_1_n_0 ;
   wire \addrWR_ready_counter[9]_i_3_n_0 ;
   wire \addrWR_ready_counter_reg_n_0_[0] ;
@@ -1232,12 +1292,17 @@ module design_1_hdmiIP_0_0_hdmiController
   wire \addrWR_ready_counter_reg_n_0_[8] ;
   wire \addrWR_ready_counter_reg_n_0_[9] ;
   wire [18:0]addra;
+  wire \balance_acc[0]_i_3_n_0 ;
+  wire \balance_acc[0]_i_4_n_0 ;
+  wire \balance_acc[1]_i_4_n_0 ;
+  wire \balance_acc[1]_i_5_n_0 ;
+  wire \balance_acc[1]_i_6_n_0 ;
+  wire \balance_acc[3]_i_10_n_0 ;
+  wire \balance_acc[3]_i_11_n_0 ;
   wire \balance_acc[3]_i_3_n_0 ;
-  wire \balance_acc[3]_i_6_n_0 ;
-  wire \balance_acc[3]_i_7_n_0 ;
   wire \balance_acc[3]_i_8_n_0 ;
   wire \balance_acc[3]_i_9_n_0 ;
-  wire [0:0]\balance_acc_reg[3] ;
+  wire [3:0]\balance_acc_reg[3] ;
   wire \balance_acc_reg[3]_0 ;
   wire bram0_i_24_n_0;
   wire cleanX_toggle_i_1_n_0;
@@ -1252,7 +1317,9 @@ module design_1_hdmiIP_0_0_hdmiController
   wire \counterDiv_X[3]_i_1_n_0 ;
   wire \counterDiv_X[4]_i_1_n_0 ;
   wire \counterDiv_X[5]_i_2_n_0 ;
-  wire \counterDiv_X_reg[3]_0 ;
+  wire [5:0]\counterDiv_X_reg[4]_0 ;
+  wire \counterDiv_X_reg[4]_1 ;
+  wire \counterDiv_X_reg[4]_2 ;
   wire counterDiv_Y;
   wire \counterDiv_Y[0]_i_1_n_0 ;
   wire \counterDiv_Y[1]_i_1_n_0 ;
@@ -1262,6 +1329,8 @@ module design_1_hdmiIP_0_0_hdmiController
   wire \counterDiv_Y[5]_i_1_n_0 ;
   wire \counterDiv_Y[6]_i_2_n_0 ;
   wire \counterDiv_Y[6]_i_3_n_0 ;
+  wire \counterDiv_Y[6]_i_4_n_0 ;
+  wire \counterDiv_Y[6]_i_5_n_0 ;
   wire \counterDiv_Y_reg_n_0_[0] ;
   wire \counterDiv_Y_reg_n_0_[1] ;
   wire \counterDiv_Y_reg_n_0_[2] ;
@@ -1286,20 +1355,19 @@ module design_1_hdmiIP_0_0_hdmiController
   wire \counterX_RD[3]_i_1_n_0 ;
   wire \counterX_RD[4]_i_1_n_0 ;
   wire \counterX_RD[5]_i_1_n_0 ;
-  wire \counterX_RD[5]_i_2_n_0 ;
   wire \counterX_RD[6]_i_1_n_0 ;
+  wire \counterX_RD[6]_i_2_n_0 ;
   wire \counterX_RD[7]_i_1_n_0 ;
   wire \counterX_RD[7]_i_2_n_0 ;
   wire \counterX_RD[8]_i_1_n_0 ;
   wire \counterX_RD[9]_i_1_n_0 ;
   wire \counterX_RD[9]_i_2_n_0 ;
   wire \counterX_RD[9]_i_3_n_0 ;
-  wire \counterX_RD_reg[9]_0 ;
   wire [9:0]counterX_WR_reg;
   wire [8:0]counterY_CLEAN_reg;
   wire [8:0]counterY_RD_reg;
-  wire \counterY_RD_reg[4]_0 ;
-  wire \counterY_RD_reg[4]_1 ;
+  wire \counterY_RD_reg[6]_0 ;
+  wire \counterY_RD_reg[7]_0 ;
   wire \counterY_RD_reg[8]_0 ;
   wire [18:0]counter_RD_0;
   wire counter_RD_i_10_n_0;
@@ -1431,105 +1499,116 @@ module design_1_hdmiIP_0_0_hdmiController
   wire [47:25]NLW_valMul_r_reg_P_UNCONNECTED;
   wire [47:0]NLW_valMul_r_reg_PCOUT_UNCONNECTED;
 
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
-    .INIT(8'hBA)) 
+    .INIT(8'hB8)) 
     \TMDS[0]_i_1 
        (.I0(\TMDS[9]_i_2_n_0 ),
         .I1(\counterY_RD_reg[8]_0 ),
         .I2(Q),
-        .O(D[0]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
-  LUT3 #(
-    .INIT(8'h74)) 
+        .O(\balance_acc_reg[3] [0]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT2 #(
+    .INIT(4'h1)) 
+    \TMDS[0]_i_1__1 
+       (.I0(\counterY_RD_reg[8]_0 ),
+        .I1(\TMDS_reg[0] ),
+        .O(\counterDiv_X_reg[4]_0 [0]));
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  LUT2 #(
+    .INIT(4'hB)) 
     \TMDS[2]_i_1 
+       (.I0(\counterY_RD_reg[8]_0 ),
+        .I1(\TMDS_reg[0] ),
+        .O(\counterDiv_X_reg[4]_0 [1]));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT3 #(
+    .INIT(8'h54)) 
+    \TMDS[2]_i_1__0 
        (.I0(\TMDS[9]_i_2_n_0 ),
         .I1(\counterY_RD_reg[8]_0 ),
         .I2(Q),
-        .O(D[1]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+        .O(\balance_acc_reg[3] [1]));
+  LUT6 #(
+    .INIT(64'h0000000055555504)) 
+    \TMDS[3]_i_1 
+       (.I0(\counterY_RD_reg[6]_0 ),
+        .I1(\TMDS_reg[3]_0 ),
+        .I2(\counterDiv_X_reg[4]_1 ),
+        .I3(\TMDS_reg[3] ),
+        .I4(\counterY_RD_reg[7]_0 ),
+        .I5(\counterY_RD_reg[8]_0 ),
+        .O(\counterDiv_X_reg[4]_0 [2]));
+  LUT6 #(
+    .INIT(64'hFFFFFFFF55555504)) 
+    \TMDS[4]_i_1 
+       (.I0(\counterY_RD_reg[6]_0 ),
+        .I1(\TMDS_reg[3]_0 ),
+        .I2(\counterDiv_X_reg[4]_1 ),
+        .I3(\TMDS_reg[3] ),
+        .I4(\counterY_RD_reg[7]_0 ),
+        .I5(\counterY_RD_reg[8]_0 ),
+        .O(\counterDiv_X_reg[4]_0 [3]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
-    .INIT(32'hFF009A9A)) 
+    .INIT(32'h000000FD)) 
     \TMDS[5]_i_1 
-       (.I0(Q),
-        .I1(\counterDiv_X_reg[3]_0 ),
-        .I2(\counterY_RD_reg[4]_0 ),
-        .I3(\TMDS[9]_i_2_n_0 ),
-        .I4(\counterY_RD_reg[8]_0 ),
-        .O(D[2]));
+       (.I0(\counterDiv_X_reg[4]_1 ),
+        .I1(\counterY_RD_reg[7]_0 ),
+        .I2(\TMDS_reg[3] ),
+        .I3(\counterY_RD_reg[8]_0 ),
+        .I4(\balance_acc_reg[3]_0 ),
+        .O(\counterDiv_X_reg[4]_0 [4]));
   (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
-    .INIT(16'h5104)) 
-    \TMDS[5]_i_1__0 
-       (.I0(\counterY_RD_reg[8]_0 ),
-        .I1(\counterY_RD_reg[4]_0 ),
-        .I2(\counterDiv_X_reg[3]_0 ),
-        .I3(\TMDS_reg[5] ),
-        .O(\balance_acc_reg[3] ));
-  LUT6 #(
-    .INIT(64'hF2F2F2FFFFFFF2FF)) 
+    .INIT(16'h00D2)) 
+    \TMDS[7]_i_1 
+       (.I0(\counterDiv_X_reg[4]_1 ),
+        .I1(\counterY_RD_reg[7]_0 ),
+        .I2(\TMDS_reg[0] ),
+        .I3(\counterY_RD_reg[8]_0 ),
+        .O(\counterDiv_X_reg[4]_0 [5]));
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT4 #(
+    .INIT(16'hBABF)) 
     \TMDS[8]_i_1 
-       (.I0(counterX_RD[9]),
-        .I1(\TMDS[8]_i_2_n_0 ),
-        .I2(\TMDS[8]_i_3_n_0 ),
-        .I3(douta),
-        .I4(addrSel),
-        .I5(\TMDS_reg[8] ),
-        .O(\counterX_RD_reg[9]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
-  LUT4 #(
-    .INIT(16'h55F3)) 
+       (.I0(\counterY_RD_reg[8]_0 ),
+        .I1(douta),
+        .I2(addrSel),
+        .I3(\TMDS_reg[8] ),
+        .O(D));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  LUT2 #(
+    .INIT(4'h2)) 
     \TMDS[8]_i_1__0 
-       (.I0(\TMDS[9]_i_2_n_0 ),
-        .I1(\counterY_RD_reg[4]_0 ),
-        .I2(\counterDiv_X_reg[3]_0 ),
-        .I3(\counterY_RD_reg[8]_0 ),
-        .O(D[3]));
-  LUT2 #(
-    .INIT(4'h8)) 
-    \TMDS[8]_i_1__1 
-       (.I0(\counterY_RD_reg[4]_0 ),
-        .I1(\counterDiv_X_reg[3]_0 ),
-        .O(\counterY_RD_reg[4]_1 ));
-  LUT2 #(
-    .INIT(4'h1)) 
-    \TMDS[8]_i_2 
-       (.I0(counterX_RD[7]),
-        .I1(counterX_RD[8]),
-        .O(\TMDS[8]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
-  LUT4 #(
-    .INIT(16'h8000)) 
-    \TMDS[8]_i_3 
-       (.I0(counterY_RD_reg[8]),
-        .I1(counterY_RD_reg[7]),
-        .I2(counterY_RD_reg[6]),
-        .I3(counterY_RD_reg[5]),
-        .O(\TMDS[8]_i_3_n_0 ));
+       (.I0(\counterDiv_X_reg[4]_1 ),
+        .I1(\counterY_RD_reg[7]_0 ),
+        .O(\counterDiv_X_reg[4]_2 ));
   LUT6 #(
-    .INIT(64'hFF9A00000000FF9A)) 
+    .INIT(64'hFFDFDFDFDFDFDFFF)) 
+    \TMDS[8]_i_1__1 
+       (.I0(counterX_RD[9]),
+        .I1(counterX_RD[8]),
+        .I2(counterX_RD[7]),
+        .I3(counterX_RD[5]),
+        .I4(counterX_RD[6]),
+        .I5(counterX_RD[4]),
+        .O(\balance_acc_reg[3] [2]));
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  LUT4 #(
+    .INIT(16'hE00E)) 
     \TMDS[9]_i_1 
-       (.I0(Q),
-        .I1(\counterDiv_X_reg[3]_0 ),
-        .I2(\counterY_RD_reg[4]_0 ),
-        .I3(\counterY_RD_reg[8]_0 ),
-        .I4(\TMDS[9]_i_2_n_0 ),
-        .I5(\state_fsm_main[1]_i_3_n_0 ),
-        .O(D[4]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
-  LUT3 #(
-    .INIT(8'h95)) 
-    \TMDS[9]_i_1__0 
-       (.I0(\TMDS_reg[5] ),
-        .I1(\counterDiv_X_reg[3]_0 ),
-        .I2(\counterY_RD_reg[4]_0 ),
-        .O(\balance_acc_reg[3]_0 ));
+       (.I0(\counterY_RD_reg[8]_0 ),
+        .I1(Q),
+        .I2(\TMDS[9]_i_2_n_0 ),
+        .I3(\state_fsm_main[1]_i_3_n_0 ),
+        .O(\balance_acc_reg[3] [3]));
   LUT6 #(
     .INIT(64'h00007E0000000000)) 
     \TMDS[9]_i_2 
-       (.I0(counterX_RD[6]),
-        .I1(counterX_RD[5]),
-        .I2(counterX_RD[4]),
+       (.I0(counterX_RD[4]),
+        .I1(counterX_RD[6]),
+        .I2(counterX_RD[5]),
         .I3(counterX_RD[7]),
         .I4(counterX_RD[8]),
         .I5(counterX_RD[9]),
@@ -1610,11 +1689,14 @@ module design_1_hdmiIP_0_0_hdmiController
         .RSTM(SR),
         .RSTP(SR),
         .UNDERFLOW(NLW_addrAddClean_r_reg_UNDERFLOW_UNCONNECTED));
-  LUT2 #(
-    .INIT(4'h2)) 
+  LUT5 #(
+    .INIT(32'h10000000)) 
     addrAddClean_r_reg_i_1
-       (.I0(addrAddClean_r_reg_i_2_n_0),
-        .I1(\state_fsm_main[0]_i_3_n_0 ),
+       (.I0(\counterX_CLEAN_reg_n_0_[8] ),
+        .I1(\counterX_CLEAN_reg_n_0_[7] ),
+        .I2(\counterX_CLEAN_reg_n_0_[9] ),
+        .I3(addrAddClean_r_reg_i_25_n_0),
+        .I4(addrAddClean_r_reg_i_2_n_0),
         .O(addrAddClean_r_reg_i_1_n_0));
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
@@ -1652,38 +1734,38 @@ module design_1_hdmiIP_0_0_hdmiController
        (.I0(counterY_CLEAN_reg[0]),
         .O(addrAddClean_r_reg_i_14_n_0));
   LUT6 #(
-    .INIT(64'hAA6AAAAAAAAAAAAA)) 
+    .INIT(64'hA6AAAAAAAAAAAAAA)) 
     addrAddClean_r_reg_i_15
        (.I0(\counterX_CLEAN_reg_n_0_[9] ),
         .I1(\counterX_CLEAN_reg_n_0_[7] ),
-        .I2(\counterX_CLEAN_reg_n_0_[6] ),
-        .I3(addrAddClean_r_reg_i_28_n_0),
-        .I4(\counterX_CLEAN_reg_n_0_[5] ),
+        .I2(addrAddClean_r_reg_i_31_n_0),
+        .I3(\counterX_CLEAN_reg_n_0_[5] ),
+        .I4(\counterX_CLEAN_reg_n_0_[6] ),
         .I5(\counterX_CLEAN_reg_n_0_[8] ),
         .O(addrAddClean_r_reg_i_15_n_0));
   LUT5 #(
-    .INIT(32'hA6AAAAAA)) 
+    .INIT(32'hAA6AAAAA)) 
     addrAddClean_r_reg_i_16
        (.I0(\counterX_CLEAN_reg_n_0_[8] ),
-        .I1(\counterX_CLEAN_reg_n_0_[5] ),
-        .I2(addrAddClean_r_reg_i_28_n_0),
-        .I3(\counterX_CLEAN_reg_n_0_[6] ),
+        .I1(\counterX_CLEAN_reg_n_0_[6] ),
+        .I2(\counterX_CLEAN_reg_n_0_[5] ),
+        .I3(addrAddClean_r_reg_i_31_n_0),
         .I4(\counterX_CLEAN_reg_n_0_[7] ),
         .O(addrAddClean_r_reg_i_16_n_0));
   LUT4 #(
-    .INIT(16'hA6AA)) 
+    .INIT(16'h9AAA)) 
     addrAddClean_r_reg_i_17
        (.I0(\counterX_CLEAN_reg_n_0_[7] ),
-        .I1(\counterX_CLEAN_reg_n_0_[5] ),
-        .I2(addrAddClean_r_reg_i_28_n_0),
+        .I1(addrAddClean_r_reg_i_31_n_0),
+        .I2(\counterX_CLEAN_reg_n_0_[5] ),
         .I3(\counterX_CLEAN_reg_n_0_[6] ),
         .O(addrAddClean_r_reg_i_17_n_0));
   LUT3 #(
-    .INIT(8'h9A)) 
+    .INIT(8'hB4)) 
     addrAddClean_r_reg_i_18
-       (.I0(\counterX_CLEAN_reg_n_0_[6] ),
-        .I1(addrAddClean_r_reg_i_28_n_0),
-        .I2(\counterX_CLEAN_reg_n_0_[5] ),
+       (.I0(addrAddClean_r_reg_i_31_n_0),
+        .I1(\counterX_CLEAN_reg_n_0_[5] ),
+        .I2(\counterX_CLEAN_reg_n_0_[6] ),
         .O(addrAddClean_r_reg_i_18_n_0));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
@@ -1699,7 +1781,7 @@ module design_1_hdmiIP_0_0_hdmiController
     .INIT(64'hAAAAAAAAAAAAAAA8)) 
     addrAddClean_r_reg_i_2
        (.I0(is_state_main_S_CLEAN),
-        .I1(addrAddClean_r_reg_i_25_n_0),
+        .I1(addrAddClean_r_reg_i_26_n_0),
         .I2(\addrCLEAN_ready_counter_reg_n_0_[9] ),
         .I3(\addrCLEAN_ready_counter_reg_n_0_[0] ),
         .I4(\addrCLEAN_ready_counter_reg_n_0_[4] ),
@@ -1740,24 +1822,22 @@ module design_1_hdmiIP_0_0_hdmiController
     addrAddClean_r_reg_i_24
        (.I0(\counterX_CLEAN_reg_n_0_[0] ),
         .O(addrAddClean_r_reg_i_24_n_0));
+  LUT3 #(
+    .INIT(8'h08)) 
+    addrAddClean_r_reg_i_25
+       (.I0(\counterX_CLEAN_reg_n_0_[6] ),
+        .I1(\counterX_CLEAN_reg_n_0_[5] ),
+        .I2(addrAddClean_r_reg_i_31_n_0),
+        .O(addrAddClean_r_reg_i_25_n_0));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
-    addrAddClean_r_reg_i_25
+    addrAddClean_r_reg_i_26
        (.I0(\addrCLEAN_ready_counter_reg_n_0_[7] ),
         .I1(\addrCLEAN_ready_counter_reg_n_0_[5] ),
         .I2(\addrCLEAN_ready_counter_reg_n_0_[6] ),
         .I3(\addrCLEAN_ready_counter_reg_n_0_[8] ),
         .I4(\addrCLEAN_ready_counter_reg_n_0_[2] ),
         .I5(\addrCLEAN_ready_counter_reg_n_0_[3] ),
-        .O(addrAddClean_r_reg_i_25_n_0));
-  LUT5 #(
-    .INIT(32'h00000001)) 
-    addrAddClean_r_reg_i_26
-       (.I0(\counterX_CLEAN_reg_n_0_[2] ),
-        .I1(\counterX_CLEAN_reg_n_0_[9] ),
-        .I2(\counterX_CLEAN_reg_n_0_[3] ),
-        .I3(addrAddClean_r_reg_i_29_n_0),
-        .I4(addrAddClean_r_reg_i_30_n_0),
         .O(addrAddClean_r_reg_i_26_n_0));
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
@@ -1769,21 +1849,23 @@ module design_1_hdmiIP_0_0_hdmiController
         .I4(counterY_CLEAN_reg[4]),
         .O(addrAddClean_r_reg_i_27_n_0));
   LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
+    .INIT(32'hEFFFFFFF)) 
     addrAddClean_r_reg_i_28
-       (.I0(\counterX_CLEAN_reg_n_0_[3] ),
-        .I1(\counterX_CLEAN_reg_n_0_[0] ),
-        .I2(\counterX_CLEAN_reg_n_0_[1] ),
-        .I3(\counterX_CLEAN_reg_n_0_[2] ),
-        .I4(\counterX_CLEAN_reg_n_0_[4] ),
+       (.I0(\state_fsm_main_reg_n_0_[1] ),
+        .I1(\state_fsm_main_reg_n_0_[0] ),
+        .I2(counterY_CLEAN_reg[7]),
+        .I3(counterY_CLEAN_reg[8]),
+        .I4(counterY_CLEAN_reg[6]),
         .O(addrAddClean_r_reg_i_28_n_0));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
+  LUT6 #(
+    .INIT(64'h0000000000004000)) 
     addrAddClean_r_reg_i_29
-       (.I0(\counterX_CLEAN_reg_n_0_[8] ),
-        .I1(\counterX_CLEAN_reg_n_0_[7] ),
-        .I2(\counterX_CLEAN_reg_n_0_[0] ),
-        .I3(\counterX_CLEAN_reg_n_0_[1] ),
+       (.I0(addrAddClean_r_reg_i_31_n_0),
+        .I1(\counterX_CLEAN_reg_n_0_[5] ),
+        .I2(\counterX_CLEAN_reg_n_0_[6] ),
+        .I3(\counterX_CLEAN_reg_n_0_[9] ),
+        .I4(\counterX_CLEAN_reg_n_0_[7] ),
+        .I5(\counterX_CLEAN_reg_n_0_[8] ),
         .O(addrAddClean_r_reg_i_29_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -1791,56 +1873,81 @@ module design_1_hdmiIP_0_0_hdmiController
        (.I0(\state_fsm_main_reg_n_0_[0] ),
         .I1(\state_fsm_main_reg_n_0_[1] ),
         .O(is_state_main_S_CLEAN));
-  LUT4 #(
-    .INIT(16'hFFFE)) 
+  LUT5 #(
+    .INIT(32'h00000002)) 
     addrAddClean_r_reg_i_30
-       (.I0(\counterX_CLEAN_reg_n_0_[5] ),
-        .I1(cleanX_toggle_reg_n_0),
-        .I2(\counterX_CLEAN_reg_n_0_[6] ),
-        .I3(\counterX_CLEAN_reg_n_0_[4] ),
+       (.I0(addrAddClean_r_reg_i_2_n_0),
+        .I1(addrAddClean_r_reg_i_32_n_0),
+        .I2(\counterX_CLEAN_reg_n_0_[3] ),
+        .I3(\counterX_CLEAN_reg_n_0_[9] ),
+        .I4(\counterX_CLEAN_reg_n_0_[2] ),
         .O(addrAddClean_r_reg_i_30_n_0));
   LUT5 #(
-    .INIT(32'h22F2FFFF)) 
-    addrAddClean_r_reg_i_4
-       (.I0(\state_fsm_main[0]_i_2_n_0 ),
-        .I1(\state_fsm_main[0]_i_3_n_0 ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(\state_fsm_main_reg_n_0_[1] ),
-        .I4(rstn),
-        .O(addrAddClean_r_reg_i_4_n_0));
+    .INIT(32'h7FFFFFFF)) 
+    addrAddClean_r_reg_i_31
+       (.I0(\counterX_CLEAN_reg_n_0_[3] ),
+        .I1(\counterX_CLEAN_reg_n_0_[0] ),
+        .I2(\counterX_CLEAN_reg_n_0_[1] ),
+        .I3(\counterX_CLEAN_reg_n_0_[2] ),
+        .I4(\counterX_CLEAN_reg_n_0_[4] ),
+        .O(addrAddClean_r_reg_i_31_n_0));
+  LUT5 #(
+    .INIT(32'hFFFFFFFE)) 
+    addrAddClean_r_reg_i_32
+       (.I0(\counterX_CLEAN_reg_n_0_[4] ),
+        .I1(\counterX_CLEAN_reg_n_0_[6] ),
+        .I2(cleanX_toggle_reg_n_0),
+        .I3(\counterX_CLEAN_reg_n_0_[5] ),
+        .I4(addrAddClean_r_reg_i_33_n_0),
+        .O(addrAddClean_r_reg_i_32_n_0));
+  LUT4 #(
+    .INIT(16'hFFFE)) 
+    addrAddClean_r_reg_i_33
+       (.I0(\counterX_CLEAN_reg_n_0_[8] ),
+        .I1(\counterX_CLEAN_reg_n_0_[7] ),
+        .I2(\counterX_CLEAN_reg_n_0_[0] ),
+        .I3(\counterX_CLEAN_reg_n_0_[1] ),
+        .O(addrAddClean_r_reg_i_33_n_0));
   LUT6 #(
-    .INIT(64'hFFFFDDFFDDFDDDFD)) 
+    .INIT(64'hFFFFFFFF0100FFFF)) 
+    addrAddClean_r_reg_i_4
+       (.I0(addrAddClean_r_reg_i_27_n_0),
+        .I1(counterY_CLEAN_reg[5]),
+        .I2(addrAddClean_r_reg_i_28_n_0),
+        .I3(addrAddClean_r_reg_i_29_n_0),
+        .I4(rstn),
+        .I5(is_state_main_S_WRITE),
+        .O(addrAddClean_r_reg_i_4_n_0));
+  LUT3 #(
+    .INIT(8'hFE)) 
     addrAddClean_r_reg_i_5
-       (.I0(rstn),
-        .I1(is_state_main_S_WRITE),
-        .I2(\state_fsm_main[0]_i_2_n_0 ),
-        .I3(\state_fsm_main[0]_i_3_n_0 ),
-        .I4(addrAddClean_r_reg_i_26_n_0),
-        .I5(addrAddClean_r_reg_i_2_n_0),
+       (.I0(addrAddClean_r_reg_i_4_n_0),
+        .I1(addrAddClean_r_reg_i_30_n_0),
+        .I2(addrAddClean_r_reg_i_1_n_0),
         .O(clear));
   LUT5 #(
-    .INIT(32'hAA6AAAAA)) 
+    .INIT(32'hA6AAAAAA)) 
     addrAddClean_r_reg_i_6
        (.I0(counterY_CLEAN_reg[8]),
-        .I1(counterY_CLEAN_reg[6]),
-        .I2(counterY_CLEAN_reg[5]),
-        .I3(addrAddClean_r_reg_i_27_n_0),
+        .I1(counterY_CLEAN_reg[5]),
+        .I2(addrAddClean_r_reg_i_27_n_0),
+        .I3(counterY_CLEAN_reg[6]),
         .I4(counterY_CLEAN_reg[7]),
         .O(addrAddClean_r_reg_i_6_n_0));
   LUT4 #(
-    .INIT(16'h9AAA)) 
+    .INIT(16'hDF20)) 
     addrAddClean_r_reg_i_7
-       (.I0(counterY_CLEAN_reg[7]),
+       (.I0(counterY_CLEAN_reg[5]),
         .I1(addrAddClean_r_reg_i_27_n_0),
-        .I2(counterY_CLEAN_reg[5]),
-        .I3(counterY_CLEAN_reg[6]),
+        .I2(counterY_CLEAN_reg[6]),
+        .I3(counterY_CLEAN_reg[7]),
         .O(addrAddClean_r_reg_i_7_n_0));
   LUT3 #(
-    .INIT(8'hB4)) 
+    .INIT(8'h9A)) 
     addrAddClean_r_reg_i_8
-       (.I0(addrAddClean_r_reg_i_27_n_0),
-        .I1(counterY_CLEAN_reg[5]),
-        .I2(counterY_CLEAN_reg[6]),
+       (.I0(counterY_CLEAN_reg[6]),
+        .I1(addrAddClean_r_reg_i_27_n_0),
+        .I2(counterY_CLEAN_reg[5]),
         .O(addrAddClean_r_reg_i_8_n_0));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
@@ -1929,14 +2036,14 @@ module design_1_hdmiIP_0_0_hdmiController
         .RSTP(SR),
         .UNDERFLOW(NLW_addrAdd_r_reg_UNDERFLOW_UNCONNECTED));
   LUT6 #(
-    .INIT(64'h5515000015151515)) 
+    .INIT(64'hAAA88888AAAAAAAA)) 
     addrAdd_r_reg_i_1
        (.I0(addrAdd_r_reg_i_13_n_0),
-        .I1(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I3(addrAdd_r_reg_i_14_n_0),
-        .I4(addrAdd_r_reg_i_15_n_0),
-        .I5(addrAdd_r_reg_i_16_n_0),
+        .I1(addrAdd_r_reg_i_14_n_0),
+        .I2(\addrWR_ready_counter_reg_n_0_[0] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[1] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[2] ),
+        .I5(addrAdd_r_reg_i_15_n_0),
         .O(CEC));
   LUT3 #(
     .INIT(8'h6A)) 
@@ -1956,103 +2063,95 @@ module design_1_hdmiIP_0_0_hdmiController
     addrAdd_r_reg_i_12
        (.I0(counterX_WR_reg[0]),
         .O(addrAdd_r_reg_i_12_n_0));
+  LUT6 #(
+    .INIT(64'h0000000007FF0000)) 
+    addrAdd_r_reg_i_13
+       (.I0(bram0_i_24_n_0),
+        .I1(\addrWR_ready_counter_reg_n_0_[7] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[9] ),
+        .I4(\state_fsm_main_reg_n_0_[0] ),
+        .I5(\state_fsm_main_reg_n_0_[1] ),
+        .O(addrAdd_r_reg_i_13_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
+    addrAdd_r_reg_i_14
+       (.I0(\addrWR_ready_counter_reg_n_0_[9] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[7] ),
+        .O(addrAdd_r_reg_i_14_n_0));
   (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
-    .INIT(16'hFBBB)) 
-    addrAdd_r_reg_i_13
-       (.I0(\state_fsm_main_reg_n_0_[1] ),
-        .I1(\state_fsm_main_reg_n_0_[0] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[8] ),
-        .O(addrAdd_r_reg_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
-  LUT2 #(
-    .INIT(4'h7)) 
-    addrAdd_r_reg_i_14
-       (.I0(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
-        .O(addrAdd_r_reg_i_14_n_0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFEFEFEFEFE)) 
-    addrAdd_r_reg_i_15
-       (.I0(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I2(\addrWR_ready_counter_reg_n_0_[9] ),
-        .I3(\addrWR_ready_counter_reg_n_0_[0] ),
-        .I4(\addrWR_ready_counter_reg_n_0_[1] ),
-        .I5(\addrWR_ready_counter_reg_n_0_[2] ),
-        .O(addrAdd_r_reg_i_15_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
-  LUT4 #(
     .INIT(16'h0001)) 
-    addrAdd_r_reg_i_16
+    addrAdd_r_reg_i_15
        (.I0(\addrWR_ready_counter_reg_n_0_[6] ),
         .I1(\addrWR_ready_counter_reg_n_0_[5] ),
         .I2(\addrWR_ready_counter_reg_n_0_[4] ),
         .I3(\addrWR_ready_counter_reg_n_0_[3] ),
-        .O(addrAdd_r_reg_i_16_n_0));
+        .O(addrAdd_r_reg_i_15_n_0));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFFBFFFFF)) 
-    addrAdd_r_reg_i_17
-       (.I0(addrAdd_r_reg_i_18_n_0),
-        .I1(counterX_WR_reg[5]),
-        .I2(counterX_WR_reg[6]),
+    .INIT(64'hFFFFFFFFFFDFFFFF)) 
+    addrAdd_r_reg_i_16
+       (.I0(counterX_WR_reg[6]),
+        .I1(addrAdd_r_reg_i_17_n_0),
+        .I2(counterX_WR_reg[5]),
         .I3(counterX_WR_reg[8]),
         .I4(counterX_WR_reg[9]),
         .I5(counterX_WR_reg[7]),
-        .O(addrAdd_r_reg_i_17_n_0));
+        .O(addrAdd_r_reg_i_16_n_0));
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
-    addrAdd_r_reg_i_18
+    addrAdd_r_reg_i_17
        (.I0(counterX_WR_reg[3]),
         .I1(counterX_WR_reg[0]),
         .I2(counterX_WR_reg[1]),
         .I3(counterX_WR_reg[2]),
         .I4(counterX_WR_reg[4]),
-        .O(addrAdd_r_reg_i_18_n_0));
+        .O(addrAdd_r_reg_i_17_n_0));
   LUT6 #(
-    .INIT(64'hFF4FFFFFFF4FFF4F)) 
+    .INIT(64'h62FFFFFF62FF62FF)) 
     addrAdd_r_reg_i_2
-       (.I0(\state_fsm_main_reg_n_0_[0] ),
-        .I1(\state_fsm_main_reg_n_0_[1] ),
-        .I2(rstn),
-        .I3(\state_fsm_main[1]_i_2_n_0 ),
-        .I4(addrAdd_r_reg_i_17_n_0),
+       (.I0(\state_fsm_main_reg_n_0_[1] ),
+        .I1(\state_fsm_main_reg_n_0_[0] ),
+        .I2(\state_fsm_main[1]_i_2_n_0 ),
+        .I3(rstn),
+        .I4(addrAdd_r_reg_i_16_n_0),
         .I5(CEC),
         .O(addrAdd_r_reg_i_2_n_0));
   LUT6 #(
-    .INIT(64'hA6AAAAAAAAAAAAAA)) 
+    .INIT(64'hAA6AAAAAAAAAAAAA)) 
     addrAdd_r_reg_i_3
        (.I0(counterX_WR_reg[9]),
         .I1(counterX_WR_reg[7]),
-        .I2(addrAdd_r_reg_i_18_n_0),
-        .I3(counterX_WR_reg[5]),
-        .I4(counterX_WR_reg[6]),
+        .I2(counterX_WR_reg[6]),
+        .I3(addrAdd_r_reg_i_17_n_0),
+        .I4(counterX_WR_reg[5]),
         .I5(counterX_WR_reg[8]),
         .O(addrAdd_r_reg_i_3_n_0));
   LUT5 #(
-    .INIT(32'hAA6AAAAA)) 
+    .INIT(32'hA6AAAAAA)) 
     addrAdd_r_reg_i_4
        (.I0(counterX_WR_reg[8]),
-        .I1(counterX_WR_reg[6]),
-        .I2(counterX_WR_reg[5]),
-        .I3(addrAdd_r_reg_i_18_n_0),
+        .I1(counterX_WR_reg[5]),
+        .I2(addrAdd_r_reg_i_17_n_0),
+        .I3(counterX_WR_reg[6]),
         .I4(counterX_WR_reg[7]),
         .O(addrAdd_r_reg_i_4_n_0));
   LUT4 #(
-    .INIT(16'h9AAA)) 
+    .INIT(16'hDF20)) 
     addrAdd_r_reg_i_5
-       (.I0(counterX_WR_reg[7]),
-        .I1(addrAdd_r_reg_i_18_n_0),
-        .I2(counterX_WR_reg[5]),
-        .I3(counterX_WR_reg[6]),
+       (.I0(counterX_WR_reg[5]),
+        .I1(addrAdd_r_reg_i_17_n_0),
+        .I2(counterX_WR_reg[6]),
+        .I3(counterX_WR_reg[7]),
         .O(addrAdd_r_reg_i_5_n_0));
   LUT3 #(
-    .INIT(8'hB4)) 
+    .INIT(8'h9A)) 
     addrAdd_r_reg_i_6
-       (.I0(addrAdd_r_reg_i_18_n_0),
-        .I1(counterX_WR_reg[5]),
-        .I2(counterX_WR_reg[6]),
+       (.I0(counterX_WR_reg[6]),
+        .I1(addrAdd_r_reg_i_17_n_0),
+        .I2(counterX_WR_reg[5]),
         .O(addrAdd_r_reg_i_6_n_0));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
@@ -2086,14 +2185,14 @@ module design_1_hdmiIP_0_0_hdmiController
     \addrCLEAN_ready_counter[0]_i_1 
        (.I0(\addrCLEAN_ready_counter_reg_n_0_[0] ),
         .O(p_0_in__0[0]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \addrCLEAN_ready_counter[1]_i_1 
        (.I0(\addrCLEAN_ready_counter_reg_n_0_[0] ),
         .I1(\addrCLEAN_ready_counter_reg_n_0_[1] ),
         .O(p_0_in__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \addrCLEAN_ready_counter[2]_i_1 
@@ -2101,7 +2200,7 @@ module design_1_hdmiIP_0_0_hdmiController
         .I1(\addrCLEAN_ready_counter_reg_n_0_[0] ),
         .I2(\addrCLEAN_ready_counter_reg_n_0_[1] ),
         .O(p_0_in__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \addrCLEAN_ready_counter[3]_i_1 
@@ -2110,7 +2209,7 @@ module design_1_hdmiIP_0_0_hdmiController
         .I2(\addrCLEAN_ready_counter_reg_n_0_[0] ),
         .I3(\addrCLEAN_ready_counter_reg_n_0_[2] ),
         .O(p_0_in__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \addrCLEAN_ready_counter[4]_i_1 
@@ -2130,38 +2229,38 @@ module design_1_hdmiIP_0_0_hdmiController
         .I4(\addrCLEAN_ready_counter_reg_n_0_[2] ),
         .I5(\addrCLEAN_ready_counter_reg_n_0_[4] ),
         .O(p_0_in__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT2 #(
     .INIT(4'h9)) 
     \addrCLEAN_ready_counter[6]_i_1 
+       (.I0(\addrCLEAN_ready_counter_reg_n_0_[6] ),
+        .I1(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
+        .O(p_0_in__0[6]));
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  LUT3 #(
+    .INIT(8'hB4)) 
+    \addrCLEAN_ready_counter[7]_i_1 
        (.I0(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
         .I1(\addrCLEAN_ready_counter_reg_n_0_[6] ),
-        .O(p_0_in__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
-  LUT3 #(
-    .INIT(8'h9A)) 
-    \addrCLEAN_ready_counter[7]_i_1 
-       (.I0(\addrCLEAN_ready_counter_reg_n_0_[7] ),
-        .I1(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
-        .I2(\addrCLEAN_ready_counter_reg_n_0_[6] ),
+        .I2(\addrCLEAN_ready_counter_reg_n_0_[7] ),
         .O(p_0_in__0[7]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
-    .INIT(16'hA6AA)) 
+    .INIT(16'h9AAA)) 
     \addrCLEAN_ready_counter[8]_i_1 
        (.I0(\addrCLEAN_ready_counter_reg_n_0_[8] ),
-        .I1(\addrCLEAN_ready_counter_reg_n_0_[6] ),
-        .I2(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
+        .I1(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
+        .I2(\addrCLEAN_ready_counter_reg_n_0_[6] ),
         .I3(\addrCLEAN_ready_counter_reg_n_0_[7] ),
         .O(p_0_in__0[8]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
-    .INIT(32'hA6AAAAAA)) 
+    .INIT(32'hAA6AAAAA)) 
     \addrCLEAN_ready_counter[9]_i_1 
        (.I0(\addrCLEAN_ready_counter_reg_n_0_[9] ),
         .I1(\addrCLEAN_ready_counter_reg_n_0_[7] ),
-        .I2(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
-        .I3(\addrCLEAN_ready_counter_reg_n_0_[6] ),
+        .I2(\addrCLEAN_ready_counter_reg_n_0_[6] ),
+        .I3(\addrCLEAN_ready_counter[9]_i_2_n_0 ),
         .I4(\addrCLEAN_ready_counter_reg_n_0_[8] ),
         .O(p_0_in__0[9]));
   LUT6 #(
@@ -2234,7 +2333,6 @@ module design_1_hdmiIP_0_0_hdmiController
         .D(p_0_in__0[9]),
         .Q(\addrCLEAN_ready_counter_reg_n_0_[9] ),
         .R(addrAddClean_r_reg_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hDF20)) 
     addrSel_i_1
@@ -2249,13 +2347,13 @@ module design_1_hdmiIP_0_0_hdmiController
         .D(addrSel_i_1_n_0),
         .Q(addrSel),
         .R(SR));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \addrWR_ready_counter[0]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \addrWR_ready_counter[1]_i_1 
@@ -2270,7 +2368,7 @@ module design_1_hdmiIP_0_0_hdmiController
         .I1(\addrWR_ready_counter_reg_n_0_[1] ),
         .I2(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \addrWR_ready_counter[3]_i_1 
@@ -2279,7 +2377,7 @@ module design_1_hdmiIP_0_0_hdmiController
         .I2(\addrWR_ready_counter_reg_n_0_[1] ),
         .I3(\addrWR_ready_counter_reg_n_0_[0] ),
         .O(p_0_in[3]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \addrWR_ready_counter[4]_i_1 
@@ -2299,27 +2397,28 @@ module design_1_hdmiIP_0_0_hdmiController
         .I4(\addrWR_ready_counter_reg_n_0_[0] ),
         .I5(\addrWR_ready_counter_reg_n_0_[4] ),
         .O(p_0_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT2 #(
     .INIT(4'h9)) 
     \addrWR_ready_counter[6]_i_1 
+       (.I0(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I1(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .O(p_0_in[6]));
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  LUT3 #(
+    .INIT(8'hB4)) 
+    \addrWR_ready_counter[7]_i_1 
        (.I0(\addrWR_ready_counter[9]_i_3_n_0 ),
         .I1(\addrWR_ready_counter_reg_n_0_[6] ),
-        .O(p_0_in[6]));
-  LUT3 #(
-    .INIT(8'h9A)) 
-    \addrWR_ready_counter[7]_i_1 
-       (.I0(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I1(\addrWR_ready_counter[9]_i_3_n_0 ),
-        .I2(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[7] ),
         .O(p_0_in[7]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
-    .INIT(16'hA6AA)) 
+    .INIT(16'h9AAA)) 
     \addrWR_ready_counter[8]_i_1 
        (.I0(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[6] ),
-        .I2(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I1(\addrWR_ready_counter[9]_i_3_n_0 ),
+        .I2(\addrWR_ready_counter_reg_n_0_[6] ),
         .I3(\addrWR_ready_counter_reg_n_0_[7] ),
         .O(p_0_in[8]));
   LUT3 #(
@@ -2329,14 +2428,14 @@ module design_1_hdmiIP_0_0_hdmiController
         .I1(\state_fsm_main_reg_n_0_[0] ),
         .I2(rstn),
         .O(\addrWR_ready_counter[9]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
-    .INIT(32'hA6AAAAAA)) 
+    .INIT(32'hAA6AAAAA)) 
     \addrWR_ready_counter[9]_i_2 
        (.I0(\addrWR_ready_counter_reg_n_0_[9] ),
         .I1(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I2(\addrWR_ready_counter[9]_i_3_n_0 ),
-        .I3(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[6] ),
+        .I3(\addrWR_ready_counter[9]_i_3_n_0 ),
         .I4(\addrWR_ready_counter_reg_n_0_[8] ),
         .O(p_0_in[9]));
   LUT6 #(
@@ -2409,6 +2508,83 @@ module design_1_hdmiIP_0_0_hdmiController
         .D(p_0_in[9]),
         .Q(\addrWR_ready_counter_reg_n_0_[9] ),
         .R(\addrWR_ready_counter[9]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hF700F7F7F7F7F7F7)) 
+    \balance_acc[0]_i_2 
+       (.I0(counterDiv_X[4]),
+        .I1(counterDiv_X[5]),
+        .I2(\balance_acc[0]_i_3_n_0 ),
+        .I3(\balance_acc[0]_i_4_n_0 ),
+        .I4(\counterDiv_Y_reg_n_0_[0] ),
+        .I5(\counterDiv_Y[6]_i_4_n_0 ),
+        .O(\counterDiv_X_reg[4]_1 ));
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  LUT4 #(
+    .INIT(16'h7FFF)) 
+    \balance_acc[0]_i_3 
+       (.I0(counterDiv_X[2]),
+        .I1(counterDiv_X[0]),
+        .I2(counterDiv_X[1]),
+        .I3(counterDiv_X[3]),
+        .O(\balance_acc[0]_i_3_n_0 ));
+  LUT2 #(
+    .INIT(4'hB)) 
+    \balance_acc[0]_i_4 
+       (.I0(\counterDiv_Y_reg_n_0_[5] ),
+        .I1(\counterDiv_Y_reg_n_0_[6] ),
+        .O(\balance_acc[0]_i_4_n_0 ));
+  LUT6 #(
+    .INIT(64'h44444444F4444444)) 
+    \balance_acc[1]_i_3 
+       (.I0(\balance_acc[1]_i_4_n_0 ),
+        .I1(\balance_acc[1]_i_5_n_0 ),
+        .I2(counterY_RD_reg[6]),
+        .I3(counterY_RD_reg[5]),
+        .I4(counter_RD_i_11_n_0),
+        .I5(\balance_acc[1]_i_6_n_0 ),
+        .O(\counterY_RD_reg[6]_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFF7FFF)) 
+    \balance_acc[1]_i_4 
+       (.I0(counterX_RD[2]),
+        .I1(counterX_RD[1]),
+        .I2(counterX_RD[0]),
+        .I3(counterX_RD[3]),
+        .I4(counterX_RD[6]),
+        .I5(counterX_RD[9]),
+        .O(\balance_acc[1]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT4 #(
+    .INIT(16'h2000)) 
+    \balance_acc[1]_i_5 
+       (.I0(counterX_RD[8]),
+        .I1(counterX_RD[7]),
+        .I2(counterX_RD[5]),
+        .I3(counterX_RD[4]),
+        .O(\balance_acc[1]_i_5_n_0 ));
+  LUT3 #(
+    .INIT(8'hFB)) 
+    \balance_acc[1]_i_6 
+       (.I0(counterY_RD_reg[8]),
+        .I1(counterY_RD_reg[7]),
+        .I2(counterY_RD_reg[4]),
+        .O(\balance_acc[1]_i_6_n_0 ));
+  LUT4 #(
+    .INIT(16'hFF7F)) 
+    \balance_acc[3]_i_10 
+       (.I0(counterX_RD[5]),
+        .I1(counterX_RD[4]),
+        .I2(counterX_RD[3]),
+        .I3(counterX_RD[9]),
+        .O(\balance_acc[3]_i_10_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  LUT3 #(
+    .INIT(8'h04)) 
+    \balance_acc[3]_i_11 
+       (.I0(counterX_RD[6]),
+        .I1(counterX_RD[8]),
+        .I2(counterX_RD[7]),
+        .O(\balance_acc[3]_i_11_n_0 ));
   LUT5 #(
     .INIT(32'hFFF44444)) 
     \balance_acc[3]_i_1__0 
@@ -2418,7 +2594,16 @@ module design_1_hdmiIP_0_0_hdmiController
         .I3(counterX_RD[8]),
         .I4(counterX_RD[9]),
         .O(\counterY_RD_reg[8]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  LUT4 #(
+    .INIT(16'h00E2)) 
+    \balance_acc[3]_i_2 
+       (.I0(\TMDS_reg[8] ),
+        .I1(addrSel),
+        .I2(douta),
+        .I3(\counterY_RD_reg[8]_0 ),
+        .O(addrSel_reg_0));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \balance_acc[3]_i_3 
@@ -2426,59 +2611,40 @@ module design_1_hdmiIP_0_0_hdmiController
         .I1(counterY_RD_reg[6]),
         .I2(counterY_RD_reg[7]),
         .O(\balance_acc[3]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h7FFF00007FFF7FFF)) 
-    \balance_acc[3]_i_4 
-       (.I0(counterDiv_X[3]),
-        .I1(counterDiv_X[5]),
-        .I2(counterDiv_X[4]),
-        .I3(\balance_acc[3]_i_6_n_0 ),
-        .I4(\balance_acc[3]_i_7_n_0 ),
-        .I5(\counterDiv_Y[6]_i_3_n_0 ),
-        .O(\counterDiv_X_reg[3]_0 ));
-  LUT6 #(
-    .INIT(64'hFFFE0000FFFEFFFE)) 
+  LUT5 #(
+    .INIT(32'h444F4444)) 
     \balance_acc[3]_i_5 
-       (.I0(\balance_acc[3]_i_3_n_0 ),
-        .I1(counterY_RD_reg[4]),
-        .I2(counterY_RD_reg[8]),
-        .I3(\balance_acc[3]_i_8_n_0 ),
-        .I4(\balance_acc[3]_i_9_n_0 ),
-        .I5(\counterX_RD[7]_i_2_n_0 ),
-        .O(\counterY_RD_reg[4]_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
-  LUT3 #(
-    .INIT(8'h80)) 
-    \balance_acc[3]_i_6 
-       (.I0(counterDiv_X[2]),
-        .I1(counterDiv_X[1]),
-        .I2(counterDiv_X[0]),
-        .O(\balance_acc[3]_i_6_n_0 ));
-  LUT3 #(
-    .INIT(8'hEF)) 
+       (.I0(\balance_acc[3]_i_8_n_0 ),
+        .I1(counter_RD_i_11_n_0),
+        .I2(\balance_acc[3]_i_9_n_0 ),
+        .I3(\balance_acc[3]_i_10_n_0 ),
+        .I4(\balance_acc[3]_i_11_n_0 ),
+        .O(\counterY_RD_reg[7]_0 ));
+  LUT5 #(
+    .INIT(32'h0000AFAE)) 
     \balance_acc[3]_i_7 
-       (.I0(\counterDiv_Y_reg_n_0_[4] ),
-        .I1(\counterDiv_Y_reg_n_0_[5] ),
-        .I2(\counterDiv_Y_reg_n_0_[6] ),
-        .O(\balance_acc[3]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'h7FFF)) 
+       (.I0(\counterY_RD_reg[7]_0 ),
+        .I1(\TMDS_reg[3] ),
+        .I2(\counterDiv_X_reg[4]_1 ),
+        .I3(\TMDS_reg[3]_0 ),
+        .I4(\counterY_RD_reg[6]_0 ),
+        .O(\balance_acc_reg[3]_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'hFFFFFF7F)) 
     \balance_acc[3]_i_8 
-       (.I0(counterY_RD_reg[2]),
-        .I1(counterY_RD_reg[1]),
-        .I2(counterY_RD_reg[0]),
-        .I3(counterY_RD_reg[3]),
+       (.I0(counterY_RD_reg[7]),
+        .I1(counterY_RD_reg[6]),
+        .I2(counterY_RD_reg[5]),
+        .I3(counterY_RD_reg[4]),
+        .I4(counterY_RD_reg[8]),
         .O(\balance_acc[3]_i_8_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFBFFFFFF)) 
+  LUT3 #(
+    .INIT(8'h7F)) 
     \balance_acc[3]_i_9 
-       (.I0(counterX_RD[7]),
-        .I1(counterX_RD[8]),
-        .I2(counterX_RD[6]),
-        .I3(counterX_RD[4]),
-        .I4(counterX_RD[5]),
-        .I5(counterX_RD[9]),
+       (.I0(counterX_RD[0]),
+        .I1(counterX_RD[1]),
+        .I2(counterX_RD[2]),
         .O(\balance_acc[3]_i_9_n_0 ));
   LUT6 #(
     .INIT(64'h2F202F2F2F202020)) 
@@ -2821,7 +2987,7 @@ module design_1_hdmiIP_0_0_hdmiController
     bram1_i_2
        (.I0(addrSel),
         .I1(\state_fsm_main_reg_n_0_[1] ),
-        .O(addrSel_reg_0));
+        .O(addrSel_reg_1));
   LUT6 #(
     .INIT(64'hB800B800B8FFB800)) 
     bram1_i_20
@@ -2912,12 +3078,15 @@ module design_1_hdmiIP_0_0_hdmiController
         .I4(counter_RD_n_93),
         .I5(\counterY_RD_reg[8]_0 ),
         .O(addra[12]));
-  LUT3 #(
-    .INIT(8'h08)) 
+  LUT6 #(
+    .INIT(64'h4440444444444444)) 
     cleanX_toggle_i_1
-       (.I0(\state_fsm_main[0]_i_3_n_0 ),
+       (.I0(cleanX_toggle_reg_n_0),
         .I1(rstn),
-        .I2(cleanX_toggle_reg_n_0),
+        .I2(\counterX_CLEAN_reg_n_0_[8] ),
+        .I3(\counterX_CLEAN_reg_n_0_[7] ),
+        .I4(\counterX_CLEAN_reg_n_0_[9] ),
+        .I5(addrAddClean_r_reg_i_25_n_0),
         .O(cleanX_toggle_i_1_n_0));
   FDRE cleanX_toggle_reg
        (.C(clk),
@@ -2925,44 +3094,44 @@ module design_1_hdmiIP_0_0_hdmiController
         .D(cleanX_toggle_i_1_n_0),
         .Q(cleanX_toggle_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \counterDiv_X[0]_i_1 
        (.I0(counterDiv_X[0]),
         .O(\counterDiv_X[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \counterDiv_X[1]_i_1 
        (.I0(counterDiv_X[0]),
         .I1(counterDiv_X[1]),
         .O(\counterDiv_X[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
-    .INIT(8'h78)) 
+    .INIT(8'h6A)) 
     \counterDiv_X[2]_i_1 
-       (.I0(counterDiv_X[0]),
-        .I1(counterDiv_X[1]),
-        .I2(counterDiv_X[2]),
+       (.I0(counterDiv_X[2]),
+        .I1(counterDiv_X[0]),
+        .I2(counterDiv_X[1]),
         .O(\counterDiv_X[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h6AAA)) 
     \counterDiv_X[3]_i_1 
        (.I0(counterDiv_X[3]),
-        .I1(counterDiv_X[0]),
-        .I2(counterDiv_X[1]),
+        .I1(counterDiv_X[1]),
+        .I2(counterDiv_X[0]),
         .I3(counterDiv_X[2]),
         .O(\counterDiv_X[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \counterDiv_X[4]_i_1 
        (.I0(counterDiv_X[4]),
         .I1(counterDiv_X[2]),
-        .I2(counterDiv_X[1]),
-        .I3(counterDiv_X[0]),
+        .I2(counterDiv_X[0]),
+        .I3(counterDiv_X[1]),
         .I4(counterDiv_X[3]),
         .O(\counterDiv_X[4]_i_1_n_0 ));
   LUT2 #(
@@ -2975,10 +3144,10 @@ module design_1_hdmiIP_0_0_hdmiController
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \counterDiv_X[5]_i_2 
        (.I0(counterDiv_X[5]),
-        .I1(counterDiv_X[3]),
+        .I1(counterDiv_X[2]),
         .I2(counterDiv_X[0]),
         .I3(counterDiv_X[1]),
-        .I4(counterDiv_X[2]),
+        .I4(counterDiv_X[3]),
         .I5(counterDiv_X[4]),
         .O(\counterDiv_X[5]_i_2_n_0 ));
   FDRE \counterDiv_X_reg[0] 
@@ -3022,77 +3191,96 @@ module design_1_hdmiIP_0_0_hdmiController
     \counterDiv_Y[0]_i_1 
        (.I0(\counterDiv_Y_reg_n_0_[0] ),
         .O(\counterDiv_Y[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \counterDiv_Y[1]_i_1 
        (.I0(\counterDiv_Y_reg_n_0_[0] ),
         .I1(\counterDiv_Y_reg_n_0_[1] ),
         .O(\counterDiv_Y[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'h6A)) 
     \counterDiv_Y[2]_i_1 
        (.I0(\counterDiv_Y_reg_n_0_[2] ),
+        .I1(\counterDiv_Y_reg_n_0_[1] ),
+        .I2(\counterDiv_Y_reg_n_0_[0] ),
+        .O(\counterDiv_Y[2]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  LUT4 #(
+    .INIT(16'h6AAA)) 
+    \counterDiv_Y[3]_i_1 
+       (.I0(\counterDiv_Y_reg_n_0_[3] ),
         .I1(\counterDiv_Y_reg_n_0_[0] ),
         .I2(\counterDiv_Y_reg_n_0_[1] ),
-        .O(\counterDiv_Y[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h7F80)) 
-    \counterDiv_Y[3]_i_1 
-       (.I0(\counterDiv_Y_reg_n_0_[1] ),
-        .I1(\counterDiv_Y_reg_n_0_[0] ),
-        .I2(\counterDiv_Y_reg_n_0_[2] ),
-        .I3(\counterDiv_Y_reg_n_0_[3] ),
+        .I3(\counterDiv_Y_reg_n_0_[2] ),
         .O(\counterDiv_Y[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'h0FB0)) 
+  LUT6 #(
+    .INIT(64'h0FFFFFFFD0000000)) 
     \counterDiv_Y[4]_i_1 
-       (.I0(\counterDiv_Y_reg_n_0_[5] ),
-        .I1(\counterDiv_Y_reg_n_0_[6] ),
+       (.I0(\counterDiv_Y_reg_n_0_[6] ),
+        .I1(\counterDiv_Y_reg_n_0_[5] ),
         .I2(\counterDiv_Y[6]_i_3_n_0 ),
-        .I3(\counterDiv_Y_reg_n_0_[4] ),
+        .I3(\counterDiv_Y_reg_n_0_[3] ),
+        .I4(\counterDiv_Y_reg_n_0_[2] ),
+        .I5(\counterDiv_Y_reg_n_0_[4] ),
         .O(\counterDiv_Y[4]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'h6AAAAAAAAAAAAAAA)) 
     \counterDiv_Y[5]_i_1 
        (.I0(\counterDiv_Y_reg_n_0_[5] ),
-        .I1(\counterDiv_Y_reg_n_0_[3] ),
-        .I2(\counterDiv_Y_reg_n_0_[2] ),
-        .I3(\counterDiv_Y_reg_n_0_[0] ),
-        .I4(\counterDiv_Y_reg_n_0_[1] ),
+        .I1(\counterDiv_Y_reg_n_0_[1] ),
+        .I2(\counterDiv_Y_reg_n_0_[0] ),
+        .I3(\counterDiv_Y_reg_n_0_[3] ),
+        .I4(\counterDiv_Y_reg_n_0_[2] ),
         .I5(\counterDiv_Y_reg_n_0_[4] ),
         .O(\counterDiv_Y[5]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0001000000000000)) 
+    .INIT(64'h0000000000000010)) 
     \counterDiv_Y[6]_i_1 
        (.I0(\counterY_RD_reg[8]_0 ),
         .I1(state_fsm_read),
-        .I2(counterX_RD[8]),
-        .I3(counterX_RD[7]),
-        .I4(counterX_RD[9]),
+        .I2(counterX_RD[9]),
+        .I3(counterX_RD[8]),
+        .I4(counterX_RD[7]),
         .I5(\counterX_RD[9]_i_2_n_0 ),
         .O(counterDiv_Y));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
-  LUT4 #(
-    .INIT(16'h7B80)) 
+  LUT6 #(
+    .INIT(64'h464466668A88AAAA)) 
     \counterDiv_Y[6]_i_2 
-       (.I0(\counterDiv_Y_reg_n_0_[5] ),
-        .I1(\counterDiv_Y[6]_i_3_n_0 ),
-        .I2(\counterDiv_Y_reg_n_0_[4] ),
-        .I3(\counterDiv_Y_reg_n_0_[6] ),
+       (.I0(\counterDiv_Y_reg_n_0_[6] ),
+        .I1(\counterDiv_Y_reg_n_0_[5] ),
+        .I2(\counterDiv_Y[6]_i_3_n_0 ),
+        .I3(\counterDiv_Y_reg_n_0_[2] ),
+        .I4(\counterDiv_Y[6]_i_4_n_0 ),
+        .I5(\counterDiv_Y[6]_i_5_n_0 ),
         .O(\counterDiv_Y[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
-  LUT4 #(
-    .INIT(16'h8000)) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \counterDiv_Y[6]_i_3 
+       (.I0(\counterDiv_Y_reg_n_0_[0] ),
+        .I1(\counterDiv_Y_reg_n_0_[1] ),
+        .O(\counterDiv_Y[6]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT4 #(
+    .INIT(16'h0080)) 
+    \counterDiv_Y[6]_i_4 
        (.I0(\counterDiv_Y_reg_n_0_[3] ),
         .I1(\counterDiv_Y_reg_n_0_[2] ),
-        .I2(\counterDiv_Y_reg_n_0_[0] ),
-        .I3(\counterDiv_Y_reg_n_0_[1] ),
-        .O(\counterDiv_Y[6]_i_3_n_0 ));
+        .I2(\counterDiv_Y_reg_n_0_[1] ),
+        .I3(\counterDiv_Y_reg_n_0_[4] ),
+        .O(\counterDiv_Y[6]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  LUT5 #(
+    .INIT(32'h80000000)) 
+    \counterDiv_Y[6]_i_5 
+       (.I0(\counterDiv_Y_reg_n_0_[4] ),
+        .I1(\counterDiv_Y_reg_n_0_[2] ),
+        .I2(\counterDiv_Y_reg_n_0_[3] ),
+        .I3(\counterDiv_Y_reg_n_0_[0] ),
+        .I4(\counterDiv_Y_reg_n_0_[1] ),
+        .O(\counterDiv_Y[6]_i_5_n_0 ));
   FDRE \counterDiv_Y_reg[0] 
        (.C(clk),
         .CE(counterDiv_Y),
@@ -3214,52 +3402,51 @@ module design_1_hdmiIP_0_0_hdmiController
         .I2(counterX_RD[0]),
         .O(\counterX_RD[2]_i_1_n_0 ));
   LUT4 #(
-    .INIT(16'h7F80)) 
+    .INIT(16'h6AAA)) 
     \counterX_RD[3]_i_1 
-       (.I0(counterX_RD[0]),
-        .I1(counterX_RD[1]),
-        .I2(counterX_RD[2]),
-        .I3(counterX_RD[3]),
+       (.I0(counterX_RD[3]),
+        .I1(counterX_RD[0]),
+        .I2(counterX_RD[1]),
+        .I3(counterX_RD[2]),
         .O(\counterX_RD[3]_i_1_n_0 ));
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     \counterX_RD[4]_i_1 
        (.I0(counterX_RD[4]),
-        .I1(counterX_RD[0]),
-        .I2(counterX_RD[1]),
-        .I3(counterX_RD[2]),
-        .I4(counterX_RD[3]),
+        .I1(counterX_RD[3]),
+        .I2(counterX_RD[0]),
+        .I3(counterX_RD[1]),
+        .I4(counterX_RD[2]),
         .O(\counterX_RD[4]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h9999989999999999)) 
+    .INIT(64'h9999999999899999)) 
     \counterX_RD[5]_i_1 
        (.I0(counterX_RD[5]),
-        .I1(\counterX_RD[5]_i_2_n_0 ),
-        .I2(counterX_RD[6]),
-        .I3(counterX_RD[8]),
-        .I4(counterX_RD[7]),
-        .I5(counterX_RD[9]),
+        .I1(\counterX_RD[6]_i_2_n_0 ),
+        .I2(counterX_RD[9]),
+        .I3(counterX_RD[6]),
+        .I4(counterX_RD[8]),
+        .I5(counterX_RD[7]),
         .O(\counterX_RD[5]_i_1_n_0 ));
+  LUT3 #(
+    .INIT(8'h9A)) 
+    \counterX_RD[6]_i_1 
+       (.I0(counterX_RD[6]),
+        .I1(\counterX_RD[6]_i_2_n_0 ),
+        .I2(counterX_RD[5]),
+        .O(\counterX_RD[6]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
-    \counterX_RD[5]_i_2 
-       (.I0(counterX_RD[4]),
+    \counterX_RD[6]_i_2 
+       (.I0(counterX_RD[3]),
         .I1(counterX_RD[0]),
         .I2(counterX_RD[1]),
         .I3(counterX_RD[2]),
-        .I4(counterX_RD[3]),
-        .O(\counterX_RD[5]_i_2_n_0 ));
-  LUT4 #(
-    .INIT(16'h6AAA)) 
-    \counterX_RD[6]_i_1 
-       (.I0(counterX_RD[6]),
-        .I1(counterX_RD[4]),
-        .I2(\counterX_RD[7]_i_2_n_0 ),
-        .I3(counterX_RD[5]),
-        .O(\counterX_RD[6]_i_1_n_0 ));
+        .I4(counterX_RD[4]),
+        .O(\counterX_RD[6]_i_2_n_0 ));
   LUT5 #(
-    .INIT(32'h6AAAAAAA)) 
+    .INIT(32'hAAAA6AAA)) 
     \counterX_RD[7]_i_1 
        (.I0(counterX_RD[7]),
         .I1(counterX_RD[5]),
@@ -3269,35 +3456,35 @@ module design_1_hdmiIP_0_0_hdmiController
         .O(\counterX_RD[7]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
-    .INIT(16'h8000)) 
+    .INIT(16'h7FFF)) 
     \counterX_RD[7]_i_2 
-       (.I0(counterX_RD[3]),
-        .I1(counterX_RD[2]),
-        .I2(counterX_RD[1]),
-        .I3(counterX_RD[0]),
+       (.I0(counterX_RD[2]),
+        .I1(counterX_RD[1]),
+        .I2(counterX_RD[0]),
+        .I3(counterX_RD[3]),
         .O(\counterX_RD[7]_i_2_n_0 ));
   LUT6 #(
-    .INIT(64'h5FA053A05FA05FA0)) 
+    .INIT(64'hB484B4B4B4B4B4B4)) 
     \counterX_RD[8]_i_1 
        (.I0(\counterX_RD[9]_i_2_n_0 ),
-        .I1(counterX_RD[9]),
-        .I2(counterX_RD[7]),
-        .I3(counterX_RD[8]),
-        .I4(counterX_RD[6]),
+        .I1(counterX_RD[7]),
+        .I2(counterX_RD[8]),
+        .I3(counterX_RD[6]),
+        .I4(counterX_RD[9]),
         .I5(\counterX_RD[9]_i_3_n_0 ),
         .O(\counterX_RD[8]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h7F8075807F807F80)) 
+    .INIT(64'hA6AAA6AAA622A6AA)) 
     \counterX_RD[9]_i_1 
-       (.I0(counterX_RD[8]),
-        .I1(\counterX_RD[9]_i_2_n_0 ),
-        .I2(counterX_RD[7]),
-        .I3(counterX_RD[9]),
-        .I4(counterX_RD[6]),
-        .I5(\counterX_RD[9]_i_3_n_0 ),
+       (.I0(counterX_RD[9]),
+        .I1(counterX_RD[8]),
+        .I2(\counterX_RD[9]_i_2_n_0 ),
+        .I3(counterX_RD[7]),
+        .I4(\counterX_RD[9]_i_3_n_0 ),
+        .I5(counterX_RD[6]),
         .O(\counterX_RD[9]_i_1_n_0 ));
   LUT4 #(
-    .INIT(16'h8000)) 
+    .INIT(16'hBFFF)) 
     \counterX_RD[9]_i_2 
        (.I0(\counterX_RD[7]_i_2_n_0 ),
         .I1(counterX_RD[6]),
@@ -3308,11 +3495,11 @@ module design_1_hdmiIP_0_0_hdmiController
     .INIT(64'h4000000000000000)) 
     \counterX_RD[9]_i_3 
        (.I0(counterX_RD[5]),
-        .I1(counterX_RD[3]),
+        .I1(counterX_RD[4]),
         .I2(counterX_RD[2]),
         .I3(counterX_RD[1]),
         .I4(counterX_RD[0]),
-        .I5(counterX_RD[4]),
+        .I5(counterX_RD[3]),
         .O(\counterX_RD[9]_i_3_n_0 ));
   FDRE \counterX_RD_reg[0] 
        (.C(clk),
@@ -3620,13 +3807,13 @@ module design_1_hdmiIP_0_0_hdmiController
         .RSTP(1'b0),
         .UNDERFLOW(NLW_counter_RD_UNDERFLOW_UNCONNECTED));
   LUT6 #(
-    .INIT(64'h0000080000000000)) 
+    .INIT(64'h0020000000000000)) 
     counter_RD_i_1
        (.I0(\counterX_RD[9]_i_3_n_0 ),
-        .I1(counterX_RD[9]),
-        .I2(counterX_RD[7]),
-        .I3(counterX_RD[8]),
-        .I4(counterX_RD[6]),
+        .I1(counterX_RD[7]),
+        .I2(counterX_RD[8]),
+        .I3(counterX_RD[6]),
+        .I4(counterX_RD[9]),
         .I5(state_fsm_read),
         .O(CEB2));
   LUT1 #(
@@ -3634,66 +3821,67 @@ module design_1_hdmiIP_0_0_hdmiController
     counter_RD_i_10
        (.I0(counterY_RD_reg[0]),
         .O(counter_RD_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
+  LUT4 #(
+    .INIT(16'h8000)) 
     counter_RD_i_11
        (.I0(counterY_RD_reg[3]),
-        .I1(counterY_RD_reg[0]),
-        .I2(counterY_RD_reg[1]),
-        .I3(counterY_RD_reg[2]),
-        .I4(counterY_RD_reg[4]),
+        .I1(counterY_RD_reg[2]),
+        .I2(counterY_RD_reg[0]),
+        .I3(counterY_RD_reg[1]),
         .O(counter_RD_i_11_n_0));
-  LUT5 #(
-    .INIT(32'h9AAAAAAA)) 
+  LUT6 #(
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     counter_RD_i_2
        (.I0(counterY_RD_reg[8]),
-        .I1(counter_RD_i_11_n_0),
-        .I2(counterY_RD_reg[5]),
-        .I3(counterY_RD_reg[6]),
-        .I4(counterY_RD_reg[7]),
+        .I1(counterY_RD_reg[5]),
+        .I2(counterY_RD_reg[6]),
+        .I3(counterY_RD_reg[7]),
+        .I4(counterY_RD_reg[4]),
+        .I5(counter_RD_i_11_n_0),
         .O(counter_RD_i_2_n_0));
-  LUT4 #(
-    .INIT(16'h9AAA)) 
+  LUT5 #(
+    .INIT(32'h6AAAAAAA)) 
     counter_RD_i_3
        (.I0(counterY_RD_reg[7]),
-        .I1(counter_RD_i_11_n_0),
-        .I2(counterY_RD_reg[6]),
-        .I3(counterY_RD_reg[5]),
+        .I1(counterY_RD_reg[6]),
+        .I2(counterY_RD_reg[5]),
+        .I3(counterY_RD_reg[4]),
+        .I4(counter_RD_i_11_n_0),
         .O(counter_RD_i_3_n_0));
-  LUT3 #(
-    .INIT(8'h9A)) 
+  LUT4 #(
+    .INIT(16'h6AAA)) 
     counter_RD_i_4
        (.I0(counterY_RD_reg[6]),
-        .I1(counter_RD_i_11_n_0),
-        .I2(counterY_RD_reg[5]),
+        .I1(counterY_RD_reg[4]),
+        .I2(counter_RD_i_11_n_0),
+        .I3(counterY_RD_reg[5]),
         .O(counter_RD_i_4_n_0));
   LUT6 #(
-    .INIT(64'h7FFFFFFF80000000)) 
+    .INIT(64'h6AAAAAAAAAAAAAAA)) 
     counter_RD_i_5
-       (.I0(counterY_RD_reg[3]),
-        .I1(counterY_RD_reg[0]),
-        .I2(counterY_RD_reg[1]),
-        .I3(counterY_RD_reg[2]),
-        .I4(counterY_RD_reg[4]),
-        .I5(counterY_RD_reg[5]),
+       (.I0(counterY_RD_reg[5]),
+        .I1(counterY_RD_reg[3]),
+        .I2(counterY_RD_reg[2]),
+        .I3(counterY_RD_reg[0]),
+        .I4(counterY_RD_reg[1]),
+        .I5(counterY_RD_reg[4]),
         .O(counter_RD_i_5_n_0));
   LUT5 #(
     .INIT(32'h6AAAAAAA)) 
     counter_RD_i_6
        (.I0(counterY_RD_reg[4]),
-        .I1(counterY_RD_reg[2]),
-        .I2(counterY_RD_reg[1]),
-        .I3(counterY_RD_reg[0]),
+        .I1(counterY_RD_reg[1]),
+        .I2(counterY_RD_reg[0]),
+        .I3(counterY_RD_reg[2]),
         .I4(counterY_RD_reg[3]),
         .O(counter_RD_i_6_n_0));
   LUT4 #(
-    .INIT(16'h6AAA)) 
+    .INIT(16'h7F80)) 
     counter_RD_i_7
-       (.I0(counterY_RD_reg[3]),
+       (.I0(counterY_RD_reg[1]),
         .I1(counterY_RD_reg[0]),
-        .I2(counterY_RD_reg[1]),
-        .I3(counterY_RD_reg[2]),
+        .I2(counterY_RD_reg[2]),
+        .I3(counterY_RD_reg[3]),
         .O(counter_RD_i_7_n_0));
   LUT3 #(
     .INIT(8'h6A)) 
@@ -3708,38 +3896,38 @@ module design_1_hdmiIP_0_0_hdmiController
        (.I0(counterY_RD_reg[1]),
         .I1(counterY_RD_reg[0]),
         .O(counter_RD_i_9_n_0));
-  LUT5 #(
-    .INIT(32'h000022F2)) 
-    \state_fsm_main[0]_i_1 
-       (.I0(\state_fsm_main[0]_i_2_n_0 ),
-        .I1(\state_fsm_main[0]_i_3_n_0 ),
-        .I2(\state_fsm_main_reg_n_0_[0] ),
-        .I3(\state_fsm_main_reg_n_0_[1] ),
-        .I4(\state_fsm_main[1]_i_2_n_0 ),
-        .O(\state_fsm_main[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'h0100000000000000)) 
-    \state_fsm_main[0]_i_2 
-       (.I0(addrAddClean_r_reg_i_27_n_0),
-        .I1(counterY_CLEAN_reg[5]),
-        .I2(\state_fsm_main_reg_n_0_[1] ),
-        .I3(counterY_CLEAN_reg[6]),
-        .I4(counterY_CLEAN_reg[7]),
-        .I5(counterY_CLEAN_reg[8]),
-        .O(\state_fsm_main[0]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFFFFFDFFF)) 
-    \state_fsm_main[0]_i_3 
-       (.I0(\counterX_CLEAN_reg_n_0_[6] ),
-        .I1(addrAddClean_r_reg_i_28_n_0),
-        .I2(\counterX_CLEAN_reg_n_0_[5] ),
-        .I3(\counterX_CLEAN_reg_n_0_[9] ),
-        .I4(\counterX_CLEAN_reg_n_0_[7] ),
-        .I5(\counterX_CLEAN_reg_n_0_[8] ),
-        .O(\state_fsm_main[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'hAABA)) 
+    \state_fsm_main[0]_i_1 
+       (.I0(\state_fsm_main[0]_i_2_n_0 ),
+        .I1(\state_fsm_main[1]_i_2_n_0 ),
+        .I2(\state_fsm_main_reg_n_0_[0] ),
+        .I3(\state_fsm_main_reg_n_0_[1] ),
+        .O(\state_fsm_main[0]_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000080000000)) 
+    \state_fsm_main[0]_i_2 
+       (.I0(addrAddClean_r_reg_i_29_n_0),
+        .I1(is_state_main_S_CLEAN),
+        .I2(counterY_CLEAN_reg[7]),
+        .I3(counterY_CLEAN_reg[8]),
+        .I4(counterY_CLEAN_reg[6]),
+        .I5(\state_fsm_main[0]_i_3_n_0 ),
+        .O(\state_fsm_main[0]_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hBFFFFFFFFFFFFFFF)) 
+    \state_fsm_main[0]_i_3 
+       (.I0(counterY_CLEAN_reg[5]),
+        .I1(counterY_CLEAN_reg[4]),
+        .I2(counterY_CLEAN_reg[2]),
+        .I3(counterY_CLEAN_reg[1]),
+        .I4(counterY_CLEAN_reg[0]),
+        .I5(counterY_CLEAN_reg[3]),
+        .O(\state_fsm_main[0]_i_3_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  LUT4 #(
+    .INIT(16'h0A30)) 
     \state_fsm_main[1]_i_1 
        (.I0(\state_fsm_main[1]_i_2_n_0 ),
         .I1(\state_fsm_main[1]_i_3_n_0 ),
@@ -3747,14 +3935,14 @@ module design_1_hdmiIP_0_0_hdmiController
         .I3(\state_fsm_main_reg_n_0_[0] ),
         .O(\state_fsm_main[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000020)) 
+    .INIT(64'h0000000000000080)) 
     \state_fsm_main[1]_i_2 
-       (.I0(addrAdd_r_reg_i_16_n_0),
-        .I1(addrAdd_r_reg_i_14_n_0),
-        .I2(is_state_main_S_WRITE),
-        .I3(\state_fsm_main[1]_i_4_n_0 ),
-        .I4(\addrWR_ready_counter_reg_n_0_[8] ),
-        .I5(\addrWR_ready_counter_reg_n_0_[0] ),
+       (.I0(addrAdd_r_reg_i_15_n_0),
+        .I1(\addrWR_ready_counter_reg_n_0_[9] ),
+        .I2(\addrWR_ready_counter_reg_n_0_[7] ),
+        .I3(\addrWR_ready_counter_reg_n_0_[8] ),
+        .I4(\addrWR_ready_counter_reg_n_0_[0] ),
+        .I5(\state_fsm_main[1]_i_4_n_0 ),
         .O(\state_fsm_main[1]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h0000040000000000)) 
@@ -3766,12 +3954,12 @@ module design_1_hdmiIP_0_0_hdmiController
         .I4(counterY_RD_reg[4]),
         .I5(counterY_RD_reg[1]),
         .O(\state_fsm_main[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \state_fsm_main[1]_i_4 
-       (.I0(\addrWR_ready_counter_reg_n_0_[7] ),
-        .I1(\addrWR_ready_counter_reg_n_0_[9] ),
+       (.I0(\addrWR_ready_counter_reg_n_0_[1] ),
+        .I1(\addrWR_ready_counter_reg_n_0_[2] ),
         .O(\state_fsm_main[1]_i_4_n_0 ));
   FDRE \state_fsm_main_reg[0] 
        (.C(clk),
@@ -4082,7 +4270,7 @@ module design_1_hdmiIP_0_0_hdmiIP
   input [15:0]val;
   input lopt;
 
-  wire [5:5]TMDS0;
+  wire [7:2]TMDS0;
   wire TMDSclk;
   wire [2:0]TMDSn;
   wire TMDSn_clk;
@@ -4105,10 +4293,14 @@ module design_1_hdmiIP_0_0_hdmiIP
   wire controller_n_47;
   wire controller_n_48;
   wire controller_n_49;
-  wire controller_n_50;
-  wire controller_n_51;
+  wire controller_n_52;
   wire controller_n_53;
+  wire controller_n_55;
   wire controller_n_56;
+  wire controller_n_57;
+  wire controller_n_58;
+  wire controller_n_59;
+  wire controller_n_60;
   wire \counter[0]_i_1_n_0 ;
   wire \counter[0]_i_3_n_0 ;
   wire [12:0]counter_reg;
@@ -4141,6 +4333,8 @@ module design_1_hdmiIP_0_0_hdmiIP
   wire en1;
   wire [3:3]\encode_B/balance_acc ;
   wire [3:3]\encode_R/balance_acc ;
+  wire interface_n_11;
+  wire interface_n_9;
   wire lopt;
   wire pixclk;
   wire rd0;
@@ -4223,25 +4417,29 @@ module design_1_hdmiIP_0_0_hdmiIP
         .resetn(rstn));
   design_1_hdmiIP_0_0_hdmiController controller
        (.CLK(clkWR),
-        .D({controller_n_45,controller_n_46,controller_n_47,controller_n_48,controller_n_49}),
+        .D(controller_n_44),
         .Q(\encode_B/balance_acc ),
         .SR(rst),
-        .\TMDS_reg[5] (\encode_R/balance_acc ),
-        .\TMDS_reg[8] (rd0),
+        .\TMDS_reg[0] (interface_n_9),
+        .\TMDS_reg[3] (\encode_R/balance_acc ),
+        .\TMDS_reg[3]_0 (interface_n_11),
+        .\TMDS_reg[8] (rd1),
         .addrSel(addrSel),
-        .addrSel_reg_0(we1),
+        .addrSel_reg_0(controller_n_45),
+        .addrSel_reg_1(we1),
         .addra(addrB1),
-        .\balance_acc_reg[3] (TMDS0),
+        .\balance_acc_reg[3] ({controller_n_46,controller_n_47,controller_n_48,controller_n_49}),
         .\balance_acc_reg[3]_0 (controller_n_56),
         .clk(clk),
-        .\counterDiv_X_reg[3]_0 (controller_n_50),
-        .\counterX_RD_reg[9]_0 (controller_n_44),
-        .\counterY_RD_reg[4]_0 (controller_n_51),
-        .\counterY_RD_reg[4]_1 (controller_n_53),
+        .\counterDiv_X_reg[4]_0 ({TMDS0[7],TMDS0[5],controller_n_52,controller_n_53,TMDS0[2],controller_n_55}),
+        .\counterDiv_X_reg[4]_1 (controller_n_58),
+        .\counterDiv_X_reg[4]_2 (controller_n_60),
+        .\counterY_RD_reg[6]_0 (controller_n_59),
+        .\counterY_RD_reg[7]_0 (controller_n_57),
         .\counterY_RD_reg[8]_0 (controller_n_2),
         .counter_RD_0(addrB0),
         .dina(wd),
-        .douta(rd1),
+        .douta(rd0),
         .ena(en1),
         .rstn(rstn),
         .state_fsm_read_reg_0(en0),
@@ -4366,23 +4564,27 @@ module design_1_hdmiIP_0_0_hdmiIP
         .Q(counter_reg[9]),
         .R(\counter[0]_i_1_n_0 ));
   design_1_hdmiIP_0_0_hdmiInterface interface
-       (.D(TMDS0),
+       (.D({controller_n_46,controller_n_47,controller_n_48,controller_n_49}),
         .Q(\encode_R/balance_acc ),
-        .\TMDS_reg[8] (controller_n_44),
-        .\TMDS_reg[8]_0 (controller_n_53),
-        .\TMDS_reg[9] (controller_n_2),
-        .\TMDS_reg[9]_0 (rd1),
-        .\TMDS_reg[9]_1 ({controller_n_45,controller_n_46,controller_n_47,controller_n_48,controller_n_49}),
-        .\TMDS_reg[9]_2 (controller_n_56),
+        .\TMDS_reg[7] ({TMDS0[7],TMDS0[5],controller_n_52,controller_n_53,TMDS0[2],controller_n_55}),
+        .\TMDS_reg[8] (controller_n_2),
+        .\TMDS_reg[8]_0 (controller_n_44),
+        .\TMDS_reg[8]_1 (controller_n_60),
+        .\TMDS_reg[9] (rd1),
         .TMDSclk(TMDSclk),
         .TMDSn(TMDSn),
         .TMDSn_clk(TMDSn_clk),
         .TMDSp(TMDSp),
         .TMDSp_clk(TMDSp_clk),
         .addrSel(addrSel),
-        .\balance_acc_reg[3] (\encode_B/balance_acc ),
-        .\balance_acc_reg[3]_0 (controller_n_50),
-        .\balance_acc_reg[3]_1 (controller_n_51),
+        .\balance_acc_reg[0] (controller_n_57),
+        .\balance_acc_reg[0]_0 (controller_n_58),
+        .\balance_acc_reg[1] (interface_n_11),
+        .\balance_acc_reg[1]_0 (controller_n_45),
+        .\balance_acc_reg[1]_1 (controller_n_59),
+        .\balance_acc_reg[2] (controller_n_56),
+        .\balance_acc_reg[3] (interface_n_9),
+        .\balance_acc_reg[3]_0 (\encode_B/balance_acc ),
         .douta(rd0),
         .pixclk(pixclk));
 endmodule
@@ -4395,54 +4597,61 @@ module design_1_hdmiIP_0_0_hdmiInterface
     TMDSn_clk,
     Q,
     \balance_acc_reg[3] ,
+    \balance_acc_reg[3]_0 ,
+    \balance_acc_reg[1] ,
     pixclk,
     TMDSclk,
+    \balance_acc_reg[1]_0 ,
     \TMDS_reg[8] ,
-    \TMDS_reg[9] ,
-    D,
-    \balance_acc_reg[3]_0 ,
-    \balance_acc_reg[3]_1 ,
+    \balance_acc_reg[1]_1 ,
+    \balance_acc_reg[0] ,
+    \balance_acc_reg[2] ,
+    \balance_acc_reg[0]_0 ,
     douta,
     addrSel,
-    \TMDS_reg[9]_0 ,
-    \TMDS_reg[9]_1 ,
-    \TMDS_reg[9]_2 ,
-    \TMDS_reg[8]_0 );
+    \TMDS_reg[9] ,
+    D,
+    \TMDS_reg[8]_0 ,
+    \TMDS_reg[7] ,
+    \TMDS_reg[8]_1 );
   output [2:0]TMDSp;
   output [2:0]TMDSn;
   output TMDSp_clk;
   output TMDSn_clk;
   output [0:0]Q;
-  output [0:0]\balance_acc_reg[3] ;
+  output \balance_acc_reg[3] ;
+  output [0:0]\balance_acc_reg[3]_0 ;
+  output \balance_acc_reg[1] ;
   input pixclk;
   input TMDSclk;
+  input \balance_acc_reg[1]_0 ;
   input \TMDS_reg[8] ;
-  input \TMDS_reg[9] ;
-  input [0:0]D;
-  input \balance_acc_reg[3]_0 ;
-  input \balance_acc_reg[3]_1 ;
+  input \balance_acc_reg[1]_1 ;
+  input \balance_acc_reg[0] ;
+  input \balance_acc_reg[2] ;
+  input \balance_acc_reg[0]_0 ;
   input [0:0]douta;
   input addrSel;
-  input [0:0]\TMDS_reg[9]_0 ;
-  input [4:0]\TMDS_reg[9]_1 ;
-  input \TMDS_reg[9]_2 ;
-  input \TMDS_reg[8]_0 ;
+  input [0:0]\TMDS_reg[9] ;
+  input [3:0]D;
+  input [0:0]\TMDS_reg[8]_0 ;
+  input [5:0]\TMDS_reg[7] ;
+  input \TMDS_reg[8]_1 ;
 
-  wire [0:0]D;
+  wire [3:0]D;
   wire [0:0]Q;
-  wire [9:0]TMDS;
+  wire [8:0]TMDS;
   wire [3:0]TMDS_mod10;
   wire \TMDS_mod10[0]_i_1_n_0 ;
   wire \TMDS_mod10[1]_i_1_n_0 ;
   wire \TMDS_mod10[2]_i_1_n_0 ;
   wire \TMDS_mod10[3]_i_1_n_0 ;
   wire \TMDS_mod10[3]_i_2_n_0 ;
+  wire [5:0]\TMDS_reg[7] ;
   wire \TMDS_reg[8] ;
-  wire \TMDS_reg[8]_0 ;
-  wire \TMDS_reg[9] ;
-  wire [0:0]\TMDS_reg[9]_0 ;
-  wire [4:0]\TMDS_reg[9]_1 ;
-  wire \TMDS_reg[9]_2 ;
+  wire [0:0]\TMDS_reg[8]_0 ;
+  wire \TMDS_reg[8]_1 ;
+  wire [0:0]\TMDS_reg[9] ;
   wire [0:0]TMDS_shift_blue;
   wire \TMDS_shift_blue[0]_i_1_n_0 ;
   wire \TMDS_shift_blue[1]_i_1_n_0 ;
@@ -4510,15 +4719,19 @@ module design_1_hdmiIP_0_0_hdmiInterface
   wire [2:0]TMDSp;
   wire TMDSp_clk;
   wire addrSel;
-  wire [0:0]\balance_acc_reg[3] ;
-  wire \balance_acc_reg[3]_0 ;
-  wire \balance_acc_reg[3]_1 ;
+  wire \balance_acc_reg[0] ;
+  wire \balance_acc_reg[0]_0 ;
+  wire \balance_acc_reg[1] ;
+  wire \balance_acc_reg[1]_0 ;
+  wire \balance_acc_reg[1]_1 ;
+  wire \balance_acc_reg[2] ;
+  wire \balance_acc_reg[3] ;
+  wire [0:0]\balance_acc_reg[3]_0 ;
   wire [0:0]douta;
   wire encode_B_n_1;
   wire encode_B_n_2;
   wire encode_B_n_3;
   wire encode_B_n_4;
-  wire encode_B_n_5;
   wire encode_G_n_0;
   wire encode_G_n_1;
   wire encode_G_n_2;
@@ -4561,20 +4774,20 @@ module design_1_hdmiIP_0_0_hdmiInterface
        (.I(\TMDS_shift_red_reg_n_0_[0] ),
         .O(TMDSp[2]),
         .OB(TMDSn[2]));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \TMDS_mod10[0]_i_1 
        (.I0(TMDS_mod10[0]),
         .O(\TMDS_mod10[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h6)) 
     \TMDS_mod10[1]_i_1 
        (.I0(TMDS_mod10[0]),
         .I1(TMDS_mod10[1]),
         .O(\TMDS_mod10[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'h78)) 
     \TMDS_mod10[2]_i_1 
@@ -4590,7 +4803,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I2(TMDS_mod10[3]),
         .I3(TMDS_mod10[0]),
         .O(\TMDS_mod10[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT4 #(
     .INIT(16'h7F80)) 
     \TMDS_mod10[3]_i_2 
@@ -4631,71 +4844,71 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .D(\TMDS_mod10[3]_i_2_n_0 ),
         .Q(TMDS_mod10[3]),
         .R(\TMDS_mod10[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[0]_i_1 
-       (.I0(encode_B_n_5),
+       (.I0(encode_B_n_4),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[1] ),
         .O(\TMDS_shift_blue[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[1]_i_1 
-       (.I0(encode_B_n_5),
+       (.I0(encode_B_n_4),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[2] ),
         .O(\TMDS_shift_blue[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[2]_i_1 
-       (.I0(encode_B_n_4),
+       (.I0(encode_B_n_3),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[3] ),
         .O(\TMDS_shift_blue[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[3]_i_1 
-       (.I0(encode_B_n_5),
+       (.I0(encode_B_n_4),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[4] ),
         .O(\TMDS_shift_blue[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[4]_i_1 
-       (.I0(encode_B_n_4),
+       (.I0(encode_B_n_3),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[5] ),
         .O(\TMDS_shift_blue[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[5]_i_1 
-       (.I0(encode_B_n_3),
+       (.I0(encode_B_n_4),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[6] ),
         .O(\TMDS_shift_blue[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[6]_i_1 
-       (.I0(encode_B_n_4),
+       (.I0(encode_B_n_3),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[7] ),
         .O(\TMDS_shift_blue[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[7]_i_1 
-       (.I0(encode_B_n_3),
+       (.I0(encode_B_n_4),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[8] ),
         .O(\TMDS_shift_blue[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_blue[8]_i_1 
@@ -4703,7 +4916,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_blue_reg_n_0_[9] ),
         .O(\TMDS_shift_blue[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_blue[9]_i_1 
@@ -4790,7 +5003,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .D(\TMDS_shift_blue[9]_i_1_n_0 ),
         .Q(\TMDS_shift_blue_reg_n_0_[9] ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[0]_i_1 
@@ -4798,7 +5011,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[1] ),
         .O(\TMDS_shift_green[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[1]_i_1 
@@ -4806,7 +5019,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[2] ),
         .O(\TMDS_shift_green[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[2]_i_1 
@@ -4814,7 +5027,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[3] ),
         .O(\TMDS_shift_green[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[3]_i_1 
@@ -4822,7 +5035,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[4] ),
         .O(\TMDS_shift_green[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[4]_i_1 
@@ -4830,7 +5043,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[5] ),
         .O(\TMDS_shift_green[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[5]_i_1 
@@ -4838,7 +5051,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[6] ),
         .O(\TMDS_shift_green[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[6]_i_1 
@@ -4846,7 +5059,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[7] ),
         .O(\TMDS_shift_green[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[7]_i_1 
@@ -4854,7 +5067,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[8] ),
         .O(\TMDS_shift_green[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_green[8]_i_1 
@@ -4862,7 +5075,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_green_reg_n_0_[9] ),
         .O(\TMDS_shift_green[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_green[9]_i_1 
@@ -4957,7 +5170,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .D(\TMDS_mod10[3]_i_1_n_0 ),
         .Q(TMDS_shift_load),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[0]_i_1 
@@ -4965,7 +5178,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[1] ),
         .O(\TMDS_shift_red[0]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[1]_i_1 
@@ -4973,7 +5186,7 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[2] ),
         .O(\TMDS_shift_red[1]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[2]_i_1 
@@ -4981,23 +5194,23 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[3] ),
         .O(\TMDS_shift_red[2]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[3]_i_1 
-       (.I0(TMDS[0]),
+       (.I0(TMDS[3]),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[4] ),
         .O(\TMDS_shift_red[3]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[4]_i_1 
-       (.I0(TMDS[2]),
+       (.I0(TMDS[4]),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[5] ),
         .O(\TMDS_shift_red[4]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[5]_i_1 
@@ -5005,23 +5218,23 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[6] ),
         .O(\TMDS_shift_red[5]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[6]_i_1 
-       (.I0(TMDS[2]),
+       (.I0(TMDS[4]),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[7] ),
         .O(\TMDS_shift_red[6]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[7]_i_1 
-       (.I0(TMDS[5]),
+       (.I0(TMDS[7]),
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[8] ),
         .O(\TMDS_shift_red[7]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \TMDS_shift_red[8]_i_1 
@@ -5029,12 +5242,12 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .I1(TMDS_shift_load),
         .I2(\TMDS_shift_red_reg_n_0_[9] ),
         .O(\TMDS_shift_red[8]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \TMDS_shift_red[9]_i_1 
        (.I0(TMDS_shift_load),
-        .I1(TMDS[9]),
+        .I1(TMDS[2]),
         .O(\TMDS_shift_red[9]_i_1_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
@@ -5117,32 +5330,34 @@ module design_1_hdmiIP_0_0_hdmiInterface
         .Q(\TMDS_shift_red_reg_n_0_[9] ),
         .R(1'b0));
   design_1_hdmiIP_0_0_encoder_TMDS encode_B
-       (.Q(\balance_acc_reg[3] ),
-        .\TMDS_reg[9]_0 ({encode_B_n_1,encode_B_n_2,encode_B_n_3,encode_B_n_4,encode_B_n_5}),
-        .\TMDS_reg[9]_1 (\TMDS_reg[9]_1 ),
-        .\balance_acc_reg[0]_0 (\TMDS_reg[9] ),
-        .\balance_acc_reg[3]_0 (\balance_acc_reg[3]_0 ),
-        .\balance_acc_reg[3]_1 (\balance_acc_reg[3]_1 ),
+       (.D(D),
+        .Q(\balance_acc_reg[3]_0 ),
+        .\TMDS_reg[9]_0 ({encode_B_n_1,encode_B_n_2,encode_B_n_3,encode_B_n_4}),
+        .\balance_acc_reg[0]_0 (\TMDS_reg[8] ),
         .pixclk(pixclk));
   design_1_hdmiIP_0_0_encoder_TMDS_0 encode_G
        (.Q({encode_G_n_0,encode_G_n_1}),
         .\TMDS_reg[2]_0 (encode_G_n_3),
-        .\TMDS_reg[8]_0 (\TMDS_reg[8] ),
+        .\TMDS_reg[8]_0 (\TMDS_reg[8]_0 ),
         .\TMDS_reg[9]_0 (encode_G_n_2),
-        .\TMDS_reg[9]_1 (\TMDS_reg[9] ),
-        .\TMDS_reg[9]_2 (\TMDS_reg[9]_0 ),
+        .\TMDS_reg[9]_1 (\TMDS_reg[8] ),
+        .\TMDS_reg[9]_2 (\TMDS_reg[9] ),
         .addrSel(addrSel),
+        .\balance_acc_reg[1]_0 (\balance_acc_reg[1]_0 ),
         .douta(douta),
         .pixclk(pixclk));
   design_1_hdmiIP_0_0_encoder_TMDS_1 encode_R
-       (.D(D),
-        .Q(Q),
-        .TMDS({TMDS[9:8],TMDS[5],TMDS[2],TMDS[0]}),
-        .\TMDS_reg[8]_0 (\TMDS_reg[8]_0 ),
-        .\TMDS_reg[9]_0 (\TMDS_reg[9] ),
-        .\TMDS_reg[9]_1 (\TMDS_reg[9]_2 ),
-        .\balance_acc_reg[3]_0 (\balance_acc_reg[3]_0 ),
-        .\balance_acc_reg[3]_1 (\balance_acc_reg[3]_1 ),
+       (.Q(Q),
+        .TMDS({TMDS[8:7],TMDS[5:2],TMDS[0]}),
+        .\TMDS_reg[7]_0 (\TMDS_reg[7] ),
+        .\TMDS_reg[8]_0 (\TMDS_reg[8] ),
+        .\TMDS_reg[8]_1 (\TMDS_reg[8]_1 ),
+        .\balance_acc_reg[0]_0 (\balance_acc_reg[0] ),
+        .\balance_acc_reg[0]_1 (\balance_acc_reg[0]_0 ),
+        .\balance_acc_reg[1]_0 (\balance_acc_reg[1] ),
+        .\balance_acc_reg[1]_1 (\balance_acc_reg[1]_1 ),
+        .\balance_acc_reg[2]_0 (\balance_acc_reg[2] ),
+        .\balance_acc_reg[3]_0 (\balance_acc_reg[3] ),
         .pixclk(pixclk));
 endmodule
 

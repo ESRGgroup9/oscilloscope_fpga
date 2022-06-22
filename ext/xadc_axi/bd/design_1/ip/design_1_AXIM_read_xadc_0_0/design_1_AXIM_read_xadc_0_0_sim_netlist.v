@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Mon Jun 20 15:51:56 2022
+// Date        : Mon Jun 20 15:51:55 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_AXIM_read_xadc_0_0/design_1_AXIM_read_xadc_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top design_1_AXIM_read_xadc_0_0 -prefix
+//               design_1_AXIM_read_xadc_0_0_ design_1_AXIM_read_xadc_0_0_sim_netlist.v
 // Design      : design_1_AXIM_read_xadc_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,203 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "design_1_AXIM_read_xadc_0_0,AXIM_read_xadc_v1,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "AXIM_read_xadc_v1,Vivado 2019.2" *) 
-(* NotValidForBitStream *)
-module design_1_AXIM_read_xadc_0_0
-   (val,
-    mst_exec_state,
-    eoc,
-    maxi_adc_aclk,
-    maxi_adc_aresetn,
-    maxi_adc_awaddr,
-    maxi_adc_awprot,
-    maxi_adc_awvalid,
-    maxi_adc_awready,
-    maxi_adc_wdata,
-    maxi_adc_wstrb,
-    maxi_adc_wvalid,
-    maxi_adc_wready,
-    maxi_adc_bresp,
-    maxi_adc_bvalid,
-    maxi_adc_bready,
-    maxi_adc_araddr,
-    maxi_adc_arprot,
-    maxi_adc_arvalid,
-    maxi_adc_arready,
-    maxi_adc_rdata,
-    maxi_adc_rresp,
-    maxi_adc_rvalid,
-    maxi_adc_rready);
-  output [15:0]val;
-  output [1:0]mst_exec_state;
-  output eoc;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 maxi_adc_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME maxi_adc_aclk, ASSOCIATED_BUSIF MAXI_ADC, ASSOCIATED_RESET maxi_adc_aresetn, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input maxi_adc_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 maxi_adc_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME maxi_adc_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input maxi_adc_aresetn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWADDR" *) output [31:0]maxi_adc_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWPROT" *) output [2:0]maxi_adc_awprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWVALID" *) output maxi_adc_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWREADY" *) input maxi_adc_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WDATA" *) output [31:0]maxi_adc_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WSTRB" *) output [3:0]maxi_adc_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WVALID" *) output maxi_adc_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WREADY" *) input maxi_adc_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BRESP" *) input [1:0]maxi_adc_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BVALID" *) input maxi_adc_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BREADY" *) output maxi_adc_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARADDR" *) output [31:0]maxi_adc_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARPROT" *) output [2:0]maxi_adc_arprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARVALID" *) output maxi_adc_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARREADY" *) input maxi_adc_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RDATA" *) input [31:0]maxi_adc_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RRESP" *) input [1:0]maxi_adc_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RVALID" *) input maxi_adc_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 5e+07, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output maxi_adc_rready;
-
-  wire \<const0> ;
-  wire \<const1> ;
-  wire eoc;
-  wire maxi_adc_aclk;
-  wire [16:6]\^maxi_adc_araddr ;
-  wire maxi_adc_aresetn;
-  wire maxi_adc_arready;
-  wire maxi_adc_arvalid;
-  wire maxi_adc_bready;
-  wire maxi_adc_bvalid;
-  wire [31:0]maxi_adc_rdata;
-  wire maxi_adc_rready;
-  wire maxi_adc_rvalid;
-  wire [1:0]mst_exec_state;
-
-  assign maxi_adc_araddr[31] = \<const0> ;
-  assign maxi_adc_araddr[30] = \<const1> ;
-  assign maxi_adc_araddr[29] = \<const0> ;
-  assign maxi_adc_araddr[28] = \<const0> ;
-  assign maxi_adc_araddr[27] = \<const0> ;
-  assign maxi_adc_araddr[26] = \<const0> ;
-  assign maxi_adc_araddr[25] = \<const1> ;
-  assign maxi_adc_araddr[24] = \<const1> ;
-  assign maxi_adc_araddr[23] = \<const1> ;
-  assign maxi_adc_araddr[22] = \<const1> ;
-  assign maxi_adc_araddr[21] = \<const0> ;
-  assign maxi_adc_araddr[20] = \<const0> ;
-  assign maxi_adc_araddr[19] = \<const0> ;
-  assign maxi_adc_araddr[18] = \<const0> ;
-  assign maxi_adc_araddr[17] = \<const0> ;
-  assign maxi_adc_araddr[16] = \^maxi_adc_araddr [16];
-  assign maxi_adc_araddr[15] = \<const0> ;
-  assign maxi_adc_araddr[14] = \<const0> ;
-  assign maxi_adc_araddr[13] = \<const0> ;
-  assign maxi_adc_araddr[12] = \<const0> ;
-  assign maxi_adc_araddr[11] = \<const0> ;
-  assign maxi_adc_araddr[10] = \<const0> ;
-  assign maxi_adc_araddr[9] = \^maxi_adc_araddr [6];
-  assign maxi_adc_araddr[8] = \<const0> ;
-  assign maxi_adc_araddr[7] = \<const0> ;
-  assign maxi_adc_araddr[6] = \^maxi_adc_araddr [6];
-  assign maxi_adc_araddr[5] = \<const0> ;
-  assign maxi_adc_araddr[4] = \^maxi_adc_araddr [6];
-  assign maxi_adc_araddr[3] = \^maxi_adc_araddr [6];
-  assign maxi_adc_araddr[2] = \<const0> ;
-  assign maxi_adc_araddr[1] = \<const0> ;
-  assign maxi_adc_araddr[0] = \<const0> ;
-  assign maxi_adc_arprot[2] = \<const0> ;
-  assign maxi_adc_arprot[1] = \<const0> ;
-  assign maxi_adc_arprot[0] = \<const1> ;
-  assign maxi_adc_awaddr[31] = \<const0> ;
-  assign maxi_adc_awaddr[30] = \<const1> ;
-  assign maxi_adc_awaddr[29] = \<const0> ;
-  assign maxi_adc_awaddr[28] = \<const0> ;
-  assign maxi_adc_awaddr[27] = \<const0> ;
-  assign maxi_adc_awaddr[26] = \<const0> ;
-  assign maxi_adc_awaddr[25] = \<const1> ;
-  assign maxi_adc_awaddr[24] = \<const1> ;
-  assign maxi_adc_awaddr[23] = \<const1> ;
-  assign maxi_adc_awaddr[22] = \<const1> ;
-  assign maxi_adc_awaddr[21] = \<const0> ;
-  assign maxi_adc_awaddr[20] = \<const0> ;
-  assign maxi_adc_awaddr[19] = \<const0> ;
-  assign maxi_adc_awaddr[18] = \<const0> ;
-  assign maxi_adc_awaddr[17] = \<const0> ;
-  assign maxi_adc_awaddr[16] = \<const0> ;
-  assign maxi_adc_awaddr[15] = \<const0> ;
-  assign maxi_adc_awaddr[14] = \<const0> ;
-  assign maxi_adc_awaddr[13] = \<const0> ;
-  assign maxi_adc_awaddr[12] = \<const0> ;
-  assign maxi_adc_awaddr[11] = \<const0> ;
-  assign maxi_adc_awaddr[10] = \<const0> ;
-  assign maxi_adc_awaddr[9] = \<const0> ;
-  assign maxi_adc_awaddr[8] = \<const0> ;
-  assign maxi_adc_awaddr[7] = \<const0> ;
-  assign maxi_adc_awaddr[6] = \<const0> ;
-  assign maxi_adc_awaddr[5] = \<const0> ;
-  assign maxi_adc_awaddr[4] = \<const0> ;
-  assign maxi_adc_awaddr[3] = \<const0> ;
-  assign maxi_adc_awaddr[2] = \<const0> ;
-  assign maxi_adc_awaddr[1] = \<const0> ;
-  assign maxi_adc_awaddr[0] = \<const0> ;
-  assign maxi_adc_awprot[2] = \<const0> ;
-  assign maxi_adc_awprot[1] = \<const0> ;
-  assign maxi_adc_awprot[0] = \<const0> ;
-  assign maxi_adc_awvalid = \<const0> ;
-  assign maxi_adc_wdata[31] = \<const1> ;
-  assign maxi_adc_wdata[30] = \<const0> ;
-  assign maxi_adc_wdata[29] = \<const1> ;
-  assign maxi_adc_wdata[28] = \<const0> ;
-  assign maxi_adc_wdata[27] = \<const1> ;
-  assign maxi_adc_wdata[26] = \<const0> ;
-  assign maxi_adc_wdata[25] = \<const1> ;
-  assign maxi_adc_wdata[24] = \<const0> ;
-  assign maxi_adc_wdata[23] = \<const0> ;
-  assign maxi_adc_wdata[22] = \<const0> ;
-  assign maxi_adc_wdata[21] = \<const0> ;
-  assign maxi_adc_wdata[20] = \<const0> ;
-  assign maxi_adc_wdata[19] = \<const0> ;
-  assign maxi_adc_wdata[18] = \<const0> ;
-  assign maxi_adc_wdata[17] = \<const0> ;
-  assign maxi_adc_wdata[16] = \<const0> ;
-  assign maxi_adc_wdata[15] = \<const0> ;
-  assign maxi_adc_wdata[14] = \<const0> ;
-  assign maxi_adc_wdata[13] = \<const0> ;
-  assign maxi_adc_wdata[12] = \<const0> ;
-  assign maxi_adc_wdata[11] = \<const0> ;
-  assign maxi_adc_wdata[10] = \<const0> ;
-  assign maxi_adc_wdata[9] = \<const0> ;
-  assign maxi_adc_wdata[8] = \<const0> ;
-  assign maxi_adc_wdata[7] = \<const0> ;
-  assign maxi_adc_wdata[6] = \<const0> ;
-  assign maxi_adc_wdata[5] = \<const0> ;
-  assign maxi_adc_wdata[4] = \<const0> ;
-  assign maxi_adc_wdata[3] = \<const0> ;
-  assign maxi_adc_wdata[2] = \<const0> ;
-  assign maxi_adc_wdata[1] = \<const0> ;
-  assign maxi_adc_wdata[0] = \<const0> ;
-  assign maxi_adc_wstrb[3] = \<const1> ;
-  assign maxi_adc_wstrb[2] = \<const1> ;
-  assign maxi_adc_wstrb[1] = \<const1> ;
-  assign maxi_adc_wstrb[0] = \<const1> ;
-  assign maxi_adc_wvalid = \<const0> ;
-  assign val[15:0] = maxi_adc_rdata[15:0];
-  GND GND
-       (.G(\<const0> ));
-  VCC VCC
-       (.P(\<const1> ));
-  design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1 inst
-       (.Q(mst_exec_state[1]),
-        .axi_arvalid_reg(maxi_adc_arvalid),
-        .axi_rready_reg(maxi_adc_rready),
-        .eoc(eoc),
-        .maxi_adc_aclk(maxi_adc_aclk),
-        .maxi_adc_araddr({\^maxi_adc_araddr [16],\^maxi_adc_araddr [6]}),
-        .maxi_adc_aresetn(maxi_adc_aresetn),
-        .maxi_adc_arready(maxi_adc_arready),
-        .maxi_adc_bready(maxi_adc_bready),
-        .maxi_adc_bvalid(maxi_adc_bvalid),
-        .maxi_adc_rdata(maxi_adc_rdata),
-        .maxi_adc_rvalid(maxi_adc_rvalid),
-        .mst_exec_state(mst_exec_state[0]));
-endmodule
-
-(* ORIG_REF_NAME = "AXIM_read_xadc_v1" *) 
 module design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1
    (Q,
     axi_rready_reg,
@@ -267,7 +70,6 @@ module design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1
         .mst_exec_state(mst_exec_state));
 endmodule
 
-(* ORIG_REF_NAME = "AXIM_read_xadc_v1_MAXI_ADC" *) 
 module design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC
    (Q,
     axi_rready_reg_0,
@@ -612,6 +414,202 @@ module design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC
         .D(start_single_read_i_1_n_0),
         .Q(start_single_read_reg_n_0),
         .R(\FSM_onehot_mst_exec_state[2]_i_1_n_0 ));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "design_1_AXIM_read_xadc_0_0,AXIM_read_xadc_v1,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "AXIM_read_xadc_v1,Vivado 2019.2" *) 
+(* NotValidForBitStream *)
+module design_1_AXIM_read_xadc_0_0
+   (val,
+    mst_exec_state,
+    eoc,
+    maxi_adc_aclk,
+    maxi_adc_aresetn,
+    maxi_adc_awaddr,
+    maxi_adc_awprot,
+    maxi_adc_awvalid,
+    maxi_adc_awready,
+    maxi_adc_wdata,
+    maxi_adc_wstrb,
+    maxi_adc_wvalid,
+    maxi_adc_wready,
+    maxi_adc_bresp,
+    maxi_adc_bvalid,
+    maxi_adc_bready,
+    maxi_adc_araddr,
+    maxi_adc_arprot,
+    maxi_adc_arvalid,
+    maxi_adc_arready,
+    maxi_adc_rdata,
+    maxi_adc_rresp,
+    maxi_adc_rvalid,
+    maxi_adc_rready);
+  output [15:0]val;
+  output [1:0]mst_exec_state;
+  output eoc;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 maxi_adc_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME maxi_adc_aclk, ASSOCIATED_BUSIF MAXI_ADC, ASSOCIATED_RESET maxi_adc_aresetn, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *) input maxi_adc_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 maxi_adc_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME maxi_adc_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input maxi_adc_aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWADDR" *) output [31:0]maxi_adc_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWPROT" *) output [2:0]maxi_adc_awprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWVALID" *) output maxi_adc_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC AWREADY" *) input maxi_adc_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WDATA" *) output [31:0]maxi_adc_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WSTRB" *) output [3:0]maxi_adc_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WVALID" *) output maxi_adc_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC WREADY" *) input maxi_adc_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BRESP" *) input [1:0]maxi_adc_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BVALID" *) input maxi_adc_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC BREADY" *) output maxi_adc_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARADDR" *) output [31:0]maxi_adc_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARPROT" *) output [2:0]maxi_adc_arprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARVALID" *) output maxi_adc_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC ARREADY" *) input maxi_adc_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RDATA" *) input [31:0]maxi_adc_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RRESP" *) input [1:0]maxi_adc_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RVALID" *) input maxi_adc_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 MAXI_ADC RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME MAXI_ADC, WIZ_DATA_WIDTH 32, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 5e+07, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output maxi_adc_rready;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire eoc;
+  wire maxi_adc_aclk;
+  wire [16:6]\^maxi_adc_araddr ;
+  wire maxi_adc_aresetn;
+  wire maxi_adc_arready;
+  wire maxi_adc_arvalid;
+  wire maxi_adc_bready;
+  wire maxi_adc_bvalid;
+  wire [31:0]maxi_adc_rdata;
+  wire maxi_adc_rready;
+  wire maxi_adc_rvalid;
+  wire [1:0]mst_exec_state;
+
+  assign maxi_adc_araddr[31] = \<const0> ;
+  assign maxi_adc_araddr[30] = \<const1> ;
+  assign maxi_adc_araddr[29] = \<const0> ;
+  assign maxi_adc_araddr[28] = \<const0> ;
+  assign maxi_adc_araddr[27] = \<const0> ;
+  assign maxi_adc_araddr[26] = \<const0> ;
+  assign maxi_adc_araddr[25] = \<const1> ;
+  assign maxi_adc_araddr[24] = \<const1> ;
+  assign maxi_adc_araddr[23] = \<const1> ;
+  assign maxi_adc_araddr[22] = \<const1> ;
+  assign maxi_adc_araddr[21] = \<const0> ;
+  assign maxi_adc_araddr[20] = \<const0> ;
+  assign maxi_adc_araddr[19] = \<const0> ;
+  assign maxi_adc_araddr[18] = \<const0> ;
+  assign maxi_adc_araddr[17] = \<const0> ;
+  assign maxi_adc_araddr[16] = \^maxi_adc_araddr [16];
+  assign maxi_adc_araddr[15] = \<const0> ;
+  assign maxi_adc_araddr[14] = \<const0> ;
+  assign maxi_adc_araddr[13] = \<const0> ;
+  assign maxi_adc_araddr[12] = \<const0> ;
+  assign maxi_adc_araddr[11] = \<const0> ;
+  assign maxi_adc_araddr[10] = \<const0> ;
+  assign maxi_adc_araddr[9] = \^maxi_adc_araddr [6];
+  assign maxi_adc_araddr[8] = \<const0> ;
+  assign maxi_adc_araddr[7] = \<const0> ;
+  assign maxi_adc_araddr[6] = \^maxi_adc_araddr [6];
+  assign maxi_adc_araddr[5] = \<const0> ;
+  assign maxi_adc_araddr[4] = \^maxi_adc_araddr [6];
+  assign maxi_adc_araddr[3] = \^maxi_adc_araddr [6];
+  assign maxi_adc_araddr[2] = \<const0> ;
+  assign maxi_adc_araddr[1] = \<const0> ;
+  assign maxi_adc_araddr[0] = \<const0> ;
+  assign maxi_adc_arprot[2] = \<const0> ;
+  assign maxi_adc_arprot[1] = \<const0> ;
+  assign maxi_adc_arprot[0] = \<const1> ;
+  assign maxi_adc_awaddr[31] = \<const0> ;
+  assign maxi_adc_awaddr[30] = \<const1> ;
+  assign maxi_adc_awaddr[29] = \<const0> ;
+  assign maxi_adc_awaddr[28] = \<const0> ;
+  assign maxi_adc_awaddr[27] = \<const0> ;
+  assign maxi_adc_awaddr[26] = \<const0> ;
+  assign maxi_adc_awaddr[25] = \<const1> ;
+  assign maxi_adc_awaddr[24] = \<const1> ;
+  assign maxi_adc_awaddr[23] = \<const1> ;
+  assign maxi_adc_awaddr[22] = \<const1> ;
+  assign maxi_adc_awaddr[21] = \<const0> ;
+  assign maxi_adc_awaddr[20] = \<const0> ;
+  assign maxi_adc_awaddr[19] = \<const0> ;
+  assign maxi_adc_awaddr[18] = \<const0> ;
+  assign maxi_adc_awaddr[17] = \<const0> ;
+  assign maxi_adc_awaddr[16] = \<const0> ;
+  assign maxi_adc_awaddr[15] = \<const0> ;
+  assign maxi_adc_awaddr[14] = \<const0> ;
+  assign maxi_adc_awaddr[13] = \<const0> ;
+  assign maxi_adc_awaddr[12] = \<const0> ;
+  assign maxi_adc_awaddr[11] = \<const0> ;
+  assign maxi_adc_awaddr[10] = \<const0> ;
+  assign maxi_adc_awaddr[9] = \<const0> ;
+  assign maxi_adc_awaddr[8] = \<const0> ;
+  assign maxi_adc_awaddr[7] = \<const0> ;
+  assign maxi_adc_awaddr[6] = \<const0> ;
+  assign maxi_adc_awaddr[5] = \<const0> ;
+  assign maxi_adc_awaddr[4] = \<const0> ;
+  assign maxi_adc_awaddr[3] = \<const0> ;
+  assign maxi_adc_awaddr[2] = \<const0> ;
+  assign maxi_adc_awaddr[1] = \<const0> ;
+  assign maxi_adc_awaddr[0] = \<const0> ;
+  assign maxi_adc_awprot[2] = \<const0> ;
+  assign maxi_adc_awprot[1] = \<const0> ;
+  assign maxi_adc_awprot[0] = \<const0> ;
+  assign maxi_adc_awvalid = \<const0> ;
+  assign maxi_adc_wdata[31] = \<const1> ;
+  assign maxi_adc_wdata[30] = \<const0> ;
+  assign maxi_adc_wdata[29] = \<const1> ;
+  assign maxi_adc_wdata[28] = \<const0> ;
+  assign maxi_adc_wdata[27] = \<const1> ;
+  assign maxi_adc_wdata[26] = \<const0> ;
+  assign maxi_adc_wdata[25] = \<const1> ;
+  assign maxi_adc_wdata[24] = \<const0> ;
+  assign maxi_adc_wdata[23] = \<const0> ;
+  assign maxi_adc_wdata[22] = \<const0> ;
+  assign maxi_adc_wdata[21] = \<const0> ;
+  assign maxi_adc_wdata[20] = \<const0> ;
+  assign maxi_adc_wdata[19] = \<const0> ;
+  assign maxi_adc_wdata[18] = \<const0> ;
+  assign maxi_adc_wdata[17] = \<const0> ;
+  assign maxi_adc_wdata[16] = \<const0> ;
+  assign maxi_adc_wdata[15] = \<const0> ;
+  assign maxi_adc_wdata[14] = \<const0> ;
+  assign maxi_adc_wdata[13] = \<const0> ;
+  assign maxi_adc_wdata[12] = \<const0> ;
+  assign maxi_adc_wdata[11] = \<const0> ;
+  assign maxi_adc_wdata[10] = \<const0> ;
+  assign maxi_adc_wdata[9] = \<const0> ;
+  assign maxi_adc_wdata[8] = \<const0> ;
+  assign maxi_adc_wdata[7] = \<const0> ;
+  assign maxi_adc_wdata[6] = \<const0> ;
+  assign maxi_adc_wdata[5] = \<const0> ;
+  assign maxi_adc_wdata[4] = \<const0> ;
+  assign maxi_adc_wdata[3] = \<const0> ;
+  assign maxi_adc_wdata[2] = \<const0> ;
+  assign maxi_adc_wdata[1] = \<const0> ;
+  assign maxi_adc_wdata[0] = \<const0> ;
+  assign maxi_adc_wstrb[3] = \<const1> ;
+  assign maxi_adc_wstrb[2] = \<const1> ;
+  assign maxi_adc_wstrb[1] = \<const1> ;
+  assign maxi_adc_wstrb[0] = \<const1> ;
+  assign maxi_adc_wvalid = \<const0> ;
+  assign val[15:0] = maxi_adc_rdata[15:0];
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1 inst
+       (.Q(mst_exec_state[1]),
+        .axi_arvalid_reg(maxi_adc_arvalid),
+        .axi_rready_reg(maxi_adc_rready),
+        .eoc(eoc),
+        .maxi_adc_aclk(maxi_adc_aclk),
+        .maxi_adc_araddr({\^maxi_adc_araddr [16],\^maxi_adc_araddr [6]}),
+        .maxi_adc_aresetn(maxi_adc_aresetn),
+        .maxi_adc_arready(maxi_adc_arready),
+        .maxi_adc_bready(maxi_adc_bready),
+        .maxi_adc_bvalid(maxi_adc_bvalid),
+        .maxi_adc_rdata(maxi_adc_rdata),
+        .maxi_adc_rvalid(maxi_adc_rvalid),
+        .mst_exec_state(mst_exec_state[0]));
 endmodule
 `ifndef GLBL
 `define GLBL

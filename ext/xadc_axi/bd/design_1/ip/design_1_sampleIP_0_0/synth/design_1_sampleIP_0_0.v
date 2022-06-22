@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:sampleIP:1.0
-// IP Revision: 12
+// IP Revision: 13
 
 (* X_CORE_INFO = "sampleIP,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_sampleIP_0_0,sampleIP,{}" *)

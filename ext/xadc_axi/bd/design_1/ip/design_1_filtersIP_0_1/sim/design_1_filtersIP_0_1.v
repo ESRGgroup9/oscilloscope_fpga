@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:filtersIP:1.0
-// IP Revision: 1
+// IP Revision: 11
 
 `timescale 1ns/1ps
 
@@ -61,10 +61,15 @@ module design_1_filtersIP_0_1 (
   filt_select,
   val,
   result,
-  done
+  done,
+  filt_start,
+  addr_bram_xant,
+  xant,
+  addr_bram_xcoefs,
+  xcoefs
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK1, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK1, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)
@@ -75,13 +80,19 @@ input wire [1 : 0] filt_select;
 input wire [15 : 0] val;
 output wire [15 : 0] result;
 output wire done;
+output wire filt_start;
+output wire [4 : 0] addr_bram_xant;
+output wire [15 : 0] xant;
+output wire [9 : 0] addr_bram_xcoefs;
+output wire [31 : 0] xcoefs;
 
   filters #(
     .M(23),
     .XADC_DATA_SIZE(16),
     .XANT_ADDR_SIZE(5),
     .XCOEF_DATA_SIZE(32),
-    .XCOEF_ADDR_SIZE(5)
+    .XCOEF_ADDR_SIZE(5),
+    .XCOEF_ADDR_SIZE_BRAM(10)
   ) inst (
     .clk(clk),
     .rstn(rstn),
@@ -89,6 +100,11 @@ output wire done;
     .filt_select(filt_select),
     .val(val),
     .result(result),
-    .done(done)
+    .done(done),
+    .filt_start(filt_start),
+    .addr_bram_xant(addr_bram_xant),
+    .xant(xant),
+    .addr_bram_xcoefs(addr_bram_xcoefs),
+    .xcoefs(xcoefs)
   );
 endmodule

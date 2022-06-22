@@ -47,7 +47,7 @@
 // DO NOT MODIFY THIS FILE.
 
 // IP VLNV: user.org:user:sampleIP:1.0
-// IP Revision: 10
+// IP Revision: 13
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -57,9 +57,9 @@
 sampleIP_0 your_instance_name (
   .clk(clk),                  // input wire clk
   .rstn(rstn),                // input wire rstn
-  .val(val),                  // input wire [16 : 0] val
+  .val(val),                  // input wire [15 : 0] val
   .sample(sample),            // output wire sample
-  .sampled_val(sampled_val)  // output wire [16 : 0] sampled_val
+  .sampled_val(sampled_val)  // output wire [15 : 0] sampled_val
 );
 // INST_TAG_END ------ End INSTANTIATION Template ---------
 

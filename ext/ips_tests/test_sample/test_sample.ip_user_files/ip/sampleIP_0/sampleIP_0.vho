@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: user.org:user:sampleIP:1.0
--- IP Revision: 10
+-- IP Revision: 13
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -56,9 +56,9 @@ COMPONENT sampleIP_0
   PORT (
     clk : IN STD_LOGIC;
     rstn : IN STD_LOGIC;
-    val : IN STD_LOGIC_VECTOR(16 DOWNTO 0);
+    val : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
     sample : OUT STD_LOGIC;
-    sampled_val : OUT STD_LOGIC_VECTOR(16 DOWNTO 0)
+    sampled_val : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
   );
 END COMPONENT;
 -- COMP_TAG_END ------ End COMPONENT Declaration ------------

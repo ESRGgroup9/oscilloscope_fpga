@@ -68,7 +68,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>cdea16b4</spirit:value>
+            <spirit:value>af6f3207</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -84,7 +84,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>cdea16b4</spirit:value>
+            <spirit:value>af6f3207</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -192,7 +192,7 @@
       <spirit:file>
         <spirit:name>src/sample.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_cdea16b4</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_af6f3207</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -250,8 +250,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>sampleIP</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>12</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-06-22T12:14:03Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>13</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2022-06-22T15:59:13Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@54efe3ba_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
@@ -352,12 +352,23 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5e0a7dcb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@41fbfdb4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@66ce68c4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ca04d1a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c99411d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fa1b1d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b56284e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f8006d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a5c724a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35300731_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79c41e6d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@505434a3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2720a817_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62e4d340_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="8586bdda"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="e776bd19"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="de0b13ac"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="cb235d2c"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="9e2831bd"/>
     </xilinx:packagingInfo>

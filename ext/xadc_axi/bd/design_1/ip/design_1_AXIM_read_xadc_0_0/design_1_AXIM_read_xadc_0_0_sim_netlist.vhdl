@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Mon Jun 20 15:51:56 2022
+-- Date        : Mon Jun 20 15:51:55 2022
 -- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_AXIM_read_xadc_0_0/design_1_AXIM_read_xadc_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_AXIM_read_xadc_0_0 -prefix
+--               design_1_AXIM_read_xadc_0_0_ design_1_AXIM_read_xadc_0_0_sim_netlist.vhdl
 -- Design      : design_1_AXIM_read_xadc_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -30,8 +30,6 @@ entity design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC is
     maxi_adc_bvalid : in STD_LOGIC;
     maxi_adc_arready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC : entity is "AXIM_read_xadc_v1_MAXI_ADC";
 end design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC;
 
 architecture STRUCTURE of design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1_MAXI_ADC is
@@ -468,8 +466,6 @@ entity design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1 is
     maxi_adc_bvalid : in STD_LOGIC;
     maxi_adc_arready : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1 : entity is "AXIM_read_xadc_v1";
 end design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1;
 
 architecture STRUCTURE of design_1_AXIM_read_xadc_0_0_AXIM_read_xadc_v1 is

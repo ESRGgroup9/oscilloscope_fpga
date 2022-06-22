@@ -112,11 +112,118 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 17:27:48 UTC 2022</spirit:value>
+            <spirit:value>Wed Jun 22 16:01:10 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:e63f241c</spirit:value>
+            <spirit:value>9:5a29a716</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>sampleIP</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 22 16:01:14 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:5a29a716</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_synthesisconstraints</spirit:name>
+        <spirit:displayName>Synthesis Constraints</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:5a29a716</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
+        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>sampleIP_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 22 16:01:14 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:5a29a716</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagebehavioralsimulation</spirit:name>
+        <spirit:displayName>Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:simulation</spirit:envIdentifier>
+        <spirit:modelName>sampleIP</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 22 16:01:14 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:fe0502df</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsimulationwrapper</spirit:name>
+        <spirit:displayName>Verilog Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>sampleIP_0</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 22 16:01:14 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:fe0502df</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_externalfiles</spirit:name>
+        <spirit:displayName>External Files</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:external.files</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_externalfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>GENtimestamp</spirit:name>
+            <spirit:value>Wed Jun 22 16:01:54 UTC 2022</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>9:5a29a716</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -129,7 +236,8 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>wire</spirit:typeName>
-              <spirit:viewNameRef>xilinx_veriloginstantiationtemplate</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -141,7 +249,8 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>wire</spirit:typeName>
-              <spirit:viewNameRef>xilinx_veriloginstantiationtemplate</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -151,13 +260,14 @@
         <spirit:wire>
           <spirit:direction>in</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">16</spirit:left>
+            <spirit:left spirit:format="long">15</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>wire</spirit:typeName>
-              <spirit:viewNameRef>xilinx_veriloginstantiationtemplate</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -169,7 +279,8 @@
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>reg</spirit:typeName>
-              <spirit:viewNameRef>xilinx_veriloginstantiationtemplate</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -179,13 +290,14 @@
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
           <spirit:vector>
-            <spirit:left spirit:format="long">16</spirit:left>
+            <spirit:left spirit:format="long">15</spirit:left>
             <spirit:right spirit:format="long">0</spirit:right>
           </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
               <spirit:typeName>reg</spirit:typeName>
-              <spirit:viewNameRef>xilinx_veriloginstantiationtemplate</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
           </spirit:wireTypeDefs>
         </spirit:wire>
@@ -211,6 +323,72 @@
         <spirit:userFileType>verilogTemplate</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/sample.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/sampleIP_0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagebehavioralsimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>src/sample.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>sim/sampleIP_0.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_externalfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>sampleIP_0.dcp</spirit:name>
+        <spirit:userFileType>dcp</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>sampleIP_0_stub.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>sampleIP_0_stub.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>sampleIP_0_sim_netlist.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>sampleIP_0_sim_netlist.vhdl</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_single_language</spirit:userFileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
   </spirit:fileSets>
   <spirit:description>sampleIP</spirit:description>
   <spirit:parameters>
@@ -223,7 +401,7 @@
     <xilinx:coreExtensions>
       <xilinx:displayName>sampleIP</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>10</xilinx:coreRevision>
+      <xilinx:coreRevision>13</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@54efe3ba_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
@@ -301,13 +479,47 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@216e6688_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1d9c097a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@8268e56_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d883e9c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@22dfde61_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@163ec405_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@34e5470a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1e6151f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f68ef3f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@470f990b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30b5416e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3c34312_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11dbafed_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7bf1e8ca_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77e65ed4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31c4523d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2407538f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ceae1b7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@628a263b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c91371d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5eabc266_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d91458c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@99bdf15_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e0a7dcb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41fbfdb4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66ce68c4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7ca04d1a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5c99411d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fa1b1d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b56284e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6f8006d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3a5c724a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@35300731_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79c41e6d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@505434a3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2720a817_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62e4d340_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="8586bdda"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="68b6fcf1"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="1251d431"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="de0b13ac"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="cb235d2c"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="9e2831bd"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

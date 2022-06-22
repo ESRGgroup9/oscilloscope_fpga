@@ -59,7 +59,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./code/oscilloscope_fpga/ext/xadc_axi/bd
+  set origin_dir ./bd
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -195,6 +195,11 @@ proc create_root_design { parentCell } {
 
   # Create instance: filtersIP_0, and set properties
   set filtersIP_0 [ create_bd_cell -type ip -vlnv user.org:user:filtersIP:1.0 filtersIP_0 ]
+  set_property -dict [ list \
+   CONFIG.M {23} \
+   CONFIG.XANT_ADDR_SIZE {5} \
+   CONFIG.XCOEF_ADDR_SIZE {5} \
+ ] $filtersIP_0
 
   # Create instance: hdmiIP_0, and set properties
   set hdmiIP_0 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_0 ]

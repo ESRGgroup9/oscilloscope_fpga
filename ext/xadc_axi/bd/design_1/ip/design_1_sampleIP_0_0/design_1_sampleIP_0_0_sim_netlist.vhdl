@@ -1,7 +1,7 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Wed Jun 22 13:15:00 2022
+-- Date        : Wed Jun 22 17:00:44 2022
 -- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_sampleIP_0_0/design_1_sampleIP_0_0_sim_netlist.vhdl
@@ -345,10 +345,10 @@ sample_reg: unisim.vcomponents.FDRE
       INIT => X"FFFE"
     )
         port map (
-      I0 => counter_reg(3),
-      I1 => counter_reg(2),
-      I2 => counter_reg(7),
-      I3 => counter_reg(5),
+      I0 => counter_reg(5),
+      I1 => counter_reg(4),
+      I2 => counter_reg(10),
+      I3 => counter_reg(6),
       O => \sampled_val[15]_i_3_n_0\
     );
 \sampled_val[15]_i_4\: unisim.vcomponents.LUT4
@@ -356,21 +356,21 @@ sample_reg: unisim.vcomponents.FDRE
       INIT => X"0001"
     )
         port map (
-      I0 => counter_reg(13),
-      I1 => counter_reg(12),
-      I2 => counter_reg(11),
-      I3 => counter_reg(10),
+      I0 => counter_reg(14),
+      I1 => counter_reg(15),
+      I2 => counter_reg(13),
+      I3 => counter_reg(11),
       O => \sampled_val[15]_i_4_n_0\
     );
 \sampled_val[15]_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"1000"
+      INIT => X"0010"
     )
         port map (
-      I0 => counter_reg(1),
-      I1 => counter_reg(0),
-      I2 => counter_reg(14),
-      I3 => counter_reg(15),
+      I0 => counter_reg(2),
+      I1 => counter_reg(1),
+      I2 => counter_reg(12),
+      I3 => counter_reg(0),
       O => \sampled_val[15]_i_5_n_0\
     );
 \sampled_val[15]_i_6\: unisim.vcomponents.LUT4
@@ -378,8 +378,8 @@ sample_reg: unisim.vcomponents.FDRE
       INIT => X"8000"
     )
         port map (
-      I0 => counter_reg(6),
-      I1 => counter_reg(4),
+      I0 => counter_reg(7),
+      I1 => counter_reg(3),
       I2 => counter_reg(9),
       I3 => counter_reg(8),
       O => \sampled_val[15]_i_6_n_0\

@@ -44,6 +44,15 @@ proc validate_PARAM_VALUE.XCOEF_ADDR_SIZE { PARAM_VALUE.XCOEF_ADDR_SIZE } {
 	return true
 }
 
+proc update_PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM { PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM } {
+	# Procedure called to update XCOEF_ADDR_SIZE_BRAM when any of the dependent parameters in the arguments change
+}
+
+proc validate_PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM { PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM } {
+	# Procedure called to validate XCOEF_ADDR_SIZE_BRAM
+	return true
+}
+
 proc update_PARAM_VALUE.XCOEF_DATA_SIZE { PARAM_VALUE.XCOEF_DATA_SIZE } {
 	# Procedure called to update XCOEF_DATA_SIZE when any of the dependent parameters in the arguments change
 }
@@ -77,5 +86,10 @@ proc update_MODELPARAM_VALUE.XCOEF_DATA_SIZE { MODELPARAM_VALUE.XCOEF_DATA_SIZE 
 proc update_MODELPARAM_VALUE.XCOEF_ADDR_SIZE { MODELPARAM_VALUE.XCOEF_ADDR_SIZE PARAM_VALUE.XCOEF_ADDR_SIZE } {
 	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
 	set_property value [get_property value ${PARAM_VALUE.XCOEF_ADDR_SIZE}] ${MODELPARAM_VALUE.XCOEF_ADDR_SIZE}
+}
+
+proc update_MODELPARAM_VALUE.XCOEF_ADDR_SIZE_BRAM { MODELPARAM_VALUE.XCOEF_ADDR_SIZE_BRAM PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM } {
+	# Procedure called to set VHDL generic/Verilog parameter value(s) based on TCL parameter value
+	set_property value [get_property value ${PARAM_VALUE.XCOEF_ADDR_SIZE_BRAM}] ${MODELPARAM_VALUE.XCOEF_ADDR_SIZE_BRAM}
 }
 

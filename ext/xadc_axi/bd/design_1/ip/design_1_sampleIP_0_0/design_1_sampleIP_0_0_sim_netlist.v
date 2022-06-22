@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Wed Jun 22 13:15:00 2022
+// Date        : Wed Jun 22 17:00:44 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_sampleIP_0_0/design_1_sampleIP_0_0_sim_netlist.v
@@ -285,32 +285,32 @@ module design_1_sampleIP_0_0_sampleIP
   LUT4 #(
     .INIT(16'hFFFE)) 
     \sampled_val[15]_i_3 
-       (.I0(counter_reg[3]),
-        .I1(counter_reg[2]),
-        .I2(counter_reg[7]),
-        .I3(counter_reg[5]),
+       (.I0(counter_reg[5]),
+        .I1(counter_reg[4]),
+        .I2(counter_reg[10]),
+        .I3(counter_reg[6]),
         .O(\sampled_val[15]_i_3_n_0 ));
   LUT4 #(
     .INIT(16'h0001)) 
     \sampled_val[15]_i_4 
-       (.I0(counter_reg[13]),
-        .I1(counter_reg[12]),
-        .I2(counter_reg[11]),
-        .I3(counter_reg[10]),
+       (.I0(counter_reg[14]),
+        .I1(counter_reg[15]),
+        .I2(counter_reg[13]),
+        .I3(counter_reg[11]),
         .O(\sampled_val[15]_i_4_n_0 ));
   LUT4 #(
-    .INIT(16'h1000)) 
+    .INIT(16'h0010)) 
     \sampled_val[15]_i_5 
-       (.I0(counter_reg[1]),
-        .I1(counter_reg[0]),
-        .I2(counter_reg[14]),
-        .I3(counter_reg[15]),
+       (.I0(counter_reg[2]),
+        .I1(counter_reg[1]),
+        .I2(counter_reg[12]),
+        .I3(counter_reg[0]),
         .O(\sampled_val[15]_i_5_n_0 ));
   LUT4 #(
     .INIT(16'h8000)) 
     \sampled_val[15]_i_6 
-       (.I0(counter_reg[6]),
-        .I1(counter_reg[4]),
+       (.I0(counter_reg[7]),
+        .I1(counter_reg[3]),
         .I2(counter_reg[9]),
         .I3(counter_reg[8]),
         .O(\sampled_val[15]_i_6_n_0 ));

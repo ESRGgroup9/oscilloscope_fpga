@@ -586,8 +586,8 @@ assign drawing_axis = (counterX_RD == 319) | (counterY_RD == 239);
 
 // bckg: B=0x1f, R=0x1f
 // axis: B=0x00, R=0xff
-assign bluePix = ((~drawing_axis & drawing_bckg) ? 31 : 0);
-assign redPix  = (drawing_axis) ? 255  : ((drawing_bckg) ? 31 : 0);
+assign bluePix = ((~drawing_axis & drawing_bckg) ? 0 : 0);
+assign redPix  = (drawing_axis) ? 150  : ((drawing_bckg) ? 30 : 0);
 
 // define pixel colors: R,G,B
 assign pixel = {redPix, greenPix, bluePix};

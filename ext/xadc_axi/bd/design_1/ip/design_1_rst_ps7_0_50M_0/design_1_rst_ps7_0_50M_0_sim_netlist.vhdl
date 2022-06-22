@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
 -- Date        : Mon Jun 20 15:51:00 2022
 -- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_rst_ps7_0_50M_0/design_1_rst_ps7_0_50M_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top design_1_rst_ps7_0_50M_0 -prefix
+--               design_1_rst_ps7_0_50M_0_ design_1_rst_ps7_0_50M_0_sim_netlist.vhdl
 -- Design      : design_1_rst_ps7_0_50M_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,8 +25,6 @@ entity design_1_rst_ps7_0_50M_0_cdc_sync is
     aux_reset_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_rst_ps7_0_50M_0_cdc_sync : entity is "cdc_sync";
 end design_1_rst_ps7_0_50M_0_cdc_sync;
 
 architecture STRUCTURE of design_1_rst_ps7_0_50M_0_cdc_sync is
@@ -237,8 +235,6 @@ entity design_1_rst_ps7_0_50M_0_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_rst_ps7_0_50M_0_upcnt_n : entity is "upcnt_n";
 end design_1_rst_ps7_0_50M_0_upcnt_n;
 
 architecture STRUCTURE of design_1_rst_ps7_0_50M_0_upcnt_n is
@@ -403,8 +399,6 @@ entity design_1_rst_ps7_0_50M_0_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_rst_ps7_0_50M_0_lpf : entity is "lpf";
 end design_1_rst_ps7_0_50M_0_lpf;
 
 architecture STRUCTURE of design_1_rst_ps7_0_50M_0_lpf is
@@ -591,8 +585,6 @@ entity design_1_rst_ps7_0_50M_0_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_rst_ps7_0_50M_0_sequence_psr : entity is "sequence_psr";
 end design_1_rst_ps7_0_50M_0_sequence_psr;
 
 architecture STRUCTURE of design_1_rst_ps7_0_50M_0_sequence_psr is
@@ -931,8 +923,6 @@ entity design_1_rst_ps7_0_50M_0_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of design_1_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of design_1_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of design_1_rst_ps7_0_50M_0_proc_sys_reset : entity is "proc_sys_reset";
 end design_1_rst_ps7_0_50M_0_proc_sys_reset;
 
 architecture STRUCTURE of design_1_rst_ps7_0_50M_0_proc_sys_reset is
