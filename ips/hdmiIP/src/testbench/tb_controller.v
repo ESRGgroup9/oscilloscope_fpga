@@ -9,26 +9,21 @@ module tb_controller;
 // clock period in nanoseconds
 `define CLK_PERIOD 4 // 250 MHz
 
-reg TMDSclk;
-reg pixclk;
-
 reg clkRD;
 reg clkWR;
+reg clkCLEAN;
 
 reg rst;
 
-always #(`CLK_PERIOD/2) TMDSclk = ~TMDSclk; 	// 250 MHz
-always #(10*`CLK_PERIOD/2) pixclk = ~pixclk; 	// 25 MHz
+always #(10*`CLK_PERIOD/2) clkCLEAN = ~clkCLEAN; 	// 25 MHz
 
 always #(5*`CLK_PERIOD/2) clkRD = ~clkRD;		// 50 MHz
-always #(25*`CLK_PERIOD/2) clkWR = ~clkWR; 		// 10 MHz
+always #(25*`CLK_PERIOD/2) clkWR = ~clkWR; 		// 20 MHz
 
-initial begin
-	TMDSclk <= 1;
-	pixclk <= 1;
-	
+initial begin	
 	clkRD <= 1;
 	clkWR <= 1;
+	clkCLEAN <= 1;
 
 	rst <= 1;
 	
@@ -70,19 +65,30 @@ wire WD;
 wire [1:0] state_fsm_main;
 wire [LOG2_WIDTH-1:0] counterX_WR;
 wire [LOG2_HEIGHT-1:0] counterY_WR;
+wire [LOG2_WIDTH-1:0] counterX_CLEAN;
+wire [LOG2_HEIGHT-1:0] counterY_CLEAN;
 
 wire  [VAL_RES-1:0] valSub_r;
-wire  [VAL_RES+9-1:0] valMul_r;
-wire  [VAL_RES+9-1:0] valDiv_r;
+wire  [VAL_RES+LOG2_HEIGHT-1:0] valMul_r;
+wire  [LOG2_HEIGHT-1:0] valDiv_r;
 
 wire  [ADDR_WIDTH-1:0] addrMul_r;
 wire  [ADDR_WIDTH-1:0] addrAdd_r;
+wire  [ADDR_WIDTH-1:0] addrMulClean_r;
+wire  [ADDR_WIDTH-1:0] addrAddClean_r;
 
 wire [VAL_RES-1:0] val_r;
-wire [9:0] rowWR_w;
+wire [LOG2_HEIGHT-1:0] rowWR_w;
 wire write_done;
+wire clean_done;
 
 wire [9:0] addrWR_ready_counter;
+wire [9:0] addrCLEAN_ready_counter;
+
+wire [(ADDR_WIDTH-1):0] addrWR_w;
+
+wire cleanX_zero;
+wire cleanX_toggle;
 
 // ===========================================================================
 // 
@@ -182,16 +188,12 @@ hdmiController #(
 	.VAL_RES(VAL_RES),     // val resolution
 
 	// debug------------
-//	.WIDTH(8),
-//	.HEIGHT(6),
-
-//	.OFFSCREEN_MAX_X(10),
-//	.OFFSCREEN_MAX_Y(8),
 	.WIDTH(4),
 	.HEIGHT(4),
 
 	.OFFSCREEN_MAX_X(6),
 	.OFFSCREEN_MAX_Y(6),
+
 	.HFP(0),
 	.HS(2),
 
@@ -200,6 +202,7 @@ hdmiController #(
 )dut(
 	clkWR,
 	clkRD,
+	clkCLEAN,
 	rst,
 
 	val,
@@ -226,18 +229,31 @@ hdmiController #(
 	state_fsm_main,
 	counterX_WR,
 	counterY_WR,
+	counterX_CLEAN,
+	counterY_CLEAN,
 	write_done,
+	clean_done,
 
 	valSub_r,
 	valMul_r,
+
+	// valMul_w,
+
+	// valDiv_w,
 	valDiv_r,
 
 	addrMul_r,
 	addrAdd_r,
+	addrMulClean_r,
+    addrAddClean_r,
 
 	val_r,
 	rowWR_w,
-	addrWR_ready_counter
+	addrWR_ready_counter,
+	addrCLEAN_ready_counter,
+
+	cleanX_zero,
+	cleanX_toggle
 );
 
 endmodule

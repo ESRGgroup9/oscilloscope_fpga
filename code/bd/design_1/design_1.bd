@@ -24,11 +24,11 @@
       "processing_system7_0": "",
       "filtersIP_0": "",
       "debugIP": "",
-      "average_0": "",
-      "sampleIP_0": "",
       "AXIM_read_xadc_0": "",
+      "configIP": "",
       "hdmiIP_0": "",
-      "configIP": ""
+      "average_0": "",
+      "sampleIP_0": ""
     },
     "interface_ports": {
       "DDR_0": {
@@ -470,16 +470,16 @@
               }
             },
             "interface_nets": {
-              "s01_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s01_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s01_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -662,16 +662,22 @@
           }
         },
         "interface_nets": {
+          "s01_couplers_to_xbar": {
+            "interface_ports": [
+              "s01_couplers/M_AXI",
+              "xbar/S01_AXI"
+            ]
+          },
+          "s00_couplers_to_xbar": {
+            "interface_ports": [
+              "s00_couplers/M_AXI",
+              "xbar/S00_AXI"
+            ]
+          },
           "xbar_to_m02_couplers": {
             "interface_ports": [
               "xbar/M02_AXI",
               "m02_couplers/S_AXI"
-            ]
-          },
-          "xbar_to_m00_couplers": {
-            "interface_ports": [
-              "xbar/M00_AXI",
-              "m00_couplers/S_AXI"
             ]
           },
           "axi_interconnect_0_to_s01_couplers": {
@@ -680,22 +686,10 @@
               "s01_couplers/S_AXI"
             ]
           },
-          "s01_couplers_to_xbar": {
-            "interface_ports": [
-              "s01_couplers/M_AXI",
-              "xbar/S01_AXI"
-            ]
-          },
           "m00_couplers_to_axi_interconnect_0": {
             "interface_ports": [
               "M00_AXI",
               "m00_couplers/M_AXI"
-            ]
-          },
-          "s00_couplers_to_xbar": {
-            "interface_ports": [
-              "s00_couplers/M_AXI",
-              "xbar/S00_AXI"
             ]
           },
           "m02_couplers_to_axi_interconnect_0": {
@@ -714,6 +708,12 @@
             "interface_ports": [
               "M01_AXI",
               "m01_couplers/M_AXI"
+            ]
+          },
+          "xbar_to_m00_couplers": {
+            "interface_ports": [
+              "xbar/M00_AXI",
+              "m00_couplers/S_AXI"
             ]
           },
           "axi_interconnect_0_to_s00_couplers": {
@@ -1785,19 +1785,20 @@
       },
       "debugIP": {
         "vlnv": "user.org:user:debugIP:1.0",
-        "xci_name": "design_1_sniff_axim_xadc_read_0_0"
-      },
-      "average_0": {
-        "vlnv": "user.org:user:average:1.0",
-        "xci_name": "design_1_average_0_0"
-      },
-      "sampleIP_0": {
-        "vlnv": "user.org:user:sampleIP:1.0",
-        "xci_name": "design_1_sampleIP_0_0"
+        "xci_name": "design_1_debugIP_0"
       },
       "AXIM_read_xadc_0": {
         "vlnv": "user.org:user:AXIM_read_xadc:3",
-        "xci_name": "design_1_AXIM_read_xadc_0_5",
+        "xci_name": "design_1_AXIM_read_xadc_0_0",
+        "parameters": {
+          "DEBUG_PARAM": {
+            "value": "0"
+          }
+        }
+      },
+      "configIP": {
+        "vlnv": "user.org:user:configIP:1.0",
+        "xci_name": "design_1_config_done_0_0",
         "parameters": {
           "DEBUG_PARAM": {
             "value": "0"
@@ -1808,21 +1809,26 @@
         "vlnv": "user.org:user:hdmiIP:1.0",
         "xci_name": "design_1_hdmiIP_0_0"
       },
-      "configIP": {
-        "vlnv": "user.org:user:configIP:1.0",
-        "xci_name": "design_1_config_done_0_0",
-        "parameters": {
-          "DEBUG_PARAM": {
-            "value": "0"
-          }
-        }
+      "average_0": {
+        "vlnv": "user.org:user:average:1.0",
+        "xci_name": "design_1_average_0_0"
+      },
+      "sampleIP_0": {
+        "vlnv": "user.org:user:sampleIP:1.0",
+        "xci_name": "design_1_sampleIP_0_0"
       }
     },
     "interface_nets": {
-      "axi_interconnect_0_M02_AXI": {
+      "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
-          "debugIP/S00_AXI",
-          "axi_interconnect_0/M02_AXI"
+          "processing_system7_0/M_AXI_GP0",
+          "axi_interconnect_0/S01_AXI"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO_0",
+          "processing_system7_0/FIXED_IO"
         ]
       },
       "processing_system7_0_DDR": {
@@ -1831,10 +1837,16 @@
           "processing_system7_0/DDR"
         ]
       },
-      "processing_system7_0_FIXED_IO": {
+      "axi_interconnect_0_M01_AXI": {
         "interface_ports": [
-          "FIXED_IO_0",
-          "processing_system7_0/FIXED_IO"
+          "xadc_wiz_0/s_axi_lite",
+          "axi_interconnect_0/M01_AXI"
+        ]
+      },
+      "axi_interconnect_0_M02_AXI": {
+        "interface_ports": [
+          "debugIP/S00_AXI",
+          "axi_interconnect_0/M02_AXI"
         ]
       },
       "AXIM_read_xadc_0_MAXI_ADC": {
@@ -1847,18 +1859,6 @@
         "interface_ports": [
           "configIP/S00_AXI",
           "axi_interconnect_0/M00_AXI"
-        ]
-      },
-      "axi_interconnect_0_M01_AXI": {
-        "interface_ports": [
-          "xadc_wiz_0/s_axi_lite",
-          "axi_interconnect_0/M01_AXI"
-        ]
-      },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "axi_interconnect_0/S01_AXI"
         ]
       }
     },
@@ -1895,11 +1895,11 @@
           "processing_system7_0/M_AXI_GP0_ACLK",
           "rst_ps7_0_50M/slowest_sync_clk",
           "debugIP/s00_axi_aclk",
-          "average_0/clk",
-          "sampleIP_0/clk",
           "AXIM_read_xadc_0/maxi_adc_aclk",
+          "configIP/s00_axi_aclk",
           "hdmiIP_0/clk",
-          "configIP/s00_axi_aclk"
+          "average_0/clk",
+          "sampleIP_0/clk"
         ]
       },
       "rst_ps7_0_50M_peripheral_aresetn": {
@@ -1914,17 +1914,18 @@
           "axi_interconnect_0/ARESETN",
           "filtersIP_0/rstn",
           "debugIP/s00_axi_aresetn",
-          "average_0/rstn",
-          "sampleIP_0/rstn",
           "AXIM_read_xadc_0/maxi_adc_aresetn",
+          "configIP/s00_axi_aresetn",
           "hdmiIP_0/rstn",
-          "configIP/s00_axi_aresetn"
+          "average_0/rstn",
+          "sampleIP_0/rstn"
         ]
       },
       "AXIM_read_xadc_0_eoc": {
         "ports": [
           "AXIM_read_xadc_0/eoc",
-          "debugIP/eoc"
+          "debugIP/eoc",
+          "average_0/start"
         ]
       },
       "AXIM_read_xadc_0_mst_exec_state": {
@@ -1990,8 +1991,7 @@
       "sampleIP_0_sample": {
         "ports": [
           "sampleIP_0/sample",
-          "filtersIP_0/start",
-          "average_0/start"
+          "filtersIP_0/start"
         ]
       },
       "sampleIP_0_sampled_val": {

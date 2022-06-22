@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 118
+// IP Revision: 136
 
 (* X_CORE_INFO = "hdmiIP,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_hdmiIP_0_0,hdmiIP,{}" *)

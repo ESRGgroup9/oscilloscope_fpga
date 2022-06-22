@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Fri Jun 17 15:29:52 2022
+//Date        : Wed Jun 22 13:14:18 2022
 //Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -226,7 +226,7 @@ module design_1
   assign filt_select_1 = filt_select[1:0];
   assign vauxn6_1 = vaux6n;
   assign vauxp6_1 = vaux6p;
-  design_1_AXIM_read_xadc_0_5 AXIM_read_xadc_0
+  design_1_AXIM_read_xadc_0_0 AXIM_read_xadc_0
        (.eoc(AXIM_read_xadc_0_eoc),
         .maxi_adc_aclk(clk_wiz_0_clk),
         .maxi_adc_araddr(AXIM_read_xadc_0_MAXI_ADC_ARADDR),
@@ -253,7 +253,7 @@ module design_1
   design_1_average_0_0 average_0
        (.clk(clk_wiz_0_clk),
         .rstn(rst_ps7_0_50M_peripheral_aresetn),
-        .start(sampleIP_0_sample),
+        .start(AXIM_read_xadc_0_eoc),
         .val(AXIM_read_xadc_0_val),
         .val_avg(average_0_val_avg));
   design_1_axi_interconnect_0_1 axi_interconnect_0
@@ -403,7 +403,7 @@ module design_1
         .s00_axi_wready(axi_interconnect_0_M00_AXI_WREADY),
         .s00_axi_wstrb(axi_interconnect_0_M00_AXI_WSTRB),
         .s00_axi_wvalid(axi_interconnect_0_M00_AXI_WVALID));
-  design_1_sniff_axim_xadc_read_0_0 debugIP
+  design_1_debugIP_0 debugIP
        (.eoc(AXIM_read_xadc_0_eoc),
         .result(filtersIP_0_result),
         .s00_axi_aclk(clk_wiz_0_clk),

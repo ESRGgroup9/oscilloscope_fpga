@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 15 16:30:39 2022" VIVADOVERSION="2019.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Jun 20 23:29:33 2022" VIVADOVERSION="2019.2">
 
   <SYSTEMINFO ARCH="zynq" BOARD="digilentinc.com:zybo:part0:2.0" DEVICE="7z010" NAME="hdmi_bd" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -39,14 +39,24 @@
         <CONNECTION INSTANCE="hdmiIP_1" PORT="val"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" NAME="clkWR" SIGIS="undef" SIGNAME="hdmiIP_1_clkWR">
+    <PORT DIR="O" LEFT="18" NAME="addrWR_0" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_addrWR">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="addrWR"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="clkCLEAN_0" SIGIS="undef" SIGNAME="hdmiIP_1_clkCLEAN">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="clkCLEAN"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="clkWR_0" SIGIS="undef" SIGNAME="hdmiIP_1_clkWR">
       <CONNECTIONS>
         <CONNECTION INSTANCE="hdmiIP_1" PORT="clkWR"/>
       </CONNECTIONS>
     </PORT>
-    <PORT DIR="O" LEFT="12" NAME="counter" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_counter">
+    <PORT DIR="O" NAME="wd_0" SIGIS="undef" SIGNAME="hdmiIP_1_wd">
       <CONNECTIONS>
-        <CONNECTION INSTANCE="hdmiIP_1" PORT="counter"/>
+        <CONNECTION INSTANCE="hdmiIP_1" PORT="wd"/>
       </CONNECTIONS>
     </PORT>
   </EXTERNALPORTS>
@@ -54,7 +64,7 @@
   <EXTERNALINTERFACES/>
 
   <MODULES>
-    <MODULE COREREVISION="117" FULLNAME="/hdmiIP_1" HWVERSION="1.0" INSTANCE="hdmiIP_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
+    <MODULE COREREVISION="127" FULLNAME="/hdmiIP_1" HWVERSION="1.0" INSTANCE="hdmiIP_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="hdmiIP" VLNV="user.org:user:hdmiIP:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="ADDR_WIDTH" VALUE="19"/>
@@ -100,14 +110,24 @@
             <CONNECTION INSTANCE="External_Ports" PORT="TMDSn_clock"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="clkWR" SIGIS="undef" SIGNAME="hdmiIP_1_clkWR">
+        <PORT DIR="O" LEFT="18" NAME="addrWR" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_addrWR">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="clkWR"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="addrWR_0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="12" NAME="counter" RIGHT="0" SIGIS="undef" SIGNAME="hdmiIP_1_counter">
+        <PORT DIR="O" NAME="wd" SIGIS="undef" SIGNAME="hdmiIP_1_wd">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="counter"/>
+            <CONNECTION INSTANCE="External_Ports" PORT="wd_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clkWR" SIGIS="undef" SIGNAME="hdmiIP_1_clkWR">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clkWR_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="clkCLEAN" SIGIS="undef" SIGNAME="hdmiIP_1_clkCLEAN">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="clkCLEAN_0"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

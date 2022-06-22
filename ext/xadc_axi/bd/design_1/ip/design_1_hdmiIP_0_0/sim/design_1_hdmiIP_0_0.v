@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 118
+// IP Revision: 136
 
 `timescale 1ns/1ps
 

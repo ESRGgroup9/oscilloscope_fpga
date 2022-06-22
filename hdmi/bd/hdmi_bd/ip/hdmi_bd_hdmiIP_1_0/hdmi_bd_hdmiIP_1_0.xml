@@ -251,11 +251,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 15:25:57 UTC 2022</spirit:value>
+            <spirit:value>Mon Jun 20 22:29:28 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80639b0a</spirit:value>
+            <spirit:value>9:a23c79bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -266,7 +266,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80639b0a</spirit:value>
+            <spirit:value>9:a23c79bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -282,11 +282,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 15:25:57 UTC 2022</spirit:value>
+            <spirit:value>Mon Jun 20 22:29:28 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80639b0a</spirit:value>
+            <spirit:value>9:a23c79bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -301,11 +301,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 15:25:57 UTC 2022</spirit:value>
+            <spirit:value>Mon Jun 20 22:29:28 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c36c93e</spirit:value>
+            <spirit:value>9:24717c78</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -321,11 +321,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 15:25:57 UTC 2022</spirit:value>
+            <spirit:value>Mon Jun 20 22:29:28 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:3c36c93e</spirit:value>
+            <spirit:value>9:24717c78</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -339,11 +339,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Wed Jun 15 15:27:22 UTC 2022</spirit:value>
+            <spirit:value>Mon Jun 20 22:30:59 UTC 2022</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:80639b0a</spirit:value>
+            <spirit:value>9:a23c79bb</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -453,6 +453,36 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>addrWR</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">18</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>wd</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>clkWR</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
@@ -466,16 +496,12 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
-        <spirit:name>counter</spirit:name>
+        <spirit:name>clkCLEAN</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
-          <spirit:vector>
-            <spirit:left spirit:format="long">12</spirit:left>
-            <spirit:right spirit:format="long">0</spirit:right>
-          </spirit:vector>
           <spirit:wireTypeDefs>
             <spirit:wireTypeDef>
-              <spirit:typeName>reg</spirit:typeName>
+              <spirit:typeName>wire</spirit:typeName>
               <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
               <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
             </spirit:wireTypeDef>
@@ -525,23 +551,23 @@
         <spirit:userFileType>xci</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/encoder_TMDS.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/encoder_TMDS.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiController.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiController.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiInterface.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiInterface.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/common/mux2.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/common/mux2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiIP.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiIP.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -564,23 +590,23 @@
         <spirit:userFileType>xci</spirit:userFileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/encoder_TMDS.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/encoder_TMDS.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiController.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiController.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiInterface.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiInterface.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/common/mux2.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/common/mux2.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
       <spirit:file>
-        <spirit:name>../../ipshared/4441/src/hdmiIP.v</spirit:name>
+        <spirit:name>../../ipshared/877a/src/hdmiIP.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -664,7 +690,7 @@
         <xilinx:xpmLibrary>XPM_MEMORY</xilinx:xpmLibrary>
         <xilinx:xpmLibrary>XPM_CDC</xilinx:xpmLibrary>
       </xilinx:xpmLibraries>
-      <xilinx:coreRevision>117</xilinx:coreRevision>
+      <xilinx:coreRevision>127</xilinx:coreRevision>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@482e9092_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
@@ -2493,6 +2519,142 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@23a37751_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@79e54020_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@d3cd74e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58e5c5a5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9d0ba5c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@438b698c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5119772a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@289a119f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a2831da_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55634b0a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@76282e30_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@39ed54af_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@584d5bdc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d01d2f8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5a90e2b4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3420ffce_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c3f909f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49c44f4f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1bb8c2a8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3036bf31_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@542736ae_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a683e9a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b10d7e0_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1df32e1c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b6f66e5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f648cbc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30094498_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e66903b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@66f6b89d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@11526301_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4aa62ac7_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c4230af_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a573d3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4335dd5e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@edb1530_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@221e6bf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@530c9825_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5d172652_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@790f06bb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ae21860_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@97f49b3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4438277a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12f8405a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@488310e3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13e19fd9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1d667dc4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@375dcb9b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fc49ebb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1327cd87_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@313084a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6d5a8c59_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ee49d2a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4502019a_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c927f0b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1717648e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@70ba1ee5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54fc4abb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c16b2ce_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c996585_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@16bc1c97_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58ca9e0d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b3cd43c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7153f5ae_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@65baf264_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@397b707b_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e947d5c_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@436181f1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@19e270f2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bf37643_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fa33690_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@42c94034_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5877aff_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6ba2798f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@642f974e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@524a7cd6_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@667ac08f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4fe1cedf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@157f80f1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@759d7d87_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e1794e3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fbf15b2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3166d3bf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@868ec69_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1de33c4f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c265618_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b67309f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@352bb985_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2affb87_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6bd017b9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@8b610f8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4416a9f8_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@207eddaa_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5ce5b2db_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2c26526d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d9de8cc_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18c2d870_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@62b3a7c1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6b221b23_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@724cac87_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b66b363_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15a0caf3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1ebc2928_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d80acce_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44a7ef2e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@306b3a1d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ae9ae9e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78e16bea_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4708991_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45940b31_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6704251e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7632061f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45267c38_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@18eca545_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2ad4bda1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ba5da4e_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71e4cad3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58175dca_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@340019f4_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@483c1af5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6c34d0df_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79d2a560_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6784e1c2_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3324e5a1_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e2b9cda_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6e7a1c7f_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45161517_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@77469edf_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@26b1fe23_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@284e21d9_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21857b61_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@205fd531_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@398b9791_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@132a5d35_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@79bf4b5d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@552ededb_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4738006d_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3245dde3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1fdc01f5_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@24885758_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/hdmiIP</xilinx:tag>
       </xilinx:tags>
       <xilinx:configElementInfos>
         <xilinx:configElementInfo xilinx:referenceId="BUSIFPARAM_VALUE.CLK.ASSOCIATED_BUSIF" xilinx:valuePermission="bd_and_user"/>
@@ -2516,8 +2678,8 @@
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.2</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="8c14c5c5"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="75af6608"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="f3c613bc"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="8eb5aa2d"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="82b7b1a2"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="7e637984"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="bd210682"/>
     </xilinx:packagingInfo>

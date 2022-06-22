@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Wed Jun 15 16:27:22 2022
+// Date        : Mon Jun 20 23:30:59 2022
 // Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/fernandes/code/oscilloscope_fpga/hdmi/bd/hdmi_bd/ip/hdmi_bd_hdmiIP_1_0/hdmi_bd_hdmiIP_1_0_stub.v
@@ -15,8 +15,8 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "hdmiIP,Vivado 2019.2" *)
 module hdmi_bd_hdmiIP_1_0(clk, rstn, val, TMDSp, TMDSn, TMDSp_clk, TMDSn_clk, 
-  clkWR, counter)
-/* synthesis syn_black_box black_box_pad_pin="clk,rstn,val[15:0],TMDSp[2:0],TMDSn[2:0],TMDSp_clk,TMDSn_clk,clkWR,counter[12:0]" */;
+  addrWR, wd, clkWR, clkCLEAN)
+/* synthesis syn_black_box black_box_pad_pin="clk,rstn,val[15:0],TMDSp[2:0],TMDSn[2:0],TMDSp_clk,TMDSn_clk,addrWR[18:0],wd,clkWR,clkCLEAN" */;
   input clk;
   input rstn;
   input [15:0]val;
@@ -24,6 +24,8 @@ module hdmi_bd_hdmiIP_1_0(clk, rstn, val, TMDSp, TMDSn, TMDSp_clk, TMDSn_clk,
   output [2:0]TMDSn;
   output TMDSp_clk;
   output TMDSn_clk;
+  output [18:0]addrWR;
+  output wd;
   output clkWR;
-  output [12:0]counter;
+  output clkCLEAN;
 endmodule
