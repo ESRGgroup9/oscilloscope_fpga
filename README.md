@@ -32,19 +32,19 @@ Below is shown the implemented system's block design in Vivado:
 Cut frequency at 50 Hz. Results as expected
 20 Hz             |  50 Hz                   | 100 Hz
 :-------------------------:|:-------------------------:|:-------------------------:
-![](doc/report/images/hdmi/hdmi_lpf_20hz.JPG)  |  ![](doc/report/images/hdmi/hdmi_lpf_50hz.JPG) | ![](doc/report/images/hdmi/hdmi_lpf_100hz.JPG)
+![](doc/report/images/results/hdmi/hdmi_lpf_20hz.JPG)  |  ![](doc/report/images/results/hdmi/hdmi_lpf_50hz.JPG) | ![](doc/report/images/results/hdmi/hdmi_lpf_100hz.JPG)
 
 ### HPF
 Cut frequency at 50 Hz. Response not well defined in the passband (100 Hz)
 20 Hz             |  50 Hz                   | 100 Hz
 :-------------------------:|:-------------------------:|:-------------------------:
-![](doc/report/images/hdmi/hdmi_hpf_20hz.JPG)  |  ![](doc/report/images/hdmi/hdmi_hpf_50hz.JPG) | ![](doc/report/images/hdmi/hdmi_hpf_100hz.JPG)
+![](doc/report/images/results/hdmi/hdmi_hpf_20hz.JPG)  |  ![](doc/report/images/results/hdmi/hdmi_hpf_50hz.JPG) | ![](doc/report/images/results/hdmi/hdmi_hpf_100hz.JPG)
 
 ### BPF
 Cut frequency at 50 Hz and 150 Hz. Results dont match expected - always on rejection band
 20 Hz             |  50 Hz                   | 100 Hz
 :-------------------------:|:-------------------------:|:-------------------------:
-![](doc/report/images/hdmi/hdmi_bpf_20hz.JPG)  |  ![](doc/report/images/hdmi/hdmi_bpf_50hz.JPG) | ![](doc/report/images/hdmi/hdmi_bpf_100hz.JPG)
+![](doc/report/images/results/hdmi/hdmi_bpf_20hz.JPG)  |  ![](doc/report/images/results/hdmi/hdmi_bpf_50hz.JPG) | ![](doc/report/images/results/hdmi/hdmi_bpf_100hz.JPG)
 
 ### Tools
 - Xilinx Vivado 2019.02
