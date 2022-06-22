@@ -70,6 +70,27 @@ $ git clone git@github.com:ESRGgroup9/oscilloscope_fpga.git
 $ cd oscilloscope_fpga/
 $ git submodule update --init
 ```
+
+If you use Vivado:
+- Launch vivado;
+- In TCL Console: 
+  - cd <repo_dir>/code;
+  - source oscilloscope_fpga.tcl;
+
+In order to debug the application:
+  - Program and Debug -> Generate Bitstream;
+  - File -> Export -> Export Hardware... (XSA) -> Include bitstream -> Ok;
+  - Tools -> Launch Vitis;
+  - Select workspace;
+  - Create Application Project...
+  - Give project a name (Oscilloscope_fpga);
+  - Create a new platform from hardware (XSA) -> Hit button plus '+' -> Select XSA generated previously;
+  - Select Empty application;
+  - Finish;
+  - Build;
+  - Run -> Run configurations -> Double click in Single Application Debug;
+  - Run the Apllication.
+ 
 --------
 Directed by:
 - Jorge Cabral
