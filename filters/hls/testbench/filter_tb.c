@@ -4,9 +4,10 @@
 #include <math.h>
 
 // number of iterations
-#define NUM_ITER 50
+#define NUM_ITER 500
 // filter order
-#define _M_ 22
+//#define _M_ 22
+#define _M_ 210
 
 // output/input files path
 #define INPUT_PATH  "../../../../../../golden_vectors"
@@ -82,7 +83,7 @@ int filter_tb(char *filter, uint32 x_coefs[_M_ + 1], int Fc, uint1 inputrand, ui
 
 	for(i=0; i<NUM_ITER; i++){
 		// update x ant values
-		for(j=22; j>0; j--)
+		for(j=_M_; j>0; j--)
 			x_ant[j] = x_ant[j-1];
 
 		x_ant[0] = x[i];

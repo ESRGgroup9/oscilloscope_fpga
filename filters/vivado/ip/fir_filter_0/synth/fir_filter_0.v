@@ -47,12 +47,12 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:hls:fir_filter:2.0
+// IP VLNV: xilinx.com:hls:fir_filter:2.1
 // IP Revision: 0
 
 (* X_CORE_INFO = "fir_filter,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "fir_filter_0,fir_filter,{}" *)
-(* CORE_GENERATION_INFO = "fir_filter_0,fir_filter,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=fir_filter,x_ipVersion=2.0,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "fir_filter_0,fir_filter,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=fir_filter,x_ipVersion=2.1,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module fir_filter_0 (
@@ -93,13 +93,13 @@ output wire ap_ready;
 output wire [15 : 0] ap_return;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_ant_address0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_ant_address0 DATA" *)
-output wire [4 : 0] x_ant_address0;
+output wire [7 : 0] x_ant_address0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_ant_q0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_ant_q0 DATA" *)
 input wire [15 : 0] x_ant_q0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_coefs_address0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_coefs_address0 DATA" *)
-output wire [4 : 0] x_coefs_address0;
+output wire [7 : 0] x_coefs_address0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_coefs_q0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_coefs_q0 DATA" *)
 input wire [31 : 0] x_coefs_q0;

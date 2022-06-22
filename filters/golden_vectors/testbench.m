@@ -14,7 +14,7 @@ fprintf("*************** BPF ***************\n");
 filters_tb(inputRand, 20, "BPF", printFig, writeToFile)
 filters_tb(inputRand, 120, "BPF", printFig, writeToFile)
 filters_tb(inputRand, 220, "BPF", printFig, writeToFile)
-% 
+
 % inputRand = 1;
 % fprintf("***********************************\n");
 % fprintf("******* With random inputs ********\n");

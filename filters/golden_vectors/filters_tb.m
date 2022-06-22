@@ -9,7 +9,7 @@ function filters_tb(inputRand, Fc, filter, printFig, writeToFile)
     % simulation parameters
     % -------------------------------------------------------------------------
     % sampling frequency
-    fsamp = 1000;
+    fsamp = 10000;
     
     % adc resolution    
     adcRes = 65535;
@@ -19,7 +19,9 @@ function filters_tb(inputRand, Fc, filter, printFig, writeToFile)
     % -------------------------------------------------------------------------
     if(filter == "LPF")
         % low pass filter - order 22
-        fcuts = [21 60];
+%         fcuts = [21 60];
+%         devs = [0.1 0.1];
+        fcuts = [20 60];
         devs = [0.1 0.1];
         [hh,M]=low_pass_filter(fsamp, fcuts, devs);
         dcValEn=0;
@@ -79,6 +81,7 @@ function filters_tb(inputRand, Fc, filter, printFig, writeToFile)
 %     fprintf("outpt: %s\n", regexprep(num2str(out),'\s+',','));
 
     fprintf("Filter     : %s\n", filter);
+    fprintf("Order      : %d\n", M);
     fprintf("Input freq : %d Hz\n", Fc);
     fprintf("Attenuation: %.2f dB\n", 10*log(max(out)/max(x)));
     
