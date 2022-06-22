@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Thu Jun 16 14:54:12 2022
+-- Date        : Wed Jun 22 11:33:08 2022
 -- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi_v2/xadc_axi/xadc_axi.srcs/sources_1/bd/design_1/ip/design_1_average_0_0/design_1_average_0_0_sim_netlist.vhdl
+--               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_average_0_0/design_1_average_0_0_sim_netlist.vhdl
 -- Design      : design_1_average_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,8 +18,8 @@ entity design_1_average_0_0_average is
   port (
     val_avg : out STD_LOGIC_VECTOR ( 15 downto 0 );
     val : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    clk : in STD_LOGIC;
     start : in STD_LOGIC;
+    clk : in STD_LOGIC;
     rstn : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -27,8 +27,8 @@ entity design_1_average_0_0_average is
 end design_1_average_0_0_average;
 
 architecture STRUCTURE of design_1_average_0_0_average is
+  signal p_0_in : STD_LOGIC;
   signal \^val_avg\ : STD_LOGIC_VECTOR ( 15 downto 0 );
-  signal \val_div_r[15]_i_1_n_0\ : STD_LOGIC;
   signal val_div_w : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal \val_sum_r[11]_i_2_n_0\ : STD_LOGIC;
   signal \val_sum_r[11]_i_3_n_0\ : STD_LOGIC;
@@ -68,142 +68,141 @@ architecture STRUCTURE of design_1_average_0_0_average is
   signal \NLW_val_sum_r_reg[3]_i_1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 0 to 0 );
 begin
   val_avg(15 downto 0) <= \^val_avg\(15 downto 0);
-\val_div_r[15]_i_1\: unisim.vcomponents.LUT2
+\val_div_r[15]_i_1\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"B"
+      INIT => X"1"
     )
         port map (
-      I0 => start,
-      I1 => rstn,
-      O => \val_div_r[15]_i_1_n_0\
+      I0 => rstn,
+      O => p_0_in
     );
 \val_div_r_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(0),
       Q => \^val_avg\(0),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[10]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(10),
       Q => \^val_avg\(10),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[11]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(11),
       Q => \^val_avg\(11),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[12]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(12),
       Q => \^val_avg\(12),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[13]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(13),
       Q => \^val_avg\(13),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[14]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(14),
       Q => \^val_avg\(14),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[15]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(15),
       Q => \^val_avg\(15),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(1),
       Q => \^val_avg\(1),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(2),
       Q => \^val_avg\(2),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(3),
       Q => \^val_avg\(3),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(4),
       Q => \^val_avg\(4),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(5),
       Q => \^val_avg\(5),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(6),
       Q => \^val_avg\(6),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[7]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(7),
       Q => \^val_avg\(7),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(8),
       Q => \^val_avg\(8),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_div_r_reg[9]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_div_w(9),
       Q => \^val_avg\(9),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r[11]_i_2\: unisim.vcomponents.LUT2
     generic map(
@@ -352,18 +351,18 @@ begin
 \val_sum_r_reg[10]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(10),
       Q => val_div_w(9),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[11]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(11),
       Q => val_div_w(10),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[11]_i_1\: unisim.vcomponents.CARRY4
      port map (
@@ -383,34 +382,34 @@ begin
 \val_sum_r_reg[12]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(12),
       Q => val_div_w(11),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[13]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(13),
       Q => val_div_w(12),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[14]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(14),
       Q => val_div_w(13),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[15]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(15),
       Q => val_div_w(14),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[15]_i_1\: unisim.vcomponents.CARRY4
      port map (
@@ -430,10 +429,10 @@ begin
 \val_sum_r_reg[16]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(16),
       Q => val_div_w(15),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[16]_i_1\: unisim.vcomponents.CARRY4
      port map (
@@ -448,26 +447,26 @@ begin
 \val_sum_r_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(1),
       Q => val_div_w(0),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(2),
       Q => val_div_w(1),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(3),
       Q => val_div_w(2),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[3]_i_1\: unisim.vcomponents.CARRY4
      port map (
@@ -488,34 +487,34 @@ begin
 \val_sum_r_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(4),
       Q => val_div_w(3),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(5),
       Q => val_div_w(4),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(6),
       Q => val_div_w(5),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[7]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(7),
       Q => val_div_w(6),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[7]_i_1\: unisim.vcomponents.CARRY4
      port map (
@@ -535,18 +534,18 @@ begin
 \val_sum_r_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(8),
       Q => val_div_w(7),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 \val_sum_r_reg[9]\: unisim.vcomponents.FDRE
      port map (
       C => clk,
-      CE => '1',
+      CE => start,
       D => val_sum_w(9),
       Q => val_div_w(8),
-      R => \val_div_r[15]_i_1_n_0\
+      R => p_0_in
     );
 end STRUCTURE;
 library IEEE;

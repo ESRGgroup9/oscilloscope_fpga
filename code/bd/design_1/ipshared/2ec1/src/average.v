@@ -47,11 +47,11 @@ assign val_sum_w = (val_div_r + val);
 assign val_div_w = val_sum_r >> 1;
 
 always @(posedge clk) begin
-	if(~rstn | start) begin
+	if(~rstn) begin // | start) begin
 		val_sum_r <= {VAL_RES+1{1'b0}};
 		val_div_r <= {VAL_RES{1'b0}};
 	end
-	else begin
+	else if(start) begin
 		val_sum_r <= val_sum_w;
 		val_div_r <= val_div_w;
 	end

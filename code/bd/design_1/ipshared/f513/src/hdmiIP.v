@@ -18,9 +18,10 @@ module hdmiIP(
 	// valMul_o,
 	// valIndex_o,
 
-	// addrWR,
-	// wd,
+//	 addrWR,
+//	 wd,
 //	clkWR,
+//	clkCLEAN
 //	counter
 );
 
@@ -44,6 +45,8 @@ output wire [2:0] TMDSp;
 output wire [2:0] TMDSn;
 output wire TMDSp_clk;
 output wire TMDSn_clk;
+
+wire [18:0] addrWR;
 
 // ===========================================================================
 // internal registers
@@ -80,6 +83,7 @@ wire [ADDR_WIDTH-1:0] addrB1;
 wire TMDSclk;
 wire pixclk;
 wire clkRD;
+wire clkCLEAN;
 
 reg [12:0] counter;
 reg clkWrite_delayed;
@@ -95,7 +99,7 @@ assign rst = ~rstn;
 // ===========================================================================
 // Clk generation
 // ===========================================================================
-clk_wiz_0 clk_wiz
+  clk_wiz_0 clk_wiz
    (
     // Clock out ports
     .pixclk(pixclk),     // output pixclk
@@ -106,6 +110,7 @@ clk_wiz_0 clk_wiz
     .clk(clk));      // input clk
 
 assign clkRD = clk;
+assign clkCLEAN = clk;
 
 always@(posedge clk) begin
     if(~rstn) begin
@@ -175,6 +180,7 @@ hdmiController #(
 ) controller(
 	.clkWR(clkWR),
 	.clkRD(clkRD),
+	.clkCLEAN(clkCLEAN),
 	.rst(rst),
 
 	.val(val),

@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:sampleIP:1.0
-// IP Revision: 11
+// IP Revision: 12
 
 `timescale 1ns/1ps
 
