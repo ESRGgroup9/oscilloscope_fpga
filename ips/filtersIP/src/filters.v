@@ -7,22 +7,28 @@ module filters(
 	val,
 
 	result,
-	done
+	done,
+
+	// debug
+	filt_start,
+	xant,
+	addr_bram_xcoefs,
+	xcoefs
 );
 
-parameter M = (22 + 1);     	// write/read depth
+parameter M = (210 + 1);     	// write/read depth
 
 parameter XADC_DATA_SIZE = 16;  // write/read width
-parameter XANT_ADDR_SIZE = 5;
+parameter XANT_ADDR_SIZE = 8;
 
+parameter XCOEF_ADDR_SIZE_BRAM = 10;
 parameter XCOEF_DATA_SIZE = 32;
-parameter XCOEF_ADDR_SIZE = 5;
+parameter XCOEF_ADDR_SIZE = 8;
 
 localparam FILT_SEL_LPF = 2'b00;
 localparam FILT_SEL_HPF = 2'b01;
 localparam FILT_SEL_BPF = 2'b10;
 
-`define XCOEF_ADDR_SIZE_BRAM 7
 
 input wire clk;
 input wire rstn;
@@ -56,9 +62,9 @@ wire rbuf_ready;
 
 // ------------------ filters
 // inputs
-wire [XADC_DATA_SIZE -1:0] xant;
-wire [XCOEF_DATA_SIZE-1:0] xcoefs;
-reg filt_start;
+output wire [XADC_DATA_SIZE -1:0] xant;
+output wire [XCOEF_DATA_SIZE-1:0] xcoefs;
+output reg filt_start;
 
 wire lpf_start;
 wire hpf_start;
@@ -87,7 +93,7 @@ wire [XANT_ADDR_SIZE -1:0] filt_xant_addr;
 wire [XANT_ADDR_SIZE -1:0] addr_bram_xant;
 
 wire [XCOEF_ADDR_SIZE-1:0] filt_xcoefs_addr;
-wire [`XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
+output wire [XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
 
 
 wire lpf_x_ant_ce;
@@ -142,6 +148,64 @@ rbuf #(
     rbuf_ready
 );
 
+// output wire [XANT_ADDR_SIZE:0] xant_addr;
+// output reg  [XANT_ADDR_SIZE-1:0] xant_base_addr;
+// wire [XANT_ADDR_SIZE-1:0] xant_addr_read;
+
+// // define states
+// localparam S_XANT_IDLE  = 2'b00;
+// localparam S_XANT_WRITE = 2'b01;
+// localparam S_XANT_READ  = 2'b10;
+// localparam S_XANT_SHIFT = 2'b11;
+
+// // state and nextstate registers
+// output reg[1:0] state_fsm_xant;
+// reg[1:0] nstate_fsm_xant;
+
+// // state register
+// always @(posedge clk) begin
+//     if(~rstn)
+//         state_fsm_xant <= S_XANT_IDLE;
+//     else begin
+//         state_fsm_xant <= nstate_fsm_xant;
+//     end
+// end
+
+// // nextstate logic
+// always @(*) begin
+//     case(state_fsm_xant)
+//         S_XANT_IDLE:    nstate_fsm_xant = (start)     ? S_XANT_WRITE : S_XANT_IDLE;
+//         S_XANT_WRITE:   nstate_fsm_xant = S_XANT_READ;
+//         S_XANT_READ:    nstate_fsm_xant = (done) ? S_XANT_SHIFT : S_XANT_READ;
+//         S_XANT_SHIFT:   nstate_fsm_xant = S_XANT_IDLE;
+//     endcase
+// end
+
+// always @(posedge clk) begin
+//     if(~rstn) begin
+//         xant_base_addr <= 0;
+//     end
+//     else if(state_fsm_xant == S_XANT_SHIFT) begin
+//         // is xant at the BRAM's top?
+//         xant_base_addr <= (xant_base_addr == M-1) ? 0 : (xant_base_addr + 1);
+//     end
+// end
+
+// assign rbuf_en  = S_XANT_WRITE;
+// assign rbuf_owe = S_XANT_WRITE;
+// assign rbuf_done = S_XANT_WRITE;
+
+// assign xant_addr      = xant_base_addr + filt_xant_addr;
+// assign xant_addr_read = (xant_addr >= M) ? (xant_addr-M) : xant_addr;
+
+// mux2 #(XANT_ADDR_SIZE) rbuf_xant_addr_mux(
+//     xant_addr_read,     // S_XANT_READ
+//     xant_base_addr,     // S_XANT_WRITE
+
+//     (state_fsm_xant == S_XANT_WRITE),
+//     addr_bram_xant
+// );
+
 // ===========================================================================
 // xant BRAM
 // ===========================================================================
@@ -170,8 +234,9 @@ bram_xant xant_bram (
     .clka(~clk),              // input wire clka
     .ena(rbuf_en | x_ant_ce),      // input wire ena
     .wea(rbuf_owe),           // input wire [0 : 0] wea
-    .addra(addr_bram_xant),   // input wire [4 : 0] addra
+    .addra(addr_bram_xant),   // input wire [7 : 0] addra
     .dina(rbuf_do),           // input wire [15 : 0] dina
+    // .dina(val),
     .douta(xant)              // output wire [15 : 0] douta
 );
 
@@ -190,9 +255,9 @@ mux3 #(XCOEF_ADDR_SIZE) filt_xcoefs_addr_mux(
 );
 
 // truncate xcoef addr if invalid
-mux2 #(`XCOEF_ADDR_SIZE_BRAM) filt_xcoefs_addr_trunc_mux(
+mux2 #(XCOEF_ADDR_SIZE_BRAM) filt_xcoefs_addr_trunc_mux(
 	{filt_select, filt_xcoefs_addr},
-	{`XCOEF_ADDR_SIZE_BRAM{1'b0}},
+	{XCOEF_ADDR_SIZE_BRAM{1'b0}},
 
 	(filt_xcoefs_addr > M-1),
 	addr_bram_xcoefs
@@ -214,7 +279,6 @@ bram_coefs xcoefs_bram (
 // ------------------ filter start signal generation
 
 always @(posedge clk) begin
-
     if(~rstn | ((filt_start) & (filt_start_count))) begin
         filt_start_count <= 1'b0;
         filt_start <= 1'b0;
