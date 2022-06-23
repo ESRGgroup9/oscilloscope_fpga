@@ -11,20 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="11998420000fs"></ZoomStartTime>
-      <ZoomEndTime time="11999743001fs"></ZoomEndTime>
-      <Cursor1Time time="11998696000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="26540000001fs"></ZoomEndTime>
+      <Cursor1Time time="10988016000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="108"></NameColumnWidth>
+      <NameColumnWidth column_width="104"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
-   <wave_markers>
-      <marker label="" time="5303648000" />
-      <marker label="" time="5325616000" />
-      <marker label="" time="12020656000" />
-   </wave_markers>
+   <WVObjectSize size="9" />
    <wvobject type="logic" fp_name="/testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,10 +31,6 @@
    <wvobject fp_name="divider95" type="divider">
       <obj_property name="label">Inputs</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/testbench/filt_start">
-      <obj_property name="ElementShortName">filt_start</obj_property>
-      <obj_property name="ObjectShortName">filt_start</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/testbench/filt_select">
       <obj_property name="DisplayName">label</obj_property>
@@ -55,45 +46,9 @@
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="label">input_val</obj_property>
    </wvobject>
-   <wvobject fp_name="divider33" type="divider">
-   </wvobject>
-   <wvobject type="array" fp_name="/testbench/xcoefs">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">xcoefs[31:0]</obj_property>
-      <obj_property name="ObjectShortName">xcoefs[31:0]</obj_property>
-      <obj_property name="label">xcoefs</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/testbench/addr_bram_xcoefs">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">addr_bram_xcoefs[9:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_bram_xcoefs[9:0]</obj_property>
-      <obj_property name="label">xcoefs_addr</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/testbench/xant">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">xant[15:0]</obj_property>
-      <obj_property name="ObjectShortName">xant[15:0]</obj_property>
-      <obj_property name="label">xant</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/testbench/addr_bram_xant">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">addr_bram_xant[7:0]</obj_property>
-      <obj_property name="ObjectShortName">addr_bram_xant[7:0]</obj_property>
-      <obj_property name="label">xant_addr</obj_property>
-   </wvobject>
    <wvobject fp_name="divider96" type="divider">
       <obj_property name="label">Outputs</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/testbench/i">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">i[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i[31:0]</obj_property>
-      <obj_property name="label">num Iter</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/testbench/filt_done">
-      <obj_property name="ElementShortName">filt_done</obj_property>
-      <obj_property name="ObjectShortName">filt_done</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/testbench/filt_result">
       <obj_property name="DisplayName">label</obj_property>
@@ -102,5 +57,13 @@
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="label">filt_result</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/filt_done">
+      <obj_property name="ElementShortName">filt_done</obj_property>
+      <obj_property name="ObjectShortName">filt_done</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/filt_start">
+      <obj_property name="ElementShortName">filt_start</obj_property>
+      <obj_property name="ObjectShortName">filt_start</obj_property>
    </wvobject>
 </wave_config>

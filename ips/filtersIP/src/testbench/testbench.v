@@ -136,13 +136,13 @@ always @(negedge filt_done) begin
             $stop;
         end
 
-        $display("\nWriting output results to %0s", output_filename);
+        // $display("\nWriting output results to %0s", output_filename);
         for(j = 0; j < NUM_ITER; j = j + 1) begin
             $fwrite(fp, "%0d\n", output_buf[j]);
         end
 
         $fclose(fp);
-        $display("Comparing output results with %0s ...", golden_filename);
+        // $display("Comparing output results with %0s ...", golden_filename);
         fp = $fopen(golden_filename, "r");
         if(fp == 0) begin
             $display("ERROR: failed to open '%s'", output_filename);
@@ -161,11 +161,18 @@ always @(negedge filt_done) begin
             end
         end
 
-        $display("Simulation completed with %2d errors!\n", num_errors);
+        if(num_errors == 0)
+            $display("PASSED\n");
+        else
+            $display("FAILED - %3d errors!\n", num_errors);
+        
+        // $display("Simulation completed with %2d errors!\n", num_errors);
         $fclose(fp);
         $stop;
     end
 end
+
+initial i <= 0;
 
 // read/write to buffers
 always @(posedge rst or negedge filt_done) begin
@@ -215,7 +222,7 @@ initial begin
     filt_select <= FILT_SEL_BPF;
 
     #10;
-    $display("\nTesting %0s:", filter);
+    $display("\nTesting %0s @%0dHz", filter, Fc);
 end
 
 // filter enable
@@ -235,13 +242,15 @@ end
 // ===========================================================================
 
 // ------------ debug
-wire filt_start_o;
-wire [XANT_ADDR_SIZE_BRAM-1:0] addr_bram_xant;
-wire [XADC_DATA_SIZE -1:0] xant;
+// wire filt_start_o;
+// wire [XANT_ADDR_SIZE_BRAM-1:0] addr_bram_xant;
+// wire [XADC_DATA_SIZE -1:0] xant;
 
-wire [XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
-wire [XCOEF_DATA_SIZE-1:0] xcoefs;
-
+// wire [XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
+// wire [XCOEF_DATA_SIZE-1:0] xcoefs;
+// wire [1:0] state_fsm_main;
+// wire  [XANT_ADDR_SIZE-1:0] xant_base_addr;
+// wire [XANT_ADDR_SIZE -1:0] filt_xant_addr;
 filters #(
 	.M(M),
 	.XADC_DATA_SIZE(XADC_DATA_SIZE),
@@ -257,14 +266,7 @@ filters #(
 	input_val,
 
 	filt_result,
-	filt_done,
-
-    // debug
-    filt_start_o,
-    addr_bram_xant,
-    xant,
-    addr_bram_xcoefs,
-    xcoefs
+	filt_done
 );
 
 endmodule
