@@ -17,14 +17,15 @@ module filters(
 	xcoefs
 );
 
-parameter M = (210 + 1);     	// write/read depth
+parameter M = (210 + 1);
 
-parameter XADC_DATA_SIZE = 16;  // write/read width
-parameter XANT_ADDR_SIZE = 8;
+parameter XANT_ADDR_SIZE_BRAM 	= 8;
+parameter XANT_ADDR_SIZE 		= 8;
+parameter XADC_DATA_SIZE 		= 16;
 
-parameter XCOEF_ADDR_SIZE_BRAM = 10;
-parameter XCOEF_DATA_SIZE = 32;
-parameter XCOEF_ADDR_SIZE = 8;
+parameter XCOEF_ADDR_SIZE_BRAM 	= 10;
+parameter XCOEF_ADDR_SIZE 		= 8;
+parameter XCOEF_DATA_SIZE 		= 32;
 
 localparam FILT_SEL_LPF = 2'b00;
 localparam FILT_SEL_HPF = 2'b01;
@@ -91,7 +92,7 @@ wire [XCOEF_ADDR_SIZE-1:0] bpf_xcoefs_addr;
 
 // ------------------ aux registers
 wire [XANT_ADDR_SIZE -1:0] filt_xant_addr;
-output wire [XANT_ADDR_SIZE -1:0] addr_bram_xant;
+output wire [XANT_ADDR_SIZE_BRAM-1:0] addr_bram_xant;
 
 wire [XCOEF_ADDR_SIZE-1:0] filt_xcoefs_addr;
 output wire [XCOEF_ADDR_SIZE_BRAM-1:0] addr_bram_xcoefs;
@@ -222,7 +223,7 @@ mux3 #(XANT_ADDR_SIZE) filt_xant_addr_mux(
 );
 
 // mux filter xant address and RBUF address
-mux2 #(XANT_ADDR_SIZE) xant_addr_mux(
+mux2 #(XANT_ADDR_SIZE_BRAM) xant_addr_mux(
 	// (rbuf_writing) ? rbuf_addr : ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
     ((filt_xant_addr > M-1) ? {XANT_ADDR_SIZE{1'b0}} : filt_xant_addr),
 	rbuf_addr,
@@ -372,7 +373,7 @@ fir_filter_0 fir_hpf (
 
 // BPF - Band Pass Filter
 fir_filter_0 fir_bpf (
-  .x_ant_ce0(bpf_coefs_ce),                             // output wire x_ant_ce0
+  .x_ant_ce0(bpf_x_ant_ce),                             // output wire x_ant_ce0
   .x_coefs_ce0(bpf_coefs_ce),                           // output wire x_coefs_ce0
 
   .ap_clk(clk),                             // input wire ap_clk
