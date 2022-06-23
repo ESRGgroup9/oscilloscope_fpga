@@ -46,8 +46,8 @@
 -- 
 -- DO NOT MODIFY THIS FILE.
 
--- IP VLNV: xilinx.com:hls:fir_filter:1.0
--- IP Revision: 11
+-- IP VLNV: xilinx.com:hls:fir_filter:2.1
+-- IP Revision: 0
 
 -- The following code must appear in the VHDL architecture header.
 
@@ -63,9 +63,9 @@ COMPONENT fir_filter_0
     ap_idle : OUT STD_LOGIC;
     ap_ready : OUT STD_LOGIC;
     ap_return : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
-    x_ant_address0 : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    x_ant_address0 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     x_ant_q0 : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-    x_coefs_address0 : OUT STD_LOGIC_VECTOR(4 DOWNTO 0);
+    x_coefs_address0 : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
     x_coefs_q0 : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
     dcValEn : IN STD_LOGIC_VECTOR(0 DOWNTO 0)
   );

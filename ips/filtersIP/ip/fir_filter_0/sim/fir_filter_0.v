@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:hls:fir_filter:1.0
-// IP Revision: 11
+// IP VLNV: xilinx.com:hls:fir_filter:2.1
+// IP Revision: 0
 
 `timescale 1ns/1ps
 
@@ -92,13 +92,13 @@ output wire ap_ready;
 output wire [15 : 0] ap_return;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_ant_address0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_ant_address0 DATA" *)
-output wire [4 : 0] x_ant_address0;
+output wire [7 : 0] x_ant_address0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_ant_q0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_ant_q0 DATA" *)
 input wire [15 : 0] x_ant_q0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_coefs_address0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_coefs_address0 DATA" *)
-output wire [4 : 0] x_coefs_address0;
+output wire [7 : 0] x_coefs_address0;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME x_coefs_q0, LAYERED_METADATA undef" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:data:1.0 x_coefs_q0 DATA" *)
 input wire [31 : 0] x_coefs_q0;

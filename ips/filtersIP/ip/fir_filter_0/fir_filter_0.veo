@@ -46,8 +46,8 @@
 // 
 // DO NOT MODIFY THIS FILE.
 
-// IP VLNV: xilinx.com:hls:fir_filter:1.0
-// IP Revision: 11
+// IP VLNV: xilinx.com:hls:fir_filter:2.1
+// IP Revision: 0
 
 // The following must be inserted into your Verilog file for this
 // core to be instantiated. Change the instance name and port connections
@@ -64,9 +64,9 @@ fir_filter_0 your_instance_name (
   .ap_idle(ap_idle),                    // output wire ap_idle
   .ap_ready(ap_ready),                  // output wire ap_ready
   .ap_return(ap_return),                // output wire [15 : 0] ap_return
-  .x_ant_address0(x_ant_address0),      // output wire [4 : 0] x_ant_address0
+  .x_ant_address0(x_ant_address0),      // output wire [7 : 0] x_ant_address0
   .x_ant_q0(x_ant_q0),                  // input wire [15 : 0] x_ant_q0
-  .x_coefs_address0(x_coefs_address0),  // output wire [4 : 0] x_coefs_address0
+  .x_coefs_address0(x_coefs_address0),  // output wire [7 : 0] x_coefs_address0
   .x_coefs_q0(x_coefs_q0),              // input wire [31 : 0] x_coefs_q0
   .dcValEn(dcValEn)                    // input wire [0 : 0] dcValEn
 );
