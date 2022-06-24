@@ -250,8 +250,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>sampleIP</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>13</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2022-06-22T15:59:13Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>16</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2022-06-24T11:08:00Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="nopcore"/>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@54efe3ba_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
@@ -363,6 +363,30 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@505434a3_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@2720a817_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@62e4d340_ARCHIVE_LOCATION">/home/fernandes/code/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4b05af20_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2802c73b_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@463763bc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b7f010b_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21b12763_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15aa108d_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@45db8d3e_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b66da32_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7e3d94ac_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d3dd913_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@269fecbc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7c83c67a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@14e9301a_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@54ef9c02_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@78ae6804_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@e68bb58_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@58232f24_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4ec844ca_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4a0f2280_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4108e6f9_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12d0b8e4_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@138c96dd_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b7facdc_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52cf8380_ARCHIVE_LOCATION">/home/tomas/oscilloscope_fpga/ips/sampleIP</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>

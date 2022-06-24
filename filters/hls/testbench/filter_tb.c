@@ -4,7 +4,9 @@
 #include <math.h>
 
 // number of iterations
+//#define NUM_ITER 50
 #define NUM_ITER 500
+
 // filter order
 //#define _M_ 22
 #define _M_ 210

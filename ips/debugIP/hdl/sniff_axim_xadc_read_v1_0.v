@@ -17,7 +17,8 @@
 		// Users to add ports here
         input wire [15:0] val,
         input wire eoc,
-        input wire [1:0] state,
+//        input wire [1:0] state,
+        input wire [15:0] sampledVal,
         input wire [15:0] result,
 		// User ports ends
 		// Do not modify the ports beyond this line
@@ -52,7 +53,7 @@
 	) sniff_axim_xadc_read_v1_0_S00_AXI_inst (
 	    .val(val),
 	    .eoc(eoc),
-	    .state(state),
+	    .sampledVal(sampledVal),
 	    .result(result),
 	    
 		.S_AXI_ACLK(s00_axi_aclk),

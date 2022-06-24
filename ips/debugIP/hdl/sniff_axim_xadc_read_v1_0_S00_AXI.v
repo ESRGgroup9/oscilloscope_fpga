@@ -17,7 +17,8 @@
 		// Users to add ports here
         input wire [15:0] val,
         input wire eoc,
-        input wire [1:0] state,
+//        input wire [1:0] state,
+        input wire [15:0] sampledVal,
         input wire [15:0] result,
         
 		// User ports ends
@@ -293,7 +294,8 @@
 	         slv_reg0 <= {{16{1'b0}}, val};
 	         slv_reg1 <= {{31{1'b0}}, eoc};
 	         slv_reg2 <= {{16{1'b0}}, result};
-	         slv_reg3 <= {{30{1'b0}}, state};
+//	         slv_reg3 <= {{30{1'b0}}, state};
+             slv_reg3 <= {{16{1'b0}}, sampledVal};
 	      end
 	  end
 	end    

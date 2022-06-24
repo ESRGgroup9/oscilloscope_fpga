@@ -7,15 +7,20 @@ module testbench;
 // ===========================================================================
 
 // clock period in nanoseconds
-`define CLK_PERIOD 8
+`define CLK_PERIOD 10
 
 reg clk;
+reg clkSample;
+
 reg rst;
 
-always #(`CLK_PERIOD/2) clk = ~clk;
+always #(`CLK_PERIOD/2) clk = ~clk; // 100 MHz
+always #(10000*`CLK_PERIOD/2) clkSample = ~clkSample; // 10 kHz
+
  
 initial begin
     clk <= 1;
+    clkSample <= 1;
     rst <= 1;
         
     #(`CLK_PERIOD*2) rst <= 0;
@@ -41,7 +46,7 @@ localparam FILT_SEL_HPF = 2'b01;
 localparam FILT_SEL_BPF = 2'b10;
 
 // filters inputs
-reg filt_start;
+wire filt_start;
 reg [1:0] filt_select;
 wire [XADC_DATA_SIZE-1:0] input_val;
 
@@ -175,7 +180,17 @@ end
 initial i <= 0;
 
 // read/write to buffers
-always @(posedge rst or negedge filt_done) begin
+// always @(posedge rst or negedge filt_done) begin
+//     if(rst | sim_done) begin
+//         i <= 0;
+//     end
+//     else begin
+//         // write to output buffer
+//         output_buf[i] <= filt_result;
+//         i <= i + 1; 
+//     end
+// end
+always @(posedge clkSample) begin
     if(rst | sim_done) begin
         i <= 0;
     end
@@ -218,24 +233,61 @@ wire bpf_tested;
 // assign bpf_tested = (filt_select == FILT_SEL_BPF) & (Fc == 220);
 
 initial begin
-    Fc <= 220;
-    filt_select <= FILT_SEL_BPF;
+    Fc <= 20;
+    filt_select <= FILT_SEL_LPF;
 
     #10;
     $display("\nTesting %0s @%0dHz", filter, Fc);
 end
 
 // filter enable
-always @(rst or negedge filt_done) begin
-    if(rst) begin
-        filt_start = 0;
-    end
+// always @(rst or negedge filt_done) begin
+//     if(rst) begin
+//         filt_start = 0;
+//     end
+//     else begin
+//         filt_start = 1;
+//         #(`CLK_PERIOD*2) filt_start = 0;
+//     end
+// end
+
+// initial begin
+//     filt_start = 1;
+// end
+
+// assign filt_start = clkSample;
+
+
+// define states
+localparam S0 = 2'b00;
+localparam S1 = 2'b01;
+localparam S2 = 2'b10;
+localparam S3 = 2'b11;
+
+// state and nextstate registers
+reg[1:0] state;
+reg[1:0] nstate;
+
+// state register
+always @(posedge clk or posedge rst) begin
+    if(rst)
+        state <= S0;
     else begin
-        filt_start = 1;
-        #(`CLK_PERIOD*2) filt_start = 0;
+        state <= nstate;
     end
 end
 
+// nextstate logic
+always @(*) begin
+    case(state)
+        S0: nstate = (clkSample) ? S1 : S0;
+        S1: nstate = S2;
+        S2: nstate = S3;
+        S3: nstate = (~clkSample) ? S0 : S3;
+    endcase
+end
+
+assign filt_start = (state == S1) | (state == S2);
 
 // ===========================================================================
 // dut
@@ -251,6 +303,7 @@ end
 // wire [1:0] state_fsm_main;
 // wire  [XANT_ADDR_SIZE-1:0] xant_base_addr;
 // wire [XANT_ADDR_SIZE -1:0] filt_xant_addr;
+wire [1:0] filt_select_r;
 filters #(
 	.M(M),
 	.XADC_DATA_SIZE(XADC_DATA_SIZE),
@@ -267,6 +320,7 @@ filters #(
 
 	filt_result,
 	filt_done
+    // filt_select_r
 );
 
 endmodule

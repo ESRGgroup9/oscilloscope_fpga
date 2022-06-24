@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="26540000001fs"></ZoomEndTime>
-      <Cursor1Time time="10988016000fs"></Cursor1Time>
+      <ZoomStartTime time="4540000fs"></ZoomStartTime>
+      <ZoomEndTime time="134704540001fs"></ZoomEndTime>
+      <Cursor1Time time="49931700000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="104"></NameColumnWidth>
+      <NameColumnWidth column_width="84"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="9" />
@@ -31,6 +31,10 @@
    <wvobject fp_name="divider95" type="divider">
       <obj_property name="label">Inputs</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/filt_start">
+      <obj_property name="ElementShortName">filt_start</obj_property>
+      <obj_property name="ObjectShortName">filt_start</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/testbench/filt_select">
       <obj_property name="DisplayName">label</obj_property>
@@ -50,6 +54,10 @@
       <obj_property name="label">Outputs</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/testbench/filt_done">
+      <obj_property name="ElementShortName">filt_done</obj_property>
+      <obj_property name="ObjectShortName">filt_done</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/testbench/filt_result">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">filt_result[15:0]</obj_property>
@@ -57,13 +65,5 @@
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="label">filt_result</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/testbench/filt_done">
-      <obj_property name="ElementShortName">filt_done</obj_property>
-      <obj_property name="ObjectShortName">filt_done</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/testbench/filt_start">
-      <obj_property name="ElementShortName">filt_start</obj_property>
-      <obj_property name="ObjectShortName">filt_start</obj_property>
    </wvobject>
 </wave_config>

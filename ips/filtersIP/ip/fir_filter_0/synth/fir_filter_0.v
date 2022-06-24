@@ -47,12 +47,12 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:hls:fir_filter:2.1
-// IP Revision: 0
+// IP VLNV: xilinx.com:hls:fir_filter:2.3
+// IP Revision: 2
 
 (* X_CORE_INFO = "fir_filter,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "fir_filter_0,fir_filter,{}" *)
-(* CORE_GENERATION_INFO = "fir_filter_0,fir_filter,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=fir_filter,x_ipVersion=2.1,x_ipCoreRevision=0,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
+(* CORE_GENERATION_INFO = "fir_filter_0,fir_filter,{x_ipProduct=Vivado 2019.2,x_ipVendor=xilinx.com,x_ipLibrary=hls,x_ipName=fir_filter,x_ipVersion=2.3,x_ipCoreRevision=2,x_ipLanguage=VERILOG,x_ipSimLanguage=MIXED}" *)
 (* IP_DEFINITION_SOURCE = "HLS" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module fir_filter_0 (

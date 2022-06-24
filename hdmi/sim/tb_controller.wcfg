@@ -11,27 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-<<<<<<< HEAD
-      <ZoomStartTime time="2406000fs"></ZoomStartTime>
-      <ZoomEndTime time="2995501fs"></ZoomEndTime>
-      <Cursor1Time time="2736000fs"></Cursor1Time>
-   </zoom_setting>
-   <column_width_setting>
-      <NameColumnWidth column_width="211"></NameColumnWidth>
-      <ValueColumnWidth column_width="107"></ValueColumnWidth>
-   </column_width_setting>
-   <WVObjectSize size="20" />
-=======
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="4485001fs"></ZoomEndTime>
-      <Cursor1Time time="2658269fs"></Cursor1Time>
+      <ZoomEndTime time="13300001fs"></ZoomEndTime>
+      <Cursor1Time time="2880000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="134"></NameColumnWidth>
+      <NameColumnWidth column_width="130"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
->>>>>>> 3d8ee16425dbe653787c53ae5843fcbd68d8c292
+   <WVObjectSize size="23" />
    <wave_markers>
       <marker label="" time="1228808000" />
       <marker label="" time="16800000000" />
@@ -84,7 +72,6 @@
    <wvobject type="group" fp_name="group30">
       <obj_property name="label">BRAM0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/tb_controller/EN0">
          <obj_property name="ElementShortName">EN0</obj_property>
          <obj_property name="ObjectShortName">EN0</obj_property>
@@ -97,35 +84,17 @@
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">addrB0[18:0]</obj_property>
          <obj_property name="ObjectShortName">addrB0[18:0]</obj_property>
-<<<<<<< HEAD
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-=======
          <obj_property name="label">addrB0</obj_property>
->>>>>>> 3d8ee16425dbe653787c53ae5843fcbd68d8c292
       </wvobject>
       <wvobject type="logic" fp_name="/tb_controller/RD0">
          <obj_property name="ElementShortName">RD0</obj_property>
          <obj_property name="ObjectShortName">RD0</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/tb_controller/hasbeenhere">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">hasbeenhere</obj_property>
-      <obj_property name="ObjectShortName">hasbeenhere</obj_property>
-      <obj_property name="label">.</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/counterX_WR">
-      <obj_property name="ElementShortName">counterX_WR[9:0]</obj_property>
-      <obj_property name="ObjectShortName">counterX_WR[9:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_controller/counterY_WR">
-      <obj_property name="ElementShortName">counterY_WR[8:0]</obj_property>
-      <obj_property name="ObjectShortName">counterY_WR[8:0]</obj_property>
-   </wvobject>
    <wvobject type="group" fp_name="group31">
       <obj_property name="label">BRAM1</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/tb_controller/EN1">
          <obj_property name="ElementShortName">EN1</obj_property>
          <obj_property name="ObjectShortName">EN1</obj_property>
@@ -138,18 +107,14 @@
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">addrB1[18:0]</obj_property>
          <obj_property name="ObjectShortName">addrB1[18:0]</obj_property>
-<<<<<<< HEAD
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-=======
          <obj_property name="label">addrB1</obj_property>
->>>>>>> 3d8ee16425dbe653787c53ae5843fcbd68d8c292
       </wvobject>
       <wvobject type="logic" fp_name="/tb_controller/RD1">
          <obj_property name="ElementShortName">RD1</obj_property>
          <obj_property name="ObjectShortName">RD1</obj_property>
       </wvobject>
    </wvobject>
-<<<<<<< HEAD
    <wvobject type="logic" fp_name="/tb_controller/clean_done">
       <obj_property name="ElementShortName">clean_done</obj_property>
       <obj_property name="ObjectShortName">clean_done</obj_property>
@@ -218,6 +183,14 @@
       <obj_property name="label">FSM write</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/tb_controller/counterX_WR">
+         <obj_property name="ElementShortName">counterX_WR[9:0]</obj_property>
+         <obj_property name="ObjectShortName">counterX_WR[9:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/tb_controller/counterY_WR">
+         <obj_property name="ElementShortName">counterY_WR[8:0]</obj_property>
+         <obj_property name="ObjectShortName">counterY_WR[8:0]</obj_property>
+      </wvobject>
       <wvobject type="array" fp_name="/tb_controller/val_r">
          <obj_property name="DisplayName">label</obj_property>
          <obj_property name="ElementShortName">val_r[15:0]</obj_property>
@@ -267,6 +240,4 @@
       <obj_property name="ElementShortName">rowWR_w[8:0]</obj_property>
       <obj_property name="ObjectShortName">rowWR_w[8:0]</obj_property>
    </wvobject>
-=======
->>>>>>> 3d8ee16425dbe653787c53ae5843fcbd68d8c292
 </wave_config>

@@ -5,7 +5,6 @@
 //#define _M_ 22
 #define _M_ 210
 
-//#define DCVAL 2047 // = 4095/2
 #define VAL_MAX		65535
 #define DCVAL 		32767 // = 65535/2
 
