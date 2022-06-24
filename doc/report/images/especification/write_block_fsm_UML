@@ -1,7 +1,0 @@
-@startuml
-[*] --> Clean
-Clean --> Write : (counterX == (width-1)) && (counterY == (height-1)
-Write -up-> Idle : counterX == (width-1)
-Idle -right-> Clean : vSync
-
-@enduml

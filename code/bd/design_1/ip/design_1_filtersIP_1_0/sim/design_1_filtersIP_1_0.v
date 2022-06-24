@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: user.org:user:filtersIP:1.0
-// IP Revision: 28
+// IP VLNV: user.org:user:filtersIP:2.0
+// IP Revision: 1
 
 `timescale 1ns/1ps
 

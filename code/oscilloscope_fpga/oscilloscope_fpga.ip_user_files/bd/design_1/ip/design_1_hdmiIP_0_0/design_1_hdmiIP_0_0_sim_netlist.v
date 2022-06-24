@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Fri Jun 24 00:27:42 2022
+// Date        : Fri Jun 24 17:37:51 2022
 // Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/tomas/oscilloscope_fpga/code/bd/design_1/ip/design_1_hdmiIP_0_0/design_1_hdmiIP_0_0_sim_netlist.v

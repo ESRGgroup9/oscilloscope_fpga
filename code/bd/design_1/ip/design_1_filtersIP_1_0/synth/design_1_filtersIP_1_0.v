@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: user.org:user:filtersIP:1.0
-// IP Revision: 28
+// IP VLNV: user.org:user:filtersIP:2.0
+// IP Revision: 1
 
 (* X_CORE_INFO = "filters,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_filtersIP_1_0,filters,{}" *)

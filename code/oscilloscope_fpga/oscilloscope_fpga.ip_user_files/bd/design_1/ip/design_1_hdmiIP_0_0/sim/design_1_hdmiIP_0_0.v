@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: user.org:user:hdmiIP:1.0
-// IP Revision: 140
+// IP VLNV: user.org:user:hdmiIP:2.0
+// IP Revision: 1
 
 `timescale 1ns/1ps
 

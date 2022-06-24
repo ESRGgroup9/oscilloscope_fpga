@@ -1,8 +1,0 @@
-ADC
-hdmi controller 
-
-- post no forum
-versão
-linux
-erro
-ref ao guia da xilinx 

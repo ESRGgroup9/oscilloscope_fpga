@@ -47,8 +47,8 @@
 // DO NOT MODIFY THIS FILE.
 
 
-// IP VLNV: xilinx.com:hls:fir_filter:2.3
-// IP Revision: 2
+// IP VLNV: xilinx.com:hls:fir_filter:4.0
+// IP Revision: 0
 
 `timescale 1ns/1ps
 

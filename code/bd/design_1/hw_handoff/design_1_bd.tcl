@@ -194,10 +194,10 @@ proc create_root_design { parentCell } {
   set debugIP [ create_bd_cell -type ip -vlnv user.org:user:debugIP:1.0 debugIP ]
 
   # Create instance: filtersIP_1, and set properties
-  set filtersIP_1 [ create_bd_cell -type ip -vlnv user.org:user:filtersIP:1.0 filtersIP_1 ]
+  set filtersIP_1 [ create_bd_cell -type ip -vlnv user.org:user:filtersIP:2.0 filtersIP_1 ]
 
   # Create instance: hdmiIP_0, and set properties
-  set hdmiIP_0 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_0 ]
+  set hdmiIP_0 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:2.0 hdmiIP_0 ]
 
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
