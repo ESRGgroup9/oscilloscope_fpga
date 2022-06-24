@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-// Date        : Mon Jun 20 15:51:56 2022
-// Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+// Date        : Thu Jun 23 18:48:21 2022
+// Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_debugIP_0/design_1_debugIP_0_stub.v
+//               /home/tomas/oscilloscope_fpga/code/bd/design_1/ip/design_1_debugIP_0/design_1_debugIP_0_stub.v
 // Design      : design_1_debugIP_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1
@@ -14,15 +14,15 @@
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* X_CORE_INFO = "sniff_axim_xadc_read_v1_0,Vivado 2019.2" *)
-module design_1_debugIP_0(val, eoc, state, result, s00_axi_aclk, 
+module design_1_debugIP_0(val, eoc, sampledVal, result, s00_axi_aclk, 
   s00_axi_aresetn, s00_axi_awaddr, s00_axi_awprot, s00_axi_awvalid, s00_axi_awready, 
   s00_axi_wdata, s00_axi_wstrb, s00_axi_wvalid, s00_axi_wready, s00_axi_bresp, 
   s00_axi_bvalid, s00_axi_bready, s00_axi_araddr, s00_axi_arprot, s00_axi_arvalid, 
   s00_axi_arready, s00_axi_rdata, s00_axi_rresp, s00_axi_rvalid, s00_axi_rready)
-/* synthesis syn_black_box black_box_pad_pin="val[15:0],eoc,state[1:0],result[15:0],s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready" */;
+/* synthesis syn_black_box black_box_pad_pin="val[15:0],eoc,sampledVal[15:0],result[15:0],s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready" */;
   input [15:0]val;
   input eoc;
-  input [1:0]state;
+  input [15:0]sampledVal;
   input [15:0]result;
   input s00_axi_aclk;
   input s00_axi_aresetn;

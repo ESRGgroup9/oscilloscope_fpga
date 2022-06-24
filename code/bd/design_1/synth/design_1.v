@@ -1,8 +1,8 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
-//Date        : Wed Jun 22 13:14:18 2022
-//Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+//Date        : Fri Jun 24 13:15:39 2022
+//Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 //Command     : generate_target design_1.bd
 //Design      : design_1
 //Purpose     : IP block netlist
@@ -427,8 +427,9 @@ module design_1
         .s00_axi_wready(axi_interconnect_0_M02_AXI_WREADY),
         .s00_axi_wstrb(axi_interconnect_0_M02_AXI_WSTRB),
         .s00_axi_wvalid(axi_interconnect_0_M02_AXI_WVALID),
+        .sampledVal(sampleIP_0_sampled_val),
         .val(AXIM_read_xadc_0_val));
-  design_1_filtersIP_0_1 filtersIP_0
+  design_1_filtersIP_1_0 filtersIP_1
        (.clk(processing_system7_0_FCLK_CLK1),
         .filt_select(filt_select_1),
         .result(filtersIP_0_result),

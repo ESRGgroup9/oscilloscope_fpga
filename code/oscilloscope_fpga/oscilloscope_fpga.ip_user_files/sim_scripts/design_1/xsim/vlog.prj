@@ -1,0 +1,44 @@
+verilog xil_defaultlib --include "../../../../../bd/design_1/ipshared/ec67/hdl" --include "../../../../../bd/design_1/ipshared/2d50/hdl" --include "../../../../../bd/design_1/ip/design_1_processing_system7_0_1" --include "../../../../../bd/design_1/ip/design_1_hdmiIP_0_0/ip/clk_wiz_0" \
+"../../../bd/design_1/ip/design_1_xadc_wiz_0_0/design_1_xadc_wiz_0_0.v" \
+"../../../bd/design_1/ip/design_1_xbar_2/sim/design_1_xbar_2.v" \
+"../../../bd/design_1/ipshared/091c/hdl/config_done_V1_0_S00_AXI.v" \
+"../../../bd/design_1/ipshared/091c/hdl/config_done_v1_0.v" \
+"../../../bd/design_1/ip/design_1_config_done_0_0/sim/design_1_config_done_0_0.v" \
+"../../../bd/design_1/ip/design_1_processing_system7_0_1/sim/design_1_processing_system7_0_1.v" \
+"../../../bd/design_1/ipshared/4f06/src/average.v" \
+"../../../bd/design_1/ip/design_1_average_0_0/sim/design_1_average_0_0.v" \
+"../../../bd/design_1/ip/design_1_hdmiIP_0_0/ip/bram/sim/bram.v" \
+"../../../bd/design_1/ip/design_1_hdmiIP_0_0/ip/clk_wiz_0/clk_wiz_0_clk_wiz.v" \
+"../../../bd/design_1/ip/design_1_hdmiIP_0_0/ip/clk_wiz_0/clk_wiz_0.v" \
+"../../../bd/design_1/ipshared/1f6e/src/encoder_TMDS.v" \
+"../../../bd/design_1/ipshared/1f6e/src/hdmiController.v" \
+"../../../bd/design_1/ipshared/1f6e/src/hdmiInterface.v" \
+"../../../bd/design_1/ipshared/1f6e/src/common/mux2.v" \
+"../../../bd/design_1/ipshared/1f6e/src/hdmiIP.v" \
+"../../../bd/design_1/ip/design_1_hdmiIP_0_0/sim/design_1_hdmiIP_0_0.v" \
+"../../../bd/design_1/ipshared/845f/src/sample.v" \
+"../../../bd/design_1/ip/design_1_sampleIP_0_0/sim/design_1_sampleIP_0_0.v" \
+"../../../bd/design_1/ipshared/e6ab/hdl/sniff_axim_xadc_read_v1_0_S00_AXI.v" \
+"../../../bd/design_1/ipshared/e6ab/hdl/sniff_axim_xadc_read_v1_0.v" \
+"../../../bd/design_1/ip/design_1_debugIP_0/sim/design_1_debugIP_0.v" \
+"../../../bd/design_1/ipshared/be79/hdl/AXIM_read_xadc_v1_MAXI_ADC.v" \
+"../../../bd/design_1/ipshared/be79/hdl/AXIM_read_xadc_v1.v" \
+"../../../bd/design_1/ip/design_1_AXIM_read_xadc_0_0/sim/design_1_AXIM_read_xadc_0_0.v" \
+"../../../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/hdl/verilog/fir_filter_add_64eOg.v" \
+"../../../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/hdl/verilog/fir_filter_mul_16bkb.v" \
+"../../../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/hdl/verilog/fir_filter_mul_32cud.v" \
+"../../../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/hdl/verilog/fir_filter_sub_64dEe.v" \
+"../../../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/hdl/verilog/fir_filter.v" \
+"../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/fir_filter_0/sim/fir_filter_0.v" \
+"../../../bd/design_1/ip/design_1_filtersIP_1_0/ip/bram_coefs/sim/bram_coefs.v" \
+"../../../bd/design_1/ipshared/09e4/src/common/mux2.v" \
+"../../../bd/design_1/ipshared/09e4/src/common/mux3.v" \
+"../../../bd/design_1/ipshared/09e4/src/common/mux4.v" \
+"../../../bd/design_1/ipshared/09e4/src/filters.v" \
+"../../../bd/design_1/ip/design_1_filtersIP_1_0/sim/design_1_filtersIP_1_0.v" \
+"../../../bd/design_1/ip/design_1_auto_pc_0/sim/design_1_auto_pc_0.v" \
+"../../../bd/design_1/sim/design_1.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

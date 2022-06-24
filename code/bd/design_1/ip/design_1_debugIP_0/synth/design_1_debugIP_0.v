@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:debugIP:1.0
-// IP Revision: 6
+// IP Revision: 7
 
 (* X_CORE_INFO = "sniff_axim_xadc_read_v1_0,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_debugIP_0,sniff_axim_xadc_read_v1_0,{}" *)
@@ -56,7 +56,7 @@
 module design_1_debugIP_0 (
   val,
   eoc,
-  state,
+  sampledVal,
   result,
   s00_axi_aclk,
   s00_axi_aresetn,
@@ -83,7 +83,7 @@ module design_1_debugIP_0 (
 
 input wire [15 : 0] val;
 input wire eoc;
-input wire [1 : 0] state;
+input wire [15 : 0] sampledVal;
 input wire [15 : 0] result;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S00_AXI_CLK, ASSOCIATED_BUSIF S00_AXI, ASSOCIATED_RESET s00_axi_aresetn, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 S00_AXI_CLK CLK" *)
@@ -138,7 +138,7 @@ input wire s00_axi_rready;
   ) inst (
     .val(val),
     .eoc(eoc),
-    .state(state),
+    .sampledVal(sampledVal),
     .result(result),
     .s00_axi_aclk(s00_axi_aclk),
     .s00_axi_aresetn(s00_axi_aresetn),

@@ -48,7 +48,7 @@
 
 
 // IP VLNV: user.org:user:sampleIP:1.0
-// IP Revision: 12
+// IP Revision: 16
 
 (* X_CORE_INFO = "sampleIP,Vivado 2019.2" *)
 (* CHECK_LICENSE_TYPE = "design_1_sampleIP_0_0,sampleIP,{}" *)
@@ -62,7 +62,7 @@ module design_1_sampleIP_0_0 (
   sampled_val
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 5e+07, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, ASSOCIATED_BUSIF clk, FREQ_HZ 50000000, PHASE 0.000, CLK_DOMAIN design_1_processing_system7_0_1_FCLK_CLK0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *)
 input wire clk;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *)

@@ -1,10 +1,10 @@
 -- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2019.2 (lin64) Build 2708876 Wed Nov  6 21:39:14 MST 2019
--- Date        : Mon Jun 20 15:51:56 2022
--- Host        : fernandes420 running 64-bit Ubuntu 20.04.4 LTS
+-- Date        : Thu Jun 23 18:48:21 2022
+-- Host        : tomas-abreu running 64-bit Ubuntu 20.04.4 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/fernandes/code/oscilloscope_fpga/ext/xadc_axi/bd/design_1/ip/design_1_debugIP_0/design_1_debugIP_0_stub.vhdl
+--               /home/tomas/oscilloscope_fpga/code/bd/design_1/ip/design_1_debugIP_0/design_1_debugIP_0_stub.vhdl
 -- Design      : design_1_debugIP_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
@@ -16,7 +16,7 @@ entity design_1_debugIP_0 is
   Port ( 
     val : in STD_LOGIC_VECTOR ( 15 downto 0 );
     eoc : in STD_LOGIC;
-    state : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    sampledVal : in STD_LOGIC_VECTOR ( 15 downto 0 );
     result : in STD_LOGIC_VECTOR ( 15 downto 0 );
     s00_axi_aclk : in STD_LOGIC;
     s00_axi_aresetn : in STD_LOGIC;
@@ -47,7 +47,7 @@ architecture stub of design_1_debugIP_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "val[15:0],eoc,state[1:0],result[15:0],s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready";
+attribute black_box_pad_pin of stub : architecture is "val[15:0],eoc,sampledVal[15:0],result[15:0],s00_axi_aclk,s00_axi_aresetn,s00_axi_awaddr[4:0],s00_axi_awprot[2:0],s00_axi_awvalid,s00_axi_awready,s00_axi_wdata[31:0],s00_axi_wstrb[3:0],s00_axi_wvalid,s00_axi_wready,s00_axi_bresp[1:0],s00_axi_bvalid,s00_axi_bready,s00_axi_araddr[4:0],s00_axi_arprot[2:0],s00_axi_arvalid,s00_axi_arready,s00_axi_rdata[31:0],s00_axi_rresp[1:0],s00_axi_rvalid,s00_axi_rready";
 attribute X_CORE_INFO : string;
 attribute X_CORE_INFO of stub : architecture is "sniff_axim_xadc_read_v1_0,Vivado 2019.2";
 begin

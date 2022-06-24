@@ -59,7 +59,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./code/oscilloscope_fpga/ext/xadc_axi/bd
+  set origin_dir ./bd
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -193,8 +193,8 @@ proc create_root_design { parentCell } {
   # Create instance: debugIP, and set properties
   set debugIP [ create_bd_cell -type ip -vlnv user.org:user:debugIP:1.0 debugIP ]
 
-  # Create instance: filtersIP_0, and set properties
-  set filtersIP_0 [ create_bd_cell -type ip -vlnv user.org:user:filtersIP:1.0 filtersIP_0 ]
+  # Create instance: filtersIP_1, and set properties
+  set filtersIP_1 [ create_bd_cell -type ip -vlnv user.org:user:filtersIP:1.0 filtersIP_1 ]
 
   # Create instance: hdmiIP_0, and set properties
   set hdmiIP_0 [ create_bd_cell -type ip -vlnv user.org:user:hdmiIP:1.0 hdmiIP_0 ]
@@ -714,21 +714,20 @@ proc create_root_design { parentCell } {
 
   # Create port connections
   connect_bd_net -net AXIM_read_xadc_0_eoc [get_bd_pins AXIM_read_xadc_0/eoc] [get_bd_pins average_0/start] [get_bd_pins debugIP/eoc]
-  connect_bd_net -net AXIM_read_xadc_0_mst_exec_state [get_bd_pins debugIP/state]
   connect_bd_net -net AXIM_read_xadc_0_val [get_bd_pins AXIM_read_xadc_0/val] [get_bd_pins average_0/val] [get_bd_pins debugIP/val]
   connect_bd_net -net average_0_val_avg [get_bd_pins average_0/val_avg] [get_bd_pins sampleIP_0/val]
   connect_bd_net -net clk_wiz_0_clk [get_bd_pins AXIM_read_xadc_0/maxi_adc_aclk] [get_bd_pins average_0/clk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/M01_ACLK] [get_bd_pins axi_interconnect_0/M02_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins configIP/s00_axi_aclk] [get_bd_pins debugIP/s00_axi_aclk] [get_bd_pins hdmiIP_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins sampleIP_0/clk] [get_bd_pins xadc_wiz_0/s_axi_aclk]
-  connect_bd_net -net filt_select_1 [get_bd_ports filt_select] [get_bd_pins filtersIP_0/filt_select]
-  connect_bd_net -net filtersIP_0_result [get_bd_pins debugIP/result] [get_bd_pins filtersIP_0/result] [get_bd_pins hdmiIP_0/val]
+  connect_bd_net -net filt_select_1 [get_bd_ports filt_select] [get_bd_pins filtersIP_1/filt_select]
+  connect_bd_net -net filtersIP_0_result [get_bd_pins debugIP/result] [get_bd_pins filtersIP_1/result] [get_bd_pins hdmiIP_0/val]
   connect_bd_net -net hdmiIP_0_TMDSn [get_bd_ports TMDSn] [get_bd_pins hdmiIP_0/TMDSn]
   connect_bd_net -net hdmiIP_0_TMDSn_clk [get_bd_ports TMDSn_clk] [get_bd_pins hdmiIP_0/TMDSn_clk]
   connect_bd_net -net hdmiIP_0_TMDSp [get_bd_ports TMDSp] [get_bd_pins hdmiIP_0/TMDSp]
   connect_bd_net -net hdmiIP_0_TMDSp_clk [get_bd_ports TMDSp_clk] [get_bd_pins hdmiIP_0/TMDSp_clk]
-  connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins filtersIP_0/clk] [get_bd_pins processing_system7_0/FCLK_CLK1]
+  connect_bd_net -net processing_system7_0_FCLK_CLK1 [get_bd_pins filtersIP_1/clk] [get_bd_pins processing_system7_0/FCLK_CLK1]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins AXIM_read_xadc_0/maxi_adc_aresetn] [get_bd_pins average_0/rstn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/M01_ARESETN] [get_bd_pins axi_interconnect_0/M02_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins configIP/s00_axi_aresetn] [get_bd_pins debugIP/s00_axi_aresetn] [get_bd_pins filtersIP_0/rstn] [get_bd_pins hdmiIP_0/rstn] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins sampleIP_0/rstn] [get_bd_pins xadc_wiz_0/s_axi_aresetn]
-  connect_bd_net -net sampleIP_0_sample [get_bd_pins filtersIP_0/start] [get_bd_pins sampleIP_0/sample]
-  connect_bd_net -net sampleIP_0_sampled_val [get_bd_pins filtersIP_0/val] [get_bd_pins sampleIP_0/sampled_val]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins AXIM_read_xadc_0/maxi_adc_aresetn] [get_bd_pins average_0/rstn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/M01_ARESETN] [get_bd_pins axi_interconnect_0/M02_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins configIP/s00_axi_aresetn] [get_bd_pins debugIP/s00_axi_aresetn] [get_bd_pins filtersIP_1/rstn] [get_bd_pins hdmiIP_0/rstn] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins sampleIP_0/rstn] [get_bd_pins xadc_wiz_0/s_axi_aresetn]
+  connect_bd_net -net sampleIP_0_sample [get_bd_pins filtersIP_1/start] [get_bd_pins sampleIP_0/sample]
+  connect_bd_net -net sampleIP_0_sampled_val [get_bd_pins debugIP/sampledVal] [get_bd_pins filtersIP_1/val] [get_bd_pins sampleIP_0/sampled_val]
   connect_bd_net -net vauxn6_1 [get_bd_ports vaux6n] [get_bd_pins xadc_wiz_0/vauxn6]
   connect_bd_net -net vauxp6_1 [get_bd_ports vaux6p] [get_bd_pins xadc_wiz_0/vauxp6]
 
